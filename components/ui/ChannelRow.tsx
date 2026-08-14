@@ -52,7 +52,7 @@ export function ChannelRow({ label, valor, href }: Props) {
     window.addEventListener("resize", onResize);
 
     let raf = 0;
-    function tick() {
+    const tick = () => {
       if (!pausedRef.current) {
         const lw = labelW();
         const vw = valorW();
@@ -97,7 +97,7 @@ export function ChannelRow({ label, valor, href }: Props) {
         valorEl.style.transform = `translateX(${state.valor.x}px)`;
       }
       raf = requestAnimationFrame(tick);
-    }
+    };
     raf = requestAnimationFrame(tick);
 
     return () => {

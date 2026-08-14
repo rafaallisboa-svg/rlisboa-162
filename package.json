@@ -1,0 +1,36 @@
+{
+  "name": "rlisboa-162",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "check": "node scripts/check-conteudo.mjs",
+    "check:strict": "node scripts/check-conteudo.mjs --strict"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "lenis": "^1.1.18",
+    "next": "^15.1.0",
+    "next-mdx-remote": "^6.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.1.0",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2"
+  }
+}

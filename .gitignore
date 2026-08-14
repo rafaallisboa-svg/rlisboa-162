@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+.env*.local
+.env
+.DS_Store
+*.log
+.vercel
+scratch-requal/
+/public/videos/*.mov
+/public/videos/*.mp4
+!/public/videos/.gitkeep

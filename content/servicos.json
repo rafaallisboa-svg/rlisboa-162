@@ -1,0 +1,58 @@
+{
+  "_nota": "Ordem aqui é a ordem exibida em /servicos e no pavimento 01.",
+  "itens": [
+    {
+      "id": "identidade",
+      "titulo": "Identidade visual",
+      "resumo": "[[ TODO: uma frase ]]",
+      "inclui": ["[[ TODO: entrega 01 ]]", "[[ TODO: entrega 02 ]]", "[[ TODO: entrega 03 ]]"],
+      "investimento": "[[ TODO: a partir de R$ ]]",
+      "pendente": true
+    },
+    {
+      "id": "website",
+      "titulo": "Websites e hotsites",
+      "resumo": "[[ TODO: uma frase ]]",
+      "inclui": ["[[ TODO: entrega 01 ]]", "[[ TODO: entrega 02 ]]"],
+      "investimento": "[[ TODO: a partir de R$ ]]",
+      "pendente": true
+    },
+    {
+      "id": "motion",
+      "titulo": "Motion e vídeo",
+      "resumo": "[[ TODO: uma frase ]]",
+      "inclui": ["[[ TODO: entrega 01 ]]", "[[ TODO: entrega 02 ]]"],
+      "investimento": "[[ TODO: a partir de R$ ]]",
+      "pendente": true
+    },
+    {
+      "id": "ambientacao",
+      "titulo": "Ambientação de imóveis",
+      "resumo": "Ambientação que respeita o memorial descritivo.",
+      "inclui": [
+        "Captação ou tratamento da base",
+        "Até 3 estilos por ambiente",
+        "Composição e sombra de contato no Photoshop",
+        "Selagem de imagem ilustrativa"
+      ],
+      "investimento": "[[ TODO: por ambiente / por unidade / pacote lançamento ]]",
+      "pendente": false
+    },
+    {
+      "id": "social",
+      "titulo": "Social e campanhas",
+      "resumo": "[[ TODO: uma frase ]]",
+      "inclui": ["[[ TODO: entrega 01 ]]"],
+      "investimento": "[[ TODO: mensal a partir de R$ ]]",
+      "pendente": true
+    },
+    {
+      "id": "impressos",
+      "titulo": "Materiais gráficos",
+      "resumo": "[[ TODO: uma frase ]]",
+      "inclui": ["[[ TODO: entrega 01 ]]"],
+      "investimento": "[[ TODO: sob consulta ]]",
+      "pendente": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "_nota": "Pedir por escrito e guardar a autorização. Sem depoimento anônimo.",
+  "itens": [
+    { "citacao": "[[ TODO: depoimento 01 ]]", "nome": "[[ TODO: nome ]]", "cargo": "[[ TODO: cargo ]]", "empresa": "[[ TODO: empresa ]]", "foto": null, "pendente": true },
+    { "citacao": "[[ TODO: depoimento 02 ]]", "nome": "[[ TODO: nome ]]", "cargo": "[[ TODO: cargo ]]", "empresa": "[[ TODO: empresa ]]", "foto": null, "pendente": true },
+    { "citacao": "[[ TODO: depoimento 03 ]]", "nome": "[[ TODO: nome ]]", "cargo": "[[ TODO: cargo ]]", "empresa": "[[ TODO: empresa ]]", "foto": null, "pendente": true }
+  ]
+}

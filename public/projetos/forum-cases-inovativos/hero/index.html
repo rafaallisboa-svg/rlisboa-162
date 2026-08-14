@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hero · Fórum de Cases Inovativos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:#0048C0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:100%;
+  padding:36px 0;
+}
+.fic26-pc-logo-header{
+  display:block;
+  width:100%;
+  max-width:280px;
+  height:auto;
+  margin:0 auto 28px;
+}
+/* prévia — sem navegação real pra fora do case */
+.fic26-pc-arrow{pointer-events:auto;}
+</style>
+</head>
+<body>
+
+<img class="fic26-pc-logo-header" src="https://foruminovativos.com.br/wp-content/uploads/2026/02/logo.png" alt="Fórum Inovativos">
+
+<div class="fic26-pc">
+  <style>
+    .fic26-pc {
+      --azul: #0048C0;
+      --azul-esc: #040f26;
+      --azul-claro: #9CC3F5;
+      --ambar: #F59E0B;
+      --ambar2: #FFB238;
+      font-family: 'Hanken Grotesk', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+    .fic26-pc *, .fic26-pc *::before, .fic26-pc *::after {
+      box-sizing: border-box;
+    }
+    .fic26-pc-wrap {
+      position: relative;
+      padding: 0 56px;
+    }
+    .fic26-pc-viewport {
+      overflow: hidden;
+      padding: 30px 0 26px;
+    }
+    .fic26-pc-track {
+      display: flex;
+      gap: 16px;
+      will-change: transform;
+    }
+    .fic26-pc-slide {
+      flex: 0 0 auto;
+      width: 300px;
+      opacity: .6;
+      transform: scale(.9);
+      transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .5s ease;
+    }
+    .fic26-pc-slide.is-near {
+      opacity: .85;
+      transform: scale(.96);
+    }
+    .fic26-pc-slide.is-active {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+    .fic26-pc-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(4,15,38,.09);
+      border: 2px solid transparent;
+      transition: box-shadow .35s ease, border-color .35s ease;
+    }
+    .fic26-pc-slide.is-active .fic26-pc-card {
+      border-color: var(--azul);
+    }
+    .fic26-pc-slide:hover .fic26-pc-card {
+      border-color: var(--ambar);
+    }
+    .fic26-pc-frame {
+      position: relative;
+      padding: 0;
+      background: linear-gradient(135deg, #1D49A8 0%, #103484 55%, #0A2566 100%);
+    }
+    .fic26-pc-mark {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 26px;
+      height: 26px;
+      opacity: .35;
+    }
+    .fic26-pc-pixel {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: rgba(255,255,255,.4);
+    }
+    .fic26-pc-pixel-a { bottom: 4px; left: 14px; }
+    .fic26-pc-pixel-b { top: 6px; right: 30px; }
+    .fic26-pc-photo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: transparent;
+    }
+    .fic26-pc-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+    .fic26-pc-name {
+      position: absolute;
+      left: 50%;
+      bottom: -14px;
+      transform: translateX(-50%);
+      background: var(--azul);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: .02em;
+      padding: 8px 16px;
+      border-radius: 18px;
+      white-space: nowrap;
+      max-width: calc(100% - 24px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: 0 4px 10px rgba(0,0,0,.18);
+      z-index: 1;
+    }
+    .fic26-pc-role {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--azul-esc);
+      text-align: center;
+      line-height: 1.4;
+      padding: 26px 14px 4px;
+      min-height: 46px;
+      margin: 0;
+    }
+    .fic26-pc-divider {
+      border: none;
+      border-top: 1px solid #EEF2F8;
+      margin: 0 16px;
+    }
+    .fic26-pc-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8px 16px 12px;
+      height: 84px;
+    }
+    .fic26-pc-logo img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      clip-path: inset(5% 0 0 0);
+    }
+    .fic26-pc-logo img.is-small {
+      transform: scale(1.2);
+    }
+
+    .fic26-pc-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(4,15,38,.15);
+      background: #fff;
+      color: var(--azul-esc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(4,15,38,.1);
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+      z-index: 2;
+    }
+    .fic26-pc-arrow:hover {
+      background: var(--azul);
+      border-color: var(--azul);
+      color: #fff;
+    }
+    .fic26-pc-prev { left: 4px; }
+    .fic26-pc-next { right: 4px; }
+
+    .fic26-pc-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .fic26-pc-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(4,15,38,.2);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: width .25s ease, background .25s ease;
+    }
+    .fic26-pc-dot.is-active {
+      background: var(--azul);
+      width: 22px;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 760px) {
+      .fic26-pc-wrap {
+        padding: 0 40px;
+      }
+      .fic26-pc-slide {
+        width: 230px;
+      }
+      .fic26-pc-arrow {
+        width: 36px;
+        height: 36px;
+      }
+    }
+    @media (max-width: 480px) {
+      .fic26-pc-wrap {
+        padding: 0 34px;
+      }
+      .fic26-pc-slide {
+        width: 100%;
+      }
+      .fic26-pc-arrow {
+        width: 46px;
+        height: 46px;
+        border-color: rgba(4,15,38,.3);
+        box-shadow: 0 4px 12px rgba(4,15,38,.18);
+      }
+      .fic26-pc-arrow svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  </style>
+
+  <div class="fic26-pc-wrap">
+    <button class="fic26-pc-arrow fic26-pc-prev" type="button" aria-label="Anterior">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="fic26-pc-arrow fic26-pc-next" type="button" aria-label="Pr&oacute;ximo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+
+    <div class="fic26-pc-viewport">
+      <div class="fic26-pc-track" data-track>
+        <!-- slides injected by JS (real + clones) -->
+      </div>
+    </div>
+  </div>
+
+  <div class="fic26-pc-dots" data-dots></div>
+
+  <script>
+    (function () {
+      var root = document.currentScript.closest('.fic26-pc');
+      var track = root.querySelector('[data-track]');
+      var dotsWrap = root.querySelector('[data-dots]');
+      var prevBtn = root.querySelector('.fic26-pc-prev');
+      var nextBtn = root.querySelector('.fic26-pc-next');
+      var viewport = root.querySelector('.fic26-pc-viewport');
+
+      var speakers = [
+        { id: 'anna-vidal', name: 'Anna Vidal', role: 'Commercial and Customer Success Director', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/AnaVidal26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/ifood26.jpg', company: 'iFood' },
+        { id: 'bruno-lodo', name: 'Bruno Lodo', role: 'Diretor de CX e Operações', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/Bruno-Lodo-26-.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/99-pay-26-2.jpg', company: '99Pay', logoSmall: true },
+        { id: 'carlos-akira', name: 'Carlos Akira', role: 'VP de Relações Institucionais', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/CarlosAkira-26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/pagos-26.jpg', company: 'Pagos', logoSmall: true },
+        { id: 'fernanda-rossin', name: 'Fernanda Rossin', role: 'Brazil Country Lead, Service Operations', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/Fernanda-Rossin-26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/Tik-Tok-Shop-26.jpg', company: 'TikTok Shop' },
+        { id: 'guilherme-stumpf-silva', name: 'Guilherme Stumpf Silva', role: 'Diretor de TI', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/Guilherme-Stumpf-Silva-26-.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/keineckein-26-1.jpg', company: 'Heineken' },
+        { id: 'juliana-pereira', name: 'Juliana Pereira', role: 'Vice-presidente de Clientes', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/Juliana-Pereira-26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/gripoAmil26-1.jpg', company: 'Grupo Amil' },
+        { id: 'mauro-pimenta', name: 'Mauro Pimenta', role: 'Chief Finance & People Officer (CFPO)', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/Mauro-Pimenta26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/privalia-26.jpg', company: 'Privalia' },
+        { id: 'rafael-gregorio', name: 'Rafael Gregorio', role: 'Senior Head of Data, Model and AI', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/Rafael-Gregorio26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/06/santander.jpg', company: 'Santander' },
+        { id: 'samuel-dallagnol', name: 'Samuel Dall\'Agnol', role: 'Diretor de Plataformas Digitais e Monetização', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/Samuel-DallAgnol26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/globo-26.jpg', company: 'Globo' },
+        { id: 'marcio-souza', name: 'Marcio Souza', role: 'Diretor Sênior de Customer Experience', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/Marcio-Souza-26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/ml26.jpg', company: 'Mercado Livre' },
+        { id: 'estevao-lazanha', name: 'Estevão Lazanha', role: 'Head de Negócios Digitais & Shared Experiences PF', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/estevao-lazanhaF2026.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/itau-f26.jpg', company: 'Itaú Unibanco' },
+        { id: 'olivier-aizac', name: 'Olivier Aizac', role: 'CEO', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/Olivier-Aizac-f26.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/Grup-olx-f26.jpg', company: 'Grupo OLX' },
+        { id: 'alexandre-magno', name: 'Alexandre Magno', role: 'CEO', photo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/AlMagnoF26-2.jpg', logo: 'https://foruminovativos.com.br/wp-content/uploads/2026/07/winw26f.jpg', company: 'Grupo Wine' }
+      ];
+
+      var REAL = speakers.length;
+      var CLONES = 3;
+      var order = [];
+      for (var i = REAL - CLONES; i < REAL; i++) order.push(i);
+      for (var i = 0; i < REAL; i++) order.push(i);
+      for (var i = 0; i < CLONES; i++) order.push(i);
+
+      var markSvg = '<svg class="fic26-pc-mark" viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">' +
+        '<path fill="#fff" d="M15.2,0c-4.2,0-8,1.7-10.8,4.4C1.7,7.2,0,11,0,15.2v15.2h15.2v15.2H0v15.2c0,4.2,1.7,8,4.4,10.8,2.8,2.7,6.6,4.4,10.8,4.4v-30.4h15.2v-15.2h-15.2V0Z"/>' +
+        '<path fill="#fff" d="M60.8,0v30.4h15.2v-15.2c0-8.4-6.8-15.2-15.2-15.2Z"/>' +
+        '<rect fill="#fff" x="45.6" y="30.4" width="15.2" height="15.2"/>' +
+        '<path fill="#fff" d="M60.8,76c4.2,0,8-1.7,10.7-4.4,2.8-2.8,4.4-6.6,4.4-10.8v-15.2h-15.2v30.4Z"/>' +
+      '</svg>';
+
+      function slideHTML(sp) {
+        var logoClass = sp.logoSmall ? 'fic26-pc-logo-img is-small' : 'fic26-pc-logo-img';
+        var idAttr = sp.id ? ' data-palestrante="' + sp.id + '"' : '';
+        return '' +
+          '<div class="fic26-pc-card"' + idAttr + '>' +
+            '<div class="fic26-pc-frame">' +
+              markSvg +
+              '<span class="fic26-pc-pixel fic26-pc-pixel-a"></span>' +
+              '<span class="fic26-pc-pixel fic26-pc-pixel-b"></span>' +
+              '<div class="fic26-pc-photo">' +
+                '<img src="' + sp.photo + '" alt="' + sp.name + '">' +
+              '</div>' +
+              '<span class="fic26-pc-name">' + sp.name + '</span>' +
+            '</div>' +
+            '<p class="fic26-pc-role">' + sp.role + '</p>' +
+            '<hr class="fic26-pc-divider">' +
+            '<div class="fic26-pc-logo"><img class="' + logoClass + '" src="' + sp.logo + '" alt="' + sp.company + '"></div>' +
+          '</div>';
+      }
+
+      order.forEach(function (realIdx) {
+        var el = document.createElement('div');
+        el.className = 'fic26-pc-slide';
+        el.innerHTML = slideHTML(speakers[realIdx]);
+        track.appendChild(el);
+      });
+
+      speakers.forEach(function (sp, i) {
+        var dot = document.createElement('button');
+        dot.className = 'fic26-pc-dot' + (i === 0 ? ' is-active' : '');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', sp.name);
+        dot.addEventListener('click', function () {
+          pos = CLONES + i;
+          renderAnimated();
+        });
+        dotsWrap.appendChild(dot);
+      });
+
+      var slideEls = track.children;
+      var pos = CLONES;
+
+      function render(animate) {
+        track.style.transition = animate ? 'transform .55s cubic-bezier(.4,0,.2,1)' : 'none';
+        var slideW = slideEls[0].offsetWidth;
+        var gap = parseFloat(getComputedStyle(track).gap) || 0;
+        var step = slideW + gap;
+        var viewportW = viewport.getBoundingClientRect().width;
+        var offset = viewportW / 2 - (pos * step + slideW / 2);
+        track.style.transform = 'translateX(' + offset + 'px)';
+
+        for (var i = 0; i < slideEls.length; i++) {
+          var dist = Math.abs(i - pos);
+          slideEls[i].classList.remove('is-active', 'is-near');
+          if (dist === 0) slideEls[i].classList.add('is-active');
+          else if (dist === 1) slideEls[i].classList.add('is-near');
+        }
+
+        var realPos = ((pos - CLONES) % REAL + REAL) % REAL;
+        var dots = dotsWrap.children;
+        for (var d = 0; d < dots.length; d++) {
+          dots[d].classList.toggle('is-active', d === realPos);
+        }
+      }
+
+      var snapTimer = null;
+      function renderAnimated() {
+        render(true);
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(checkSnap, 600);
+      }
+      function checkSnap() {
+        if (pos >= CLONES + REAL) {
+          pos -= REAL;
+          render(false);
+        } else if (pos < CLONES) {
+          pos += REAL;
+          render(false);
+        }
+      }
+
+      function step_(delta) {
+        pos += delta;
+        renderAnimated();
+      }
+
+      var timer = null;
+      function play() {
+        stop();
+        timer = setInterval(function () { step_(1); }, 3800);
+      }
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      nextBtn.addEventListener('click', function () { step_(1); play(); });
+      prevBtn.addEventListener('click', function () { step_(-1); play(); });
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', play);
+      root.addEventListener('focusin', stop);
+      root.addEventListener('focusout', play);
+
+      window.addEventListener('resize', function () { render(false); });
+
+      render(false);
+      play();
+    })();
+  </script>
+</div>
+
+</body>
+</html>

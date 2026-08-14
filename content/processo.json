@@ -1,0 +1,11 @@
+{
+  "_nota": "Memorial descritivo — pavimento 05. Sequência real, numeração legítima.",
+  "etapas": [
+    { "n": "01", "titulo": "Diagnóstico", "texto": "[[ TODO: 1 a 2 frases ]]" },
+    { "n": "02", "titulo": "Direção", "texto": "[[ TODO: 1 a 2 frases ]]" },
+    { "n": "03", "titulo": "Sistema", "texto": "[[ TODO: 1 a 2 frases ]]" },
+    { "n": "04", "titulo": "Aplicação", "texto": "[[ TODO: 1 a 2 frases ]]" },
+    { "n": "05", "titulo": "Produção", "texto": "[[ TODO: 1 a 2 frases ]]" },
+    { "n": "06", "titulo": "Entrega", "texto": "[[ TODO: 1 a 2 frases ]]" }
+  ]
+}

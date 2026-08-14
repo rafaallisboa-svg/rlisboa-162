@@ -1,0 +1,15 @@
+{
+  "_nota": "Alimenta o comparador antes/depois. Antes e depois precisam de enquadramento idêntico, alinhados pixel a pixel.",
+  "destaque": {
+    "tipologia": "[[ TODO: ex. 2 dormitórios, 68 m² ]]",
+    "ambiente": "[[ TODO: ex. Sala de estar ]]",
+    "antes": "/api/ph?w=1600&h=1000&label=Antes — imovel vazio",
+    "estilos": [
+      { "id": "contemporaneo", "label": "Contemporâneo", "src": "/api/ph?w=1600&h=1000&label=Depois — contemporaneo" },
+      { "id": "praia", "label": "Praia", "src": "/api/ph?w=1600&h=1000&label=Depois — praia" },
+      { "id": "investidor", "label": "Investidor", "src": "/api/ph?w=1600&h=1000&label=Depois — investidor" }
+    ],
+    "ilustrativa": true,
+    "pendente": true
+  }
+}

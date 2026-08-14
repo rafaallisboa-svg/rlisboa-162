@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/**
+ * Tokens do estúdio — seção 3 do BRIEF.md. Não adicionar cor, fonte ou
+ * tamanho fora daqui. Qualquer novo token nasce nesta seção, nunca inline.
+ */
+@theme {
+  --color-concreto: #1a1c1b;
+  --color-cal: #f0efea;
+  --color-maresia: #7a8b85;
+  --color-blueprint: #16324f;
+  --color-sinal: #ffc300;
+
+  /* --font-jbmono vem do next/font (app/layout.tsx). Clash Display e Satoshi
+     vêm via Fontshare (link no <head>, não estão no Google Fonts). */
+  --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jbmono), ui-monospace, "SFMono-Regular", monospace;
+
+  --text-hero: clamp(3.5rem, 11vw, 11rem);
+  --text-h1: clamp(2.5rem, 6vw, 5rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 3rem);
+  --text-body: clamp(1rem, 1.1vw, 1.125rem);
+  --text-mono: 0.75rem;
+}
+
+@layer base {
+  /* Regra inviolável: border-radius 0 em todo o site, sem exceção. */
+  *,
+  *::before,
+  *::after {
+    border-radius: 0;
+    border-color: rgba(240, 239, 234, 0.12);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-concreto);
+    color: var(--color-cal);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    min-height: 100dvh;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(240, 239, 234, 0.12);
+  }
+
+  ::selection {
+    background-color: var(--color-sinal);
+    color: var(--color-concreto);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sinal);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .marquee {
+    animation: marquee 28s linear infinite;
+  }
+
+  .prose-case {
+    max-width: 60ch;
+  }
+
+  .prose-case p {
+    margin-top: 1rem;
+    color: var(--color-cal);
+    opacity: 0.85;
+  }
+
+  .prose-case p:first-child {
+    margin-top: 0.75rem;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes linhas-fundo {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Contorno piscando — chama atenção pro "+" de um serviço por vez em /servicos. */
+@keyframes piscar {
+  0%,
+  100% {
+    opacity: 0.15;
+    outline-color: transparent;
+  }
+  50% {
+    opacity: 1;
+    outline-color: var(--color-sinal);
+  }
+}
+
+/*
+ * Reveal da galeria de projeto (components/ui/Galeria.tsx): a imagem "abre"
+ * da esquerda pra direita conforme ELA MESMA cruza o viewport — presa à
+ * posição de rolagem via animation-timeline: view(), não a um
+ * IntersectionObserver em JS (que se mostrou pouco confiável: ou não
+ * disparava — foto nunca aparecia — ou disparava tudo de uma vez via
+ * fallback). Scroll-driven é nativo do navegador, não tem como travar nem
+ * dessincronizar: cada figura revela sozinha, na hora que passa pela tela.
+ * Sem suporte (Firefox/Safari em 2026), a imagem fica sempre visível —
+ * degrada pra "sem efeito", nunca pra "sumida".
+ */
+@supports (animation-timeline: view()) {
+  .reveal-scroll {
+    animation: reveal-wipe linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+}
+
+@keyframes reveal-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}

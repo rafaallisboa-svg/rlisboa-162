@@ -6,13 +6,13 @@
     { "nome": "AKMX Arquitetura e Engenharia", "logo": "/clientes/akmx.png", "url": null, "setor": null, "pendente": false, "razao": 2.857, "escala": 0.85 },
     { "nome": "tandera.", "logo": "/clientes/tandera.png", "url": null, "setor": null, "pendente": false, "razao": 3.926 },
     { "nome": "pallas", "logo": "/clientes/pallas.png", "url": null, "setor": null, "pendente": false, "razao": 2.922 },
-    { "nome": "Zavanna", "logo": "/clientes/zavanna.png", "url": null, "setor": null, "pendente": false, "razao": 6.138, "escala": 0.71 },
+    { "nome": "Zavanna", "logo": "/clientes/zavanna.png", "url": null, "setor": null, "pendente": false, "razao": 6.138, "escala": 0.78 },
     { "nome": "Iluminatta", "logo": "/clientes/iluminatta.png", "url": null, "setor": null, "pendente": false, "razao": 4.047, "tecnica": "cinza" },
     { "nome": "Conteúdo Editorial", "logo": "/clientes/conteudo-editorial.png", "url": null, "setor": null, "pendente": false, "razao": 3.386 },
     { "nome": "GSM New Parking", "logo": "/clientes/gsm-new-parking.png", "url": null, "setor": null, "pendente": false, "razao": 2.098, "escala": 0.7 },
     { "nome": "Inovativos", "logo": "/clientes/inovativos.png", "url": null, "setor": null, "pendente": false, "razao": 4.741 },
     { "nome": "Z1 Boutique de Imóveis", "logo": "/clientes/z1-boutique.png", "url": null, "setor": null, "pendente": false, "razao": 2.261 },
-    { "nome": "Security Leaders", "logo": "/clientes/security-leaders.svg", "url": null, "setor": null, "pendente": false, "razao": 0.847, "escala": 1.28 },
+    { "nome": "Security Leaders", "logo": "/clientes/security-leaders.png", "url": null, "setor": null, "pendente": false, "razao": 0.848, "tecnica": "cinza", "escala": 1.28 },
     { "nome": "AXZIEL A7Z", "logo": "/clientes/axziel.png", "url": null, "setor": null, "pendente": false, "razao": 3.005, "escala": 0.7 }
   ]
 }

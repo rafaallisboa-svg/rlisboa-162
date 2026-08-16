@@ -12,7 +12,7 @@
     { "nome": "GSM New Parking", "logo": "/clientes/gsm-new-parking.png", "url": null, "setor": null, "pendente": false, "razao": 2.098, "escala": 0.7 },
     { "nome": "Inovativos", "logo": "/clientes/inovativos.png", "url": null, "setor": null, "pendente": false, "razao": 4.741 },
     { "nome": "Z1 Boutique de Imóveis", "logo": "/clientes/z1-boutique.png", "url": null, "setor": null, "pendente": false, "razao": 2.261 },
-    { "nome": "Security Leaders", "logo": "/clientes/security-leaders.png", "url": null, "setor": null, "pendente": false, "razao": 0.844, "tecnica": "cinza", "escala": 1.28 },
+    { "nome": "Security Leaders", "logo": "/clientes/security-leaders.png", "url": null, "setor": null, "pendente": false, "razao": 1.57, "tecnica": "cheio" },
     { "nome": "AXZIEL A7Z", "logo": "/clientes/axziel.png", "url": null, "setor": null, "pendente": false, "razao": 3.005, "escala": 0.7 }
   ]
 }

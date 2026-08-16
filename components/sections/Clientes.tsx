@@ -25,16 +25,27 @@ export function Clientes() {
         <div className="marquee flex w-max items-center gap-5">
           {loop.map((c, i) => {
             const escala = c.escala ?? 1;
+            const cheio = c.tecnica === "cheio";
             return (
               // Cartão quadrado uniforme — todo logo cabe inteiro (object-contain)
               // dentro do mesmo tamanho de caixa, então nada corta e o espaçamento
               // entre os itens fica sempre igual, independente da proporção do logo.
               // "escala" ajusta o tamanho do logo dentro da caixa (não a caixa em si).
+              // "cheio" = a própria imagem já vem com fundo/margem prontos —
+              // preenche a caixa de ponta a ponta, sem o padding padrão.
               <div
                 key={`${c.nome}-${i}`}
-                className="flex h-24 w-36 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black p-6 md:h-28 md:w-44"
+                className={`flex h-24 w-36 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black md:h-28 md:w-44 ${
+                  cheio ? "" : "p-6"
+                }`}
               >
-                {isPlaceholderImg(c.logo) ? (
+                {cheio ? (
+                  <img
+                    src={c.logo}
+                    alt={c.nome}
+                    className="h-full w-full object-cover"
+                  />
+                ) : isPlaceholderImg(c.logo) ? (
                   <img
                     src={c.logo}
                     alt={c.nome}

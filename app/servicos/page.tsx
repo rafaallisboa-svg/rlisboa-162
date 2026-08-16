@@ -6,15 +6,25 @@ const SERVICOS = [
   {
     nome: "Identidade Visual",
     descricao:
-      "Sistema de marca completo — do zero ou redesign — pronto pra aplicar em qualquer ponto de contato.",
-    incluido: [
-      "Pesquisa e briefing",
-      "Logotipo e variações",
-      "Paleta de cores",
-      "Tipografia",
-      "Grade de construção",
-      "Manual de marca",
-      "Aplicações (papelaria, redes sociais)",
+      "Sistema de marca — do zero ou redesign — pronto pra aplicar em qualquer ponto de contato. Do essencial ao sistema completo.",
+    grupos: [
+      {
+        nome: "Básico",
+        incluido: ["Logotipo e variações", "Paleta de cores", "Tipografia", "Manual de marca"],
+      },
+      {
+        nome: "Completo",
+        incluido: [
+          "Pesquisa e briefing",
+          "Logotipo e variações",
+          "Paleta de cores",
+          "Tipografia",
+          "Grade de construção",
+          "Elementos gráficos",
+          "Manual de marca",
+          "Aplicações (papelaria, redes sociais)",
+        ],
+      },
     ],
   },
   {
@@ -44,17 +54,27 @@ const SERVICOS = [
   },
   {
     nome: "Social Media Kit",
-    descricao: "Identidade inicial rápida e premium pra redes sociais.",
-    incluido: [
-      "Post Instagram",
-      "Post Facebook",
-      "Post LinkedIn",
-      "Carrossel (5 slides)",
-      "Post de citação/anúncio",
-      "Post de venda/CTA",
-      "Story",
-      "Capa de Reels/Story",
-      "Capas de destaque (Instagram)",
+    descricao:
+      "Identidade inicial rápida e premium pra redes sociais — cada peça no formato que fizer mais sentido pro conteúdo.",
+    grupos: [
+      {
+        nome: "Peças",
+        incluido: [
+          "Post Instagram",
+          "Post Facebook",
+          "Post LinkedIn",
+          "Carrossel (5 slides)",
+          "Post de citação/anúncio",
+          "Post de venda/CTA",
+          "Story",
+          "Capa de Reels/Story",
+          "Capas de destaque (Instagram)",
+        ],
+      },
+      {
+        nome: "Formato",
+        incluido: ["Imagem estática", "Carrossel de imagens", "Vídeo"],
+      },
     ],
   },
   {
@@ -69,6 +89,33 @@ const SERVICOS = [
       "Vídeos para painéis de LED",
       "Cenografia digital",
       "Apresentações em vídeo",
+    ],
+  },
+  {
+    nome: "Eventos",
+    descricao:
+      "Toda a comunicação visual de um evento — palco, credenciamento, telas e material impresso — com uma linguagem só.",
+    incluido: [
+      "Identidade visual do evento",
+      "Apresentação/PPT",
+      "Cenografia em vídeo para telas de LED",
+      "Imagens em grande formato para impressão",
+      "Backdrop / painel de fotos",
+      "Crachá e credenciamento",
+      "Convite digital / e-mail marketing",
+    ],
+  },
+  {
+    nome: "Materiais Gráficos",
+    descricao:
+      "Peças gráficas, publicações e diagramação — do conceito ao arquivo pronto pra impressão ou tela.",
+    incluido: [
+      "Diagramação editorial",
+      "Revistas e catálogos",
+      "Relatórios e apresentações institucionais",
+      "Infográficos",
+      "Anúncios e peças publicitárias",
+      "Impressos em geral",
     ],
   },
 ] as const;
@@ -145,19 +192,43 @@ export default function ServicosPage() {
                     </p>
 
                     <div>
-                      <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-                        {"rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído"}
-                      </p>
-                      <ul className="mt-4 flex flex-wrap gap-2">
-                        {s.incluido.map((item) => (
-                          <li
-                            key={item}
-                            className="rounded-full border border-white/15 px-4 py-2 text-xs text-cal"
-                          >
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
+                      {"grupos" in s ? (
+                        <div className="flex flex-col gap-6">
+                          {s.grupos.map((grupo) => (
+                            <div key={grupo.nome}>
+                              <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
+                                {grupo.nome}
+                              </p>
+                              <ul className="mt-3 flex flex-wrap gap-2">
+                                {grupo.incluido.map((item) => (
+                                  <li
+                                    key={item}
+                                    className="rounded-full border border-white/15 px-4 py-2 text-xs text-cal"
+                                  >
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <>
+                          <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+                            {"rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído"}
+                          </p>
+                          <ul className="mt-4 flex flex-wrap gap-2">
+                            {s.incluido.map((item) => (
+                              <li
+                                key={item}
+                                className="rounded-full border border-white/15 px-4 py-2 text-xs text-cal"
+                              >
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
                     </div>
 
                     <div className="flex flex-col items-start gap-4 md:items-end">

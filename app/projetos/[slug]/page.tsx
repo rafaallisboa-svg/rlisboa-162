@@ -28,7 +28,7 @@ export default async function ProjetoPage({
   return (
     <article>
       <Link
-        href="/projetos"
+        href="/#projetos"
         aria-label="Voltar para projetos"
         className="group fixed right-6 top-24 z-50 flex h-10 w-10 items-center justify-center border border-cal/20 bg-concreto/80 text-cal backdrop-blur-sm transition-colors hover:border-sinal hover:text-sinal md:right-[clamp(1.5rem,5vw,6rem)]"
       >

@@ -11,6 +11,7 @@ export function ProjetosDestaque() {
 
   return (
     <section
+      id="projetos"
       aria-label="Projetos em destaque"
       className="border-t border-white/10 bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
     >

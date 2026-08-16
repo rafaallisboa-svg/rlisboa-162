@@ -74,7 +74,7 @@ export const site = {
 
   // ── Mídia ───────────────────────────────────────────────────
   hero: {
-    video: null as string | null, // "/videos/reel-hero.mp4" quando pronto
+    video: "/hero/motion-intro.mp4" as string | null,
     poster: "/api/ph?w=1920&h=1080&label=Poster do reel",
     headline: "[[ TODO: headline do hero ]]",
   },

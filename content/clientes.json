@@ -5,7 +5,7 @@
     { "nome": "NOHMA", "logo": "/clientes/nohma.svg", "url": null, "setor": null, "pendente": false, "razao": 5.139 },
     { "nome": "AKMX Arquitetura e Engenharia", "logo": "/clientes/akmx.png", "url": null, "setor": null, "pendente": false, "razao": 2.857, "escala": 0.85 },
     { "nome": "tandera.", "logo": "/clientes/tandera.png", "url": null, "setor": null, "pendente": false, "razao": 3.926 },
-    { "nome": "pallas", "logo": "/clientes/pallas.png", "url": null, "setor": null, "pendente": false, "razao": 2.922 },
+    { "nome": "pallas", "logo": "/clientes/pallas.png", "url": null, "setor": null, "pendente": false, "razao": 2.922, "escala": 0.9 },
     { "nome": "Zavanna", "logo": "/clientes/zavanna.png", "url": null, "setor": null, "pendente": false, "razao": 6.138, "escala": 0.78 },
     { "nome": "Iluminatta", "logo": "/clientes/iluminatta.png", "url": null, "setor": null, "pendente": false, "razao": 4.047, "tecnica": "cinza" },
     { "nome": "Conteúdo Editorial", "logo": "/clientes/conteudo-editorial.png", "url": null, "setor": null, "pendente": false, "razao": 3.386 },

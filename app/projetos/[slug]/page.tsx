@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProjeto, getProjetos } from "@/lib/projetos";
 import { Galeria } from "@/components/ui/Galeria";
+import { real } from "@/lib/placeholder";
 
 export function generateStaticParams() {
   return getProjetos().map((p) => ({ slug: p.slug }));
@@ -121,14 +122,16 @@ export default async function ProjetoPage({
         </div>
       )}
 
-      <div className="px-6 py-10 md:px-[clamp(1.5rem,5vw,6rem)]">
-        <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
-          Resultado
-        </p>
-        <div className="prose-case">
-          <p>{frontmatter.resultado}</p>
+      {real(frontmatter.resultado) && (
+        <div className="px-6 py-10 md:px-[clamp(1.5rem,5vw,6rem)]">
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
+            Resultado
+          </p>
+          <div className="prose-case">
+            <p>{frontmatter.resultado}</p>
+          </div>
         </div>
-      </div>
+      )}
 
       {proximo && (
         <div className="border-t border-white/10 px-6 py-10 md:px-[clamp(1.5rem,5vw,6rem)]">

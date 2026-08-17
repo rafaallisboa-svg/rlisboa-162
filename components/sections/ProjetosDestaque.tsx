@@ -16,7 +16,7 @@ export function ProjetosDestaque() {
       className="border-t border-white/10 bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
     >
       <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-        Pav. 02 — Projetos em destaque
+        Projetos em destaque
       </p>
 
       <div className="mt-10 grid gap-8 md:grid-cols-2">

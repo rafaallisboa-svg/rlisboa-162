@@ -3,7 +3,7 @@ import { site } from "@/site.config";
 import { ChannelRow } from "@/components/ui/ChannelRow";
 
 export default function ContatoPage() {
-  const redes = publicados(site.redes);
+  const redes = publicados(site.redes).filter((r) => r.label !== "Behance");
   const whatsappUrl = `https://wa.me/${site.contato.whatsapp}?text=${encodeURIComponent(
     site.contato.whatsappMensagem,
   )}`;

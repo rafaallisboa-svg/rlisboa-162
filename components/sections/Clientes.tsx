@@ -18,7 +18,7 @@ export function Clientes() {
       className="border-t border-white/10 bg-concreto py-20"
     >
       <p className="px-6 font-mono text-xs uppercase tracking-[0.12em] text-maresia md:px-[clamp(1.5rem,5vw,6rem)]">
-        Pav. 04 — Clientes
+        Clientes
       </p>
 
       <div className="mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

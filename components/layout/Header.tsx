@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { site } from "@/site.config";
 import { publicados } from "@/lib/placeholder";
+import { SocialIcon, IconeEmail, IconeWhatsApp } from "@/components/ui/SocialIcon";
 
 const NAV = [
   { label: "Projetos", href: "/#projetos" },
@@ -11,12 +12,6 @@ const NAV = [
   { label: "Serviços", href: "/servicos" },
   { label: "Contato", href: "/contato" },
 ] as const;
-
-function monograma(nome: string) {
-  const partes = nome.trim().split(/\s+/);
-  if (partes.length >= 2) return (partes[0][0] + partes[1][0]).toUpperCase();
-  return nome.slice(0, 2).toUpperCase();
-}
 
 export function Header() {
   const [aberto, setAberto] = useState(false);
@@ -119,23 +114,28 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex flex-col gap-6 border-t border-white/10 px-6 py-8">
-          <div className="flex flex-col gap-1 font-mono text-sm text-maresia">
-            <a href={`mailto:${site.contato.email}`} onClick={fechar}>
-              {site.contato.email}
-            </a>
-            <a
-              href={`https://wa.me/${site.contato.whatsapp}`}
-              onClick={fechar}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {site.contato.telefone}
-            </a>
-          </div>
+        <div className="flex flex-col gap-4 border-t border-white/10 px-6 py-8">
+          <a
+            href={`mailto:${site.contato.email}`}
+            onClick={fechar}
+            className="flex items-center gap-3 font-mono text-sm text-maresia"
+          >
+            <IconeEmail />
+            {site.contato.email}
+          </a>
+          <a
+            href={`https://wa.me/${site.contato.whatsapp}`}
+            onClick={fechar}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 font-mono text-sm text-maresia"
+          >
+            <IconeWhatsApp />
+            {site.contato.telefone}
+          </a>
 
           {redes.length > 0 && (
-            <div className="flex gap-3">
+            <div className="mt-2 flex gap-3">
               {redes.map((r) => (
                 <a
                   key={r.label}
@@ -144,9 +144,9 @@ export function Header() {
                   rel="noopener noreferrer"
                   aria-label={r.label}
                   onClick={fechar}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 font-mono text-xs uppercase text-cal transition-colors hover:border-sinal hover:text-sinal"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-cal transition-colors hover:border-sinal hover:text-sinal"
                 >
-                  {monograma(r.label)}
+                  <SocialIcon nome={r.label} />
                 </a>
               ))}
             </div>

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { site } from "@/site.config";
 import { isTodo, publicados, todoClass } from "@/lib/placeholder";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 
 function Campo({ value }: { value: string }) {
   return isTodo(value) ? <span className={todoClass}>{value}</span> : <>{value}</>;
@@ -35,17 +35,26 @@ export function Footer() {
         <div className="font-mono text-xs tracking-wide text-maresia">
           <p className="mb-3 uppercase tracking-[0.12em] text-cal">Redes</p>
           {redes.length === 0 && <span className={todoClass}>Pendente</span>}
-          {redes.map((r) =>
-            isTodo(r.url) ? (
-              <p key={r.label}>
-                <span className={todoClass}>{r.label}</span>
-              </p>
-            ) : (
-              <p key={r.label}>
-                <Link href={r.url}>{r.label}</Link>
-              </p>
-            ),
-          )}
+          <div className="flex gap-3">
+            {redes.map((r) =>
+              isTodo(r.url) ? (
+                <span key={r.label} className={todoClass}>
+                  {r.label}
+                </span>
+              ) : (
+                <a
+                  key={r.label}
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={r.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-maresia transition-colors hover:border-sinal hover:text-sinal"
+                >
+                  <SocialIcon nome={r.label} className="h-4 w-4" />
+                </a>
+              ),
+            )}
+          </div>
         </div>
       </div>
 

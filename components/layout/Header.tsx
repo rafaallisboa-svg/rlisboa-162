@@ -5,7 +5,7 @@ import { useState } from "react";
 import { site } from "@/site.config";
 
 const NAV = [
-  { label: "Projetos", href: "/projetos" },
+  { label: "Projetos", href: "/#projetos" },
   { label: "Sobre", href: "/sobre" },
   { label: "Serviços", href: "/servicos" },
   { label: "Contato", href: "/contato" },

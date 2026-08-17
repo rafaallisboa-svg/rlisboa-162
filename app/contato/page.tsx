@@ -8,10 +8,15 @@ export default function ContatoPage() {
     site.contato.whatsappMensagem,
   )}`;
 
+  const redeValor = (r: (typeof redes)[number]) => {
+    const identificador = r.url.replace(/\/$/, "").split("/").pop() ?? r.label;
+    return r.label === "LinkedIn" ? `in/${identificador}` : `@${identificador}`;
+  };
+
   const canais = [
     { label: "E-mail", valor: site.contato.email, href: `mailto:${site.contato.email}` },
     { label: "WhatsApp", valor: site.contato.telefone, href: whatsappUrl },
-    ...redes.map((r) => ({ label: r.label, valor: r.label, href: r.url })),
+    ...redes.map((r) => ({ label: r.label, valor: redeValor(r), href: r.url })),
   ];
 
   return (

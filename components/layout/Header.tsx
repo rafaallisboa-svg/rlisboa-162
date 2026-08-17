@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { site } from "@/site.config";
+import { publicados } from "@/lib/placeholder";
 
 const NAV = [
   { label: "Projetos", href: "/#projetos" },
@@ -11,13 +12,31 @@ const NAV = [
   { label: "Contato", href: "/contato" },
 ] as const;
 
+function monograma(nome: string) {
+  const partes = nome.trim().split(/\s+/);
+  if (partes.length >= 2) return (partes[0][0] + partes[1][0]).toUpperCase();
+  return nome.slice(0, 2).toUpperCase();
+}
+
 export function Header() {
   const [aberto, setAberto] = useState(false);
+  const redes = publicados(site.redes);
+
+  // Trava o scroll da página por trás enquanto o menu em tela cheia
+  // está aberto.
+  useEffect(() => {
+    document.body.style.overflow = aberto ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [aberto]);
+
+  const fechar = () => setAberto(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-concreto/95 backdrop-blur-sm md:bg-concreto/85">
       <div className="flex items-center justify-between px-6 py-4 md:px-[clamp(1.5rem,5vw,6rem)]">
-        <Link href="/" className="flex items-baseline gap-2" onClick={() => setAberto(false)}>
+        <Link href="/" className="flex items-baseline gap-2" onClick={fechar}>
           <span className="font-display text-lg font-bold uppercase tracking-tight">
             {site.marca}
           </span>
@@ -44,7 +63,7 @@ export function Header() {
           aria-label={aberto ? "Fechar menu" : "Abrir menu"}
           aria-expanded={aberto}
           onClick={() => setAberto((v) => !v)}
-          className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] md:hidden"
+          className="relative z-[60] flex h-8 w-8 flex-col items-center justify-center gap-[5px] md:hidden"
         >
           <span
             aria-hidden="true"
@@ -68,29 +87,70 @@ export function Header() {
         </button>
       </div>
 
+      {/* Menu mobile — tela cheia */}
       <div
-        className="grid md:hidden"
+        className="fixed inset-0 z-50 flex flex-col bg-concreto md:hidden"
         style={{
-          gridTemplateRows: aberto ? "1fr" : "0fr",
-          transition: "grid-template-rows 280ms cubic-bezier(0.22,1,0.36,1)",
+          opacity: aberto ? 1 : 0,
+          visibility: aberto ? "visible" : "hidden",
+          transition: "opacity 280ms ease, visibility 0s linear " + (aberto ? "0s" : "280ms"),
         }}
       >
-        <div className="overflow-hidden">
-          <nav
-            aria-label="Navegação principal (mobile)"
-            className="flex flex-col border-t border-white/10 px-6 py-2"
-          >
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setAberto(false)}
-                className="border-b border-white/5 py-4 font-display text-2xl uppercase tracking-tight text-cal last:border-b-0"
-              >
+        <div className="h-[65px] shrink-0 border-b border-white/10" />
+
+        <nav
+          aria-label="Navegação principal (mobile)"
+          className="flex flex-1 flex-col justify-center gap-1 px-6"
+        >
+          {NAV.map((item, i) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={fechar}
+              className="group flex items-baseline gap-4 border-b border-white/10 py-5"
+            >
+              <span className="font-mono text-xs tabular-nums text-maresia">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="font-display text-4xl uppercase tracking-tight text-cal transition-colors group-hover:text-sinal">
                 {item.label}
-              </Link>
-            ))}
-          </nav>
+              </span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex flex-col gap-6 border-t border-white/10 px-6 py-8">
+          <div className="flex flex-col gap-1 font-mono text-sm text-maresia">
+            <a href={`mailto:${site.contato.email}`} onClick={fechar}>
+              {site.contato.email}
+            </a>
+            <a
+              href={`https://wa.me/${site.contato.whatsapp}`}
+              onClick={fechar}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {site.contato.telefone}
+            </a>
+          </div>
+
+          {redes.length > 0 && (
+            <div className="flex gap-3">
+              {redes.map((r) => (
+                <a
+                  key={r.label}
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={r.label}
+                  onClick={fechar}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 font-mono text-xs uppercase text-cal transition-colors hover:border-sinal hover:text-sinal"
+                >
+                  {monograma(r.label)}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </header>

@@ -27,6 +27,9 @@ export function ChannelRow({ label, valor, href }: Props) {
     if (!track || !labelEl || !valorEl) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Abaixo do breakpoint sm não tem largura pra "arena" nenhuma — rótulo
+    // e valor ficam empilhados, estáticos (ver className mais abaixo).
+    if (window.matchMedia("(max-width: 639px)").matches) return;
 
     const dir = () => (Math.random() < 0.5 ? -1 : 1);
     const speed = () => 0.9 + Math.random() * 0.6;
@@ -113,7 +116,7 @@ export function ChannelRow({ label, valor, href }: Props) {
       href={href}
       target={externo ? "_blank" : undefined}
       rel={externo ? "noopener noreferrer" : undefined}
-      className="group flex items-center gap-6 border-b border-white/10 py-10"
+      className="group flex flex-col gap-1 border-b border-white/10 py-6 sm:flex-row sm:items-center sm:gap-6 sm:py-10"
       onMouseEnter={() => {
         pausedRef.current = true;
       }}
@@ -121,16 +124,16 @@ export function ChannelRow({ label, valor, href }: Props) {
         pausedRef.current = false;
       }}
     >
-      <div ref={trackRef} className="relative h-10 flex-1 overflow-hidden">
+      <div ref={trackRef} className="relative flex flex-col gap-1 sm:h-10 sm:flex-1 sm:flex-row sm:gap-0 sm:overflow-hidden">
         <span
           ref={labelRef}
-          className="absolute left-0 top-1/2 -translate-y-1/2 whitespace-nowrap font-display text-2xl uppercase tracking-tight transition-colors group-hover:text-sinal md:text-3xl"
+          className="whitespace-nowrap font-display text-2xl uppercase tracking-tight transition-colors group-hover:text-sinal sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 md:text-3xl"
         >
           {label}
         </span>
         <span
           ref={valorRef}
-          className="absolute left-0 top-1/2 -translate-y-1/2 whitespace-nowrap font-mono text-sm text-maresia"
+          className="whitespace-nowrap font-mono text-sm text-maresia sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2"
         >
           {valor}
         </span>

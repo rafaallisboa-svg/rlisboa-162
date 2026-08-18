@@ -1,5 +1,7 @@
 import { site } from "@/site.config";
 import { LinhasFundo } from "@/components/ui/LinhasFundo";
+import { Trajetoria } from "@/components/ui/Trajetoria";
+import { trajetoria } from "@/content/trajetoria";
 
 export default function SobrePage() {
   return (
@@ -38,29 +40,16 @@ export default function SobrePage() {
             projetos que agregam valor e conectam marcas a pessoas.
           </p>
 
-          <div className="grid grid-cols-2 gap-6 border-t border-white/10 pt-8">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
-                Formação
-              </p>
-              <p className="mt-2 text-sm text-maresia">
-                Motion Graphics — Panamericana (2010–2012)
-              </p>
-              <p className="mt-1 text-sm text-maresia">
-                Publicidade — Oswaldo Cruz (2002–2005)
-              </p>
-            </div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
-                Atuação
-              </p>
-              <p className="mt-2 text-sm text-maresia">
-                Designer — Conteúdo Editorial
-              </p>
-              <p className="mt-1 text-sm text-maresia">
-                Gerente de Design — Inovativos
-              </p>
-            </div>
+          <div className="border-t border-white/10 pt-8">
+            <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
+              Formação
+            </p>
+            <p className="mt-2 text-sm text-maresia">
+              Motion Graphics — Panamericana (2010–2012)
+            </p>
+            <p className="mt-1 text-sm text-maresia">
+              Publicidade — Oswaldo Cruz (2002–2005)
+            </p>
           </div>
 
           <p className="text-body text-cal">
@@ -69,6 +58,13 @@ export default function SobrePage() {
             dos projetos autorais fora da rotina fixa.
           </p>
         </div>
+      </div>
+
+      <div className="relative left-1/2 mt-24 w-screen -translate-x-1/2">
+        <p className="mb-6 px-6 font-mono text-xs uppercase tracking-[0.12em] text-maresia md:px-16 lg:px-[clamp(1.5rem,5vw,6rem)]">
+          Trajetória
+        </p>
+        <Trajetoria itens={trajetoria} />
       </div>
     </div>
   );

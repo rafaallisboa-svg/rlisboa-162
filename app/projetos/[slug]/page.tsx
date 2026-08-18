@@ -47,7 +47,7 @@ export default async function ProjetoPage({
           />
         </div>
       ) : (
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-blueprint md:aspect-[21/9]">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-blueprint md:aspect-[21/9]">
           <img
             src={frontmatter.capa}
             alt={frontmatter.titulo}

@@ -29,7 +29,8 @@ export function Header() {
   const fechar = () => setAberto(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-concreto/95 backdrop-blur-sm md:bg-concreto/85">
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-concreto/95 backdrop-blur-sm md:bg-concreto/85">
       <div className="flex items-center justify-between px-6 py-4 md:px-[clamp(1.5rem,5vw,6rem)]">
         <Link href="/" className="flex items-baseline gap-2" onClick={fechar}>
           <span className="font-display text-lg font-bold uppercase tracking-tight">
@@ -81,8 +82,12 @@ export function Header() {
           />
         </button>
       </div>
+      </header>
 
-      {/* Menu mobile — tela cheia */}
+      {/* Menu mobile — tela cheia. Fora do <header> de propósito: o
+          backdrop-blur do header cria um novo containing block pra
+          descendentes fixed, o que travava esse overlay na altura da
+          barra (64px) em vez da tela inteira. */}
       <div
         className="fixed inset-0 z-50 flex flex-col bg-concreto md:hidden"
         style={{
@@ -153,6 +158,6 @@ export function Header() {
           )}
         </div>
       </div>
-    </header>
+    </>
   );
 }

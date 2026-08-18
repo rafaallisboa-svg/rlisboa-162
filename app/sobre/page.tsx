@@ -2,6 +2,7 @@ import { site } from "@/site.config";
 import { LinhasFundo } from "@/components/ui/LinhasFundo";
 import { Trajetoria } from "@/components/ui/Trajetoria";
 import { trajetoria } from "@/content/trajetoria";
+import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 
 export default function SobrePage() {
   return (
@@ -12,7 +13,7 @@ export default function SobrePage() {
           Estúdio 162 — desde {site.anoFundacao}
         </p>
         <h2 className="relative mt-6 max-w-2xl font-display uppercase leading-[0.95] text-h1">
-          Criar é como eu penso.
+          Design <HeadlineRotator palavras={["Gráfico", "Web", "Motion"]} />
         </h2>
       </div>
 
@@ -40,19 +41,7 @@ export default function SobrePage() {
             projetos que agregam valor e conectam marcas a pessoas.
           </p>
 
-          <div className="border-t border-white/10 pt-8">
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
-              Formação
-            </p>
-            <p className="mt-2 text-sm text-maresia">
-              Motion Graphics — Panamericana (2010–2012)
-            </p>
-            <p className="mt-1 text-sm text-maresia">
-              Publicidade — Oswaldo Cruz (2002–2005)
-            </p>
-          </div>
-
-          <p className="text-body text-cal">
+          <p className="text-body text-cal border-t border-white/10 pt-8">
             Autogestão e vontade constante de aprender guiam o processo — é
             esse impulso que também está por trás do R. Lisboa 162, o espaço
             dos projetos autorais fora da rotina fixa.

@@ -94,6 +94,26 @@ export function Trajetoria({ itens }: { itens: TrajetoriaEra[] }) {
     else goTo(index - 1);
   };
 
+  // Scroll do mouse navega os itens em vez de rolar a página, enquanto o
+  // cursor estiver sobre o estágio — mas só enquanto tiver pra onde ir.
+  // Ao passar do primeiro/último item a rolagem normal da página assume,
+  // em vez de travar presa no estágio. Precisa de addEventListener nativo
+  // com passive:false — o onWheel do React é passivo por padrão e não
+  // deixa dar preventDefault.
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) < 8) return;
+      const next = e.deltaY > 0 ? index + 1 : index - 1;
+      if (next < 0 || next >= itens.length) return;
+      e.preventDefault();
+      goTo(next);
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [goTo, index, itens.length]);
+
   const atual = itens[index];
   const resumoAtual = atual.papeis.map((p) => `${p.role}, ${p.org}`).join("; ");
   const transitionT = reduced ? "200ms ease" : "500ms cubic-bezier(0.22,1,0.36,1)";
@@ -148,44 +168,47 @@ export function Trajetoria({ itens }: { itens: TrajetoriaEra[] }) {
         );
       })}
 
-      {/* Contador + setas */}
-      <div className="absolute left-6 top-4 z-20 flex items-center gap-4 md:left-16">
-        <button
-          type="button"
-          aria-label="Entrada anterior"
-          disabled={index === 0}
-          onClick={() => goTo(index - 1)}
-          className="text-maresia transition-colors hover:text-sinal disabled:opacity-20"
-        >
-          ←
-        </button>
-        <span className="font-mono text-xs tabular-nums text-maresia">
-          {pad(index + 1)} / {pad(itens.length)}
-        </span>
-        <button
-          type="button"
-          aria-label="Próxima entrada"
-          disabled={index === itens.length - 1}
-          onClick={() => goTo(index + 1)}
-          className="text-maresia transition-colors hover:text-sinal disabled:opacity-20"
-        >
-          →
-        </button>
-      </div>
+      {/* Fundo é full-bleed (acima), mas o conteúdo fica centrado no mesmo
+          max-w-5xl usado pelo resto da página em app/sobre/page.tsx. */}
+      <div className="relative z-10 mx-auto h-full min-h-[70vh] max-w-5xl md:min-h-[560px]">
+        {/* Contador + setas */}
+        <div className="absolute left-4 top-4 z-20 flex items-center gap-4 md:left-16">
+          <button
+            type="button"
+            aria-label="Entrada anterior"
+            disabled={index === 0}
+            onClick={() => goTo(index - 1)}
+            className="text-maresia transition-colors hover:text-sinal disabled:opacity-20"
+          >
+            ←
+          </button>
+          <span className="font-mono text-xs tabular-nums text-maresia">
+            {pad(index + 1)} / {pad(itens.length)}
+          </span>
+          <button
+            type="button"
+            aria-label="Próxima entrada"
+            disabled={index === itens.length - 1}
+            onClick={() => goTo(index + 1)}
+            className="text-maresia transition-colors hover:text-sinal disabled:opacity-20"
+          >
+            →
+          </button>
+        </div>
 
-      <div aria-live="polite" className="sr-only">
-        {atual.year} — {resumoAtual}
-      </div>
+        <div aria-live="polite" className="sr-only">
+          {atual.year} — {resumoAtual}
+        </div>
 
-      {/* Corpo: coluna de anos (a linha do tempo) + painel de conteúdo */}
-      <div className="relative z-10 flex h-full min-h-[70vh] items-center gap-3 px-4 pt-14 md:min-h-[560px] md:gap-12 md:px-16 md:pt-0">
-        {/* Coluna dos anos — cada um é ao mesmo tempo o indicador e a
-            navegação. A posição, o tamanho e a opacidade de cada ano são
-            função contínua da distância até o índice ativo — por isso o
-            item "de baixo" cresce e sobe suavemente ao virar o ativo, e o
-            que era ativo encolhe e sai, sem precisar de keyframes: é só
-            transition normal reagindo à troca de estado. */}
-        <div className="relative h-[220px] w-[168px] shrink-0 md:h-[320px] md:w-[320px]">
+        {/* Corpo: coluna de anos (a linha do tempo) + painel de conteúdo */}
+        <div className="flex h-full min-h-[70vh] items-center justify-center gap-3 px-4 pt-14 md:min-h-[560px] md:gap-12 md:px-16 md:pt-0">
+          {/* Coluna dos anos — cada um é ao mesmo tempo o indicador e a
+              navegação. A posição, o tamanho e a opacidade de cada ano são
+              função contínua da distância até o índice ativo — por isso o
+              item "de baixo" cresce e sobe suavemente ao virar o ativo, e o
+              que era ativo encolhe e sai, sem precisar de keyframes: é só
+              transition normal reagindo à troca de estado. */}
+          <div className="relative h-[220px] w-[168px] shrink-0 md:h-[320px] md:w-[320px]">
           <div className="absolute inset-y-0 right-[7px] w-px bg-white/15 md:right-[9px]" />
           {itens.map((item, i) => {
             const distancia = i - index;
@@ -261,6 +284,11 @@ export function Trajetoria({ itens }: { itens: TrajetoriaEra[] }) {
                     : `opacity 250ms ease`,
                 }}
               >
+                {item.label && (
+                  <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+                    {item.label}
+                  </p>
+                )}
                 {item.papeis.map((papel) => (
                   <div key={`${papel.org}-${papel.role}`}>
                     <div className="flex flex-wrap items-baseline gap-x-3">
@@ -284,6 +312,7 @@ export function Trajetoria({ itens }: { itens: TrajetoriaEra[] }) {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     </div>

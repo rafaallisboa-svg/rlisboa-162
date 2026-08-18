@@ -87,9 +87,10 @@ export function Header() {
       {/* Menu mobile — tela cheia. Fora do <header> de propósito: o
           backdrop-blur do header cria um novo containing block pra
           descendentes fixed, o que travava esse overlay na altura da
-          barra (64px) em vez da tela inteira. */}
+          barra (64px) em vez da tela inteira. z-40 (abaixo do header,
+          z-50) pra o botão de fechar continuar visível por cima. */}
       <div
-        className="fixed inset-0 z-50 flex flex-col bg-concreto md:hidden"
+        className="fixed inset-0 z-40 flex flex-col bg-concreto md:hidden"
         style={{
           opacity: aberto ? 1 : 0,
           visibility: aberto ? "visible" : "hidden",

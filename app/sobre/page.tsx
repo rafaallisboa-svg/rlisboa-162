@@ -13,13 +13,13 @@ export default function SobrePage() {
           Estúdio 162 — desde {site.anoFundacao}
         </p>
         <h2 className="relative mt-6 max-w-2xl font-display uppercase leading-[0.95] text-h1">
-          Design <HeadlineRotator palavras={["Gráfico", "Web", "Motion"]} />
+          <HeadlineRotator palavras={["Design Gráfico", "Web Design", "Motion Design"]} />
         </h2>
       </div>
 
-      <div className="mt-24 grid gap-12 md:grid-cols-[300px_1fr] md:gap-20">
+      <div className="mt-24 grid gap-12 md:grid-cols-[240px_1fr] md:gap-20">
         <div>
-          <div className="aspect-[4/5] w-full overflow-hidden bg-blueprint">
+          <div className="aspect-[3/5] w-full overflow-hidden bg-blueprint">
             <img
               src="/api/ph?w=800&h=1000&label=Foto Rafael Lisboa"
               alt="Rafael Lisboa"

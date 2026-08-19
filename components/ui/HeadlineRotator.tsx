@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const INTERVALO_MS = 2400;
+const INTERVALO_MS = 2600;
+const SCRAMBLE_MS = 650;
+const TICK_MS = 35;
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -18,7 +21,38 @@ function useReducedMotion() {
 
 export function HeadlineRotator({ palavras }: { palavras: string[] }) {
   const [index, setIndex] = useState(0);
+  const [display, setDisplay] = useState(palavras[0]);
   const reduced = useReducedMotion();
+  const scrambleRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+
+  // Efeito de decodificação: as letras embaralham e vão travando na
+  // posição certa, da esquerda pra direita, até formar a palavra —
+  // looping contínuo entre as três frases.
+  useEffect(() => {
+    const alvo = palavras[index];
+    if (reduced) {
+      setDisplay(alvo);
+      return;
+    }
+    const inicio = Date.now();
+    clearInterval(scrambleRef.current);
+    scrambleRef.current = setInterval(() => {
+      const progresso = Math.min((Date.now() - inicio) / SCRAMBLE_MS, 1);
+      const revelado = Math.floor(progresso * alvo.length);
+      let saida = "";
+      for (let i = 0; i < alvo.length; i++) {
+        if (alvo[i] === " ") saida += " ";
+        else if (i < revelado) saida += alvo[i];
+        else saida += CHARS[Math.floor(Math.random() * CHARS.length)];
+      }
+      setDisplay(saida);
+      if (progresso >= 1) {
+        setDisplay(alvo);
+        clearInterval(scrambleRef.current);
+      }
+    }, TICK_MS);
+    return () => clearInterval(scrambleRef.current);
+  }, [index, palavras, reduced]);
 
   useEffect(() => {
     if (reduced) return;
@@ -29,28 +63,8 @@ export function HeadlineRotator({ palavras }: { palavras: string[] }) {
   }, [reduced, palavras.length]);
 
   return (
-    <span aria-live="polite" className="relative inline-grid overflow-hidden align-bottom text-left">
-      {palavras.map((palavra, i) => {
-        const distancia = i - index;
-        return (
-          <span
-            key={palavra}
-            aria-hidden={i !== index}
-            className="col-start-1 row-start-1 block text-left"
-            style={{
-              transform: reduced
-                ? "translateY(0) scale(1)"
-                : `translateY(${distancia * 100}%) scale(${distancia === 0 ? 1 : 0.85})`,
-              opacity: reduced ? (distancia === 0 ? 1 : 0) : distancia === 0 ? 1 : 0,
-              transition: reduced
-                ? "opacity 200ms ease"
-                : "transform 550ms cubic-bezier(0.34,1.56,0.64,1), opacity 350ms ease",
-            }}
-          >
-            {palavra}
-          </span>
-        );
-      })}
+    <span aria-live="polite" className="inline-block whitespace-nowrap tabular-nums">
+      {display}
     </span>
   );
 }

@@ -4,7 +4,7 @@ import { SectionLabel } from "./SectionLabel";
 import { GhostNumber } from "./GhostNumber";
 
 const ITENS = [
-  { titulo: "Identidade Visual", valor: 2000 },
+  { titulo: "Identidade Visual + Manual de Aplicação da Marca", valor: 2500 },
   { titulo: "Landing Page", valor: 1500 },
 ];
 

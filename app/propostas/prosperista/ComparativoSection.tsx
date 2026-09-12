@@ -1,30 +1,11 @@
+import Image from "next/image";
 import { DIRECOES } from "./direcoes";
 import { CONTAINER, ACENTO, TINTA_SUAVE, LINHA } from "./chrome";
 import { SectionLabel } from "./SectionLabel";
 import { GhostNumber } from "./GhostNumber";
 
-const LINHAS = [
-  {
-    tema: "Cores",
-    convencional: "Azul-marinho corporativo — o tom mais comum entre consultorias, seguro e reconhecível.",
-    autoral: "Paleta autoral com âncora própria: petróleo, terracota, ardósia ou índigo — mais distintiva.",
-  },
-  {
-    tema: "Tipografia",
-    convencional: "Fonte sem serifa neutra — discreta, funciona bem em qualquer contexto.",
-    autoral: "Contraste editorial: serifa de peso (Fraunces ou Newsreader) + sans de apoio — mais autoral.",
-  },
-  {
-    tema: "Imagens",
-    convencional: "Aperto de mão, gráfico subindo, escritório de vidro — linguagem já conhecida do setor.",
-    autoral: "Fotografia de aplicação real e texturas próprias — como no moodboard, mais específico da marca.",
-  },
-  {
-    tema: "Grafismos",
-    convencional: "Setas, engrenagens, ícones típicos de apresentação de consultoria.",
-    autoral: "Espaço negativo generoso, grids expostos, numeração editorial — como nesta própria proposta.",
-  },
-];
+const CORES_CONVENCIONAL = ["#1B2A4A", "#2C3E5C", "#0F1F3D"];
+const CORES_AUTORAIS = [DIRECOES.a.ancora, DIRECOES.b.ancora, DIRECOES.c.ancora, DIRECOES.d.ancora];
 
 export function ComparativoSection() {
   const a = DIRECOES.a;
@@ -63,23 +44,125 @@ export function ComparativoSection() {
             </span>
           </div>
 
-          {LINHAS.map((linha) => (
-            <div
-              key={linha.tema}
-              className="grid grid-cols-1 gap-3 border-b py-6 md:grid-cols-[8rem_1fr_1fr] md:gap-8"
-              style={{ borderColor: LINHA }}
-            >
-              <p className="text-lg font-semibold" style={{ fontFamily: a.fontTitulo }}>
-                {linha.tema}
-              </p>
-              <p className="text-sm leading-relaxed opacity-60 md:text-base" style={{ color: "#221F1D" }}>
-                {linha.convencional}
-              </p>
-              <p className="text-sm font-medium leading-relaxed md:text-base" style={{ color: "#221F1D" }}>
-                {linha.autoral}
+          {/* Cores — amostra real, não só o nome da cor. */}
+          <div
+            className="grid grid-cols-1 gap-3 border-b py-6 md:grid-cols-[8rem_1fr_1fr] md:gap-8"
+            style={{ borderColor: LINHA }}
+          >
+            <p className="text-lg font-semibold" style={{ fontFamily: a.fontTitulo }}>
+              Cores
+            </p>
+            <div>
+              <div className="flex gap-2">
+                {CORES_CONVENCIONAL.map((hex) => (
+                  <span key={hex} className="h-10 w-10 border border-black/10" style={{ backgroundColor: hex }} />
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-relaxed opacity-60 md:text-base" style={{ color: "#221F1D" }}>
+                Azul-marinho — o tom mais comum entre consultorias, seguro e reconhecível.
               </p>
             </div>
-          ))}
+            <div>
+              <div className="flex gap-2">
+                {CORES_AUTORAIS.map((hex) => (
+                  <span key={hex} className="h-10 w-10 border border-black/10" style={{ backgroundColor: hex }} />
+                ))}
+              </div>
+              <p className="mt-3 text-sm font-medium leading-relaxed md:text-base" style={{ color: "#221F1D" }}>
+                Paleta autoral com âncora própria: petróleo, terracota, ardósia ou índigo — mais distintiva.
+              </p>
+            </div>
+          </div>
+
+          {/* Tipografia — amostra viva, não descrição. */}
+          <div
+            className="grid grid-cols-1 gap-3 border-b py-6 md:grid-cols-[8rem_1fr_1fr] md:gap-8"
+            style={{ borderColor: LINHA }}
+          >
+            <p className="text-lg font-semibold" style={{ fontFamily: a.fontTitulo }}>
+              Tipografia
+            </p>
+            <div>
+              <p className="text-3xl" style={{ fontFamily: "var(--font-inter)" }}>
+                Prosperista
+              </p>
+              <p className="mt-3 text-sm leading-relaxed opacity-60 md:text-base" style={{ color: "#221F1D" }}>
+                Sans neutra — discreta, funciona bem em qualquer contexto, mas não marca posição.
+              </p>
+            </div>
+            <div>
+              <p className="text-3xl font-semibold" style={{ fontFamily: "var(--font-fraunces)" }}>
+                Prosperista
+              </p>
+              <p className="mt-3 text-sm font-medium leading-relaxed md:text-base" style={{ color: "#221F1D" }}>
+                Serifa de peso (Fraunces ou Newsreader) + sans de apoio — tem ponto de vista.
+              </p>
+            </div>
+          </div>
+
+          {/* Imagens — miniatura real do moodboard, não descrição. */}
+          <div
+            className="grid grid-cols-1 gap-3 border-b py-6 md:grid-cols-[8rem_1fr_1fr] md:gap-8"
+            style={{ borderColor: LINHA }}
+          >
+            <p className="text-lg font-semibold" style={{ fontFamily: a.fontTitulo }}>
+              Imagens
+            </p>
+            <div>
+              <div className="flex h-20 w-32 items-center justify-center border border-black/10 bg-gradient-to-br from-[#DCE3F0] to-[#AEB9D6]">
+                <span className="text-[0.6rem] uppercase tracking-wide text-[#4A5470]">
+                  banco de imagem
+                </span>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed opacity-60 md:text-base" style={{ color: "#221F1D" }}>
+                Aperto de mão, gráfico subindo, escritório de vidro — linguagem já conhecida do setor.
+              </p>
+            </div>
+            <div>
+              <div className="relative h-20 w-32 overflow-hidden border border-black/10">
+                <Image
+                  src="/propostas/prosperista/moodboard/mood-08.jpg"
+                  alt=""
+                  fill
+                  sizes="128px"
+                  className="object-cover"
+                />
+              </div>
+              <p className="mt-3 text-sm font-medium leading-relaxed md:text-base" style={{ color: "#221F1D" }}>
+                Fotografia de aplicação real e texturas próprias — como no moodboard, mais específico da marca.
+              </p>
+            </div>
+          </div>
+
+          {/* Grafismos */}
+          <div
+            className="grid grid-cols-1 gap-3 border-b py-6 md:grid-cols-[8rem_1fr_1fr] md:gap-8"
+            style={{ borderColor: LINHA }}
+          >
+            <p className="text-lg font-semibold" style={{ fontFamily: a.fontTitulo }}>
+              Grafismos
+            </p>
+            <div>
+              <div className="flex h-20 w-32 items-center justify-center gap-2 border border-black/10 text-2xl opacity-50">
+                <span>↗</span>
+                <span>⚙</span>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed opacity-60 md:text-base" style={{ color: "#221F1D" }}>
+                Setas, engrenagens, ícones típicos de apresentação de consultoria.
+              </p>
+            </div>
+            <div>
+              <div className="flex h-20 w-32 flex-col justify-between border border-black/10 p-3">
+                <span className="font-mono text-xs" style={{ color: ACENTO }}>
+                  05.
+                </span>
+                <span className="ml-auto h-8 w-8 border" style={{ borderColor: ACENTO }} />
+              </div>
+              <p className="mt-3 text-sm font-medium leading-relaxed md:text-base" style={{ color: "#221F1D" }}>
+                Espaço negativo generoso, grids expostos, numeração editorial — como nesta própria proposta.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

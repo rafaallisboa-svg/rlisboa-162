@@ -21,7 +21,7 @@ export function HeroProposta() {
         </p>
         <h1
           className="mt-2 w-full text-[clamp(2.25rem,11vw,7.5rem)] font-bold uppercase leading-[0.95] text-[#221F1D]"
-          style={{ fontFamily: "var(--font-bodoni)" }}
+          style={{ fontFamily: "var(--font-bodoni)", transform: "translateX(-0.035em)" }}
         >
           Prosperista
         </h1>

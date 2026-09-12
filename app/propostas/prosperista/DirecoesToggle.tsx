@@ -14,8 +14,8 @@ export function DirecoesToggle() {
   return (
     <section className="textura-branca relative overflow-hidden px-6 py-20 md:px-16 md:py-28">
       <div className={`${CONTAINER} relative`}>
-        <GhostNumber numero="05" />
-        <SectionLabel numero="05" categoria="Direções criativas" />
+        <GhostNumber numero="06" />
+        <SectionLabel numero="06" categoria="Direções criativas" />
         <h2
           className="relative mt-6 max-w-2xl text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08]"
           style={{ fontFamily: a.fontTitulo }}

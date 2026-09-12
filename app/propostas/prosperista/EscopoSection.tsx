@@ -4,7 +4,7 @@ import { SectionLabel } from "./SectionLabel";
 import { GhostNumber } from "./GhostNumber";
 
 const IDENTIDADE = [
-  "Logotipo e variações",
+  "Marca: símbolo, logotipo e assinatura",
   "Paleta de cores",
   "Tipografia",
   "Elementos gráficos de apoio",

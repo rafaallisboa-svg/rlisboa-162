@@ -164,8 +164,8 @@ export function BriefingForm() {
   return (
     <section className="textura-cinza relative overflow-hidden px-6 py-20 md:px-16 md:py-28">
       <div className={`${CONTAINER} relative max-w-3xl`}>
-        <GhostNumber numero="08" />
-        <SectionLabel numero="08" categoria="Próximo passo" />
+        <GhostNumber numero="09" />
+        <SectionLabel numero="09" categoria="Próximo passo" />
         <h2
           className="relative mt-6 text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08]"
           style={{ fontFamily: a.fontTitulo }}

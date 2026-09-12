@@ -5,6 +5,7 @@ import { ManifestoSection } from "./ManifestoSection";
 import { EscopoSection } from "./EscopoSection";
 import { ProcessoTimeline } from "./ProcessoTimeline";
 import { MoodboardSection } from "./MoodboardSection";
+import { ComparativoSection } from "./ComparativoSection";
 import { DirecoesToggle } from "./DirecoesToggle";
 import { EstruturaPreview } from "./EstruturaPreview";
 import { InvestimentoSection } from "./InvestimentoSection";
@@ -21,6 +22,7 @@ export default function PropostaProsperistaPage() {
         <EscopoSection />
         <ProcessoTimeline />
         <MoodboardSection />
+        <ComparativoSection />
         <DirecoesToggle />
         <EstruturaPreview />
         <InvestimentoSection />

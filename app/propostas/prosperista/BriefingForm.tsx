@@ -35,9 +35,20 @@ const ACOES = [
   "Outro",
 ];
 
+const EIXOS = [
+  { id: "estilo", esquerda: "Clássico", direita: "Moderno" },
+  { id: "tom", esquerda: "Sério", direita: "Descontraído" },
+  { id: "registro", esquerda: "Formal", direita: "Informal" },
+  { id: "idade", esquerda: "Maduro", direita: "Jovem" },
+  { id: "alcance", esquerda: "Exclusivo", direita: "Acessível" },
+];
+const POSICOES = 7;
+const POSICAO_NEUTRA = 3;
+
 type FormState = {
   atributos: string[];
   atributoOutro: string;
+  termometro: Record<string, number>;
   clienteIdeal: string;
   canais: string[];
   canalOutro: string;
@@ -51,6 +62,7 @@ type FormState = {
 const ESTADO_INICIAL: FormState = {
   atributos: [],
   atributoOutro: "",
+  termometro: Object.fromEntries(EIXOS.map((e) => [e.id, POSICAO_NEUTRA])),
   clienteIdeal: "",
   canais: [],
   canalOutro: "",
@@ -62,9 +74,18 @@ const ESTADO_INICIAL: FormState = {
 };
 
 const PERGUNTAS: { rotulo: string; campo: keyof FormState }[] = [
-  { rotulo: "4. Alguma cor que você ama ou rejeita, além de evitar tons cítricos?", campo: "cores" },
-  { rotulo: "5. Qual é o principal diferencial da Prosperista que a marca precisa deixar claro?", campo: "diferencial" },
+  { rotulo: "5. Alguma cor que você ama ou rejeita, além de evitar tons cítricos?", campo: "cores" },
+  { rotulo: "6. Qual é o principal diferencial da Prosperista que a marca precisa deixar claro?", campo: "diferencial" },
 ];
+
+function descreverEixo(eixo: (typeof EIXOS)[number], valor: number) {
+  const meio = Math.floor(POSICOES / 2);
+  if (valor === meio) return `Neutro entre ${eixo.esquerda} e ${eixo.direita}`;
+  const lado = valor < meio ? eixo.esquerda : eixo.direita;
+  const distancia = Math.abs(valor - meio);
+  const intensidade = distancia === meio ? "Totalmente" : distancia >= 2 ? "Bastante" : "Levemente";
+  return `${intensidade} para ${lado}`;
+}
 
 function montarTexto(form: FormState) {
   const canaisTexto =
@@ -77,30 +98,37 @@ function montarTexto(form: FormState) {
       ? [...form.atributos, form.atributoOutro].filter(Boolean).join(", ")
       : form.atributoOutro || "—";
 
+  const termometroTexto = EIXOS.map(
+    (eixo) => `${eixo.esquerda} ↔ ${eixo.direita}: ${descreverEixo(eixo, form.termometro[eixo.id])}`,
+  ).join("\n");
+
   return `Mini-briefing — Prosperista Consultoria
 
 1. Como quer ser percebida (atributos escolhidos):
 ${atributosTexto}
 
-2. Cliente ideal:
+2. Termômetro de posicionamento:
+${termometroTexto}
+
+3. Cliente ideal:
 ${form.clienteIdeal || "—"}
 
-3. Onde mais a marca vai aparecer além do site:
+4. Onde mais a marca vai aparecer além do site:
 ${canaisTexto}
 
-4. Cor que ama ou rejeita (além de tons cítricos):
+5. Cor que ama ou rejeita (além de tons cítricos):
 ${form.cores || "—"}
 
-5. Principal diferencial a deixar claro:
+6. Principal diferencial a deixar claro:
 ${form.diferencial || "—"}
 
-6. Ação principal do visitante do site:
+7. Ação principal do visitante do site:
 ${form.acao || "—"}
 
-7. Palavra/conceito a evitar:
+8. Palavra/conceito a evitar:
 ${form.evitar || "—"}
 
-8. Algo que não quer no desenho do logo:
+9. Algo que não quer no desenho do logo:
 ${form.evitarLogo || "—"}`;
 }
 
@@ -128,6 +156,9 @@ export function BriefingForm() {
         ? f.atributos.filter((a) => a !== atributo)
         : [...f.atributos, atributo],
     }));
+
+  const ajustarEixo = (eixoId: string, posicao: number) =>
+    setForm((f) => ({ ...f, termometro: { ...f.termometro, [eixoId]: posicao } }));
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -202,9 +233,51 @@ export function BriefingForm() {
             />
           </fieldset>
 
+          <fieldset className="flex flex-col gap-6">
+            <legend className="text-sm text-[#221F1D]">
+              2. Termômetro de posicionamento — clique onde a Prosperista fica em cada eixo
+            </legend>
+            {EIXOS.map((eixo) => {
+              const posicao = form.termometro[eixo.id];
+              return (
+                <div key={eixo.id} className="grid grid-cols-[5.5rem_1fr_5.5rem] items-center gap-3 md:grid-cols-[6.5rem_1fr_6.5rem]">
+                  <span className="text-right text-sm text-[#221F1D]">{eixo.esquerda}</span>
+                  <div className="relative flex h-6 items-center">
+                    <div className="absolute inset-x-0 h-px" style={{ backgroundColor: LINHA }} aria-hidden="true" />
+                    <div className="relative flex w-full justify-between">
+                      {Array.from({ length: POSICOES }, (_, i) => i).map((i) => {
+                        const ativo = i === posicao;
+                        return (
+                          <button
+                            key={i}
+                            type="button"
+                            aria-label={`${eixo.esquerda} – ${eixo.direita}, posição ${i + 1} de ${POSICOES}`}
+                            aria-pressed={ativo}
+                            onClick={() => ajustarEixo(eixo.id, i)}
+                            className="flex h-6 w-6 items-center justify-center"
+                          >
+                            <span
+                              className="block rounded-full transition-all"
+                              style={{
+                                width: ativo ? 16 : 2,
+                                height: ativo ? 16 : 16,
+                                backgroundColor: ativo ? ACENTO : "rgba(34,31,29,0.25)",
+                              }}
+                            />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <span className="text-sm text-[#221F1D]">{eixo.direita}</span>
+                </div>
+              );
+            })}
+          </fieldset>
+
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              2. Quem é o cliente ideal (porte da empresa, setor, momento do negócio)?
+              3. Quem é o cliente ideal (porte da empresa, setor, momento do negócio)?
             </span>
             <textarea
               value={form.clienteIdeal}
@@ -217,7 +290,7 @@ export function BriefingForm() {
 
           <fieldset className="flex flex-col gap-3">
             <legend className="text-sm text-[#221F1D]">
-              3. Além do site, onde mais a marca vai aparecer?
+              4. Além do site, onde mais a marca vai aparecer?
             </legend>
             <div className="flex flex-wrap gap-3">
               {CANAIS.map((canal) => (
@@ -265,7 +338,7 @@ export function BriefingForm() {
 
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              6. Qual ação você quer que quem visita o site tome?
+              7. Qual ação você quer que quem visita o site tome?
             </span>
             <select
               value={form.acao}
@@ -283,7 +356,7 @@ export function BriefingForm() {
 
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              7. Alguma palavra ou conceito que você NÃO quer associado à marca?
+              8. Alguma palavra ou conceito que você NÃO quer associado à marca?
             </span>
             <textarea
               value={form.evitar}
@@ -296,7 +369,7 @@ export function BriefingForm() {
 
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              8. Há alguma coisa que você NÃO queira no desenho do seu logo?
+              9. Há alguma coisa que você NÃO queira no desenho do seu logo?
             </span>
             <textarea
               value={form.evitarLogo}

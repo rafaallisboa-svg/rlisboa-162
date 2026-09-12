@@ -8,21 +8,42 @@ const FASES = [
     numero: "01",
     nome: "Descoberta",
     descricao: "Levantamento de informações + análise e pesquisa semântica.",
+    detalhes: [
+      "Briefing e análise",
+      "Estudo de concorrentes",
+      "Estudo de segmento",
+      "Painel de referências",
+      "Pesquisa semântica",
+    ],
   },
   {
     numero: "02",
     nome: "Conceito",
     descricao: "Definição de personalidade, símbolo, cores e tipografia.",
+    detalhes: [
+      "Personalidade e arquétipo",
+      "Busca por símbolos e significados",
+      "Rascunhos",
+      "Desenho tipográfico",
+    ],
   },
   {
     numero: "03",
     nome: "Construção",
     descricao: "Elementos gráficos + aplicação (landing page e materiais).",
+    detalhes: [
+      "Vetorização",
+      "Definição de cores",
+      "Texturas e elementos gráficos",
+      "Tipografia de apoio",
+      "Versões e aplicações",
+    ],
   },
   {
     numero: "04",
     nome: "Entrega",
     descricao: "Apresentação, ajustes e entrega final.",
+    detalhes: ["Mockups", "Apresentação", "Ajustes", "Entrega final"],
   },
 ];
 
@@ -74,6 +95,13 @@ export function ProcessoTimeline() {
                 <p className="mt-3 text-base leading-relaxed" style={{ color: TINTA_SUAVE }}>
                   {fase.descricao}
                 </p>
+                <ul className="mt-4 flex flex-col gap-1.5">
+                  {fase.detalhes.map((d) => (
+                    <li key={d} className="text-sm" style={{ color: TINTA_SUAVE }}>
+                      — {d}
+                    </li>
+                  ))}
+                </ul>
               </div>
             );
           })}

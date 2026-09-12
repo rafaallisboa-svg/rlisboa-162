@@ -8,6 +8,8 @@ const IDENTIDADE = [
   "Paleta de cores",
   "Tipografia",
   "Elementos gráficos de apoio",
+  "Manual de aplicação da marca",
+  "Arquivos em diferentes extensões",
   "Aplicações: banner/capa LinkedIn, template de post/carrossel, one-pager institucional",
 ];
 

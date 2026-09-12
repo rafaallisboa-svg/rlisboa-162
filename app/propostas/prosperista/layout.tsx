@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, Newsreader, Public_Sans } from "next/font/google";
+import { Bodoni_Moda, Fraunces, Inter, Newsreader, Public_Sans } from "next/font/google";
 import "./prosperista.css";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
+  display: "swap",
+});
+// Alternativa de alto contraste (estilo didone, tipo "Guardian") — usada
+// só no hero por enquanto, não faz parte da paleta de fontes A/B/C/D.
+const bodoniModa = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-bodoni",
   display: "swap",
 });
 const inter = Inter({
@@ -36,7 +43,7 @@ export default function PropostaProsperistaLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${fraunces.variable} ${inter.variable} ${newsreader.variable} ${publicSans.variable}`}
+      className={`${fraunces.variable} ${inter.variable} ${newsreader.variable} ${publicSans.variable} ${bodoniModa.variable}`}
     >
       <body
         className="bg-white text-[#221F1D]"

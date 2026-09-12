@@ -55,57 +55,110 @@ export function DirecoesToggle() {
           entre as duas direções.
         </p>
 
-        <div className="relative mt-10 overflow-hidden rounded-2xl">
+        {/* Mockup de interface — não é só cor em bloco, é a paleta
+            funcionando como site de verdade: nav, botão primário, botão
+            secundário, tag. É pra dar noção de comportamento, não só de
+            hex. */}
+        <div
+          className="relative mt-10 overflow-hidden rounded-2xl border transition-colors duration-500"
+          style={{ backgroundColor: atual.fundo, borderColor: `${atual.texto}1a` }}
+        >
           <div
-            className="px-8 py-12 transition-colors duration-500 md:px-14 md:py-16"
-            style={{ backgroundColor: atual.ancora, color: atual.texto }}
+            className="flex items-center justify-between border-b px-6 py-4 transition-colors duration-500 md:px-10"
+            style={{ borderColor: `${atual.texto}1a`, color: atual.texto }}
           >
+            <span
+              className="text-lg font-bold uppercase leading-none"
+              style={{ fontFamily: atual.fontTitulo }}
+            >
+              Prosperista
+            </span>
+            <div className="hidden items-center gap-6 text-sm opacity-80 sm:flex" style={{ fontFamily: atual.fontTexto }}>
+              <span>Sobre</span>
+              <span>Serviços</span>
+              <span>Contato</span>
+            </div>
+            <button
+              type="button"
+              tabIndex={-1}
+              className="pointer-events-none px-4 py-2 text-xs font-medium uppercase tracking-[0.08em] transition-colors duration-500"
+              style={{ backgroundColor: atual.ancora, color: atual.fundo }}
+            >
+              Agendar
+            </button>
+          </div>
+
+          <div className="px-6 py-14 text-center transition-colors duration-500 md:px-10 md:py-20" style={{ color: atual.texto }}>
+            <span
+              className="inline-block px-3 py-1 text-xs font-medium uppercase tracking-[0.1em] transition-colors duration-500"
+              style={{ backgroundColor: atual.apoio, color: atual.fundo }}
+            >
+              Copiloto estratégico
+            </span>
             <h3
-              className="text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-[1.02] transition-all duration-500"
+              className="mx-auto mt-6 max-w-lg text-[clamp(1.75rem,3.6vw,2.75rem)] font-semibold leading-[1.1] transition-all duration-500"
               style={{ fontFamily: atual.fontTitulo }}
             >
               Governança que preserva a essência
             </h3>
             <p
-              className="mt-6 max-w-md text-lg leading-relaxed opacity-90 transition-all duration-500"
+              className="mx-auto mt-5 max-w-md text-base leading-relaxed opacity-80 transition-all duration-500"
               style={{ fontFamily: atual.fontTexto }}
             >
               A Prosperista atua como copiloto estratégico — o empresário
               permanece no comando, enquanto a gestão ganha estrutura e
               sustentabilidade, sem fórmulas prontas.
             </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <button
+                type="button"
+                tabIndex={-1}
+                className="pointer-events-none px-6 py-3 text-sm font-medium transition-colors duration-500"
+                style={{ backgroundColor: atual.ancora, color: atual.fundo }}
+              >
+                Agendar conversa
+              </button>
+              <button
+                type="button"
+                tabIndex={-1}
+                className="pointer-events-none border px-6 py-3 text-sm font-medium transition-colors duration-500"
+                style={{ borderColor: atual.texto, color: atual.texto }}
+              >
+                Ver serviços
+              </button>
+            </div>
           </div>
 
           <div
-            className="p-8 transition-colors duration-500 md:p-14"
-            style={{ backgroundColor: atual.fundo, color: atual.texto }}
+            className="flex flex-wrap gap-2.5 border-t px-6 py-5 transition-colors duration-500 md:px-10"
+            style={{ borderColor: `${atual.texto}1a` }}
           >
-            <p className="text-base italic opacity-70">{atual.tom}</p>
-
-            <div className="mt-10 flex gap-3 md:gap-4">
-              {[
-                { rotulo: "Fundo", hex: atual.fundo },
-                { rotulo: "Texto", hex: atual.texto },
-                { rotulo: "Âncora", hex: atual.ancora },
-                { rotulo: "Apoio", hex: atual.apoio },
-              ].map((chip) => (
-                <div key={chip.rotulo} className="flex flex-1 flex-col gap-3">
-                  <div
-                    className="h-40 w-full border md:h-56"
-                    style={{ backgroundColor: chip.hex, borderColor: `${atual.texto}22` }}
-                    aria-hidden="true"
-                  />
-                  <div className="text-xs leading-tight opacity-70">{chip.rotulo}</div>
-                  <div className="font-mono text-xs uppercase leading-tight opacity-90">
-                    {chip.hex}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-8 text-xs uppercase tracking-[0.12em] opacity-60">
+            {[
+              { rotulo: "Fundo", hex: atual.fundo },
+              { rotulo: "Texto", hex: atual.texto },
+              { rotulo: "Âncora", hex: atual.ancora },
+              { rotulo: "Apoio", hex: atual.apoio },
+            ].map((chip) => (
+              <div
+                key={chip.rotulo}
+                className="flex items-center gap-2 border px-2.5 py-1.5 text-xs transition-colors duration-500"
+                style={{ borderColor: `${atual.texto}22`, color: atual.texto }}
+              >
+                <span
+                  className="h-3 w-3 shrink-0 border"
+                  style={{ backgroundColor: chip.hex, borderColor: `${atual.texto}33` }}
+                  aria-hidden="true"
+                />
+                <span className="opacity-70">{chip.rotulo}</span>
+                <span className="font-mono uppercase opacity-90">{chip.hex}</span>
+              </div>
+            ))}
+            <div
+              className="ml-auto font-mono text-xs uppercase tracking-[0.1em] opacity-60"
+              style={{ color: atual.texto }}
+            >
               {atual.fontTituloNome} + {atual.fontTextoNome}
-            </p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { DirecaoProvider } from "./DirecaoContext";
 import { HeroProposta } from "./HeroProposta";
 import { EntendimentoSection } from "./EntendimentoSection";
+import { ManifestoSection } from "./ManifestoSection";
 import { EscopoSection } from "./EscopoSection";
 import { ProcessoTimeline } from "./ProcessoTimeline";
 import { MoodboardSection } from "./MoodboardSection";
@@ -16,6 +17,7 @@ export default function PropostaProsperistaPage() {
       <main>
         <HeroProposta />
         <EntendimentoSection />
+        <ManifestoSection />
         <EscopoSection />
         <ProcessoTimeline />
         <MoodboardSection />

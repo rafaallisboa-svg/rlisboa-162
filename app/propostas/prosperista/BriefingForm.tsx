@@ -7,8 +7,6 @@ import { CONTAINER, ACENTO, TINTA_SUAVE, LINHA } from "./chrome";
 import { SectionLabel } from "./SectionLabel";
 import { GhostNumber } from "./GhostNumber";
 
-const CANAIS = ["LinkedIn", "Feiras", "Associações", "Papelaria", "Apresentações", "Outro"];
-
 const ATRIBUTOS = [
   "Estratégica",
   "Confiável",
@@ -50,8 +48,6 @@ type FormState = {
   atributoOutro: string;
   termometro: Record<string, number>;
   clienteIdeal: string;
-  canais: string[];
-  canalOutro: string;
   cores: string;
   diferencial: string;
   acao: string;
@@ -64,8 +60,6 @@ const ESTADO_INICIAL: FormState = {
   atributoOutro: "",
   termometro: Object.fromEntries(EIXOS.map((e) => [e.id, POSICAO_NEUTRA])),
   clienteIdeal: "",
-  canais: [],
-  canalOutro: "",
   cores: "",
   diferencial: "",
   acao: ACOES[0],
@@ -74,8 +68,8 @@ const ESTADO_INICIAL: FormState = {
 };
 
 const PERGUNTAS: { rotulo: string; campo: keyof FormState }[] = [
-  { rotulo: "5. Alguma cor que você ama ou rejeita, além de evitar tons cítricos?", campo: "cores" },
-  { rotulo: "6. Qual é o principal diferencial da Prosperista que a marca precisa deixar claro?", campo: "diferencial" },
+  { rotulo: "4. Alguma cor que você ama ou rejeita, além de evitar tons cítricos?", campo: "cores" },
+  { rotulo: "5. Qual é o principal diferencial da Prosperista que a marca precisa deixar claro?", campo: "diferencial" },
 ];
 
 function descreverEixo(eixo: (typeof EIXOS)[number], valor: number) {
@@ -88,11 +82,6 @@ function descreverEixo(eixo: (typeof EIXOS)[number], valor: number) {
 }
 
 function montarTexto(form: FormState) {
-  const canaisTexto =
-    form.canais.length > 0
-      ? form.canais.map((c) => (c === "Outro" && form.canalOutro ? `Outro: ${form.canalOutro}` : c)).join(", ")
-      : "—";
-
   const atributosTexto =
     form.atributos.length > 0
       ? [...form.atributos, form.atributoOutro].filter(Boolean).join(", ")
@@ -113,22 +102,19 @@ ${termometroTexto}
 3. Cliente ideal:
 ${form.clienteIdeal || "—"}
 
-4. Onde mais a marca vai aparecer além do site:
-${canaisTexto}
-
-5. Cor que ama ou rejeita (além de tons cítricos):
+4. Cor que ama ou rejeita (além de tons cítricos):
 ${form.cores || "—"}
 
-6. Principal diferencial a deixar claro:
+5. Principal diferencial a deixar claro:
 ${form.diferencial || "—"}
 
-7. Ação principal do visitante do site:
+6. Ação principal do visitante do site:
 ${form.acao || "—"}
 
-8. Palavra/conceito a evitar:
+7. Palavra/conceito a evitar:
 ${form.evitar || "—"}
 
-9. Algo que não quer no desenho do logo:
+8. Algo que não quer no desenho do logo:
 ${form.evitarLogo || "—"}`;
 }
 
@@ -140,14 +126,6 @@ export function BriefingForm() {
 
   const setCampo = (campo: keyof FormState, valor: string) =>
     setForm((f) => ({ ...f, [campo]: valor }));
-
-  const alternarCanal = (canal: string) =>
-    setForm((f) => ({
-      ...f,
-      canais: f.canais.includes(canal)
-        ? f.canais.filter((c) => c !== canal)
-        : [...f.canais, canal],
-    }));
 
   const alternarAtributo = (atributo: string) =>
     setForm((f) => ({
@@ -198,8 +176,8 @@ export function BriefingForm() {
         </p>
 
         <form onSubmit={onSubmit} className="mt-12 flex flex-col gap-10">
-          <fieldset className="flex flex-col gap-3">
-            <legend className="text-sm text-[#221F1D]">
+          <fieldset className="flex flex-col gap-4">
+            <legend className="mb-5 text-sm text-[#221F1D]">
               1. Escolha os atributos que combinam com a Prosperista (3 a 5)
             </legend>
             <div className="flex flex-wrap gap-2.5">
@@ -234,7 +212,7 @@ export function BriefingForm() {
           </fieldset>
 
           <fieldset className="flex flex-col gap-6">
-            <legend className="text-sm text-[#221F1D]">
+            <legend className="mb-5 text-sm text-[#221F1D]">
               2. Termômetro de posicionamento — clique onde a Prosperista fica em cada eixo
             </legend>
             {EIXOS.map((eixo) => {
@@ -288,41 +266,6 @@ export function BriefingForm() {
             />
           </label>
 
-          <fieldset className="flex flex-col gap-3">
-            <legend className="text-sm text-[#221F1D]">
-              4. Além do site, onde mais a marca vai aparecer?
-            </legend>
-            <div className="flex flex-wrap gap-3">
-              {CANAIS.map((canal) => (
-                <label
-                  key={canal}
-                  className="flex cursor-pointer items-center gap-2 border px-3 py-2 text-sm text-[#221F1D]"
-                  style={{
-                    borderColor: form.canais.includes(canal) ? ACENTO : LINHA,
-                  }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={form.canais.includes(canal)}
-                    onChange={() => alternarCanal(canal)}
-                    style={{ accentColor: ACENTO }}
-                  />
-                  {canal}
-                </label>
-              ))}
-            </div>
-            {form.canais.includes("Outro") && (
-              <input
-                type="text"
-                value={form.canalOutro}
-                onChange={(e) => setCampo("canalOutro", e.target.value)}
-                placeholder="Qual?"
-                className="mt-1 border bg-transparent px-4 py-3 text-sm text-[#221F1D] outline-none"
-                style={{ borderColor: LINHA }}
-              />
-            )}
-          </fieldset>
-
           {PERGUNTAS.map((p) => (
             <label key={p.campo} className="flex flex-col gap-3">
               <span className="text-sm text-[#221F1D]">{p.rotulo}</span>
@@ -338,7 +281,7 @@ export function BriefingForm() {
 
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              7. Qual ação você quer que quem visita o site tome?
+              6. Qual ação você quer que quem visita o site tome?
             </span>
             <select
               value={form.acao}
@@ -356,7 +299,7 @@ export function BriefingForm() {
 
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              8. Alguma palavra ou conceito que você NÃO quer associado à marca?
+              7. Alguma palavra ou conceito que você NÃO quer associado à marca?
             </span>
             <textarea
               value={form.evitar}
@@ -369,7 +312,7 @@ export function BriefingForm() {
 
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              9. Há alguma coisa que você NÃO queira no desenho do seu logo?
+              8. Há alguma coisa que você NÃO queira no desenho do seu logo?
             </span>
             <textarea
               value={form.evitarLogo}

@@ -14,7 +14,7 @@ export function EntendimentoSection() {
           className="relative mt-6 max-w-3xl text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08]"
           style={{ fontFamily: a.fontTitulo }}
         >
-          O que a Prosperista faz — e por que a marca precisa dizer isso
+          O que a Prosperista faz — e por que a marca precisa dizer&nbsp;isso
         </h2>
         <div
           className="relative mt-10 grid gap-8 text-lg leading-relaxed md:grid-cols-2"

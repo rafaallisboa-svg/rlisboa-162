@@ -28,7 +28,7 @@ export function HeroProposta() {
           Prosperista
         </h1>
         <p
-          className="mt-3 text-base font-bold uppercase tracking-[0.35em] text-[#221F1D] md:text-lg"
+          className="mt-3 text-xs font-medium uppercase tracking-[0.35em] text-[#221F1D]"
           style={{ fontFamily: a.fontTitulo }}
         >
           Consultoria

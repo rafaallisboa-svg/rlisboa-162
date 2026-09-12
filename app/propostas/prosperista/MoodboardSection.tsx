@@ -19,9 +19,9 @@ export function MoodboardSection() {
           Território visual que exploramos
         </h2>
         <p className="relative mt-4 max-w-xl text-base leading-relaxed" style={{ color: TINTA_SUAVE }}>
-          Referências de aplicação, materiais e símbolos que ajudam a
-          calibrar o tom antes de partir para o Conceito — não é o
-          resultado final, é o mapa de onde estamos olhando.
+          Essas imagens não são o resultado final — são apenas
+          referências que reunimos pra nos ajudar a definir o caminho
+          antes de partir para o Conceito.
         </p>
 
         <div className="relative mt-12 columns-2 gap-4 md:columns-3 md:gap-5">

@@ -22,12 +22,14 @@ export function HeroProposta() {
           Proposta de identidade visual &amp; landing page
         </p>
         <h1
-          className="mt-8 text-[clamp(2.5rem,6vw,4.75rem)] leading-[1.05] text-[#221F1D]"
+          className="mt-8 text-[clamp(3.5rem,9vw,7.5rem)] font-bold leading-[0.95] text-[#221F1D]"
           style={{ fontFamily: a.fontTitulo }}
         >
-          <span className="font-bold">Prosperista</span>{" "}
-          <span className="italic font-normal">Consultoria</span>
+          Prosperista
         </h1>
+        <p className="mt-2 text-sm uppercase italic tracking-[0.1em] text-[#221F1D]/50">
+          Consultoria
+        </p>
         <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#221F1D]/70 md:text-xl">
           Uma marca para uma consultoria que atua como copiloto estratégico —
           fortalecendo a gestão de pequenas e médias empresas sem tirar o

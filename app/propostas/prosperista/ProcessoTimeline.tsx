@@ -50,11 +50,20 @@ const FASES = [
 const FASE_ATUAL_INDEX = 0;
 
 const MAPA_SEMANTICO = [
-  { chave: "Copiloto", sinonimos: ["orientação", "acompanhamento", "parceria", "apoio contínuo"] },
-  { chave: "Governança", sinonimos: ["estrutura", "clareza", "disciplina", "solidez"] },
+  {
+    chave: "Copiloto",
+    sinonimos: ["orientação", "acompanhamento", "parceria", "apoio contínuo"],
+    direcaoVisual: "Sugere dupla presença — duas formas que se apoiam, um leme, uma bússola.",
+  },
+  {
+    chave: "Governança",
+    sinonimos: ["estrutura", "clareza", "disciplina", "solidez"],
+    direcaoVisual: "Sugere geometria estável — linhas retas, grades, formas bem ancoradas.",
+  },
   {
     chave: "Sustentabilidade aplicada",
     sinonimos: ["continuidade", "consistência", "maturidade", "raiz"],
+    direcaoVisual: "Sugere crescimento orgânico — raiz, anel, uma forma que se fecha em ciclo.",
   },
 ];
 
@@ -131,6 +140,9 @@ export function ProcessoTimeline() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-4 text-sm italic leading-relaxed" style={{ color: ACENTO }}>
+                  {item.direcaoVisual}
+                </p>
               </div>
             ))}
           </div>

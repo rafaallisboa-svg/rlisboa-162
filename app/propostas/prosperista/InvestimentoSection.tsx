@@ -23,8 +23,8 @@ export function InvestimentoSection() {
   return (
     <section className="textura-cinza relative overflow-hidden px-6 py-20 md:px-16 md:py-28">
       <div className={`${CONTAINER} relative max-w-3xl`}>
-        <GhostNumber numero="06" />
-        <SectionLabel numero="06" categoria="Investimento" />
+        <GhostNumber numero="07" />
+        <SectionLabel numero="07" categoria="Investimento" />
         <h2
           className="relative mt-6 text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08]"
           style={{ fontFamily: a.fontTitulo }}

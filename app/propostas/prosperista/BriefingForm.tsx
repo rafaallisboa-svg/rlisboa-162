@@ -39,6 +39,9 @@ const EIXOS = [
   { id: "registro", esquerda: "Formal", direita: "Informal" },
   { id: "idade", esquerda: "Maduro", direita: "Jovem" },
   { id: "alcance", esquerda: "Exclusivo", direita: "Acessível" },
+  { id: "genero", esquerda: "Feminina", direita: "Masculina" },
+  { id: "postura", esquerda: "Discreta", direita: "Ousada" },
+  { id: "abordagem", esquerda: "Técnica", direita: "Intuitiva" },
 ];
 const POSICOES = 7;
 const POSICAO_NEUTRA = 3;

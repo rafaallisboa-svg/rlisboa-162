@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/*
+ * Namespace isolado desta proposta — não importa app/(site)/globals.css
+ * de propósito. Nenhum token daqui (cor, fonte, @theme) deve vazar pro
+ * resto do site, e vice-versa.
+ *
+ * O reset abaixo precisa estar em @layer base: o Tailwind embrulha suas
+ * próprias utilities em @layer, e regra sem layer sempre vence regra em
+ * layer no CSS Cascade — um "* { margin: 0 }" solto aqui anulava até o
+ * mx-auto (que virava margin-left/right: auto) das seções inteiras.
+ */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Textura de tecido branco (imagem real, não decorativa) lavada em branco
+ * ou cinza, repetida em cada seção com background-attachment: fixed —
+ * assim a textura fica contínua entre seções full-bleed, sem costura.
+ */
+.textura-branca {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+    url("/propostas/prosperista/textura-tecido.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.textura-cinza {
+  background-image: linear-gradient(rgba(228, 227, 223, 0.9), rgba(228, 227, 223, 0.9)),
+    url("/propostas/prosperista/textura-tecido.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}

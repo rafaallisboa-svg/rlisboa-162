@@ -42,10 +42,10 @@ type FormState = {
   canais: string[];
   canalOutro: string;
   cores: string;
-  referencias: string;
   diferencial: string;
   acao: string;
   evitar: string;
+  evitarLogo: string;
 };
 
 const ESTADO_INICIAL: FormState = {
@@ -55,18 +55,15 @@ const ESTADO_INICIAL: FormState = {
   canais: [],
   canalOutro: "",
   cores: "",
-  referencias: "",
   diferencial: "",
   acao: ACOES[0],
   evitar: "",
+  evitarLogo: "",
 };
 
 const PERGUNTAS: { rotulo: string; campo: keyof FormState }[] = [
-  { rotulo: "2. Quem é o cliente ideal (porte da empresa, setor, momento do negócio)?", campo: "clienteIdeal" },
   { rotulo: "4. Alguma cor que você ama ou rejeita, além de evitar tons cítricos?", campo: "cores" },
-  { rotulo: "5. Alguma marca/consultoria cujo visual você admira?", campo: "referencias" },
-  { rotulo: "6. Qual é o principal diferencial da Prosperista que a marca precisa deixar claro?", campo: "diferencial" },
-  { rotulo: "8. Alguma palavra ou conceito que você NÃO quer associado à marca?", campo: "evitar" },
+  { rotulo: "5. Qual é o principal diferencial da Prosperista que a marca precisa deixar claro?", campo: "diferencial" },
 ];
 
 function montarTexto(form: FormState) {
@@ -94,17 +91,17 @@ ${canaisTexto}
 4. Cor que ama ou rejeita (além de tons cítricos):
 ${form.cores || "—"}
 
-5. Marca/consultoria de referência visual:
-${form.referencias || "—"}
-
-6. Principal diferencial a deixar claro:
+5. Principal diferencial a deixar claro:
 ${form.diferencial || "—"}
 
-7. Ação principal do visitante do site:
+6. Ação principal do visitante do site:
 ${form.acao || "—"}
 
-8. Palavra/conceito a evitar:
-${form.evitar || "—"}`;
+7. Palavra/conceito a evitar:
+${form.evitar || "—"}
+
+8. Algo que não quer no desenho do logo:
+${form.evitarLogo || "—"}`;
 }
 
 export function BriefingForm() {
@@ -206,7 +203,9 @@ export function BriefingForm() {
           </fieldset>
 
           <label className="flex flex-col gap-3">
-            <span className="text-sm text-[#221F1D]">{PERGUNTAS[0].rotulo}</span>
+            <span className="text-sm text-[#221F1D]">
+              2. Quem é o cliente ideal (porte da empresa, setor, momento do negócio)?
+            </span>
             <textarea
               value={form.clienteIdeal}
               onChange={(e) => setCampo("clienteIdeal", e.target.value)}
@@ -251,7 +250,7 @@ export function BriefingForm() {
             )}
           </fieldset>
 
-          {PERGUNTAS.slice(2).map((p) => (
+          {PERGUNTAS.map((p) => (
             <label key={p.campo} className="flex flex-col gap-3">
               <span className="text-sm text-[#221F1D]">{p.rotulo}</span>
               <textarea
@@ -266,7 +265,7 @@ export function BriefingForm() {
 
           <label className="flex flex-col gap-3">
             <span className="text-sm text-[#221F1D]">
-              7. Qual ação você quer que quem visita o site tome?
+              6. Qual ação você quer que quem visita o site tome?
             </span>
             <select
               value={form.acao}
@@ -280,6 +279,32 @@ export function BriefingForm() {
                 </option>
               ))}
             </select>
+          </label>
+
+          <label className="flex flex-col gap-3">
+            <span className="text-sm text-[#221F1D]">
+              7. Alguma palavra ou conceito que você NÃO quer associado à marca?
+            </span>
+            <textarea
+              value={form.evitar}
+              onChange={(e) => setCampo("evitar", e.target.value)}
+              rows={2}
+              className="border bg-transparent px-4 py-3 text-sm text-[#221F1D] outline-none"
+              style={{ borderColor: LINHA }}
+            />
+          </label>
+
+          <label className="flex flex-col gap-3">
+            <span className="text-sm text-[#221F1D]">
+              8. Há alguma coisa que você NÃO queira no desenho do seu logo?
+            </span>
+            <textarea
+              value={form.evitarLogo}
+              onChange={(e) => setCampo("evitarLogo", e.target.value)}
+              rows={2}
+              className="border bg-transparent px-4 py-3 text-sm text-[#221F1D] outline-none"
+              style={{ borderColor: LINHA }}
+            />
           </label>
 
           <div className="mt-4 flex flex-wrap items-center gap-4">

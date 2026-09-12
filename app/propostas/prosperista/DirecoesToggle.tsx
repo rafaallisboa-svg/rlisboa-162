@@ -1,6 +1,5 @@
 "use client";
 
-import { AbstractShape } from "./AbstractShape";
 import { useDirecao } from "./DirecaoContext";
 import { DIRECOES, type DirecaoId } from "./direcoes";
 import { CONTAINER, TINTA_SUAVE } from "./chrome";
@@ -78,50 +77,35 @@ export function DirecoesToggle() {
           </div>
 
           <div
-            className="grid gap-10 p-8 transition-colors duration-500 md:grid-cols-[1.2fr_1fr] md:p-14"
+            className="p-8 transition-colors duration-500 md:p-14"
             style={{ backgroundColor: atual.fundo, color: atual.texto }}
           >
-            <div>
-              <p className="text-base italic opacity-70">{atual.tom}</p>
+            <p className="text-base italic opacity-70">{atual.tom}</p>
 
-              <div className="mt-8 flex gap-1.5">
-                {[
-                  { rotulo: "Fundo", hex: atual.fundo },
-                  { rotulo: "Texto", hex: atual.texto },
-                  { rotulo: "Âncora", hex: atual.ancora },
-                  { rotulo: "Apoio", hex: atual.apoio },
-                ].map((chip) => (
-                  <div key={chip.rotulo} className="flex flex-1 flex-col gap-2">
-                    <div
-                      className="h-24 w-full border md:h-28"
-                      style={{ backgroundColor: chip.hex, borderColor: `${atual.texto}22` }}
-                      aria-hidden="true"
-                    />
-                    <div className="text-[0.65rem] leading-tight opacity-70">{chip.rotulo}</div>
-                    <div className="font-mono text-[0.65rem] uppercase leading-tight opacity-90">
-                      {chip.hex}
-                    </div>
+            <div className="mt-10 flex gap-3 md:gap-4">
+              {[
+                { rotulo: "Fundo", hex: atual.fundo },
+                { rotulo: "Texto", hex: atual.texto },
+                { rotulo: "Âncora", hex: atual.ancora },
+                { rotulo: "Apoio", hex: atual.apoio },
+              ].map((chip) => (
+                <div key={chip.rotulo} className="flex flex-1 flex-col gap-3">
+                  <div
+                    className="h-40 w-full border md:h-56"
+                    style={{ backgroundColor: chip.hex, borderColor: `${atual.texto}22` }}
+                    aria-hidden="true"
+                  />
+                  <div className="text-xs leading-tight opacity-70">{chip.rotulo}</div>
+                  <div className="font-mono text-xs uppercase leading-tight opacity-90">
+                    {chip.hex}
                   </div>
-                ))}
-              </div>
-
-              <p className="mt-6 text-xs uppercase tracking-[0.12em] opacity-60">
-                {atual.fontTituloNome} + {atual.fontTextoNome}
-              </p>
+                </div>
+              ))}
             </div>
 
-            <div
-              className="relative aspect-square w-full overflow-hidden border"
-              style={{ borderColor: `${atual.texto}22` }}
-            >
-              <AbstractShape
-                corFundo={atual.fundo}
-                corAncora={atual.ancora}
-                corApoio={atual.apoio}
-                corTexto={atual.texto}
-                className="h-full w-full transition-all duration-500"
-              />
-            </div>
+            <p className="mt-8 text-xs uppercase tracking-[0.12em] opacity-60">
+              {atual.fontTituloNome} + {atual.fontTextoNome}
+            </p>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ const FASES = [
   {
     numero: "01",
     nome: "Descoberta",
-    descricao: "Levantamento de informações + análise e pesquisa.",
+    descricao: "Levantamento de informações + análise e pesquisa semântica.",
   },
   {
     numero: "02",
@@ -27,6 +27,15 @@ const FASES = [
 ];
 
 const FASE_ATUAL_INDEX = 0;
+
+const MAPA_SEMANTICO = [
+  { chave: "Copiloto", sinonimos: ["orientação", "acompanhamento", "parceria", "apoio contínuo"] },
+  { chave: "Governança", sinonimos: ["estrutura", "clareza", "disciplina", "solidez"] },
+  {
+    chave: "Sustentabilidade aplicada",
+    sinonimos: ["continuidade", "consistência", "maturidade", "raiz"],
+  },
+];
 
 export function ProcessoTimeline() {
   const a = DIRECOES.a;
@@ -69,7 +78,35 @@ export function ProcessoTimeline() {
             );
           })}
         </div>
-        <div className="relative mt-12 h-px w-full" style={{ backgroundColor: LINHA }} />
+        <div className="relative mt-14 h-px w-full" style={{ backgroundColor: LINHA }} />
+
+        <div className="relative mt-14">
+          <p className="text-sm font-semibold uppercase tracking-[0.1em]" style={{ color: ACENTO }}>
+            Dentro da Descoberta: pesquisa semântica
+          </p>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: TINTA_SUAVE }}>
+            Antes de desenhar qualquer símbolo, mapeamos as palavras do seu
+            próprio briefing — sinônimos e conceitos correlatos a cada uma —
+            pra explorar o território verbal da marca. É esse mapa que guia
+            as decisões de tom, cor e tipografia nas fases seguintes.
+          </p>
+          <div className="mt-8 grid gap-8 sm:grid-cols-3">
+            {MAPA_SEMANTICO.map((item) => (
+              <div key={item.chave}>
+                <p className="text-lg font-semibold" style={{ fontFamily: a.fontTitulo }}>
+                  {item.chave}
+                </p>
+                <ul className="mt-3 flex flex-col gap-1.5">
+                  {item.sinonimos.map((s) => (
+                    <li key={s} className="text-sm" style={{ color: TINTA_SUAVE }}>
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

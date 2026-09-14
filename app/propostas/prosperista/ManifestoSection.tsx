@@ -10,9 +10,8 @@ export function ManifestoSection() {
           className="text-[clamp(1.5rem,3.2vw,2.5rem)] font-semibold leading-[1.3] text-[#221F1D]"
           style={{ fontFamily: a.fontTitulo }}
         >
-          O que trava esses negócios raramente é falta de talento — é a
-          ausência de estrutura pra sustentar o próximo tamanho. É aí que
-          entramos.
+          O talento leva um negócio até certo ponto. A partir daí, o que
+          decide o próximo salto é estrutura — não esforço.
         </p>
       </div>
     </section>

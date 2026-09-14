@@ -3,10 +3,6 @@ import Image from "next/image";
 export function HeroProposta() {
   return (
     <section className="relative w-full overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-y-0 left-1/2 z-50 w-px bg-red-500"
-        aria-hidden="true"
-      />
       <div className="absolute inset-0">
         <Image
           src="/propostas/prosperista/textura-tecido.jpg"
@@ -24,7 +20,7 @@ export function HeroProposta() {
           Proposta de identidade visual &amp; landing page
         </p>
         <h1
-          className="mt-2 w-full text-center text-[clamp(2.25rem,11vw,7.5rem)] font-bold uppercase leading-[0.95] text-[#221F1D]"
+          className="mt-2 w-full text-center text-[clamp(2.25rem,10vw,6rem)] font-bold uppercase leading-[0.95] text-[#221F1D]"
           style={{ fontFamily: "var(--font-bodoni)" }}
         >
           Prosperista

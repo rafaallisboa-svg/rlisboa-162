@@ -121,9 +121,13 @@ ${form.evitar || "—"}
 ${form.evitarLogo || "—"}`;
 }
 
+const WEB3FORMS_ACCESS_KEY = "773d3207-d2e2-4ecf-8b70-e0b87d8355e4";
+
+type StatusEnvio = "ocioso" | "enviando" | "enviado" | "erro";
+
 export function BriefingForm() {
   const [form, setForm] = useState<FormState>(ESTADO_INICIAL);
-  const [enviado, setEnviado] = useState(false);
+  const [status, setStatus] = useState<StatusEnvio>("ocioso");
   const [copiado, setCopiado] = useState(false);
   const a = DIRECOES.a;
 
@@ -141,13 +145,26 @@ export function BriefingForm() {
   const ajustarEixo = (eixoId: string, posicao: number) =>
     setForm((f) => ({ ...f, termometro: { ...f.termometro, [eixoId]: posicao } }));
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const corpo = montarTexto(form);
-    const assunto = "Mini-briefing — Prosperista Consultoria";
-    const mailto = `mailto:${site.contato.email}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
-    window.location.href = mailto;
-    setEnviado(true);
+    setStatus("enviando");
+    try {
+      const resposta = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "Mini-briefing — Prosperista Consultoria",
+          from_name: "Mini-briefing — Prosperista",
+          email: site.contato.email,
+          message: montarTexto(form),
+        }),
+      });
+      const dados = await resposta.json();
+      setStatus(dados.success ? "enviado" : "erro");
+    } catch {
+      setStatus("erro");
+    }
   };
 
   const copiarRespostas = async () => {
@@ -174,8 +191,8 @@ export function BriefingForm() {
         </h2>
         <p className="relative mt-4 text-base leading-relaxed" style={{ color: TINTA_SUAVE }}>
           Suas respostas aqui ajudam a fechar o Conceito com precisão. Ao
-          enviar, seu cliente de e-mail abre com tudo já formatado — ou, se
-          preferir, copie as respostas e cole onde quiser.
+          enviar, as respostas chegam direto pra gente — ou, se preferir,
+          copie e cole onde quiser.
         </p>
 
         <form onSubmit={onSubmit} className="mt-12 flex flex-col gap-10">
@@ -329,9 +346,10 @@ export function BriefingForm() {
           <div className="mt-4 flex flex-wrap items-center gap-4">
             <button
               type="submit"
-              className="border border-[#221F1D] px-7 py-3 text-sm text-[#221F1D] transition-colors hover:bg-[#221F1D] hover:text-[#F3EFE6]"
+              disabled={status === "enviando"}
+              className="border border-[#221F1D] px-7 py-3 text-sm text-[#221F1D] transition-colors hover:bg-[#221F1D] hover:text-[#F3EFE6] disabled:opacity-50"
             >
-              Enviar por e-mail
+              {status === "enviando" ? "Enviando…" : "Enviar respostas"}
             </button>
             <button
               type="button"
@@ -343,10 +361,17 @@ export function BriefingForm() {
             </button>
           </div>
 
-          {enviado && (
+          {status === "enviado" && (
             <p role="status" className="text-sm" style={{ color: ACENTO }}>
-              Abrimos seu cliente de e-mail com as respostas prontas — é só
-              conferir e enviar.
+              Respostas enviadas — obrigado! Vamos usar isso pra fechar o
+              Conceito.
+            </p>
+          )}
+          {status === "erro" && (
+            <p role="status" className="text-sm text-red-700">
+              Não conseguimos enviar agora. Tente de novo em instantes ou
+              clique em &ldquo;Copiar respostas&rdquo; e envie por WhatsApp
+              ou e-mail.
             </p>
           )}
         </form>

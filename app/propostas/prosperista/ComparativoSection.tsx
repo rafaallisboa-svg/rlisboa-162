@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { DIRECOES } from "./direcoes";
 import { CONTAINER, ACENTO, TINTA_SUAVE, LINHA } from "./chrome";
 import { SectionLabel } from "./SectionLabel";
@@ -100,7 +99,7 @@ export function ComparativoSection() {
             </div>
           </div>
 
-          {/* Imagens — miniatura real do moodboard, não descrição. */}
+          {/* Imagens */}
           <div
             className="grid grid-cols-1 gap-3 border-b py-6 md:grid-cols-[8rem_1fr_1fr] md:gap-8"
             style={{ borderColor: LINHA }}
@@ -108,30 +107,12 @@ export function ComparativoSection() {
             <p className="text-lg font-semibold" style={{ fontFamily: a.fontTitulo }}>
               Imagens
             </p>
-            <div>
-              <div className="flex h-20 w-32 items-center justify-center border border-black/10 bg-gradient-to-br from-[#DCE3F0] to-[#AEB9D6]">
-                <span className="text-[0.6rem] uppercase tracking-wide text-[#4A5470]">
-                  banco de imagem
-                </span>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed opacity-60 md:text-base" style={{ color: "#221F1D" }}>
-                Aperto de mão, gráfico subindo, escritório de vidro — linguagem já conhecida do setor.
-              </p>
-            </div>
-            <div>
-              <div className="relative h-20 w-32 overflow-hidden border border-black/10">
-                <Image
-                  src="/propostas/prosperista/moodboard/mood-08.jpg"
-                  alt=""
-                  fill
-                  sizes="128px"
-                  className="object-cover"
-                />
-              </div>
-              <p className="mt-3 text-sm font-medium leading-relaxed md:text-base" style={{ color: "#221F1D" }}>
-                Fotografia de aplicação real e texturas próprias — como no moodboard, mais específico da marca.
-              </p>
-            </div>
+            <p className="text-sm leading-relaxed opacity-60 md:text-base" style={{ color: "#221F1D" }}>
+              Aperto de mão, gráfico subindo, escritório de vidro — linguagem já conhecida do setor.
+            </p>
+            <p className="text-sm font-medium leading-relaxed md:text-base" style={{ color: "#221F1D" }}>
+              Fotografia de aplicação real e texturas próprias — como no moodboard, mais específico da marca.
+            </p>
           </div>
 
           {/* Grafismos */}

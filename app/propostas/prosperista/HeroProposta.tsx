@@ -16,7 +16,7 @@ export function HeroProposta() {
       </div>
 
       <div className="relative mx-auto flex min-h-[85vh] max-w-4xl flex-col items-center justify-center px-6 py-20 text-center md:min-h-[80vh] md:px-16">
-        <p className="text-xs uppercase tracking-[0.16em] text-[#A9694F]">
+        <p className="-mr-[0.16em] text-xs uppercase tracking-[0.16em] text-[#A9694F]">
           Proposta de identidade visual &amp; landing page
         </p>
         <h1
@@ -26,7 +26,7 @@ export function HeroProposta() {
           Prosperista
         </h1>
         <p
-          className="mt-3 text-xs font-medium uppercase tracking-[0.2em] text-[#221F1D] md:tracking-[0.35em]"
+          className="-mr-[0.2em] mt-3 text-xs font-medium uppercase tracking-[0.2em] text-[#221F1D] md:-mr-[0.35em] md:tracking-[0.35em]"
           style={{ fontFamily: "var(--font-bodoni)" }}
         >
           Consultoria

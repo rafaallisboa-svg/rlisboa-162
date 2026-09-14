@@ -10,9 +10,9 @@ export function ManifestoSection() {
           className="text-[clamp(1.5rem,3.2vw,2.5rem)] font-semibold leading-[1.3] text-[#221F1D]"
           style={{ fontFamily: a.fontTitulo }}
         >
-          Enxergamos o que trava a evolução de negócios que cresceram pelo
-          talento do fundador — e construímos a governança que sustenta o
-          próximo salto, mantendo o empresário no comando.
+          O que trava esses negócios raramente é falta de talento — é a
+          ausência de estrutura pra sustentar o próximo tamanho. É aí que
+          entramos.
         </p>
       </div>
     </section>

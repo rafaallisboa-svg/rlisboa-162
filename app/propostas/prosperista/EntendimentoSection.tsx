@@ -21,15 +21,14 @@ export function EntendimentoSection() {
           style={{ color: TINTA_SUAVE }}
         >
           <p>
-            A Prosperista é uma consultoria boutique que atua como{" "}
+            A Prosperista é uma consultoria{" "}
             <em style={{ fontStyle: "italic", color: "#221F1D" }}>
-              copiloto estratégico
+              boutique
             </em>{" "}
-            de pequenas e médias empresas na transição de &ldquo;sucesso pelo
-            talento do fundador&rdquo; para governança estruturada e
-            sustentável. O empresário permanece no comando — a Prosperista
-            fortalece a gestão, sem fórmulas prontas, partindo sempre do
-            entendimento profundo de cada negócio.
+            — atende poucos clientes por vez, com projetos sob medida em vez
+            de um pacote padronizado. O trabalho tira processos e decisões do
+            improviso do dia a dia e coloca indicadores e rotinas de gestão
+            no lugar, sempre a partir do diagnóstico real de cada negócio.
           </p>
           <p>
             Fundada por Sandra Lia Morassutti, executiva com 35+ anos de

@@ -11,7 +11,7 @@ export function ManifestoSection() {
           style={{ fontFamily: a.fontTitulo }}
         >
           O talento leva um negócio até certo ponto. A partir daí, o que
-          decide o próximo salto é estrutura — não esforço.
+          decide o próximo salto é estrutura — não&nbsp;esforço.
         </p>
       </div>
     </section>

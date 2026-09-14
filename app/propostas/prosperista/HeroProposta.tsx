@@ -3,6 +3,10 @@ import Image from "next/image";
 export function HeroProposta() {
   return (
     <section className="relative w-full overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-y-0 left-1/2 z-50 w-px bg-red-500"
+        aria-hidden="true"
+      />
       <div className="absolute inset-0">
         <Image
           src="/propostas/prosperista/textura-tecido.jpg"

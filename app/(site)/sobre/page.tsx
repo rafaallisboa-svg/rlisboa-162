@@ -15,7 +15,7 @@ export default function SobrePage() {
         </h2>
       </div>
 
-      <div className="mt-24 grid gap-12 md:grid-cols-[240px_1fr] md:gap-20">
+      <div className="mt-24 grid gap-12 md:grid-cols-[360px_1fr] md:gap-16">
         <div>
           <div className="aspect-[3/5] w-full overflow-hidden bg-blueprint">
             <img
@@ -32,7 +32,7 @@ export default function SobrePage() {
           </p>
         </div>
 
-        <div className="flex max-w-xl flex-col gap-6">
+        <div className="flex max-w-md flex-col gap-6">
           <p className="text-body text-cal">
             R. Lisboa Estúdio 162 é um estúdio de design que une estratégia e
             criação para conectar marcas a pessoas. Cada projeto começa pelo

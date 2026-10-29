@@ -1,7 +1,5 @@
 import { site } from "@/site.config";
 import { LinhasFundo } from "@/components/ui/LinhasFundo";
-import { Trajetoria } from "@/components/ui/Trajetoria";
-import { trajetoria } from "@/content/trajetoria";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 
 export default function SobrePage() {
@@ -34,26 +32,38 @@ export default function SobrePage() {
           </p>
         </div>
 
-        <div className="flex max-w-md flex-col gap-8">
+        <div className="flex max-w-xl flex-col gap-6">
           <p className="text-body text-cal">
-            Paulista, casado, pai da Gabi. 43 anos entre publicidade, motion
-            graphics e design editorial — sempre com o mesmo objetivo:
-            projetos que agregam valor e conectam marcas a pessoas.
+            R. Lisboa Estúdio 162 é um estúdio de design que une estratégia e
+            criação para conectar marcas a pessoas. Cada projeto começa pelo
+            entendimento do negócio e ganha forma em identidades visuais para
+            marcas e eventos, peças gráficas, sites, apresentações, projetos
+            editoriais, audiovisual e motion&nbsp;graphics.
           </p>
 
-          <p className="text-body text-cal border-t border-white/10 pt-8">
-            Autogestão e vontade constante de aprender guiam o processo — é
-            esse impulso que também está por trás do R. Lisboa 162, o espaço
-            dos projetos autorais fora da rotina fixa.
+          <p className="text-body text-cal">
+            À frente do estúdio está Rafael Lisboa, designer com mais de 15
+            anos de experiência e Diretor de Criação da Inovativos, empresa de
+            planejamento estratégico de conteúdo, inteligência
+            e&nbsp;networking.
+          </p>
+
+          <p className="text-body text-cal">
+            Entre as parcerias mais longas está o Security Leaders, o maior e
+            mais qualificado evento de Segurança da Informação do Brasil.
+            Desde 2010, o conceito criativo de cada edição nasce aqui e chega
+            a tudo o que o público vê, das campanhas de divulgação à
+            cenografia do palco e aos conteúdos animados nos painéis
+            de&nbsp;LED.
+          </p>
+
+          <p className="text-body text-cal">
+            O portfólio inclui ainda a Rede Líderes, que transforma diálogos
+            e inteligência de dados em decisões de negócios, e a Z1 Boutique
+            de Imóveis, de São Paulo, além de marcas de
+            diferentes&nbsp;segmentos.
           </p>
         </div>
-      </div>
-
-      <div className="relative left-1/2 mt-24 w-screen -translate-x-1/2">
-        <p className="mb-6 px-6 font-mono text-xs uppercase tracking-[0.12em] text-maresia md:px-16 lg:px-[clamp(1.5rem,5vw,6rem)]">
-          Trajetória
-        </p>
-        <Trajetoria itens={trajetoria} />
       </div>
     </div>
   );

@@ -1,8 +1,21 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
+
+const SmoothScrollContext = createContext<RefObject<Lenis | null> | null>(null);
+
+export function useSmoothScroll() {
+  return useContext(SmoothScrollContext);
+}
 
 /**
  * Scroll suave global. Desliga sozinho quando o usuário pede menos
@@ -37,5 +50,9 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <SmoothScrollContext.Provider value={lenisRef}>
+      {children}
+    </SmoothScrollContext.Provider>
+  );
 }

@@ -1,5 +1,6 @@
 import { site } from "@/site.config";
 import { isTodo } from "@/lib/placeholder";
+import { HeroTransicao } from "@/components/motion/HeroTransicao";
 import { Clientes } from "@/components/sections/Clientes";
 import { ProjetosDestaque } from "@/components/sections/ProjetosDestaque";
 
@@ -25,18 +26,23 @@ export default function HomePage() {
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-concreto/40 via-concreto/70 to-concreto" />
 
-        <p className="relative font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-          Sprint 1 — fundação
-        </p>
-        <h1 className="relative font-display uppercase leading-none text-hero">
-          {site.marca}
-          <span className="block font-mono text-mono tabular-nums text-sinal">
-            {site.numero}
-          </span>
-        </h1>
-        <p className="relative max-w-md text-body text-cal/80">
-          {isTodo(site.hero.headline) ? "Headline pendente." : site.hero.headline}
-        </p>
+        <HeroTransicao
+          alvo="#projetos"
+          className="relative flex flex-col items-center gap-6"
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+            Sprint 1 — fundação
+          </p>
+          <h1 className="font-display uppercase leading-none text-hero">
+            {site.marca}
+            <span className="block font-mono text-mono tabular-nums text-sinal">
+              {site.numero}
+            </span>
+          </h1>
+          <p className="max-w-md text-body text-cal/80">
+            {isTodo(site.hero.headline) ? "Headline pendente." : site.hero.headline}
+          </p>
+        </HeroTransicao>
       </section>
       <ProjetosDestaque />
       <Clientes />

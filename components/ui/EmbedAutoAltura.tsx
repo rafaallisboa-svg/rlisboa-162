@@ -26,10 +26,7 @@ export function EmbedAutoAltura({
     let observador: ResizeObserver | undefined;
 
     const raiz = () => {
-      const doc = iframe.contentDocument;
-      return (doc?.querySelector(".fic26-pc") ??
-        doc?.body.firstElementChild ??
-        null) as HTMLElement | null;
+      return (iframe.contentDocument?.body.firstElementChild ?? null) as HTMLElement | null;
     };
 
     const medir = () => {

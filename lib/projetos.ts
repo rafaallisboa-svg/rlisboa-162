@@ -6,7 +6,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 const DIR = path.join(process.cwd(), "content", "projetos");
 
 export type Cobertura = {
-  itens: { titulo: string; src: string; altura: number; mostrarTitulo?: boolean }[];
+  itens: { titulo: string; src: string; altura: number }[];
 };
 
 export type ProjetoMeta = {

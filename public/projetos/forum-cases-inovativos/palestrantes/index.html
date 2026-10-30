@@ -3,24 +3,41 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
 <title>Palestrantes presentes · Fórum Inovativos</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;}
-body{
+html,body{background:#0048C0;}
+.fic26-pr{
+  position:relative;overflow:hidden;color:#fff;
+  font-family:'Hanken Grotesk','Manrope',-apple-system,BlinkMacSystemFont,sans-serif;
+  padding:clamp(64px,8vw,104px) 0;
   background:#0048C0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  min-height:100%;
-  padding:28px 0;
 }
-body > .fic26-pc{width:100%;min-width:0;}
+.fic26-pr-head{text-align:center;padding:0 24px;margin:0 auto 8px;}
+.fic26-pr-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;margin:0 0 16px;
+  font-weight:800;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FFB238;
+}
+.fic26-pr-eyebrow::before,.fic26-pr-eyebrow::after{
+  content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,#FFB238);
+}
+.fic26-pr-eyebrow::after{transform:scaleX(-1);}
+.fic26-pr-title{
+  margin:0;font-weight:800;font-size:clamp(28px,3.6vw,46px);line-height:1.1;
+  letter-spacing:-.02em;text-wrap:balance;
+}
 /* prévia — sem navegação real pra fora do case */
 .fic26-pc-arrow{pointer-events:auto;}
 </style>
 </head>
 <body>
-
+<section class="fic26-pr">
+  <div class="fic26-pr-head">
+    <p class="fic26-pr-eyebrow">Edição 2026</p>
+    <h2 class="fic26-pr-title">Palestrantes presentes</h2>
+  </div>
 <div class="fic26-pc">
   <style>
     .fic26-pc {
@@ -442,6 +459,6 @@ body > .fic26-pc{width:100%;min-width:0;}
     })();
   </script>
 </div>
-
+</section>
 </body>
 </html>

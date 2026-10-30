@@ -21,7 +21,8 @@ export function ProjetosDestaque() {
 
       <div className="mt-10 grid gap-8 md:grid-cols-2">
         {projetos.map((p, i) => {
-          const destaque = i === 0 && projetos.length % 2 === 1;
+          const ultimo = projetos.length - 1;
+          const destaque = i === 0 || (i === ultimo && ultimo % 2 === 1);
           return (
           <Link
             key={p.slug}

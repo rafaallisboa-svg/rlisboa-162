@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProjeto, getProjetos } from "@/lib/projetos";
 import { Galeria } from "@/components/ui/Galeria";
+import { CoberturaCase } from "@/components/ui/CoberturaCase";
 import { real } from "@/lib/placeholder";
 
 export function generateStaticParams() {
@@ -78,17 +79,17 @@ export default async function ProjetoPage({
       </div>
 
       {frontmatter.siteExterno && (
-        <div className="px-6 py-6 md:px-[clamp(1.5rem,5vw,6rem)]">
+        <div className="px-6 py-8 md:px-[clamp(1.5rem,5vw,6rem)]">
           <a
             href={frontmatter.siteExterno}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-sinal"
+            className="group inline-flex items-center gap-3 bg-sinal px-7 py-4 font-mono text-sm font-bold uppercase tracking-[0.12em] text-concreto transition-transform duration-200 hover:-translate-y-0.5"
           >
-            Ver site
+            Visitar o site
             <span
               aria-hidden="true"
-              className="inline-block transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="inline-block text-base transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             >
               ↗
             </span>
@@ -121,6 +122,8 @@ export default async function ProjetoPage({
           <Galeria imagens={frontmatter.galeria} />
         </div>
       )}
+
+      {frontmatter.cobertura && <CoberturaCase cobertura={frontmatter.cobertura} />}
 
       {real(frontmatter.resultado) && (
         <div className="px-6 py-10 md:px-[clamp(1.5rem,5vw,6rem)]">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { NOMES_SERVICOS, slugServico } from "@/lib/servicos";
+import { NOMES_SERVICOS, rotuloServico, slugServico } from "@/lib/servicos";
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 
@@ -109,7 +109,7 @@ export function ServicosPalavras() {
             }`}
             style={{ fontSize: "min(14vw, 9rem)", willChange: "transform" }}
           >
-            {nome}
+            {rotuloServico(nome)}
           </Link>
         ))}
       </div>

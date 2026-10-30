@@ -1,18 +1,107 @@
 {
-  "_nota": "Um objeto por cliente. Logo em SVG monocromático (preenchimento currentColor) sempre que possível; PNG/JPG quando só existe arquivo rasterizado. 'razao' é largura/altura real do arquivo — usado pra dar altura uniforme no carrossel sem sobrar espaço vazio dentro da caixa.",
+  "_nota": "Um objeto por cliente, com o logo em cor original (PNG/SVG com fundo transparente) sobre cartao branco. \"razao\" e a largura/altura real do arquivo.",
   "itens": [
-    { "nome": "Rede Líderes", "logo": "/clientes/rede-lideres.svg", "url": null, "setor": null, "pendente": false, "razao": 4.137 },
-    { "nome": "NOHMA", "logo": "/clientes/nohma.svg", "url": null, "setor": null, "pendente": false, "razao": 5.139 },
-    { "nome": "AKMX Arquitetura e Engenharia", "logo": "/clientes/akmx.png", "url": null, "setor": null, "pendente": false, "razao": 2.857, "escala": 0.85 },
-    { "nome": "tandera.", "logo": "/clientes/tandera.png", "url": null, "setor": null, "pendente": false, "razao": 3.926 },
-    { "nome": "pallas", "logo": "/clientes/pallas.png", "url": null, "setor": null, "pendente": false, "razao": 2.922, "escala": 0.9 },
-    { "nome": "Zavanna", "logo": "/clientes/zavanna.png", "url": null, "setor": null, "pendente": false, "razao": 6.138, "escala": 0.78 },
-    { "nome": "Iluminatta", "logo": "/clientes/iluminatta.png", "url": null, "setor": null, "pendente": false, "razao": 4.047, "tecnica": "cinza" },
-    { "nome": "Conteúdo Editorial", "logo": "/clientes/conteudo-editorial.png", "url": null, "setor": null, "pendente": false, "razao": 3.386 },
-    { "nome": "GSM New Parking", "logo": "/clientes/gsm-new-parking.png", "url": null, "setor": null, "pendente": false, "razao": 2.098, "escala": 0.7 },
-    { "nome": "Inovativos", "logo": "/clientes/inovativos.png", "url": null, "setor": null, "pendente": false, "razao": 4.741 },
-    { "nome": "Z1 Boutique de Imóveis", "logo": "/clientes/z1-boutique.png", "url": null, "setor": null, "pendente": false, "razao": 2.261 },
-    { "nome": "Security Leaders", "logo": "/clientes/security-leaders.png", "url": null, "setor": null, "pendente": false, "razao": 1.57, "tecnica": "cheio" },
-    { "nome": "AXZIEL A7Z", "logo": "/clientes/axziel.png", "url": null, "setor": null, "pendente": false, "razao": 3.005, "escala": 0.7 }
+    {
+      "nome": "Rede Líderes",
+      "logo": "/clientes/rede-lideres.svg",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 4.137
+    },
+    {
+      "nome": "NOHMA",
+      "logo": "/clientes/nohma.svg",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 5.139
+    },
+    {
+      "nome": "AKMX Arquitetura e Engenharia",
+      "logo": "/clientes/akmx.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 2.857,
+      "escala": 0.85
+    },
+    {
+      "nome": "tandera.",
+      "logo": "/clientes/tandera.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 3.926
+    },
+    {
+      "nome": "pallas",
+      "logo": "/clientes/pallas.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 2.922,
+      "escala": 0.9
+    },
+    {
+      "nome": "Zavanna",
+      "logo": "/clientes/zavanna.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 6.138,
+      "escala": 0.78
+    },
+    {
+      "nome": "Conteúdo Editorial",
+      "logo": "/clientes/conteudo-editorial.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 3.386
+    },
+    {
+      "nome": "GSM New Parking",
+      "logo": "/clientes/gsm-new-parking.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 2.134,
+      "escala": 0.8
+    },
+    {
+      "nome": "Inovativos",
+      "logo": "/clientes/inovativos.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 4.741
+    },
+    {
+      "nome": "Z1 Boutique de Imóveis",
+      "logo": "/clientes/z1-boutique.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 2.261
+    },
+    {
+      "nome": "Security Leaders",
+      "logo": "/clientes/security-leaders.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 0.844,
+      "escala": 0.95
+    },
+    {
+      "nome": "AXZIEL A7Z",
+      "logo": "/clientes/axziel.png",
+      "url": null,
+      "setor": null,
+      "pendente": false,
+      "razao": 3.005,
+      "escala": 0.7
+    }
   ]
 }

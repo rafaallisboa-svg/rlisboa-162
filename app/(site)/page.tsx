@@ -2,6 +2,7 @@ import { site } from "@/site.config";
 import { isTodo } from "@/lib/placeholder";
 import { HeroTransicao } from "@/components/motion/HeroTransicao";
 import { Clientes } from "@/components/sections/Clientes";
+import { ServicosPalavras } from "@/components/sections/ServicosPalavras";
 import { ProjetosDestaque } from "@/components/sections/ProjetosDestaque";
 
 /**
@@ -44,6 +45,7 @@ export default function HomePage() {
           </p>
         </HeroTransicao>
       </section>
+      <ServicosPalavras />
       <ProjetosDestaque />
       <Clientes />
     </>

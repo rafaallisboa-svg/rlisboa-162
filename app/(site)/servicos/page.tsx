@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { slugServico } from "@/lib/servicos";
 
 const SERVICOS = [
   {
@@ -133,6 +134,12 @@ const SERVICOS = [
 export default function ServicosPage() {
   const [aberto, setAberto] = useState<number | null>(null);
   const [destaque, setDestaque] = useState(0);
+
+  useEffect(() => {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    const indice = SERVICOS.findIndex((s) => slugServico(s.nome) === hash);
+    if (indice >= 0) setAberto(indice);
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => {

@@ -21,7 +21,7 @@ const PARAGRAFOS: Segmento[][] = [
     { t: "Entre as parcerias mais longas está o " },
     { t: "Security Leaders", d: true },
     {
-      t: ", o maior e mais qualificado evento de Segurança da Informação do Brasil. Desde 2010, o conceito criativo de cada edição nasce aqui e chega a tudo o que o público vê, das campanhas de divulgação à cenografia do palco e aos conteúdos animados nos painéis de LED.",
+      t: ", o maior e mais qualificado evento de Segurança da Informação do Brasil. Desde 2010, o conceito criativo de cada edição nasce aqui e chega a tudo o que o público vê, das campanhas de divulgação à cenografia animada em painéis de LED.",
     },
   ],
   [

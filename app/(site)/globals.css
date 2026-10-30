@@ -10,6 +10,7 @@
   --color-maresia: #7a8b85;
   --color-blueprint: #194b32;
   --color-sinal: #93b4db;
+  --color-violeta: #a78bfa;
 
   /* --font-jbmono vem do next/font (app/layout.tsx). Clash Display e Satoshi
      vêm via Fontshare (link no <head>, não estão no Google Fonts). */

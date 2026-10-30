@@ -67,7 +67,7 @@ export const site = {
   ],
 
   // ── Domínio e SEO ───────────────────────────────────────────
-  url: "[[ TODO: https://dominio ]]",
+  url: "https://www.rlisboadesign.com.br",
   descricao:
     "[[ TODO: 155 caracteres. Incluir 'identidade visual', 'construtoras' e 'Itapema'. ]]",
   ogImagem: "/api/ph?w=1200&h=630&label=Open Graph",

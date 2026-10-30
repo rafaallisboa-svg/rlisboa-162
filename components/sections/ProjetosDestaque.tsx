@@ -20,13 +20,19 @@ export function ProjetosDestaque() {
       </p>
 
       <div className="mt-10 grid gap-8 md:grid-cols-2">
-        {projetos.map((p) => (
+        {projetos.map((p, i) => {
+          const destaque = i === 0 && projetos.length % 2 === 1;
+          return (
           <Link
             key={p.slug}
             href={`/projetos/${p.slug}`}
-            className="group block"
+            className={`group block ${destaque ? "md:col-span-2" : ""}`}
           >
-            <div className="aspect-[3/2] overflow-hidden bg-blueprint">
+            <div
+              className={`overflow-hidden bg-blueprint ${
+                destaque ? "aspect-[3/2] md:aspect-[21/9]" : "aspect-[3/2]"
+              }`}
+            >
               <img
                 src={p.thumb ?? p.capa}
                 alt={p.titulo}
@@ -45,7 +51,8 @@ export function ProjetosDestaque() {
               </span>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

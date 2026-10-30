@@ -5,12 +5,38 @@ import { compileMDX } from "next-mdx-remote/rsc";
 
 const DIR = path.join(process.cwd(), "content", "projetos");
 
+export type CoberturaItem = {
+  rotulo?: string;
+  titulo: string;
+  destaque?: string;
+  url: string;
+  imagem?: string;
+  nota?: string;
+};
+
+export type CoberturaLista = {
+  kicker: string;
+  titulo: string;
+  itens: CoberturaItem[];
+  botao?: { rotulo: string; url: string };
+};
+
 export type Cobertura = {
-  numeros?: { valor: string; rotulo: string }[];
+  numeros?: {
+    kicker: string;
+    titulo: string;
+    itens: { valor: string; rotulo: string; descricao: string }[];
+  };
   palestrantes?: { titulo: string; src: string; altura: number };
-  fotos?: { src: string; alt: string }[];
-  depoimentos?: { texto: string; nome: string; cargo: string; foto?: string }[];
-  links?: { rotulo: string; titulo: string; url: string; imagem?: string }[];
+  videos?: CoberturaLista;
+  reportagens?: CoberturaLista;
+  audios?: CoberturaLista;
+  fotos?: {
+    kicker: string;
+    titulo: string;
+    legenda?: string;
+    itens: { src: string; alt: string }[];
+  };
 };
 
 export type ProjetoMeta = {

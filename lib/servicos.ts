@@ -4,7 +4,6 @@ export const NOMES_SERVICOS = [
   "Apresentação",
   "Social Media Kit",
   "Vídeo & Motion Graphics",
-  "Eventos",
   "Materiais Gráficos",
 ] as const;
 

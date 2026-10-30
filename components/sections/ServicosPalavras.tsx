@@ -91,7 +91,7 @@ export function ServicosPalavras() {
     <section
       ref={secaoRef}
       aria-label="Serviços"
-      className="overflow-hidden border-t border-white/10 bg-concreto py-20 md:py-32"
+      className="overflow-hidden bg-concreto pb-20 pt-28 md:pb-32 md:pt-40"
     >
       <div
         ref={colunaRef}

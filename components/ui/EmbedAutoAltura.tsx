@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Iframe do mesmo domínio que acompanha a altura real do conteúdo: o carrossel
- * muda de tamanho com a largura, então uma altura fixa corta no celular e
+ * Iframe do mesmo domínio que acompanha a altura real do conteúdo: os widgets
+ * mudam de tamanho com a largura, então uma altura fixa corta no celular e
  * sobra espaço no desktop. `alturaInicial` evita salto antes da primeira medição.
  */
 export function EmbedAutoAltura({
@@ -25,11 +25,16 @@ export function EmbedAutoAltura({
     if (!iframe) return;
     let observador: ResizeObserver | undefined;
 
+    const raiz = () => {
+      const doc = iframe.contentDocument;
+      return (doc?.querySelector(".fic26-pc") ??
+        doc?.body.firstElementChild ??
+        null) as HTMLElement | null;
+    };
+
     const medir = () => {
       const doc = iframe.contentDocument;
-      const conteudo =
-        doc?.querySelector<HTMLElement>(".fic26-pc") ??
-        (doc?.body.firstElementChild as HTMLElement | null);
+      const conteudo = raiz();
       if (!doc || !conteudo) return;
       const estilo = doc.defaultView?.getComputedStyle(doc.body);
       const folga =
@@ -40,8 +45,7 @@ export function EmbedAutoAltura({
 
     const aoCarregar = () => {
       medir();
-      const doc = iframe.contentDocument;
-      const conteudo = doc?.querySelector(".fic26-pc");
+      const conteudo = raiz();
       const RO = (iframe.contentWindow as (Window & typeof globalThis) | null)
         ?.ResizeObserver;
       if (conteudo && RO) {

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Cobertura multimídia · Fórum Inovativos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+html,body{margin:0;padding:0;background:#0A2566;}
+</style>
+</head>
+<body>
+<section class="fic26-cob-vd" id="cobertura-videos">
+  <style>
+    .fic26-cob-vd { 
+    --azul-prof: #0A2566; --azul-esc: #103484; --azul-med: #1D49A8; --azcl: #8FBCE8;
+    --laranja: #F99C08; --amarelo: #FFB238; --tinta: #0A2566;
+    font-family: 'Hanken Grotesk', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative; overflow: hidden; color: #fff;
+      padding: clamp(64px, 8vw, 104px) clamp(20px, 5vw, 64px);
+      background: linear-gradient(180deg, #0A2566 0%, #0C2D7C 100%); }
+    .fic26-cob-vd::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: linear-gradient(180deg, #000, transparent 70%); mask-image: linear-gradient(180deg, #000, transparent 70%); pointer-events: none; }
+    .fic26-cob-vd-in { position: relative; max-width: 1200px; margin: 0 auto; }
+    
+    .fic26-cob-vd *, .fic26-cob-vd *::before, .fic26-cob-vd *::after { box-sizing: border-box; }
+    .fic26-cob-vd-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 16px; font-weight: 800; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--amarelo); }
+    .fic26-cob-vd-eyebrow::before, .fic26-cob-vd-eyebrow::after { content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, var(--amarelo)); }
+    .fic26-cob-vd-eyebrow::after { transform: scaleX(-1); }
+    .fic26-cob-vd-title { margin: 0; font-weight: 800; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; }
+    .fic26-cob-vd-head { text-align: center; max-width: 820px; margin: 0 auto clamp(36px, 5vw, 56px); }
+    .fic26-cob-vd-btn-wrap { text-align: center; margin-top: clamp(36px, 5vw, 52px); }
+    .fic26-cob-vd-btn { display: inline-flex; align-items: center; gap: 12px; padding: 15px 34px; border-radius: 999px; border: 2px solid rgba(255,255,255,.6); background: rgba(255,255,255,.04); color: #fff !important; font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none !important; transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .fic26-cob-vd-btn svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+    .fic26-cob-vd-btn:hover { background: var(--amarelo); border-color: var(--amarelo); color: var(--azul-prof) !important; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(249,156,8,.28); }
+    .fic26-cob-vd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 30px); }
+    .fic26-cob-vd-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05)); border: 0; box-shadow: 0 16px 38px rgba(3,14,45,.42); text-decoration: none !important; color: #fff !important; transition: transform .25s ease, box-shadow .25s ease; }
+    .fic26-cob-vd-card:hover { transform: translateY(-6px); box-shadow: 0 32px 62px rgba(3,14,45,.65); }
+    .fic26-cob-vd-thumb { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0A2566; }
+    .fic26-cob-vd-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .fic26-cob-vd-card:hover .fic26-cob-vd-thumb img { transform: scale(1.06); }
+    .fic26-cob-vd-thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,37,102,.05) 30%, rgba(10,37,102,.7)); }
+    .fic26-cob-vd-chip { position: absolute; z-index: 2; left: 14px; top: 14px; padding: 6px 12px; border-radius: 999px; background: var(--amarelo); color: var(--azul-prof); font-weight: 800; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+    .fic26-cob-vd-play { position: absolute; z-index: 2; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(10,37,102,.55); border: 1.5px solid rgba(255,255,255,.7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: transform .25s ease, background .25s ease; }
+    .fic26-cob-vd-play svg { width: 26px; height: 26px; margin-left: 3px; fill: #fff; }
+    .fic26-cob-vd-card:hover .fic26-cob-vd-play { transform: scale(1.12); background: var(--laranja); border-color: var(--laranja); }
+    .fic26-cob-vd-card:hover .fic26-cob-vd-play svg { fill: var(--azul-prof); }
+    .fic26-cob-vd-cap { display: block; padding: 20px 22px 24px; font-size: 16px; line-height: 1.45; font-weight: 400; color: #E3ECFA; text-wrap: balance; }
+    .fic26-cob-vd-cap strong { font-weight: 800; color: #fff; }
+    @media (max-width: 980px) { .fic26-cob-vd-grid { grid-template-columns: 1fr 1fr; } .fic26-cob-vd-card:last-child { grid-column: 1 / -1; max-width: 520px; width: 100%; justify-self: center; } }
+    @media (max-width: 600px) { .fic26-cob-vd-grid { grid-template-columns: 1fr; } .fic26-cob-vd-card:last-child { max-width: none; } }
+  </style>
+  <div class="fic26-cob-vd-in">
+    <div class="fic26-cob-vd-head">
+      <p class="fic26-cob-vd-eyebrow">Cobertura multim&iacute;dia</p>
+      <h2 class="fic26-cob-vd-title">Reveja os melhores momentos em&nbsp;v&iacute;deo</h2>
+    </div>
+    <div class="fic26-cob-vd-grid">
+      <a class="fic26-cob-vd-card" href="https://www.youtube.com/@inovativos" target="_blank" rel="noopener">
+        <span class="fic26-cob-vd-thumb"><img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-136.jpg" alt="" loading="lazy"><span class="fic26-cob-vd-chip">Keynote</span><span class="fic26-cob-vd-play"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2Z"/></svg></span></span>
+        <span class="fic26-cob-vd-cap"><strong>Keynote:</strong> Liderando plataformas digitais: crescimento, inovação e os desafios da nova economia</span>
+      </a>
+      <a class="fic26-cob-vd-card" href="https://www.youtube.com/@inovativos" target="_blank" rel="noopener">
+        <span class="fic26-cob-vd-thumb"><img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-243.jpg" alt="" loading="lazy"><span class="fic26-cob-vd-chip">Painel</span><span class="fic26-cob-vd-play"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2Z"/></svg></span></span>
+        <span class="fic26-cob-vd-cap"><strong>Painel:</strong> A conta mudou: como competir em meio à incerteza tributária de 2027</span>
+      </a>
+      <a class="fic26-cob-vd-card" href="https://www.youtube.com/@inovativos" target="_blank" rel="noopener">
+        <span class="fic26-cob-vd-thumb"><img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-234-.jpg" alt="" loading="lazy"><span class="fic26-cob-vd-chip">Painel</span><span class="fic26-cob-vd-play"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2Z"/></svg></span></span>
+        <span class="fic26-cob-vd-cap"><strong>Painel:</strong> Governança e regulações de IA: os dilemas entre transparência, inovação e responsabilidade</span>
+      </a>
+    </div>
+    <div class="fic26-cob-vd-btn-wrap"><a class="fic26-cob-vd-btn" href="https://www.youtube.com/@inovativos" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.58 7.2a2.7 2.7 0 0 0-1.9-1.92C18.06 4.8 12 4.8 12 4.8s-6.06 0-7.68.48a2.7 2.7 0 0 0-1.9 1.92C2 8.83 2 12 2 12s0 3.17.42 4.8a2.7 2.7 0 0 0 1.9 1.92c1.62.48 7.68.48 7.68.48s6.06 0 7.68-.48a2.7 2.7 0 0 0 1.9-1.92C22 15.17 22 12 22 12s0-3.17-.42-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg> + V&iacute;deos</a></div>
+  </div>
+</section>
+</body>
+</html>

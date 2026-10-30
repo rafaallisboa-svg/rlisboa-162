@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Números · Edição 2026 · Fórum Inovativos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+html,body{margin:0;padding:0;background:#0A2566;}
+</style>
+</head>
+<body>
+<section class="fic26-cob-nu">
+  <style>
+    .fic26-cob-nu { font-family: 'Hanken Grotesk', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif; background: #EEF3F8; color: #0A2566;
+      padding: clamp(52px, 7vw, 96px) clamp(16px, 4vw, 48px) clamp(56px, 7vw, 104px); position: relative; overflow: hidden; }
+    .fic26-cob-nu *, .fic26-cob-nu *::before, .fic26-cob-nu *::after { box-sizing: border-box; }
+    .fic26-cob-nu::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(16,52,132,.11) 1.3px, transparent 1.5px), linear-gradient(135deg, rgba(255,178,56,.06), transparent 45%); background-size: 20px 20px, 100% 100%; -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.85) 75%, rgba(0,0,0,.5) 100%); mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.85) 75%, rgba(0,0,0,.5) 100%); pointer-events: none; }
+    .fic26-cob-nu-in { position: relative; max-width: 1240px; margin: 0 auto; }
+    .fic26-cob-nu-year { position: absolute; right: 0; top: 0; z-index: 0; margin: 0; font-weight: 800; font-size: clamp(120px, 21vw, 320px); line-height: .78; letter-spacing: -.06em; color: #FFB238; opacity: .38; pointer-events: none; user-select: none; }
+    .fic26-cob-nu-head { position: relative; z-index: 1; margin: 0 0 clamp(26px, 3.4vw, 44px); }
+    .fic26-cob-nu-eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; font-weight: 800; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #E58A00; }
+    .fic26-cob-nu-eyebrow::before { content: ""; width: 34px; height: 2px; background: #E58A00; }
+    .fic26-cob-nu-title { margin: 0; font-weight: 800; font-size: clamp(34px, 5.4vw, 76px); line-height: 1.02; letter-spacing: -.035em; color: #0A2566; text-wrap: balance; }
+    .fic26-cob-nu-title b { color: #FFB238; font-weight: 800; -webkit-text-stroke: 0; text-shadow: 0 0 0 #FFB238; }
+    .fic26-cob-nu-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(10px, 1.2vw, 16px); }
+    .fic26-cob-nu-card { grid-column: span var(--span); position: relative; min-height: clamp(230px, 25vw, 320px); border-radius: clamp(18px, 2vw, 28px); padding: clamp(20px, 2.2vw, 32px);
+      display: flex; flex-direction: column; justify-content: space-between; }
+    .fic26-cob-nu-card::after { content: ""; position: absolute; top: 0; right: 0; width: min(58%, 300px); aspect-ratio: 11 / 9; background: currentColor; opacity: .09; -webkit-mask-image: var(--px); mask-image: var(--px); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; pointer-events: none; border-top-right-radius: inherit; }
+    .fic26-cob-nu-main, .fic26-cob-nu-foot { position: relative; z-index: 1; }
+    .fic26-cob-nu-num { font-weight: 700; font-size: calc(var(--fs) * clamp(84px, 10.4vw, 150px)); line-height: .84; letter-spacing: -.05em; font-variant-numeric: tabular-nums; margin-left: -.03em; }
+    .fic26-cob-nu-pill { position: relative; display: inline-flex; align-items: center; margin-top: -.16em; margin-top: calc(var(--fs) * clamp(84px, 10.4vw, 150px) * -.2); padding: .5em 1.15em; border-radius: 999px; font-weight: 700; font-size: clamp(16px, 1.6vw, 22px); letter-spacing: -.01em; line-height: 1.1; }
+    .fic26-cob-nu-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: clamp(14px, 1.6vw, 22px); }
+    .fic26-cob-nu-desc { margin: 0; max-width: 20em; font-weight: 600; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.35; opacity: .86; text-wrap: balance; }
+    .fic26-cob-nu-ico { flex: none; width: clamp(40px, 3.6vw, 52px); height: clamp(40px, 3.6vw, 52px); border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+    .fic26-cob-nu-ico svg { width: 52%; height: 52%; }
+
+    /* entrada: os quadros descem em sequencia (toda vez que se desce ate a secao; subindo, aparece pronto) */
+    .fic26-cob-nu.is-js .fic26-cob-nu-card { opacity: 0; transform: translateY(-26px) scale(.97); }
+    .fic26-cob-nu.is-js .fic26-cob-nu-num { filter: blur(12px); }
+    .fic26-cob-nu.is-js.is-in .fic26-cob-nu-card { opacity: 1; transform: none; transition: opacity .7s ease var(--d), transform .9s cubic-bezier(.22,1,.36,1) var(--d); }
+    .fic26-cob-nu.is-js.is-in .fic26-cob-nu-num { filter: blur(0); transition: filter .8s ease calc(var(--d) + .25s); }
+
+    @media (max-width: 900px) {
+      .fic26-cob-nu-year { font-size: clamp(88px, 30vw, 150px); }
+      .fic26-cob-nu-grid { grid-template-columns: 1fr; }
+      .fic26-cob-nu-card { grid-column: auto; min-height: 220px; }
+      .fic26-cob-nu-card { --fs: 1 !important; }
+      .fic26-cob-nu-num { font-size: clamp(88px, 27vw, 140px); }
+      .fic26-cob-nu-pill { margin-top: calc(clamp(88px, 27vw, 140px) * -.2); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fic26-cob-nu.is-js .fic26-cob-nu-card { opacity: 1; transform: none; }
+      .fic26-cob-nu.is-js .fic26-cob-nu-num { filter: none; }
+    }
+  </style>
+
+  <div class="fic26-cob-nu-in">
+    <p class="fic26-cob-nu-year" aria-hidden="true">2026</p>
+    <div class="fic26-cob-nu-head">
+      <p class="fic26-cob-nu-eyebrow">N&uacute;meros &middot; Edi&ccedil;&atilde;o 2026</p>
+      <h2 class="fic26-cob-nu-title">Resultados que<br>nos inspiram</h2>
+    </div>
+    <div class="fic26-cob-nu-grid">
+      <article class="fic26-cob-nu-card" style="--px:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20286%20234%27%20fill=%27white%27%3E%3Crect%20x=%270%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2752%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27208%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3C/svg%3E'); --span:7; --fs:1.32; --d:0.00s; background:#FFB238; color:#0A2566; ">
+        <div class="fic26-cob-nu-main">
+          <div class="fic26-cob-nu-num" data-to="300" data-d="0">300</div>
+          <div class="fic26-cob-nu-pill" style="background:#0A2566; color:#FFFFFF">executivos</div>
+        </div>
+        <div class="fic26-cob-nu-foot">
+          <p class="fic26-cob-nu-desc"><span style="white-space:nowrap">C-levels</span>, gestores e especialistas</p>
+          <span class="fic26-cob-nu-ico" style="background:rgba(10,37,102,.14)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.2a3 3 0 0 1 0 5.6M18 13.2c1.8.8 3 2.6 3 4.8"/></svg></span>
+        </div>
+      </article>
+      <article class="fic26-cob-nu-card" style="--px:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20286%20234%27%20fill=%27white%27%3E%3Crect%20x=%2726%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%270%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%270%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2752%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27208%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27208%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3C/svg%3E'); --span:5; --fs:1.12; --d:0.14s; background:#0048C0; color:#FFFFFF; ">
+        <div class="fic26-cob-nu-main">
+          <div class="fic26-cob-nu-num" data-to="43" data-d="140">43</div>
+          <div class="fic26-cob-nu-pill" style="background:#FFFFFF; color:#0A2566">painelistas</div>
+        </div>
+        <div class="fic26-cob-nu-foot">
+          <p class="fic26-cob-nu-desc">compartilhando visões estratégicas no palco</p>
+          <span class="fic26-cob-nu-ico" style="background:rgba(255,255,255,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg></span>
+        </div>
+      </article>
+      <article class="fic26-cob-nu-card" style="--px:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20286%20234%27%20fill=%27white%27%3E%3Crect%20x=%27130%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%270%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2752%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2726%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27208%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3C/svg%3E'); --span:4; --fs:1; --d:0.28s; background:#4896DF; color:#FFFFFF; ">
+        <div class="fic26-cob-nu-main">
+          <div class="fic26-cob-nu-num" data-to="12" data-d="280">12</div>
+          <div class="fic26-cob-nu-pill" style="background:#0A2566; color:#FFFFFF">horas</div>
+        </div>
+        <div class="fic26-cob-nu-foot">
+          <p class="fic26-cob-nu-desc">de conteúdo e atividades ao longo do dia</p>
+          <span class="fic26-cob-nu-ico" style="background:rgba(255,255,255,.22)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+        </div>
+      </article>
+      <article class="fic26-cob-nu-card" style="--px:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20286%20234%27%20fill=%27white%27%3E%3Crect%20x=%27182%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2752%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%270%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2752%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3C/svg%3E'); --span:4; --fs:1; --d:0.42s; background:#0A2566; color:#FFFFFF; ">
+        <div class="fic26-cob-nu-main">
+          <div class="fic26-cob-nu-num" data-to="13" data-d="420">13</div>
+          <div class="fic26-cob-nu-pill" style="background:#FFB238; color:#0A2566">mantenedores</div>
+        </div>
+        <div class="fic26-cob-nu-foot">
+          <p class="fic26-cob-nu-desc">parceiros estratégicos da realização</p>
+          <span class="fic26-cob-nu-ico" style="background:rgba(255,255,255,.14)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13M9 21v-5h6v5"/><path d="M9 11h.01M15 11h.01"/></svg></span>
+        </div>
+      </article>
+      <article class="fic26-cob-nu-card" style="--px:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20286%20234%27%20fill=%27white%27%3E%3Crect%20x=%270%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2726%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%270%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2726%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2726%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27104%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2752%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%2778%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27156%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%2778%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27104%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27234%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27130%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27130%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27182%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27156%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27208%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27182%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3Crect%20x=%27260%27%20y=%27208%27%20width=%2722%27%20height=%2722%27%20rx=%273%27/%3E%3C/svg%3E'); --span:4; --fs:1; --d:0.56s; background:#FFFFFF; color:#0A2566; box-shadow: 0 10px 30px rgba(10,37,102,.10);">
+        <div class="fic26-cob-nu-main">
+          <div class="fic26-cob-nu-num" data-to="24" data-d="560">24</div>
+          <div class="fic26-cob-nu-pill" style="background:#0A2566; color:#FFFFFF">apoiadores</div>
+        </div>
+        <div class="fic26-cob-nu-foot">
+          <p class="fic26-cob-nu-desc">entidades e apoiadores institucionais</p>
+          <span class="fic26-cob-nu-ico" style="background:#EEF3F8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.4-3 7.6-7 9.5-4-1.9-7-5.1-7-9.5V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var s = document.currentScript;
+    var root = (s && s.parentNode && s.parentNode.classList && s.parentNode.classList.contains('fic26-cob-nu')) ? s.parentNode : document.querySelector('.fic26-cob-nu');
+    if (!root || !('IntersectionObserver' in window)) return;
+    root.classList.add('is-js');
+    var grid = root.querySelector('.fic26-cob-nu-grid');
+    // desce ate a secao -> os quadros descem (toda vez). Subindo, aparece pronta, sem animar.
+    // So rearma quando a secao sai pela base da tela (usuario voltou para cima de vez).
+    var nums = [].slice.call(root.querySelectorAll('.fic26-cob-nu-num'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var timers = [];
+    function setAll(txt) { nums.forEach(function (n) { n.textContent = txt ? txt : n.getAttribute('data-to'); }); }
+    function count(n) {
+      var to = parseInt(n.getAttribute('data-to'), 10), delay = parseInt(n.getAttribute('data-d'), 10) + 350, t0 = null, dur = 1500;
+      n.textContent = '0';
+      timers.push(setTimeout(function () {
+        function step(ts) {
+          if (t0 === null) t0 = ts;
+          var k = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
+          n.textContent = Math.round(e * to);
+          if (k < 1) requestAnimationFrame(step); else n.textContent = to;
+        }
+        requestAnimationFrame(step);
+      }, delay));
+    }
+    if (!reduce) setAll('0');
+    new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.intersectionRatio >= .2) { if (!root.classList.contains('is-in')) { root.classList.add('is-in'); if (!reduce) nums.forEach(count); } }
+        else if (en.intersectionRatio === 0 && en.boundingClientRect.top > 0) { root.classList.remove('is-in'); timers.forEach(clearTimeout); timers = []; if (!reduce) setAll('0'); }
+      });
+    }, { threshold: [0, .2] }).observe(grid);
+  })();
+  </script>
+</section>
+</body>
+</html>

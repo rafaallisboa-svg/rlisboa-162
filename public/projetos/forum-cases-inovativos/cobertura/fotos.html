@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Fotos · Fórum Inovativos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+html,body{margin:0;padding:0;background:#0A2566;}
+</style>
+</head>
+<body>
+<section class="fic26-cob-ft">
+  <style>
+    .fic26-cob-ft { 
+    --azul-prof: #0A2566; --azul-esc: #103484; --azul-med: #1D49A8; --azcl: #8FBCE8;
+    --laranja: #F99C08; --amarelo: #FFB238; --tinta: #0A2566;
+    font-family: 'Hanken Grotesk', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative; overflow: hidden; color: #fff;
+      padding: clamp(64px, 8vw, 104px) 0 clamp(64px, 8vw, 104px);
+      background: linear-gradient(180deg, #0A2566 0%, #081D52 100%); }
+    .fic26-cob-ft::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: linear-gradient(180deg, #000, transparent 45%); mask-image: linear-gradient(180deg, #000, transparent 45%); pointer-events: none; }
+    .fic26-cob-ft-in { position: relative; }
+    .fic26-cob-ft-head-pad { padding: 0 clamp(20px, 5vw, 64px); }
+    
+    .fic26-cob-ft *, .fic26-cob-ft *::before, .fic26-cob-ft *::after { box-sizing: border-box; }
+    .fic26-cob-ft-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 16px; font-weight: 800; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--amarelo); }
+    .fic26-cob-ft-eyebrow::before, .fic26-cob-ft-eyebrow::after { content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, var(--amarelo)); }
+    .fic26-cob-ft-eyebrow::after { transform: scaleX(-1); }
+    .fic26-cob-ft-title { margin: 0; font-weight: 800; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; }
+    .fic26-cob-ft-head { text-align: center; max-width: 820px; margin: 0 auto clamp(36px, 5vw, 56px); }
+    .fic26-cob-ft-btn-wrap { text-align: center; margin-top: clamp(36px, 5vw, 52px); }
+    .fic26-cob-ft-btn { display: inline-flex; align-items: center; gap: 12px; padding: 15px 34px; border-radius: 999px; border: 2px solid rgba(255,255,255,.6); background: rgba(255,255,255,.04); color: #fff !important; font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none !important; transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .fic26-cob-ft-btn svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+    .fic26-cob-ft-btn:hover { background: var(--amarelo); border-color: var(--amarelo); color: var(--azul-prof) !important; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(249,156,8,.28); }
+    .fic26-cob-ft-mosaic { display: grid; grid-template-columns: 1.15fr 1fr 1fr; grid-template-rows: repeat(2, clamp(200px, 20vw, 290px)); gap: 3px; background: #040F2E; }
+    .fic26-cob-ft-item { position: relative; display: block; overflow: hidden; text-decoration: none !important; background: #0A2566; }
+    .fic26-cob-ft-item:first-child { grid-row: 1 / 3; }
+    .fic26-cob-ft-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s ease, filter .4s ease; }
+    .fic26-cob-ft-item:hover img { transform: scale(1.07); }
+    .fic26-cob-ft-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(4,15,46,.82)); opacity: 0; transition: opacity .35s ease; }
+    .fic26-cob-ft-item:hover::after { opacity: 1; }
+    .fic26-cob-ft-cap { position: absolute; z-index: 2; left: 22px; right: 22px; bottom: 18px; font-weight: 800; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: #fff; opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
+    .fic26-cob-ft-cap::before { content: ""; display: block; width: 36px; height: 3px; margin-bottom: 10px; border-radius: 2px; background: var(--amarelo); }
+    .fic26-cob-ft-item:hover .fic26-cob-ft-cap { opacity: 1; transform: none; }
+    .fic26-cob-ft-foot { display: flex; flex-direction: column; align-items: center; gap: 26px; margin-top: clamp(30px, 4vw, 44px); padding: 0 clamp(20px, 5vw, 64px); }
+    .fic26-cob-ft-acervo { display: flex; align-items: center; gap: 18px; width: 100%; max-width: 620px; font-weight: 700; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: var(--azcl); white-space: nowrap; }
+    .fic26-cob-ft-acervo::before, .fic26-cob-ft-acervo::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(143,188,232,.5)); }
+    .fic26-cob-ft-acervo::after { transform: scaleX(-1); }
+    .fic26-cob-ft-foot .fic26-cob-ft-btn-wrap { margin: 0; }
+    @media (max-width: 760px) {
+      .fic26-cob-ft-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 220px repeat(2, 150px); }
+      .fic26-cob-ft-item:first-child { grid-column: 1 / 3; grid-row: 1; }
+      .fic26-cob-ft-cap { opacity: 1; transform: none; font-size: 11px; left: 14px; bottom: 12px; }
+      .fic26-cob-ft-item::after { opacity: 1; }
+      .fic26-cob-ft-acervo { white-space: normal; text-align: center; font-size: 11px; letter-spacing: .18em; }
+    }
+  </style>
+  <div class="fic26-cob-ft-in">
+    <div class="fic26-cob-ft-head-pad">
+      <div class="fic26-cob-ft-head">
+        <p class="fic26-cob-ft-eyebrow">Fotos</p>
+        <h2 class="fic26-cob-ft-title">O F&oacute;rum em&nbsp;imagens</h2>
+      </div>
+    </div>
+    <div class="fic26-cob-ft-mosaic">
+      <a class="fic26-cob-ft-item" href="https://foruminovativos.com.br/" target="_blank" rel="noopener">
+        <img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-234-.jpg" alt="Plateia lotada" loading="lazy">
+        <span class="fic26-cob-ft-cap">Plateia lotada</span>
+      </a>
+      <a class="fic26-cob-ft-item" href="https://foruminovativos.com.br/" target="_blank" rel="noopener">
+        <img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-136.jpg" alt="Conversa entre CEOs" loading="lazy">
+        <span class="fic26-cob-ft-cap">Conversa entre CEOs</span>
+      </a>
+      <a class="fic26-cob-ft-item" href="https://foruminovativos.com.br/" target="_blank" rel="noopener">
+        <img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-243.jpg" alt="Painel no palco" loading="lazy">
+        <span class="fic26-cob-ft-cap">Painel no palco</span>
+      </a>
+      <a class="fic26-cob-ft-item" href="https://foruminovativos.com.br/" target="_blank" rel="noopener">
+        <img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-183.jpg" alt="Networking" loading="lazy">
+        <span class="fic26-cob-ft-cap">Networking</span>
+      </a>
+      <a class="fic26-cob-ft-item" href="https://foruminovativos.com.br/" target="_blank" rel="noopener">
+        <img src="https://foruminovativos.com.br/wp-content/uploads/2026/10/Forum-inovativos-764-1.jpg" alt="Cerimônia de premiação" loading="lazy">
+        <span class="fic26-cob-ft-cap">Cerimônia de premiação</span>
+      </a>
+    </div>
+    <div class="fic26-cob-ft-foot">
+      <div class="fic26-cob-ft-acervo">Acervo Inovativos &middot; Edi&ccedil;&atilde;o 2026</div>
+      <div class="fic26-cob-ft-btn-wrap"><a class="fic26-cob-ft-btn" href="https://foruminovativos.com.br/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm2.5 4.2a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM4 17h16v-2.6l-3.6-3.6-4.6 4.6-2.4-2.4L4 15.4V17Z"/></svg> + Fotos</a></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

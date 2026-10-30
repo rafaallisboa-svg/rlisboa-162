@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Áudios · Fórum Inovativos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+html,body{margin:0;padding:0;background:#0A2566;}
+</style>
+</head>
+<body>
+<section class="fic26-cob-au">
+  <style>
+    .fic26-cob-au { 
+    --azul-prof: #0A2566; --azul-esc: #103484; --azul-med: #1D49A8; --azcl: #8FBCE8;
+    --laranja: #F99C08; --amarelo: #FFB238; --tinta: #0A2566;
+    font-family: 'Hanken Grotesk', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative; overflow: hidden; color: #fff;
+      padding: clamp(64px, 8vw, 104px) clamp(20px, 5vw, 64px);
+      background: radial-gradient(800px 380px at 85% 10%, rgba(249,156,8,.12), transparent 60%), linear-gradient(180deg, #0C2D7C 0%, #0A2566 100%); }
+    .fic26-cob-au-in { position: relative; max-width: 1100px; margin: 0 auto; }
+    
+    .fic26-cob-au *, .fic26-cob-au *::before, .fic26-cob-au *::after { box-sizing: border-box; }
+    .fic26-cob-au-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 16px; font-weight: 800; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--amarelo); }
+    .fic26-cob-au-eyebrow::before, .fic26-cob-au-eyebrow::after { content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, var(--amarelo)); }
+    .fic26-cob-au-eyebrow::after { transform: scaleX(-1); }
+    .fic26-cob-au-title { margin: 0; font-weight: 800; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; }
+    .fic26-cob-au-head { text-align: center; max-width: 820px; margin: 0 auto clamp(36px, 5vw, 56px); }
+    .fic26-cob-au-btn-wrap { text-align: center; margin-top: clamp(36px, 5vw, 52px); }
+    .fic26-cob-au-btn { display: inline-flex; align-items: center; gap: 12px; padding: 15px 34px; border-radius: 999px; border: 2px solid rgba(255,255,255,.6); background: rgba(255,255,255,.04); color: #fff !important; font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none !important; transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .fic26-cob-au-btn svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+    .fic26-cob-au-btn:hover { background: var(--amarelo); border-color: var(--amarelo); color: var(--azul-prof) !important; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(249,156,8,.28); }
+    .fic26-cob-au-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(18px, 2.6vw, 30px); }
+    .fic26-cob-au-card { display: flex; gap: 22px; padding: 18px; border-radius: 24px; background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.03)); border: 0; box-shadow: 0 16px 38px rgba(3,14,45,.42); text-decoration: none !important; color: #fff !important; transition: transform .25s ease, box-shadow .25s ease; }
+    .fic26-cob-au-card:hover { transform: translateY(-5px); box-shadow: 0 30px 58px rgba(3,14,45,.65); }
+    .fic26-cob-au-cover { position: relative; flex: 0 0 150px; height: 150px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(145deg, #1D49A8, #0A2566); border: 1px solid rgba(255,255,255,.14); overflow: hidden; }
+    .fic26-cob-au-cover::before { content: ""; position: absolute; inset: -40% -20% auto auto; width: 180px; height: 180px; background: radial-gradient(closest-side, rgba(249,156,8,.35), transparent); }
+    .fic26-cob-au-cover img { position: relative; width: 104px; height: auto; display: block; }
+    .fic26-cob-au-cover small { position: relative; font-weight: 800; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: var(--amarelo); }
+    .fic26-cob-au-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .fic26-cob-au-top { display: flex; align-items: center; justify-content: space-between; }
+    .fic26-cob-au-show { font-weight: 800; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--amarelo); }
+    .fic26-cob-au-sp svg { width: 22px; height: 22px; fill: var(--azcl); display: block; }
+    .fic26-cob-au-ep { margin-top: 8px; font-weight: 800; font-size: 18px; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-wrap: balance; }
+    .fic26-cob-au-meta { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--azcl); }
+    .fic26-cob-au-wave { display: flex; align-items: center; gap: 3px; height: 34px; margin-top: auto; padding-top: 10px; }
+    .fic26-cob-au-wave i { flex: 1; height: calc(var(--h) * 1%); min-height: 4px; border-radius: 2px; background: rgba(143,188,232,.45); }
+    .fic26-cob-au-wave i:nth-child(-n+7) { background: var(--amarelo); }
+    .fic26-cob-au-bot { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+    .fic26-cob-au-time { font-size: 13px; font-weight: 700; color: #E3ECFA; font-variant-numeric: tabular-nums; }
+    .fic26-cob-au-pl { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--laranja); transition: transform .2s ease; }
+    .fic26-cob-au-pl svg { width: 18px; height: 18px; margin-left: 2px; fill: var(--azul-prof); }
+    .fic26-cob-au-card:hover .fic26-cob-au-pl { transform: scale(1.12); }
+    @media (max-width: 900px) { .fic26-cob-au-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .fic26-cob-au-card { flex-direction: column; } .fic26-cob-au-cover { flex: none; width: 100%; height: 130px; } }
+  </style>
+  <div class="fic26-cob-au-in">
+    <div class="fic26-cob-au-head">
+      <p class="fic26-cob-au-eyebrow">&Aacute;udios</p>
+      <h2 class="fic26-cob-au-title">Ou&ccedil;a os pain&eacute;is no&nbsp;Podcast Inovativos</h2>
+    </div>
+    <div class="fic26-cob-au-grid">
+      <a class="fic26-cob-au-card" href="https://open.spotify.com/show/2iVmkhqUVHUw16hWKlNtlQ" target="_blank" rel="noopener">
+        <span class="fic26-cob-au-cover"><img src="https://foruminovativos.com.br/wp-content/uploads/2025/04/inovativos-branco.png" alt=""><small>Podcast</small></span>
+        <span class="fic26-cob-au-body">
+          <span class="fic26-cob-au-top"><span class="fic26-cob-au-show">Fórum Inovativos</span><span class="fic26-cob-au-sp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.59 14.45a.62.62 0 0 1-.86.21c-2.35-1.44-5.31-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.81-.87 7.08-.5 9.72 1.1.3.18.4.57.21.86Zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.69-1.66-6.79-2.14-9.98-1.17a.78.78 0 1 1-.45-1.49c3.64-1.1 8.16-.57 11.24 1.33.37.23.48.72.26 1.07Zm.1-2.83c-3.23-1.92-8.55-2.09-11.63-1.16a.93.93 0 1 1-.54-1.79c3.53-1.07 9.4-.86 13.11 1.34a.93.93 0 0 1-.94 1.6Z"/></svg></span></span>
+          <span class="fic26-cob-au-ep">Fórum Inovativos 2026 / Painel: A conta mudou…</span>
+          <span class="fic26-cob-au-meta">Em breve &middot; Podcast Inovativos</span>
+          <span class="fic26-cob-au-wave"><i style="--h:30"></i><i style="--h:55"></i><i style="--h:80"></i><i style="--h:45"></i><i style="--h:95"></i><i style="--h:60"></i><i style="--h:38"></i><i style="--h:72"></i><i style="--h:50"></i><i style="--h:88"></i><i style="--h:42"></i><i style="--h:66"></i><i style="--h:34"></i><i style="--h:78"></i><i style="--h:52"></i><i style="--h:90"></i><i style="--h:40"></i><i style="--h:62"></i><i style="--h:28"></i><i style="--h:70"></i></span>
+          <span class="fic26-cob-au-bot"><span class="fic26-cob-au-time">--:--</span><span class="fic26-cob-au-pl"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2Z"/></svg></span></span>
+        </span>
+      </a>
+      <a class="fic26-cob-au-card" href="https://open.spotify.com/show/2iVmkhqUVHUw16hWKlNtlQ" target="_blank" rel="noopener">
+        <span class="fic26-cob-au-cover"><img src="https://foruminovativos.com.br/wp-content/uploads/2025/04/inovativos-branco.png" alt=""><small>Podcast</small></span>
+        <span class="fic26-cob-au-body">
+          <span class="fic26-cob-au-top"><span class="fic26-cob-au-show">Fórum Inovativos</span><span class="fic26-cob-au-sp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.59 14.45a.62.62 0 0 1-.86.21c-2.35-1.44-5.31-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.81-.87 7.08-.5 9.72 1.1.3.18.4.57.21.86Zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.69-1.66-6.79-2.14-9.98-1.17a.78.78 0 1 1-.45-1.49c3.64-1.1 8.16-.57 11.24 1.33.37.23.48.72.26 1.07Zm.1-2.83c-3.23-1.92-8.55-2.09-11.63-1.16a.93.93 0 1 1-.54-1.79c3.53-1.07 9.4-.86 13.11 1.34a.93.93 0 0 1-.94 1.6Z"/></svg></span></span>
+          <span class="fic26-cob-au-ep">Fórum Inovativos 2026 / Painel: Governança e regulações de IA…</span>
+          <span class="fic26-cob-au-meta">Em breve &middot; Podcast Inovativos</span>
+          <span class="fic26-cob-au-wave"><i style="--h:30"></i><i style="--h:55"></i><i style="--h:80"></i><i style="--h:45"></i><i style="--h:95"></i><i style="--h:60"></i><i style="--h:38"></i><i style="--h:72"></i><i style="--h:50"></i><i style="--h:88"></i><i style="--h:42"></i><i style="--h:66"></i><i style="--h:34"></i><i style="--h:78"></i><i style="--h:52"></i><i style="--h:90"></i><i style="--h:40"></i><i style="--h:62"></i><i style="--h:28"></i><i style="--h:70"></i></span>
+          <span class="fic26-cob-au-bot"><span class="fic26-cob-au-time">--:--</span><span class="fic26-cob-au-pl"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2Z"/></svg></span></span>
+        </span>
+      </a>
+    </div>
+    <div class="fic26-cob-au-btn-wrap"><a class="fic26-cob-au-btn" href="https://open.spotify.com/show/2iVmkhqUVHUw16hWKlNtlQ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.59 14.45a.62.62 0 0 1-.86.21c-2.35-1.44-5.31-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.81-.87 7.08-.5 9.72 1.1.3.18.4.57.21.86Zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.69-1.66-6.79-2.14-9.98-1.17a.78.78 0 1 1-.45-1.49c3.64-1.1 8.16-.57 11.24 1.33.37.23.48.72.26 1.07Zm.1-2.83c-3.23-1.92-8.55-2.09-11.63-1.16a.93.93 0 1 1-.54-1.79c3.53-1.07 9.4-.86 13.11 1.34a.93.93 0 0 1-.94 1.6Z"/></svg> + &Aacute;udios</a></div>
+  </div>
+</section>
+</body>
+</html>

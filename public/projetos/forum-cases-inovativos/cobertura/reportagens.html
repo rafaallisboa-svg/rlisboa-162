@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Reportagens · Fórum Inovativos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+html,body{margin:0;padding:0;background:#0A2566;}
+</style>
+</head>
+<body>
+<section class="fic26-cob-rp">
+  <style>
+    .fic26-cob-rp { 
+    --azul-prof: #0A2566; --azul-esc: #103484; --azul-med: #1D49A8; --azcl: #8FBCE8;
+    --laranja: #F99C08; --amarelo: #FFB238; --tinta: #0A2566;
+    font-family: 'Hanken Grotesk', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative; overflow: hidden; color: #fff; color: #0A2566;
+      padding: clamp(64px, 8vw, 104px) clamp(20px, 5vw, 64px);
+      background: linear-gradient(180deg, #F4F7FD 0%, #EAF0FA 100%); }
+    .fic26-cob-rp-in { position: relative; max-width: 1100px; margin: 0 auto; }
+    
+    .fic26-cob-rp *, .fic26-cob-rp *::before, .fic26-cob-rp *::after { box-sizing: border-box; }
+    .fic26-cob-rp-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 16px; font-weight: 800; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--amarelo); }
+    .fic26-cob-rp-eyebrow::before, .fic26-cob-rp-eyebrow::after { content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, var(--amarelo)); }
+    .fic26-cob-rp-eyebrow::after { transform: scaleX(-1); }
+    .fic26-cob-rp-title { margin: 0; font-weight: 800; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; }
+    .fic26-cob-rp-head { text-align: center; max-width: 820px; margin: 0 auto clamp(36px, 5vw, 56px); }
+    .fic26-cob-rp-btn-wrap { text-align: center; margin-top: clamp(36px, 5vw, 52px); }
+    .fic26-cob-rp-btn { display: inline-flex; align-items: center; gap: 12px; padding: 15px 34px; border-radius: 999px; border: 2px solid rgba(255,255,255,.6); background: rgba(255,255,255,.04); color: #fff !important; font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none !important; transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .fic26-cob-rp-btn svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+    .fic26-cob-rp-btn:hover { background: var(--amarelo); border-color: var(--amarelo); color: var(--azul-prof) !important; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(249,156,8,.28); }
+    .fic26-cob-rp-eyebrow { color: #E58A00; }
+    .fic26-cob-rp-eyebrow::before, .fic26-cob-rp-eyebrow::after { background: linear-gradient(90deg, transparent, #E58A00); }
+    .fic26-cob-rp-title { color: var(--azul-prof); }
+    .fic26-cob-rp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 36px); }
+    .fic26-cob-rp-card { display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: #fff; border: 0; box-shadow: 0 14px 38px rgba(10,37,102,.14); text-decoration: none !important; color: var(--azul-prof) !important; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .fic26-cob-rp-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(10,37,102,.26); }
+    .fic26-cob-rp-img { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; }
+    .fic26-cob-rp-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .fic26-cob-rp-card:hover .fic26-cob-rp-img img { transform: scale(1.05); }
+    .fic26-cob-rp-chip { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 999px; background: var(--azul-prof); color: #fff; font-weight: 800; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+    .fic26-cob-rp-cap { display: block; padding: 24px 26px 28px; font-size: 18px; line-height: 1.45; font-weight: 400; color: #25365F; text-wrap: balance; }
+    .fic26-cob-rp-cap strong { font-weight: 800; color: var(--azul-prof); }
+    .fic26-cob-rp-more { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #E58A00; }
+    .fic26-cob-rp-more svg { width: 16px; height: 16px; transition: transform .2s ease; }
+    .fic26-cob-rp-card:hover .fic26-cob-rp-more svg { transform: translateX(5px); }
+    .fic26-cob-rp-btn { border-color: var(--azul-esc); border-width: 2px; background: transparent; color: var(--azul-esc) !important; }
+    .fic26-cob-rp-btn:hover { background: var(--azul-esc); border-color: var(--azul-esc); color: #fff !important; box-shadow: 0 14px 30px rgba(16,52,132,.28); }
+    @media (max-width: 760px) { .fic26-cob-rp-grid { grid-template-columns: 1fr; } }
+  </style>
+  <div class="fic26-cob-rp-in">
+    <div class="fic26-cob-rp-head">
+      <p class="fic26-cob-rp-eyebrow">Reportagens</p>
+      <h2 class="fic26-cob-rp-title">O que o mercado leu sobre o&nbsp;F&oacute;rum</h2>
+    </div>
+    <div class="fic26-cob-rp-grid">
+      <a class="fic26-cob-rp-card" href="https://inovativos.com.br/2026/10/14/do-roi-da-ia-a-reforma-tributaria-o-que-os-grandes-especialistas-em-tecnologia-vao-discutir-no-forum-inovativos-2026/" target="_blank" rel="noopener">
+        <span class="fic26-cob-rp-img"><img src="https://inovativos.com.br/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-14-at-10.53.51.jpeg" alt="" loading="lazy"><span class="fic26-cob-rp-chip">Reportagem</span></span>
+        <span class="fic26-cob-rp-cap"><strong>Do ROI da IA à Reforma Tributária:</strong> o que os experts vão discutir no Fórum Inovativos 2026<span class="fic26-cob-rp-more">Ler reportagem <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+      </a>
+      <a class="fic26-cob-rp-card" href="https://inovativos.com.br/2026/10/13/a-era-dos-agentes-autonomos-de-ia-e-o-novo-desafio-da-ciberseguranca/" target="_blank" rel="noopener">
+        <span class="fic26-cob-rp-img"><img src="https://inovativos.com.br/wp-content/uploads/2026/10/Daniel-GOmes.jpg.jpeg" alt="" loading="lazy"><span class="fic26-cob-rp-chip">Reportagem</span></span>
+        <span class="fic26-cob-rp-cap"><strong>A era dos Agentes Autônomos de IA</strong> e o novo desafio da Cibersegurança<span class="fic26-cob-rp-more">Ler reportagem <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+      </a>
+    </div>
+    <div class="fic26-cob-rp-btn-wrap"><a class="fic26-cob-rp-btn" href="https://inovativos.com.br/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3h1a2 2 0 0 1 2 2v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V5Zm2 0v12a1 1 0 0 0 1 1h9.2A3 3 0 0 1 17 17V5H6Zm2 2h7v2H8V7Zm0 4h7v2H8v-2Zm0 4h5v2H8v-2Z"/></svg> + Reportagens</a></div>
+  </div>
+</section>
+</body>
+</html>

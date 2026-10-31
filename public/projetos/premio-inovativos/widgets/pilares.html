@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Os cinco pilares · Prêmio Inovativos</title>
+<style>html,body{margin:0;padding:0;background:#1c373c;}</style>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ---- scoped prefix cat- (Categorias) evita conflito com outros widgets ---- */
+.cat-section,.cat-section *{box-sizing:border-box;margin:0;padding:0;}
+
+.cat-section{
+  font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;
+  background:#1c373c;
+  position:relative;overflow:hidden;
+  padding:80px 40px 88px;
+}
+.cat-section::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.04;
+  background-image:
+    linear-gradient(30deg,rgba(69,188,203,0) 49%,rgba(69,188,203,1) 49.1% 50.5%,rgba(69,188,203,0) 50.6%),
+    linear-gradient(-30deg,rgba(79,58,134,0) 49%,rgba(79,58,134,.7) 49.1% 50.5%,rgba(79,58,134,0) 50.6%);
+  background-size:80px 80px;
+}
+.cat-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f2bc74,#45bccb,rgba(69,188,203,0));}
+
+.cat-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+
+/* cabeçalho: título + subtítulo + contador */
+.cat-head{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:64px;flex-wrap:wrap;gap:24px;
+}
+.cat-heading{flex:1;min-width:0;}
+.cat-title{
+  font-size:clamp(22px,3.2vw,40px);
+  font-weight:700;letter-spacing:-.02em;line-height:1.2;
+  color:#eff4f9;
+  text-wrap:pretty;
+}
+.cat-title .gold{color:#f2bc74;}
+.cat-subtitle{
+  margin-top:14px;
+  font-size:15px;line-height:1.6;
+  color:rgba(239,244,249,.6);
+  text-wrap:pretty;
+}
+
+/* acima de 640px, título e subtítulo tentam caber numa única linha (JS reduz a fonte se precisar) */
+@media(min-width:641px){
+  .cat-title,.cat-subtitle{white-space:nowrap;}
+}
+.cat-counter{
+  font-size:13px;color:rgba(239,244,249,.35);font-weight:500;letter-spacing:.05em;
+  white-space:nowrap;padding-top:6px;
+}
+.cat-counter strong{color:#f2bc74;font-size:18px;font-weight:700;}
+
+/* ── STAGE ── */
+.cat-stage{
+  position:relative;
+  min-height:320px;
+  display:flex;align-items:center;
+  margin-bottom:56px;
+}
+
+/* número decorativo de fundo */
+.cat-bg-num{
+  position:absolute;
+  right:-20px;top:50%;transform:translateY(-50%);
+  font-size:clamp(180px,22vw,280px);
+  font-weight:700;letter-spacing:-.06em;line-height:1;
+  color:rgba(69,188,203,.04);
+  user-select:none;pointer-events:none;
+  transition:opacity .4s;
+  z-index:0;
+}
+
+/* slide de categoria */
+.cat-slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .4s cubic-bezier(.4,0,.2,1), transform .4s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+  z-index:1;
+}
+.cat-slide.active{
+  position:relative;
+  opacity:1;transform:translateY(0);
+  pointer-events:auto;
+}
+.cat-slide.exit{
+  opacity:0;transform:translateY(-20px);
+}
+
+.cat-slide-num{
+  font-size:12px;font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;
+}
+.cat-slide-num .ndash{width:32px;height:2px;border-radius:2px;}
+
+.cat-slide-title{
+  font-size:clamp(36px,5.5vw,72px);
+  font-weight:700;letter-spacing:-.03em;
+  color:#eff4f9;line-height:1.08;
+  max-width:800px;
+  text-wrap:balance;
+}
+.cat-slide-title .accent{display:block;margin-top:4px;}
+
+/* cores por categoria */
+.cat-slide:nth-child(1) .cat-slide-num{color:#f2bc74;}
+.cat-slide:nth-child(1) .cat-slide-num .ndash{background:#f2bc74;}
+.cat-slide:nth-child(1) .cat-slide-title .accent{color:#f2bc74;}
+
+.cat-slide:nth-child(2) .cat-slide-num{color:#45bccb;}
+.cat-slide:nth-child(2) .cat-slide-num .ndash{background:#45bccb;}
+.cat-slide:nth-child(2) .cat-slide-title .accent{color:#45bccb;}
+
+.cat-slide:nth-child(3) .cat-slide-num{color:#f2bc74;}
+.cat-slide:nth-child(3) .cat-slide-num .ndash{background:#f2bc74;}
+.cat-slide:nth-child(3) .cat-slide-title .accent{color:#f2bc74;}
+
+.cat-slide:nth-child(4) .cat-slide-num{color:#45bccb;}
+.cat-slide:nth-child(4) .cat-slide-num .ndash{background:#45bccb;}
+.cat-slide:nth-child(4) .cat-slide-title .accent{color:#45bccb;}
+
+.cat-slide:nth-child(5) .cat-slide-num{color:#f2bc74;}
+.cat-slide:nth-child(5) .cat-slide-num .ndash{background:#f2bc74;}
+.cat-slide:nth-child(5) .cat-slide-title .accent{color:#f2bc74;}
+
+/* slide 05 (6º filho de .cat-stage, pois .cat-bg-num ocupa a 1ª posição) estava sem cor — igualado ao 03 */
+.cat-slide:nth-child(6) .cat-slide-num{color:#45bccb;}
+.cat-slide:nth-child(6) .cat-slide-num .ndash{background:#45bccb;}
+.cat-slide:nth-child(6) .cat-slide-title .accent{color:#45bccb;}
+
+/* ── RODAPÉ: índice + barra ── */
+.cat-footer{
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.cat-index{
+  display:flex;gap:8px;
+}
+.cat-dot{
+  width:28px;height:3px;border-radius:2px;
+  background:rgba(239,244,249,.12);
+  cursor:pointer;
+  transition:background .35s,width .35s;
+  border:none;outline:none;
+}
+.cat-dot.on{background:#f2bc74;width:44px;}
+
+/* barra de progresso */
+.cat-progress{
+  flex:1;height:1px;
+  background:rgba(239,244,249,.08);
+  border-radius:1px;overflow:hidden;
+  min-width:80px;
+}
+.cat-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,#f2bc74,#45bccb);
+  width:0%;
+}
+
+/* tablet */
+@media(max-width:900px){
+  .cat-section{padding:64px 32px 72px;}
+  .cat-head{margin-bottom:48px;}
+  .cat-stage{min-height:280px;}
+}
+
+/* mobile */
+@media(max-width:600px){
+  .cat-section{padding:56px 20px 64px;}
+  .cat-head{margin-bottom:32px;}
+  .cat-stage{min-height:260px;margin-bottom:40px;}
+  .cat-footer{gap:18px;}
+}
+
+@media(max-width:380px){
+  .cat-slide-title{font-size:clamp(28px,9vw,36px);}
+}
+</style>
+
+
+</head>
+<body>
+<div class="cat-section">
+  <div class="cat-topline"></div>
+  <div class="cat-inner">
+
+    <div class="cat-head">
+      <div class="cat-heading">
+        <div class="cat-title" id="catTitle">Os <span class="gold">cinco pilares</span> que orientam a avaliação dos cases</div>
+        <p class="cat-subtitle" id="catSubtitle">A metodologia do Prêmio Inovativos avalia cada case a partir de cinco pilares:</p>
+      </div>
+      <div class="cat-counter"><strong id="catCur">01</strong> / 05</div>
+    </div>
+
+    <div class="cat-stage" id="catStage">
+      <div class="cat-bg-num" id="catBgNum">01</div>
+
+      <div class="cat-slide active">
+        <div class="cat-slide-num"><span class="ndash"></span>01</div>
+        <div class="cat-slide-title">Aplicação de<span class="accent">Tecnologias Digitais</span></div>
+      </div>
+
+      <div class="cat-slide">
+        <div class="cat-slide-num"><span class="ndash"></span>02</div>
+        <div class="cat-slide-title">Estratégia e Experiência<span class="accent">do Cliente</span></div>
+      </div>
+
+      <div class="cat-slide">
+        <div class="cat-slide-num"><span class="ndash"></span>03</div>
+        <div class="cat-slide-title">Cultura Organizacional<span class="accent">e Pessoas</span></div>
+      </div>
+
+      <div class="cat-slide">
+        <div class="cat-slide-num"><span class="ndash"></span>04</div>
+        <div class="cat-slide-title">Valor para<span class="accent">o Negócio</span></div>
+      </div>
+
+      <div class="cat-slide">
+        <div class="cat-slide-num"><span class="ndash"></span>05</div>
+        <div class="cat-slide-title">Sustentabilidade,<span class="accent">Impactos Sociais e Estruturais</span></div>
+      </div>
+    </div>
+
+    <div class="cat-footer">
+      <div class="cat-index" id="catIndex">
+        <div class="cat-dot on" data-i="0"></div>
+        <div class="cat-dot" data-i="1"></div>
+        <div class="cat-dot" data-i="2"></div>
+        <div class="cat-dot" data-i="3"></div>
+        <div class="cat-dot" data-i="4"></div>
+      </div>
+      <div class="cat-progress"><div class="cat-progress-fill" id="catFill"></div></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides = Array.from(document.querySelectorAll('.cat-slide'));
+  var dots   = Array.from(document.querySelectorAll('.cat-dot'));
+  var fill   = document.getElementById('catFill');
+  var bgNum  = document.getElementById('catBgNum');
+  var curEl  = document.getElementById('catCur');
+  var cur=0, total=slides.length, INTERVAL=2400, busy=false;
+
+  function go(n){
+    if(busy) return;
+    busy=true;
+    var prev=slides[cur];
+    cur=(n+total)%total;
+    var next=slides[cur];
+
+    prev.classList.add('exit');
+    setTimeout(function(){
+      prev.classList.remove('active','exit');
+      next.classList.add('active');
+      bgNum.textContent=('0'+(cur+1)).slice(-2);
+      curEl.textContent=('0'+(cur+1)).slice(-2);
+      dots.forEach(function(d,i){d.classList.toggle('on',i===cur);});
+      busy=false;
+    },250);
+
+    fill.style.transition='none';fill.style.width='0%';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      fill.style.transition='width '+INTERVAL+'ms linear';
+      fill.style.width='100%';
+    });});
+  }
+
+  dots.forEach(function(d){
+    d.addEventListener('click',function(){go(+d.getAttribute('data-i'));});
+  });
+
+  fill.style.transition='width '+INTERVAL+'ms linear';
+  fill.style.width='100%';
+  var timer=setInterval(function(){go(cur+1);},INTERVAL);
+})();
+
+(function(){
+  function fitLine(el,minSize){
+    if(!el) return;
+    el.style.fontSize='';
+    if(window.innerWidth<=640) return;
+    var size=parseFloat(getComputedStyle(el).fontSize);
+    var guard=0;
+    while(el.scrollWidth>el.clientWidth && size>minSize && guard<80){
+      size-=0.5;
+      el.style.fontSize=size+'px';
+      guard++;
+    }
+  }
+  function fitAll(){
+    fitLine(document.getElementById('catTitle'),20);
+    fitLine(document.getElementById('catSubtitle'),12);
+  }
+  fitAll();
+  if(document.fonts && document.fonts.ready){document.fonts.ready.then(fitAll);}
+  var rt;
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fitAll,150);});
+})();
+</script>
+
+</body>
+</html>

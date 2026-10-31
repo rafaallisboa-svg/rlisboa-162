@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Números de 2025 · Prêmio Inovativos</title>
+<style>html,body{margin:0;padding:0;background:#0b1718;}</style>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+.nm-section,.nm-section *{box-sizing:border-box;margin:0;padding:0;}
+
+.nm-section{
+  font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;
+  background:#0b1718;
+  background-image:url('https://raw.githubusercontent.com/rafaallisboa-svg/inovativos/main/fundo-mapa-completo.jpg');
+  background-size:cover;
+  background-position:center;
+  position:relative;overflow:hidden;
+  padding:96px 40px 100px;
+}
+
+/* fundo dourado geométrico — acento suave canto direito */
+.nm-goldbg{
+  position:absolute;right:-60px;top:-60px;
+  width:480px;height:480px;
+  background-image:url('https://raw.githubusercontent.com/rafaallisboa-svg/inovativos/main/golden-p-2526.jpg');
+  background-size:cover;background-position:center;
+  opacity:.065;
+  -webkit-mask:radial-gradient(ellipse at 100% 0%,rgba(0,0,0,.8) 0%,transparent 60%);
+  mask:radial-gradient(ellipse at 100% 0%,rgba(0,0,0,.8) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+/* textura */
+.nm-section::before{
+  content:"";
+  position:absolute;inset:0;pointer-events:none;
+  background:rgba(8,15,16,.62);
+  z-index:0;
+}
+
+/* textura chevron dourado sobre o fundo */
+.nm-chevron{
+  position:absolute;inset:0;
+  background-image:url('https://raw.githubusercontent.com/rafaallisboa-svg/inovativos/main/textura%20mapa.png');
+  background-size:cover;
+  background-position:center;
+  opacity:.18;
+  pointer-events:none;
+  z-index:0;
+  mix-blend-mode:multiply;
+}
+
+/* mapa do Brasil — fundo central (desativado) */
+.nm-map{display:none;}
+
+.nm-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+
+/* cabeçalho */
+.nm-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:64px;flex-wrap:wrap;gap:16px;
+}
+.nm-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.nm-eyebrow .r{width:20px;height:1.5px;background:#45bccb;border-radius:2px;}
+.nm-eyebrow span{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#45bccb;}
+.nm-title{
+  font-size:clamp(28px,3.5vw,46px);font-weight:700;
+  letter-spacing:-.025em;color:#eff4f9;line-height:1.1;
+}
+.nm-title em{font-style:normal;color:#f2bc74;}
+
+/* grade de stats */
+.nm-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border:1px solid rgba(69,188,203,.1);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+/* card */
+.nm-card{
+  padding:52px 40px 48px;
+  position:relative;
+  display:flex;flex-direction:column;align-items:flex-start;
+  transition:background .4s;
+  cursor:default;
+  background:rgba(255,255,255,.02);
+}
+.nm-card + .nm-card{
+  border-left:1px solid rgba(69,188,203,.08);
+}
+.nm-card:hover{background:rgba(69,188,203,.04);}
+
+/* barra topo animada */
+.nm-card::before{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:3px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+}
+.nm-card:nth-child(1)::before{background:linear-gradient(90deg,#f2bc74,rgba(242,188,116,0));}
+.nm-card:nth-child(2)::before{background:linear-gradient(90deg,#45bccb,rgba(69,188,203,0));}
+.nm-card:nth-child(3)::before{background:linear-gradient(90deg,#f2bc74,#45bccb);}
+.nm-card:nth-child(4)::before{background:linear-gradient(90deg,#45bccb,rgba(69,188,203,0));}
+.nm-card:hover::before{transform:scaleX(1);}
+
+/* número */
+.nm-num{
+  font-size:clamp(64px,7vw,96px);
+  font-weight:700;letter-spacing:-.04em;
+  line-height:1;
+  margin-bottom:8px;
+}
+.nm-card:nth-child(odd) .nm-num{
+  background:linear-gradient(135deg,#e8a84a,#f2bc74,#ffe0a3);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nm-card:nth-child(even) .nm-num{
+  background:linear-gradient(135deg,#2ea8b8,#45bccb,#7dd8e4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* label */
+.nm-label{
+  font-size:14px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+.nm-card:nth-child(odd) .nm-label{color:#f2bc74;}
+.nm-card:nth-child(even) .nm-label{color:#45bccb;}
+
+/* linha separadora decorativa */
+.nm-sep{
+  width:28px;height:2px;border-radius:2px;margin:18px 0;
+}
+.nm-card:nth-child(odd) .nm-sep{background:linear-gradient(90deg,#f2bc74,rgba(242,188,116,0));}
+.nm-card:nth-child(even) .nm-sep{background:linear-gradient(90deg,#45bccb,rgba(69,188,203,0));}
+
+/* descrição */
+.nm-desc{
+  font-size:14px;line-height:1.6;
+  color:rgba(239,244,249,.75);
+}
+
+/* ─── animação count-up ─── */
+.nm-num[data-target]{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.nm-num.counted{opacity:1;transform:translateY(0);}
+
+/* ─── mobile ─── */
+@media(max-width:900px){
+  .nm-grid{grid-template-columns:repeat(2,1fr);}
+  .nm-card:nth-child(3){border-top:1px solid rgba(69,188,203,.08);}
+  .nm-card:nth-child(4){border-top:1px solid rgba(69,188,203,.08);}
+  .nm-card:nth-child(2n+1){border-left:none;}
+  .nm-section{padding:64px 24px 72px;}
+  .nm-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:44px;}
+}
+@media(max-width:500px){
+  .nm-grid{grid-template-columns:1fr;}
+  .nm-card + .nm-card{border-left:none;border-top:1px solid rgba(69,188,203,.08);}
+  .nm-num{font-size:72px;}
+}
+</style>
+
+
+</head>
+<body>
+<section class="nm-section">
+  <div class="nm-goldbg"></div>
+  <div class="nm-chevron"></div>
+  <img class="nm-map" src="https://raw.githubusercontent.com/rafaallisboa-svg/inovativos/main/MAP-p.png" alt="" loading="lazy"/>
+  <div class="nm-inner">
+
+    <div class="nm-head">
+      <div>
+        <div class="nm-eyebrow"><div class="r"></div><span>4ª edição</span></div>
+        <div class="nm-title">Números de <em>2025</em></div>
+      </div>
+    </div>
+
+    <div class="nm-grid">
+
+      <div class="nm-card">
+        <div class="nm-num" data-target="164" data-suffix="">0</div>
+        <div class="nm-sep"></div>
+        <div class="nm-label">Cases submetidos</div>
+        <div class="nm-desc">Empresas de todos os portes e&nbsp;segmentos</div>
+      </div>
+
+      <div class="nm-card">
+        <div class="nm-num" data-target="15" data-suffix="">0</div>
+        <div class="nm-sep"></div>
+        <div class="nm-label">Categorias</div>
+        <div class="nm-desc">Cobrindo os principais setores da economia&nbsp;digital</div>
+      </div>
+
+      <div class="nm-card">
+        <div class="nm-num" data-target="57" data-suffix="">0</div>
+        <div class="nm-sep"></div>
+        <div class="nm-label">Finalistas</div>
+        <div class="nm-desc">Cases com inovação digital comprovada em aplicação, resultado e&nbsp;impacto.</div>
+      </div>
+
+      <div class="nm-card">
+        <div class="nm-num" data-target="45" data-suffix="">0</div>
+        <div class="nm-sep"></div>
+        <div class="nm-label">Vencedores</div>
+        <div class="nm-desc">Referências em inovação digital no&nbsp;Brasil</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var section = document.currentScript.closest('.nm-section') || document.querySelector('.nm-section');
+  var nums = Array.from(section.querySelectorAll('.nm-num[data-target]'));
+  var started = false;
+
+  function easeOut(t){return 1 - Math.pow(1-t, 3);}
+
+  function countUp(el){
+    var target = +el.getAttribute('data-target');
+    var duration = 1600;
+    var start = null;
+    el.classList.add('counted');
+    requestAnimationFrame(function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      el.textContent = Math.round(easeOut(p) * target);
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    });
+  }
+
+  function trigger(){
+    if(started) return;
+    var rect = section.getBoundingClientRect();
+    if(rect.top < window.innerHeight * 0.82){
+      started = true;
+      nums.forEach(function(el, i){
+        setTimeout(function(){ countUp(el); }, i * 140);
+      });
+    }
+  }
+
+  window.addEventListener('scroll', trigger, {passive:true});
+  trigger(); // trigger imediato se já visível
+})();
+</script>
+
+</body>
+</html>

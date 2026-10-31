@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Ambientação com IA · Priscila Andrade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html,body{margin:0;padding:0;background:#000;}
+</style>
+</head>
+<body>
+<section class="amb">
+<style>
+.amb{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#000;padding:clamp(40px,6vw,88px) clamp(16px,4vw,48px);}
+.amb *,.amb *::before,.amb *::after{box-sizing:border-box;}
+.amb-in{max-width:1240px;margin:0 auto;}
+.amb-group + .amb-group{margin-top:clamp(40px,5vw,64px);}
+.amb-label{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#B08D57;font-weight:600;margin:0 0 1rem;}
+.amb-row{display:grid;grid-template-columns:1fr;gap:.6rem;}
+.amb-photo{position:relative;aspect-ratio:3/2;overflow:hidden;border-radius:2px;background:#1B1A18;margin:0;}
+.amb-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,.84,.44,1);}
+.amb-photo:hover img{transform:scale(1.045);}
+.amb-tag{position:absolute;bottom:.6rem;left:.6rem;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(27,26,24,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:.3rem .65rem;border-radius:100px;}
+.amb-video{position:relative;aspect-ratio:3/2;overflow:hidden;border-radius:2px;background:#000;}
+.amb-video iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:auto;height:100%;aspect-ratio:3/2;border:0;}
+@media (min-width:640px){
+  .amb-row{grid-template-columns:1fr 2fr;align-items:stretch;}
+  .amb-photo:nth-child(1){grid-column:1;grid-row:1;}
+  .amb-photo:nth-child(2){grid-column:1;grid-row:2;}
+  .amb-video{aspect-ratio:auto;grid-column:2;grid-row:1/3;}
+}
+</style>
+<div class="amb-in">
+
+  <div class="amb-group">
+    <span class="amb-label">Ambientação 02</span>
+    <div class="amb-row">
+      <figure class="amb-photo"><img src="02-antes.jpg" alt="Ambientação 02 — antes" loading="lazy" decoding="async"/><span class="amb-tag">Antes</span></figure>
+      <figure class="amb-photo"><img src="02-depois.jpg" alt="Ambientação 02 — depois" loading="lazy" decoding="async"/><span class="amb-tag">Depois</span></figure>
+      <div class="amb-video"><iframe src="https://player.vimeo.com/video/1216430745?background=1&title=0&byline=0&portrait=0&autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="Ambientação 02 — vídeo"></iframe></div>
+    </div>
+  </div>
+
+  <div class="amb-group">
+    <span class="amb-label">Ambientação 03</span>
+    <div class="amb-row">
+      <figure class="amb-photo"><img src="03-antes.jpg" alt="Ambientação 03 — antes" loading="lazy" decoding="async"/><span class="amb-tag">Antes</span></figure>
+      <figure class="amb-photo"><img src="03-depois.jpg" alt="Ambientação 03 — depois" loading="lazy" decoding="async"/><span class="amb-tag">Depois</span></figure>
+      <div class="amb-video"><iframe src="https://player.vimeo.com/video/1216430974?background=1&title=0&byline=0&portrait=0&autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="Ambientação 03 — vídeo"></iframe></div>
+    </div>
+  </div>
+
+</div>
+</section>
+</body>
+</html>

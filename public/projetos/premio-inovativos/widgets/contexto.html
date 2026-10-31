@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Contexto — Inovação no Brasil · Prêmio Inovativos</title>
+<style>html,body{margin:0;padding:0;background:#0b1718;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ---- scoped prefix pilc- (Pilares Carrossel) evita conflito com outros widgets ---- */
+.pilc-section,.pilc-section *{box-sizing:border-box;margin:0;padding:0;}
+
+.pilc-section{
+  font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;
+  background:#0b1718;
+  position:relative;
+  overflow:hidden;
+  height:600px;
+}
+
+/* track de slides */
+.pilc-track{
+  display:flex;
+  height:100%;
+  transition:transform .65s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+
+/* cada slide = viewport inteiro */
+.pilc-slide{
+  min-width:100%;
+  height:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+}
+
+/* coluna esquerda — texto */
+.pilc-left{
+  background:#0e1e20;
+  padding:64px 64px 64px 72px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  z-index:2;
+}
+
+/* textura suave */
+.pilc-left::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  opacity:.05;
+  background-image:
+    linear-gradient(30deg,rgba(69,188,203,0) 49%,rgba(69,188,203,1) 49.1% 50.5%,rgba(69,188,203,0) 50.6%),
+    linear-gradient(-30deg,rgba(79,58,134,0) 49%,rgba(79,58,134,.7) 49.1% 50.5%,rgba(79,58,134,0) 50.6%);
+  background-size:72px 72px;
+}
+
+/* barra dourada vertical — borda direita do painel texto */
+.pilc-left::after{
+  content:"";position:absolute;right:0;top:15%;bottom:15%;
+  width:1px;
+  background:linear-gradient(180deg,transparent,rgba(242,188,116,.3),transparent);
+}
+
+.pilc-label{
+  font-size:11px;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:#45bccb;
+  margin-bottom:14px;
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:10px;
+}
+.pilc-label .pilc-ldash{width:20px;height:1.5px;background:#45bccb;border-radius:2px;}
+
+.pilc-num{
+  font-size:96px;font-weight:700;letter-spacing:-.04em;
+  line-height:1;color:rgba(242,188,116,.1);
+  position:absolute;top:44px;right:52px;
+  user-select:none;z-index:0;
+}
+
+.pilc-title{
+  font-size:clamp(32px,3.5vw,52px);
+  font-weight:700;letter-spacing:-.025em;
+  color:#eff4f9;line-height:1.05;
+  margin-bottom:22px;
+  position:relative;z-index:1;
+}
+.pilc-title .pilc-gold{color:#f2bc74;}
+
+.pilc-sep{
+  width:40px;height:2.5px;border-radius:2px;
+  margin-bottom:22px;position:relative;z-index:1;
+}
+.pilc-slide:nth-child(1) .pilc-sep{background:linear-gradient(90deg,#f2bc74,rgba(242,188,116,0));}
+.pilc-slide:nth-child(2) .pilc-sep{background:linear-gradient(90deg,#45bccb,rgba(69,188,203,0));}
+.pilc-slide:nth-child(3) .pilc-sep{background:linear-gradient(90deg,#f2bc74,#45bccb);}
+
+.pilc-text{
+  font-size:clamp(14px,1.4vw,16px);
+  line-height:1.8;color:rgba(239,244,249,.72);
+  text-wrap:pretty;position:relative;z-index:1;
+}
+.pilc-text + .pilc-text{margin-top:12px;}
+
+/* coluna direita — imagem */
+.pilc-right{
+  position:relative;overflow:hidden;
+}
+.pilc-right img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  transition:transform .8s cubic-bezier(.4,0,.2,1);
+}
+.pilc-right::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(14,30,32,.6) 0%,transparent 40%);
+}
+
+/* controles sobrepostos */
+.pilc-controls{
+  position:absolute;bottom:28px;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 72px 0 72px;
+  z-index:10;
+}
+
+.pilc-dots{display:flex;gap:8px;align-items:center;}
+.pilc-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(239,244,249,.25);
+  cursor:pointer;
+  transition:background .3s,width .35s;
+  border:none;outline:none;
+}
+.pilc-dot.pilc-on{background:#f2bc74;width:20px;border-radius:3px;}
+
+.pilc-arrows{display:flex;gap:10px;}
+.pilc-btn{
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(239,244,249,.2);
+  background:rgba(14,30,32,.6);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.pilc-btn:hover{background:rgba(242,188,116,.2);border-color:#f2bc74;}
+.pilc-btn svg{width:16px;height:16px;stroke:#eff4f9;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+
+.pilc-progress{
+  font-size:12px;font-weight:600;letter-spacing:.08em;
+  color:rgba(239,244,249,.4);
+}
+.pilc-progress .pilc-cur{color:#f2bc74;font-size:18px;font-weight:700;}
+
+/* tablet */
+@media(max-width:900px){
+  .pilc-left{padding:48px 40px;}
+  .pilc-num{font-size:76px;right:36px;}
+}
+
+/* mobile */
+@media(max-width:768px){
+  .pilc-section{height:auto;}
+  .pilc-slide{grid-template-columns:1fr;grid-template-rows:260px auto;}
+  .pilc-right{order:-1;}
+  .pilc-left{padding:40px 28px 72px;}
+  .pilc-controls{padding:0 28px;bottom:16px;}
+  .pilc-num{font-size:60px;top:28px;right:28px;}
+}
+
+@media(max-width:420px){
+  .pilc-slide{grid-template-rows:200px auto;}
+  .pilc-title{font-size:clamp(26px,8vw,34px);}
+  .pilc-text{font-size:14px;}
+}
+</style>
+
+
+</head>
+<body>
+<div class="pilc-section">
+  <div class="pilc-track" id="pilcTrack">
+
+    <!-- SLIDE 1 — Inovação no Brasil -->
+    <div class="pilc-slide">
+      <div class="pilc-left">
+        <div class="pilc-num">01</div>
+        <div class="pilc-label"><span class="pilc-ldash"></span> Contexto</div>
+        <div class="pilc-title">Inovação<br/>no <span class="pilc-gold">Brasil</span></div>
+        <div class="pilc-sep"></div>
+        <p class="pilc-text">A diversidade é um fator-chave da inovação e componente crítico do sucesso em escala global. No Brasil, os fatores históricos permitiram uma antecipação às consequências da globalização, resultando em melhor preparo para uma realidade que anseia pelo novo.</p>
+        <p class="pilc-text">Os brasileiros são inovadores por natureza — usam todos os recursos possíveis à mão, além do networking e criatividade para encontrar novos caminhos.</p>
+      </div>
+      <div class="pilc-right">
+        <img src="https://raw.githubusercontent.com/rafaallisboa-svg/inovativos/main/freepik__alterar-cmera-para-teleobjetiva-telephoto-mantendo__27776.jpg"
+             alt="Inovação"/>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 — Conceito -->
+    <div class="pilc-slide">
+      <div class="pilc-left">
+        <div class="pilc-num">02</div>
+        <div class="pilc-label"><span class="pilc-ldash"></span> DNA do Prêmio</div>
+        <div class="pilc-title">Conceito</div>
+        <div class="pilc-sep"></div>
+        <p class="pilc-text">Nosso DNA é movido pela inovação e disrupção. Queremos promover e impulsionar iniciativas para um desenvolvimento sustentável do mercado, integrando diversos setores para gerar conhecimento, networking e negócios.</p>
+        <p class="pilc-text">Acreditamos que as ideias e conhecimentos inspiradores são as bases da transformação digital que irá criar uma nova realidade.</p>
+      </div>
+      <div class="pilc-right">
+        <img src="https://raw.githubusercontent.com/rafaallisboa-svg/inovativos/main/freepik__alterar-cmera__27777.jpg"
+             alt="Conceito" style="object-position:65% center;"/>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 — Objetivo -->
+    <div class="pilc-slide">
+      <div class="pilc-left">
+        <div class="pilc-num">03</div>
+        <div class="pilc-label"><span class="pilc-ldash"></span> Propósito</div>
+        <div class="pilc-title">Objetivo</div>
+        <div class="pilc-sep"></div>
+        <p class="pilc-text">Uniremos pessoas, empresas e os melhores casos setoriais para fomentar soluções inovadoras que combatam problemáticas nas esferas sociais, ambientais, políticas e empresariais.</p>
+        <p class="pilc-text">Seremos o ponto focal de uma grande difusão tecnológica, reconhecendo e valorizando as lideranças inspiradoras e mentes brilhantes que impulsionam a economia e o mercado nacional.</p>
+      </div>
+      <div class="pilc-right">
+        <img src="https://raw.githubusercontent.com/rafaallisboa-svg/inovativos/main/ChatGPT-Image-20-de-jan.jpg"
+             alt="Objetivo"/>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- controles -->
+  <div class="pilc-controls">
+    <div class="pilc-dots" id="pilcDots">
+      <div class="pilc-dot pilc-on" data-i="0"></div>
+      <div class="pilc-dot" data-i="1"></div>
+      <div class="pilc-dot" data-i="2"></div>
+    </div>
+
+    <div class="pilc-progress">
+      <span class="pilc-cur" id="pilcCur">01</span> / 03
+    </div>
+
+    <div class="pilc-arrows">
+      <div class="pilc-btn" id="pilcPrev">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </div>
+      <div class="pilc-btn" id="pilcNext">
+        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var track = document.getElementById('pilcTrack');
+  var dots  = document.querySelectorAll('#pilcDots .pilc-dot');
+  var cur = 0, total = 3;
+
+  function go(n){
+    cur = (n + total) % total;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d,i){ d.classList.toggle('pilc-on', i===cur); });
+    document.getElementById('pilcCur').textContent = ('0'+(cur+1)).slice(-2);
+  }
+
+  document.getElementById('pilcNext').addEventListener('click', function(){ go(cur+1); });
+  document.getElementById('pilcPrev').addEventListener('click', function(){ go(cur-1); });
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){ go(+d.getAttribute('data-i')); });
+  });
+
+  var sx=0;
+  track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  track.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>40) go(dx<0?cur+1:cur-1);
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>

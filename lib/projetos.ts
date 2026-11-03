@@ -12,6 +12,7 @@ export type Cobertura = {
 export type ProjetoMeta = {
   slug: string;
   titulo: string;
+  cliente?: string;
   subtitulo: string;
   disciplinas: string[];
   setor: string;

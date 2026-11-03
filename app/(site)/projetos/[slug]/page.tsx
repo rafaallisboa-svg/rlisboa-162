@@ -87,7 +87,7 @@ export default async function ProjetoPage({
       <div className="grid gap-6 border-b border-white/10 px-6 py-10 font-mono text-xs uppercase tracking-[0.12em] text-maresia sm:grid-cols-2 md:grid-cols-4 md:px-[clamp(1.5rem,5vw,6rem)]">
         <div>
           <p className="text-cal">Cliente</p>
-          <p className="mt-1 tracking-normal normal-case">{frontmatter.titulo}</p>
+          <p className="mt-1 tracking-normal normal-case">{frontmatter.cliente ?? frontmatter.titulo}</p>
         </div>
         <div>
           <p className="text-cal">Setor</p>

@@ -123,7 +123,7 @@ const SERVICOS = [
     nome: "Vídeo & Motion Graphics",
     descricao:
       "Edição e motion pra tela — de um vídeo institucional a um painel de LED num evento ao vivo.",
-    rotuloIncluido: "Possibilidades",
+    rotuloIncluido: "",
     incluido: [
       "Edição de vídeo",
       "Motion graphics",
@@ -137,6 +137,7 @@ const SERVICOS = [
     nome: "Eventos",
     descricao:
       "Toda a comunicação visual de um evento — palco, credenciamento, telas e material impresso — com uma linguagem só.",
+    rotuloIncluido: "",
     incluido: [
       "Identidade visual do evento",
       "Apresentação/PPT",
@@ -154,6 +155,7 @@ const SERVICOS = [
     nome: "Materiais Gráficos",
     descricao:
       "Peças gráficas, publicações e diagramação — do conceito ao arquivo pronto pra impressão ou tela.",
+    rotuloIncluido: "",
     incluido: [
       "Diagramação editorial",
       "Revistas e catálogos",
@@ -194,6 +196,7 @@ export default function ServicosPage() {
       <div className="mt-12 border-t border-white/10">
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
+          const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           return (
             <div key={s.nome} className="border-b border-white/10">
               <button
@@ -265,10 +268,12 @@ export default function ServicosPage() {
                         </div>
                       ) : (
                         <>
-                          <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-                            {"rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído"}
-                          </p>
-                          <ul className="mt-4 flex flex-wrap gap-2">
+                          {rotulo && (
+                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+                              {rotulo}
+                            </p>
+                          )}
+                          <ul className={`flex flex-wrap gap-2 ${rotulo ? "mt-4" : ""}`}>
                             {s.incluido.map((item) => (
                               <li
                                 key={item}

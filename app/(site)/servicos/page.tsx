@@ -162,6 +162,7 @@ const SERVICOS = [
       "Relatórios e apresentações institucionais",
       "Infográficos",
       "Anúncios e peças publicitárias",
+      "Papelaria",
       "Impressos em geral",
     ],
   },

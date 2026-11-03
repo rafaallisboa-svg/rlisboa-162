@@ -48,11 +48,12 @@ const SERVICOS = [
   {
     nome: "Website",
     descricao:
-      "Site institucional, de portfólio ou de evento, do zero, com conteúdo real e performance de verdade.",
+      "Site institucional, de portfólio, landing page ou de evento, do zero, com conteúdo real e performance de verdade.",
     grupos: [
       {
-        nome: "Institucional e portfólio",
+        nome: "Institucional, portfólio e landing page",
         incluido: [
+          "Landing page",
           "Design responsivo",
           "Copywriting",
           "Estrutura de páginas",

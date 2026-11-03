@@ -23,6 +23,7 @@ export type ProjetoMeta = {
   capa: string;
   thumb?: string;
   heroEmbed?: string;
+  heroAuto?: boolean;
   capaVideo: string | null;
   cores: string[];
   galeria?: { src: string; alt: string }[];

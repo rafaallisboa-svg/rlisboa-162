@@ -3,7 +3,27 @@ import Link from "next/link";
 import { getProjeto, getProjetos } from "@/lib/projetos";
 import { Galeria } from "@/components/ui/Galeria";
 import { CoberturaCase } from "@/components/ui/CoberturaCase";
+import { EmbedAutoAltura } from "@/components/ui/EmbedAutoAltura";
 import { real } from "@/lib/placeholder";
+
+function VisitarSite({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-center gap-3 border border-violeta px-7 py-4 font-mono text-sm font-bold uppercase tracking-[0.12em] text-violeta transition-colors duration-200 hover:bg-violeta/10"
+    >
+      Visitar o site
+      <span
+        aria-hidden="true"
+        className="inline-block text-base transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      >
+        ↗
+      </span>
+    </a>
+  );
+}
 
 export function generateStaticParams() {
   return getProjetos().map((p) => ({ slug: p.slug }));
@@ -38,7 +58,14 @@ export default async function ProjetoPage({
         </span>
       </Link>
 
-      {frontmatter.heroEmbed ? (
+      {frontmatter.heroEmbed && frontmatter.heroAuto ? (
+        <EmbedAutoAltura
+          src={frontmatter.heroEmbed}
+          title={`Hero — ${frontmatter.titulo}`}
+          alturaInicial={700}
+          className="block w-full border-0"
+        />
+      ) : frontmatter.heroEmbed ? (
         <div className="relative h-[640px] w-full overflow-hidden bg-blueprint md:h-[760px]">
           <iframe
             src={frontmatter.heroEmbed}
@@ -97,20 +124,7 @@ export default async function ProjetoPage({
 
       {frontmatter.siteExterno && (
         <div className="px-6 pb-10 md:px-[clamp(1.5rem,5vw,6rem)]">
-          <a
-            href={frontmatter.siteExterno}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 border border-violeta px-7 py-4 font-mono text-sm font-bold uppercase tracking-[0.12em] text-violeta transition-colors duration-200 hover:bg-violeta/10"
-          >
-            Visitar o site
-            <span
-              aria-hidden="true"
-              className="inline-block text-base transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            >
-              ↗
-            </span>
-          </a>
+          <VisitarSite href={frontmatter.siteExterno} />
         </div>
       )}
 
@@ -133,6 +147,12 @@ export default async function ProjetoPage({
           <div className="prose-case">
             <p>{frontmatter.resultado}</p>
           </div>
+        </div>
+      )}
+
+      {frontmatter.siteExterno && (
+        <div className="px-6 py-10 md:px-[clamp(1.5rem,5vw,6rem)]">
+          <VisitarSite href={frontmatter.siteExterno} />
         </div>
       )}
 

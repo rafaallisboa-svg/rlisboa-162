@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<base target="_blank"/>
+<title>Fórum Inovativos · topo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+html,body{margin:0;padding:0;background:#103484;}
+</style>
+</head>
+<body>
+<section class="fh">
+<style>
+.fh{container-type:inline-size;background:#103484;font-family:'Hanken Grotesk',Helvetica,Arial,sans-serif;color:#fff;position:relative;}
+.fh *{box-sizing:border-box;margin:0;padding:0;}
+/* o vídeo tem faixas pretas gravadas (146px em cima e embaixo de 1080): o palco corta só a imagem útil, 1920x788 */
+.fh-main{position:relative;}
+.fh-stage{position:relative;overflow:hidden;aspect-ratio:1920/788;background:#0a2566;}
+.fh-stage video{position:absolute;left:0;top:-18.53%;width:100%;height:137.06%;object-fit:cover;display:block;}
+.fh-copy{position:absolute;left:21.5%;top:calc(31.6% * 1);transform:translateX(-50%);width:34cqw;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.fh-logo{display:block;width:25cqw;height:auto;}
+.fh-chamada{display:block;width:33.3cqw;height:auto;margin-top:1.56cqw;}
+.fh-l1{font-size:1.56cqw;line-height:1;font-weight:500;margin-top:1.5cqw;}
+.fh-l2{font-size:1.19cqw;line-height:1;font-weight:400;font-style:italic;margin-top:.67cqw;}
+.fh-strip{position:relative;height:4.83cqw;background:#103484;}
+.fh-badges{position:absolute;left:50%;top:-1.49cqw;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.22cqw;white-space:nowrap;}
+.fh-badges span{display:block;font-size:2.23cqw;line-height:1.2;padding:.22cqw 1.04cqw;border-radius:.45cqw;color:#0E3A8A;}
+.fh-data{background:#F5A200;font-weight:600;}
+.fh-local{background:#EEF2F6;font-weight:400;}
+
+/* celular: o vídeo fica limpo e a mensagem desce para a faixa azul, em tamanho legível */
+@container (max-width:700px){
+  .fh-stage{aspect-ratio:16/9;}
+  .fh-stage video{top:-18.53%;}
+  .fh-copy{position:static;transform:none;width:auto;padding:28px 20px 0;background:#103484;}
+  .fh-logo{width:min(70cqw,260px);}
+  .fh-chamada{width:min(92cqw,380px);margin-top:18px;}
+  .fh-l1{font-size:clamp(15px,4.6cqw,19px);margin-top:14px;}
+  .fh-l2{font-size:clamp(13px,3.8cqw,16px);margin-top:6px;}
+  .fh-strip{height:auto;padding:22px 16px 28px;}
+  .fh-badges{position:static;transform:none;gap:6px;}
+  .fh-badges span{font-size:clamp(16px,5.2cqw,22px);padding:4px 12px;border-radius:6px;}
+}
+</style>
+  <div class="fh-main">
+    <div class="fh-stage">
+      <video src="../hero.mp4" poster="../hero-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Fórum Inovativos"></video>
+    </div>
+    <div class="fh-copy">
+      <img class="fh-logo" src="../hero-logo.png" alt="Fórum Inovativos — inovação digital e tecnologia"/>
+      <img class="fh-chamada" src="../hero-chamada.png" alt="A eficiência humana chegou no limite."/>
+      <p class="fh-l1">O próximo passo define quem lidera o&nbsp;mercado.</p>
+      <p class="fh-l2">E quem fica para trás</p>
+    </div>
+  </div>
+  <div class="fh-strip">
+    <div class="fh-badges"><span class="fh-data">Realizado em 15/10</span><span class="fh-local">Unibes Cultural · São Paulo</span></div>
+  </div>
+</section>
+<script>
+var v = document.querySelector('.fh video');
+if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  v.removeAttribute('autoplay'); v.pause();
+} else {
+  // alguns navegadores seguram o autoplay dentro de iframe lazy: força o play (mudo, então é permitido)
+  v.muted = true;
+  var tocar = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+  tocar(); v.addEventListener('canplay', tocar, { once: true });
+}
+</script>
+</body>
+</html>

@@ -104,7 +104,7 @@ const SERVICOS = [
           "Post Instagram",
           "Post Facebook",
           "Post LinkedIn",
-          "Carrossel (5 slides)",
+          "Carrossel (até 10 slides)",
           "Post de citação/anúncio",
           "Post de venda/CTA",
           "Story",

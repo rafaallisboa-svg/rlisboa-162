@@ -145,6 +145,7 @@ const SERVICOS = [
       "Crachá e credenciamento",
       "Convite digital / e-mail marketing",
       "Peças para redes sociais",
+      "Site do evento",
     ],
   },
   {

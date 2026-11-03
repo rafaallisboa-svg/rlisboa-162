@@ -90,7 +90,7 @@ const SERVICOS = [
       "Estrutura narrativa",
       "Template mestre",
       "Slides personalizados",
-      "Ícones e ilustrações",
+      "Imagens, ícones e ilustrações",
       "Exportação em PDF/PPTX",
     ],
   },

@@ -144,6 +144,7 @@ const SERVICOS = [
       "Backdrop / painel de fotos",
       "Crachá e credenciamento",
       "Convite digital / e-mail marketing",
+      "Peças para redes sociais",
     ],
   },
   {

@@ -11,7 +11,14 @@ const SERVICOS = [
     grupos: [
       {
         nome: "Básico",
-        incluido: ["Logotipo e variações", "Paleta de cores", "Tipografia", "Manual de marca"],
+        incluido: [
+          "Logotipo e variações",
+          "Paleta de cores",
+          "Tipografia",
+          "Manual de marca",
+          "Favicon e ícone de app",
+          "Arquivos finais (SVG, PNG) e fontes",
+        ],
       },
       {
         nome: "Completo",

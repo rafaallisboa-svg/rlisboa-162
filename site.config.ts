@@ -16,7 +16,7 @@ export const site = {
   // ── Titular ─────────────────────────────────────────────────
   titular: {
     nome: "Rafael Lisboa",
-    cargo: "Designer e diretor de arte",
+    cargo: "Designer e diretor de criação",
     foto: "/api/ph?w=1200&h=1500&label=Retrato Rafael",
     bio: "[[ TODO: 2 parágrafos em primeira pessoa. Mencionar SP e Itapema. ]]",
   },

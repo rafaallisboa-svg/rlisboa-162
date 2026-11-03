@@ -60,7 +60,7 @@ export default function SobrePage() {
           Rafael Lisboa
         </p>
         <p className="mt-1 font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-          Designer e diretor de arte
+          Designer e diretor de criação
         </p>
       </div>
     </div>

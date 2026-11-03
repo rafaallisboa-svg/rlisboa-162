@@ -48,14 +48,37 @@ const SERVICOS = [
   {
     nome: "Website",
     descricao:
-      "Site institucional ou de portfólio, do zero, com conteúdo real e performance de verdade.",
-    incluido: [
-      "Design responsivo",
-      "Copywriting",
-      "Estrutura de páginas",
-      "Otimização de imagens",
-      "Publicação e domínio",
-      "SEO básico",
+      "Site institucional, de portfólio ou de evento, do zero, com conteúdo real e performance de verdade.",
+    grupos: [
+      {
+        nome: "Institucional e portfólio",
+        incluido: [
+          "Design responsivo",
+          "Copywriting",
+          "Estrutura de páginas",
+          "Otimização de imagens",
+          "Publicação e domínio",
+          "SEO básico",
+        ],
+      },
+      {
+        nome: "Eventos",
+        incluido: [
+          "Hero com data, local e chamada de inscrição",
+          "Números do evento",
+          "Sobre o evento",
+          "Agenda / programação por painel",
+          "Palestrantes (carrossel ou grade)",
+          "Depoimentos",
+          "Galeria de fotos e vídeos",
+          "Cobertura pós-evento",
+          "Histórico de edições",
+          "Patrocínio e cotas",
+          "Inscrição / ingressos",
+          "Newsletter e contato (WhatsApp)",
+          "Atualização contínua sem refazer páginas",
+        ],
+      },
     ],
   },
   {

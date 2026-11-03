@@ -146,6 +146,7 @@ const SERVICOS = [
       "Convite digital / e-mail marketing",
       "Peças para redes sociais",
       "Site do evento",
+      "Landing page de inscrição",
     ],
   },
   {

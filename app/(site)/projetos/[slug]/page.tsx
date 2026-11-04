@@ -74,6 +74,14 @@ export default async function ProjetoPage({
             loading="lazy"
           />
         </div>
+      ) : frontmatter.capaCompleta ? (
+        <div className="w-full overflow-hidden bg-blueprint">
+          <img
+            src={frontmatter.capa}
+            alt={frontmatter.titulo}
+            className="block h-auto w-full"
+          />
+        </div>
       ) : (
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-blueprint md:aspect-[21/9]">
           <img

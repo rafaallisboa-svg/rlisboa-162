@@ -28,6 +28,7 @@ export type ProjetoMeta = {
   capaVideo: string | null;
   cores: string[];
   galeria?: { src: string; alt: string }[];
+  galeriaFundo?: "branco";
   cobertura?: Cobertura;
   resultado: string;
   siteExterno?: string | null;

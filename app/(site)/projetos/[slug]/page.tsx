@@ -129,11 +129,19 @@ export default async function ProjetoPage({
       )}
 
       {frontmatter.galeria && frontmatter.galeria.length > 0 && (
-        <div className="px-6 py-4 md:px-[clamp(1.5rem,5vw,6rem)]">
-          <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
+        <div
+          className={`px-6 md:px-[clamp(1.5rem,5vw,6rem)] ${
+            frontmatter.galeriaFundo === "branco" ? "bg-white py-16" : "py-4"
+          }`}
+        >
+          <p
+            className={`font-mono text-xs uppercase tracking-[0.12em] ${
+              frontmatter.galeriaFundo === "branco" ? "text-concreto/70" : "text-sinal"
+            }`}
+          >
             Aplicações
           </p>
-          <Galeria imagens={frontmatter.galeria} />
+          <Galeria imagens={frontmatter.galeria} claro={frontmatter.galeriaFundo === "branco"} />
         </div>
       )}
 

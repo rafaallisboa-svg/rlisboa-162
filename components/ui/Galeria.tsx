@@ -1,21 +1,33 @@
 type Imagem = { src: string; alt: string };
 
-function Figura({ img, className = "" }: { img: Imagem; className?: string }) {
+function Figura({
+  img,
+  claro,
+  className = "",
+}: {
+  img: Imagem;
+  claro?: boolean;
+  className?: string;
+}) {
   return (
     <figure className={`reveal-scroll ${className}`}>
       <img
         src={img.src}
         alt={img.alt}
-        className="w-full bg-blueprint object-cover"
+        loading="lazy"
+        decoding="async"
+        className={`w-full object-cover ${claro ? "bg-white" : "bg-blueprint"}`}
       />
-      <figcaption className="mt-3 font-mono text-xs text-maresia">
+      <figcaption
+        className={`mt-3 font-mono text-xs ${claro ? "text-concreto/60" : "text-maresia"}`}
+      >
         {img.alt}
       </figcaption>
     </figure>
   );
 }
 
-export function Galeria({ imagens }: { imagens: Imagem[] }) {
+export function Galeria({ imagens, claro }: { imagens: Imagem[]; claro?: boolean }) {
   // Diagramação editorial: alterna imagem cheia e par lado a lado —
   // ritmo de destaque/detalhe, como uma revista.
   const blocos: Imagem[][] = [];
@@ -40,11 +52,11 @@ export function Galeria({ imagens }: { imagens: Imagem[] }) {
             key={bloco[0].src}
             className="grid gap-6 sm:grid-cols-2 sm:gap-8"
           >
-            <Figura img={bloco[0]} />
-            <Figura img={bloco[1]} />
+            <Figura img={bloco[0]} claro={claro} />
+            <Figura img={bloco[1]} claro={claro} />
           </div>
         ) : (
-          <Figura key={bloco[0].src} img={bloco[0]} />
+          <Figura key={bloco[0].src} img={bloco[0]} claro={claro} />
         ),
       )}
     </div>

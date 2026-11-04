@@ -59,6 +59,12 @@
     max-width: 100%;
   }
 
+  /* A Clash Display tem espaço de palavra estreito, e com tracking-tight em
+     caixa-alta as palavras parecem coladas ("PRÊMIOINOVATIVOS"). */
+  .font-display {
+    word-spacing: 0.16em;
+  }
+
   a {
     color: inherit;
     text-decoration: none;

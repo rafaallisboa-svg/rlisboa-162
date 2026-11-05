@@ -12,6 +12,16 @@
   --color-sinal: #93b4db;
   --color-violeta: #a78bfa;
 
+  /* Identidade visual (IDV) do estúdio: preto, cinzas e amarelo, laranja só no detalhe. */
+  --color-idv-preto: #0e0e0d;
+  --color-idv-carbono: #1c1c1b;
+  --color-idv-grafite: #3a3a38;
+  --color-idv-cinza: #85857f;
+  --color-idv-pedra: #c9c8c2;
+  --color-idv-off: #f1f0eb;
+  --color-idv-amarelo: #ffc300;
+  --color-idv-laranja: #ff5a1f;
+
   /* --font-jbmono vem do next/font (app/layout.tsx). Clash Display e Satoshi
      vêm via Fontshare (link no <head>, não estão no Google Fonts). */
   --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
@@ -23,6 +33,11 @@
   --text-h2: clamp(1.75rem, 3.5vw, 3rem);
   --text-body: clamp(1rem, 1.1vw, 1.125rem);
   --text-mono: 0.75rem;
+}
+
+/* Ponto laranja do logotipo, em todo o site. */
+:root {
+  --logo-ponto: var(--color-idv-laranja);
 }
 
 @layer base {

@@ -1,0 +1,93 @@
+/**
+ * Elementos da identidade visual (IDV) usados nas páginas.
+ * Formas chapadas, sem sombra. As cores vêm dos tokens idv-* (globals.css).
+ */
+
+/** Quatro células de pavimento com o quadradinho laranja. */
+export function Pavimento({ className, u = 36 }: { className?: string; u?: number }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox={`0 0 ${u * 2} ${u * 2 + 4}`}
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width={u} height={u} fill="var(--color-idv-off)" />
+      <rect x={u} width={u} height={u} fill="var(--color-idv-amarelo)" />
+      <rect y={u} width={u} height={u} fill="var(--color-idv-grafite)" />
+      <rect x={u * 0.62} y={u * 1.62} width={u * 0.2} height={u * 0.2} fill="var(--color-idv-laranja)" />
+    </svg>
+  );
+}
+
+/** Cruz de mira, marca de construção. */
+export function Cruz({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 28 28"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 14h28M14 0v28" stroke="currentColor" strokeWidth="2" fill="none" />
+    </svg>
+  );
+}
+
+const D162 =
+  "M58.80-150L89.20-150L89.20 0L48.20 0L48.20-135.60L67.40-117.80L2.80-106.40L2.80-138.40L58.80-150Z M189.80-153.20L189.80-153.20Q209.20-153.20 224.30-147.30Q239.40-141.40 248.70-131.30Q258-121.20 260-108.60L260-108.60L221.60-108.60Q218.80-114.60 211.60-118.80Q204.40-123 190.80-123L190.80-123Q176.20-123 166.50-117.50Q156.80-112 152.10-101.80Q147.40-91.60 147.40-76.60L147.40-76.60Q147.40-60.40 152.60-49.40Q157.80-38.40 167.60-32.80Q177.40-27.20 191.60-27.20L191.60-27.20Q201.40-27.20 208.10-29.90Q214.80-32.60 218.20-37.30Q221.60-42 221.60-47.60L221.60-47.60Q221.60-53.60 218.40-58.10Q215.20-62.60 208.80-65Q202.40-67.40 192.80-67.40L192.80-67.40Q180-67.40 168.40-61.80Q156.80-56.20 147.20-45.20L147.20-45.20L133.20-54.80Q139.40-67.20 149.20-76.90Q159-86.60 172.50-92.20Q186-97.80 203-97.80L203-97.80Q221.80-97.80 235.20-91.60Q248.60-85.40 255.90-74.50Q263.20-63.60 263.20-49L263.20-49Q263.20-33.80 254.70-22Q246.20-10.20 230.20-3.50Q214.20 3.20 191 3.20L191 3.20Q163.40 3.20 145.10-6.80Q126.80-16.80 117.70-34.40Q108.60-52 108.60-74.80L108.60-74.80Q108.60-97.60 117.70-115.40Q126.80-133.20 144.90-143.20Q163-153.20 189.80-153.20Z M315.40-96L274.20-96Q275.40-113.60 285.80-126.50Q296.20-139.40 313.50-146.30Q330.80-153.20 352.60-153.20L352.60-153.20Q373.40-153.20 388.90-146.90Q404.40-140.60 413-129.40Q421.60-118.20 421.60-103.40L421.60-103.40Q421.60-92 415.40-82.10Q409.20-72.20 396-62.70Q382.80-53.20 361.40-42.80L361.40-42.80L320.20-22.20L318.60-32.80L425.80-32.80L425.80 0L277.40 0L277.40-28.80L341.80-65Q356.80-73.60 365.10-79.50Q373.40-85.40 376.90-90.40Q380.40-95.40 380.40-101L380.40-101Q380.40-107.20 377.10-111.70Q373.80-116.20 367.20-118.80Q360.60-121.40 351-121.40L351-121.40Q339-121.40 331.40-117.90Q323.80-114.40 320-108.70Q316.20-103 315.40-96L315.40-96Z";
+
+/** Sticker 162, inclinado, como um adesivo colado. */
+export function Sticker162({
+  className,
+  angulo = -6,
+  somenteNumero = false,
+}: {
+  className?: string;
+  angulo?: number;
+  somenteNumero?: boolean;
+}) {
+  const largura = somenteNumero ? 190 : 176;
+  const escala = largura / 423.000;
+  return (
+    <svg
+      role="img"
+      aria-label="162"
+      viewBox="-24 -30 278 318"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g transform={`rotate(${angulo} 115 129)`}>
+        <rect width="230" height="258" fill="var(--color-idv-amarelo)" />
+        {!somenteNumero && (
+          <>
+            <text
+              x="22"
+              y="50"
+              fontSize="25"
+              letterSpacing="3"
+              fontWeight="700"
+              fill="var(--color-idv-preto)"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              R. LISBOA
+            </text>
+            <rect x="22" y="68" width="186" height="4" fill="var(--color-idv-preto)" />
+          </>
+        )}
+        <g
+          transform={`translate(${somenteNumero ? 14 : 20} ${somenteNumero ? 176 : 208}) scale(${escala})`}
+          fill="var(--color-idv-preto)"
+        >
+          <path d={D162} />
+        </g>
+        <circle
+          cx={somenteNumero ? 216 : 208}
+          cy={somenteNumero ? 166 : 196}
+          r="9"
+          fill="var(--color-idv-laranja)"
+        />
+      </g>
+    </svg>
+  );
+}

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { site } from "@/site.config";
 import { publicados } from "@/lib/placeholder";
 import { SocialIcon, IconeEmail, IconeWhatsApp } from "@/components/ui/SocialIcon";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV = [
   { label: "Projetos", href: "/#projetos" },
@@ -33,9 +34,7 @@ export function Header() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-concreto/95 backdrop-blur-sm md:bg-concreto/85">
       <div className="flex items-center justify-between px-6 py-4 md:px-[clamp(1.5rem,5vw,6rem)]">
         <Link href="/" className="flex items-baseline gap-2" onClick={fechar}>
-          <span className="font-display text-lg font-bold uppercase tracking-tight">
-            {site.marca}
-          </span>
+          <Logo className="h-5 w-auto text-cal md:h-6" />
           <span className="font-mono text-xs tabular-nums text-maresia">
             {site.numero}
           </span>

@@ -1,8 +1,8 @@
 import { site } from "@/site.config";
-import { LinhasFundo } from "@/components/ui/LinhasFundo";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
+import { Cruz, Sticker162 } from "@/components/ui/IdvElementos";
 
 const PARAGRAFOS: Segmento[][] = [
   [
@@ -35,7 +35,7 @@ const PARAGRAFOS: Segmento[][] = [
 
 export default function SobrePage() {
   return (
-    <div className="relative">
+    <div className="relative text-idv-off">
       {/* Retrato fixo no topo: some aos poucos enquanto o texto sobe por cima, no mesmo fundo. */}
       <RetratoFixo
         src="/sobre/sobre-horizontal.webp"
@@ -43,31 +43,59 @@ export default function SobrePage() {
         alt="Rafael Lisboa sorrindo, ao lado do sticker 162"
       >
         <div className="absolute bottom-10 left-6 md:bottom-14 md:left-16">
-          <p className="font-display text-base uppercase tracking-tight text-cal">
+          <p className="font-display text-base uppercase tracking-tight text-idv-off">
             Rafael Lisboa
           </p>
-          <p className="mt-1 font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+          <p className="mt-1 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
             Designer e diretor de criação
           </p>
         </div>
       </RetratoFixo>
 
       <div className="relative z-10 -mt-[18svh]">
-        <div className="mx-auto max-w-5xl px-6 pb-28 pt-32 md:px-16 lg:px-0">
-          <div className="relative flex flex-col items-center border-b border-white/10 pb-24 text-center">
-            <LinhasFundo />
-            <p className="relative font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-              Estúdio 162 — desde {site.anoFundacao}
-            </p>
-            <h2 className="relative mt-6 max-w-2xl font-display uppercase leading-[0.95] text-h1">
-              <HeadlineRotator palavras={["Design Gráfico", "Web Design", "Motion Design"]} />
-            </h2>
-          </div>
+        <div className="relative">
+          <Cruz className="absolute left-6 top-32 h-5 w-5 text-idv-grafite md:left-16" />
+          <Cruz className="absolute right-6 top-32 hidden h-5 w-5 text-idv-grafite md:right-16 md:block" />
 
-          <TextoRevelar
-            paragrafos={PARAGRAFOS}
-            className="mt-24 flex flex-col gap-8 text-[clamp(1.375rem,2.5vw,2.375rem)] font-medium leading-[1.25] tracking-tight text-cal"
-          />
+          <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-32 md:px-16 lg:px-0">
+            <div className="relative flex flex-col items-center border-b border-idv-grafite pb-24 text-center">
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
+                <span className="text-idv-amarelo">01</span> · Estúdio 162 — desde {site.anoFundacao}
+              </p>
+              <h2 className="mt-6 max-w-2xl font-display uppercase leading-[0.95] text-h1 text-idv-off">
+                <HeadlineRotator palavras={["Design Gráfico", "Web Design", "Motion Design"]} />
+              </h2>
+            </div>
+
+            <TextoRevelar
+              paragrafos={PARAGRAFOS}
+              destaque="text-idv-amarelo"
+              className="mt-24 flex flex-col gap-8 text-[clamp(1.375rem,2.5vw,2.375rem)] font-medium leading-[1.25] tracking-tight text-idv-off"
+            />
+
+            <div className="mt-28 flex flex-col items-start justify-between gap-10 border-t border-idv-grafite pt-12 md:flex-row md:items-end">
+              <div>
+                <p className="mb-6 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
+                  <span className="text-idv-amarelo">02</span> · Assinatura
+                </p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/idv/assinatura-horizontal.svg"
+                  alt="R. Lisboa — Estúdio 162"
+                  className="h-8 w-auto md:h-10"
+                />
+              </div>
+              <div className="flex items-end gap-8">
+                <a
+                  href="/orcamento"
+                  className="inline-flex items-center justify-center bg-idv-amarelo px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
+                >
+                  Solicitar orçamento
+                </a>
+                <Sticker162 className="h-28 w-auto md:h-36" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

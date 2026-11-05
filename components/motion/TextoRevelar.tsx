@@ -28,12 +28,12 @@ function tokenizar(segmentos: Segmento[]): Parte[][] {
   return tokens;
 }
 
-function Palavra({ partes }: { partes: Parte[] }) {
+function Palavra({ partes, destaque }: { partes: Parte[]; destaque: string }) {
   return (
     <span data-w style={{ opacity: OPACIDADE_BASE }}>
       {partes.map((p, i) =>
         p.d ? (
-          <span key={i} className="text-sinal">
+          <span key={i} className={destaque}>
             {p.t}
           </span>
         ) : (
@@ -51,9 +51,12 @@ function Palavra({ partes }: { partes: Parte[] }) {
 export function TextoRevelar({
   paragrafos,
   className,
+  destaque = "text-sinal",
 }: {
   paragrafos: Segmento[][];
   className?: string;
+  /** Classe de cor das palavras em destaque. */
+  destaque?: string;
 }) {
   const raizRef = useRef<HTMLDivElement>(null);
 
@@ -103,13 +106,13 @@ export function TextoRevelar({
           <p key={pi}>
             {tokens.slice(0, corte).map((t, i) => (
               <span key={i}>
-                <Palavra partes={t} />{" "}
+                <Palavra partes={t} destaque={destaque} />{" "}
               </span>
             ))}
             <span className="whitespace-nowrap">
               {tokens.slice(corte).map((t, i, arr) => (
                 <span key={i}>
-                  <Palavra partes={t} />
+                  <Palavra partes={t} destaque={destaque} />
                   {i < arr.length - 1 ? " " : ""}
                 </span>
               ))}

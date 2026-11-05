@@ -20,22 +20,40 @@ export default function ContatoPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-6 pb-28 pt-40 md:px-16 lg:px-0">
-      <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-        Contato
-      </p>
-      <h1 className="mt-2 max-w-2xl font-display uppercase leading-none text-h1">
-        Vamos conversar sobre o seu projeto.
-      </h1>
-      <p className="mt-6 max-w-sm text-body text-maresia">
-        Conte a ideia e o prazo — respondo pelo canal que for melhor pra
-        você.
-      </p>
+    <div className="mx-auto max-w-6xl px-6 pb-28 pt-40 md:px-16 lg:px-0">
+      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-16">
+        {/* Retrato de perfil, à direita. Some na base, no mesmo fundo do site. */}
+        <div className="order-1 mx-auto w-full max-w-md lg:order-2 lg:mx-0 lg:max-w-none lg:-mt-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/contato/perfil.webp"
+            alt="Rafael Lisboa, de perfil"
+            className="block w-full"
+            style={{
+              WebkitMaskImage: "linear-gradient(to bottom, #000 68%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, #000 68%, transparent 100%)",
+            }}
+          />
+        </div>
 
-      <div className="mt-16 border-t border-white/10">
-        {canais.map((c) => (
-          <ChannelRow key={c.label} label={c.label} valor={c.valor} href={c.href} />
-        ))}
+        <div className="order-2 lg:order-1">
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+            Contato
+          </p>
+          <h1 className="mt-2 max-w-2xl font-display uppercase leading-none text-h1">
+            Vamos conversar sobre o seu projeto.
+          </h1>
+          <p className="mt-6 max-w-sm text-body text-maresia">
+            Conte a ideia e o prazo — respondo pelo canal que for melhor pra
+            você.
+          </p>
+
+          <div className="mt-12 border-t border-white/10">
+            {canais.map((c) => (
+              <ChannelRow key={c.label} label={c.label} valor={c.valor} href={c.href} />
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="mt-20 flex flex-col items-center gap-6 text-center">

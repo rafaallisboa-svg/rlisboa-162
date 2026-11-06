@@ -11,8 +11,8 @@ const TEMAS = [
   { bg: "#ffc300", par: "#3a3a38", impar: "#85857f", on: "#0e0e0d" },
   { bg: "#f1f0eb", par: "#c9c8c2", impar: "#85857f", on: "#0e0e0d" },
   // Os dois últimos usam o mesmo fundo do bloco seguinte (concreto), para a transição fluir.
-  { bg: "#1c1c1b", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
-  { bg: "#1c1c1b", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
+  { bg: "#ffc300", par: "#3a3a38", impar: "#85857f", on: "#0e0e0d" },
+  { bg: "#ffc300", par: "#3a3a38", impar: "#85857f", on: "#0e0e0d" },
 ];
 const temaDaPalavra = (i: number) => Math.min(TEMAS.length - 1, Math.floor(i / 2));
 

@@ -14,10 +14,10 @@ export function ProjetosDestaque() {
     <section
       id="projetos"
       aria-label="Projetos em destaque"
-      className="relative bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
+      className="relative bg-idv-amarelo text-idv-preto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
     >
-      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
-      <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-preto/50 md:right-[clamp(1.5rem,5vw,6rem)]" />
+      <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
         Projetos em destaque<span className="text-idv-laranja">.</span>
       </p>
 
@@ -44,12 +44,12 @@ export function ProjetosDestaque() {
             </div>
             <div className="mt-4 flex items-baseline justify-between gap-4">
               <div>
-                <p className="font-display text-xl uppercase tracking-tight transition-colors group-hover:text-idv-amarelo">
+                <p className="font-display text-xl uppercase tracking-tight transition-colors group-hover:text-idv-off">
                   {p.titulo}
                 </p>
-                <p className="mt-1 text-sm text-maresia">{p.subtitulo}</p>
+                <p className="mt-1 text-sm text-idv-preto/70">{p.subtitulo}</p>
               </div>
-              <span className="shrink-0 font-mono text-xs tabular-nums text-idv-amarelo">
+              <span className="shrink-0 font-mono text-xs tabular-nums text-idv-preto">
                 {p.ano}
               </span>
             </div>

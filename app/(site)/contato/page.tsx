@@ -74,7 +74,7 @@ export default function ContatoPage() {
         </div>
       </div>
     </div>
-    <GrafismoParallax tipo="pavimentoEscuro" />
+    <GrafismoParallax tipo="aneis" />
     </>
   );
 }

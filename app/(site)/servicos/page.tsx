@@ -194,7 +194,7 @@ function CartaoLista({
 }) {
   const c = TONS[tom];
   return (
-    <div className={`rounded-[1.75rem] p-6 md:p-7 ${c.card} ${className}`}>
+    <div className={`p-6 md:p-7 ${c.card} ${className}`}>
       <div className="flex items-start justify-between gap-4">
         {rotulo ? (
           <span className={`rounded-full border px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] ${c.pill}`}>
@@ -304,14 +304,14 @@ export default function ServicosPage() {
                 <div style={{ minHeight: 0, overflow: "hidden" }}>
                   <div className="grid gap-3 pb-8 pt-2 md:grid-cols-12">
                     <div className="flex flex-col gap-3 md:col-span-4">
-                      <div className="flex flex-1 flex-col justify-between gap-10 rounded-[1.75rem] bg-idv-off p-6 text-idv-preto md:p-7">
+                      <div className="flex flex-1 flex-col justify-between gap-10 rounded-[2.75rem] rounded-tr-[0.75rem] bg-idv-off p-6 text-idv-preto md:p-7">
                         <span className="font-display text-5xl leading-none tabular-nums md:text-6xl">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <p className="text-lg leading-snug md:text-xl">{s.descricao}</p>
                       </div>
 
-                      <div className="rounded-[1.75rem] bg-idv-pedra p-6 text-idv-preto md:p-7">
+                      <div className="rounded-[0.75rem] rounded-br-[3rem] bg-idv-pedra p-6 text-idv-preto md:p-7">
                         <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
                           Investimento
                         </p>
@@ -341,11 +341,15 @@ export default function ServicosPage() {
                             rotulo={grupo.nome}
                             itens={grupo.incluido}
                             tom={gi === 0 ? "carbono" : "amarelo"}
-                            className="flex-1"
+                            className={`flex-1 ${
+                              gi % 2 === 0
+                                ? "rounded-[0.75rem] rounded-tl-[3rem]"
+                                : "rounded-[3rem] rounded-bl-[0.75rem]"
+                            }`}
                           />
                         ))
                       ) : (
-                        <CartaoLista rotulo={rotulo || undefined} itens={s.incluido} tom="amarelo" className="flex-1" />
+                        <CartaoLista rotulo={rotulo || undefined} itens={s.incluido} tom="amarelo" className="flex-1 rounded-[3rem] rounded-bl-[0.75rem]" />
                       )}
                     </div>
                   </div>

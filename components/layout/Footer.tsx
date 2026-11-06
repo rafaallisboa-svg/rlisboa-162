@@ -1,6 +1,7 @@
 import { site } from "@/site.config";
 import { isTodo, publicados, todoClass } from "@/lib/placeholder";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { RodapeRelogio } from "@/components/layout/RodapeRelogio";
 
 function Campo({ value }: { value: string }) {
   return isTodo(value) ? <span className={todoClass}>{value}</span> : <>{value}</>;
@@ -11,8 +12,8 @@ export function Footer() {
   const ano = new Date().getFullYear();
 
   return (
-    <footer className="bg-idv-amarelo text-idv-preto px-6 py-16 md:px-[clamp(1.5rem,5vw,6rem)]">
-      <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_auto]">
+    <footer className="bg-idv-amarelo text-idv-preto px-6 py-12 md:px-[clamp(1.5rem,5vw,6rem)]">
+      <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr_auto] md:items-center">
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -60,7 +61,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex items-start md:justify-end">
+        <div className="flex items-center gap-4 md:justify-end">
+          <RodapeRelogio />
           <a
             href="/orcamento"
             className="inline-flex items-center justify-center bg-idv-preto px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo transition-transform hover:-translate-y-0.5"
@@ -70,7 +72,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="mt-16 font-mono text-[0.7rem] tabular-nums text-idv-preto/70">
+      <p className="mt-10 font-mono text-[0.7rem] tabular-nums text-idv-preto/70">
         © {site.anoFundacao}–{ano} {site.nomeCompleto}
       </p>
     </footer>

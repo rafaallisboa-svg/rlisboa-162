@@ -2,13 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-const R_EXT = 140;
-const R_INT = 70;
-const CY = 140;
-const LARGURA = 520;
-const ALTURA = 210;
+const R_EXT = 252;
+const R_INT = 126;
+const CY = 252;
+const LARGURA = 738;
+const ALTURA = 322;
 const TOPO = -60;
-const CENTROS = { a: 140, b: 260, c: 380 };
+const CENTROS = { a: 252, b: 486 };
 
 const anel = (cx: number) =>
   `M${cx - R_EXT} ${CY}A${R_EXT} ${R_EXT} 0 1 0 ${cx + R_EXT} ${CY}A${R_EXT} ${R_EXT} 0 1 0 ${cx - R_EXT} ${CY}Z` +
@@ -16,21 +16,10 @@ const anel = (cx: number) =>
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 
-// Cores de cada anel e do que nasce quando eles se cruzam, como na mistura de cores primárias.
-const COR = {
-  a: "var(--color-idv-amarelo)",
-  b: "var(--color-idv-off)",
-  c: "var(--color-idv-grafite)",
-  ab: "var(--color-idv-laranja)", // amarelo + off-white
-  bc: "var(--color-idv-cinza)", // off-white + grafite
-  ac: "#9c7e1c", // amarelo + grafite: ocre
-  abc: "var(--color-idv-preto)", // os três juntos
-};
-
 /**
- * Três anéis em linha (amarelo, off-white e grafite), cortados pela borda de baixo. Chegando ao
- * fim da página eles sobem de trás do rodapé, um depois do outro; onde se cruzam nascem cores
- * novas: laranja, cinza, ocre e, no meio dos três, preto. Rolando para cima, descem de volta.
+ * Dois anéis (amarelo e off-white) que se cruzam, o cruzamento em laranja, cortados pela borda de
+ * baixo. Chegando ao fim da página eles sobem de trás do rodapé, um depois do outro, e assentam.
+ * Rolando para cima, descem de volta.
  */
 export function AneisAnimados({ className = "" }: { className?: string }) {
   const secaoRef = useRef<HTMLElement>(null);
@@ -49,19 +38,18 @@ export function AneisAnimados({ className = "" }: { className?: string }) {
       const vh = window.innerHeight;
       const rodape = document.querySelector("footer")?.getBoundingClientRect().height ?? 0;
       const e = reduzido ? 0 : clamp(Math.abs(r.bottom - (vh - rodape)) / (vh * 0.85));
-      const p = clamp(1 - e / 0.6);
+      const p = clamp(1 - e / 0.55);
       const sai = (v: number) => {
         // easeOutBack: passa um pouco do ponto e assenta.
-        const c1 = 1.3;
+        const c1 = 1.4;
         const c3 = c1 + 1;
         return 1 + c3 * Math.pow(v - 1, 3) + c1 * Math.pow(v - 1, 2);
       };
       const y = {
-        a: (1 - sai(clamp(p / 0.7))) * 260,
-        b: (1 - sai(clamp((p - 0.15) / 0.7))) * 260,
-        c: (1 - sai(clamp((p - 0.3) / 0.7))) * 260,
+        a: (1 - sai(clamp(p / 0.8))) * 300,
+        b: (1 - sai(clamp((p - 0.2) / 0.8))) * 300,
       };
-      (["a", "b", "c"] as const).forEach((k) => {
+      (["a", "b"] as const).forEach((k) => {
         svg.querySelectorAll(`[data-r="${k}"]`).forEach((el) => {
           el.setAttribute("transform", `translate(0 ${y[k]})`);
         });
@@ -82,7 +70,6 @@ export function AneisAnimados({ className = "" }: { className?: string }) {
 
   const a = anel(CENTROS.a);
   const b = anel(CENTROS.b);
-  const c = anel(CENTROS.c);
 
   return (
     <section
@@ -100,45 +87,16 @@ export function AneisAnimados({ className = "" }: { className?: string }) {
           <clipPath id="aneis-clip-b" clipPathUnits="userSpaceOnUse">
             <path data-r="b" d={b} clipRule="evenodd" />
           </clipPath>
-          <clipPath id="aneis-clip-c" clipPathUnits="userSpaceOnUse">
-            <path data-r="c" d={c} clipRule="evenodd" />
-          </clipPath>
         </defs>
-
         <g data-r="a">
-          <path d={a} fillRule="evenodd" fill={COR.a} />
+          <path d={a} fillRule="evenodd" fill="var(--color-idv-amarelo)" />
         </g>
         <g data-r="b">
-          <path d={b} fillRule="evenodd" fill={COR.b} />
+          <path d={b} fillRule="evenodd" fill="var(--color-idv-off)" />
         </g>
-        <g data-r="c">
-          <path d={c} fillRule="evenodd" fill={COR.c} />
-        </g>
-
-        {/* amarelo + off-white */}
         <g clipPath="url(#aneis-clip-b)">
           <g data-r="a">
-            <path d={a} fillRule="evenodd" fill={COR.ab} />
-          </g>
-        </g>
-        {/* off-white + grafite */}
-        <g clipPath="url(#aneis-clip-c)">
-          <g data-r="b">
-            <path d={b} fillRule="evenodd" fill={COR.bc} />
-          </g>
-        </g>
-        {/* amarelo + grafite */}
-        <g clipPath="url(#aneis-clip-c)">
-          <g data-r="a">
-            <path d={a} fillRule="evenodd" fill={COR.ac} />
-          </g>
-        </g>
-        {/* os três */}
-        <g clipPath="url(#aneis-clip-b)">
-          <g clipPath="url(#aneis-clip-c)">
-            <g data-r="a">
-              <path d={a} fillRule="evenodd" fill={COR.abc} />
-            </g>
+            <path d={a} fillRule="evenodd" fill="var(--color-idv-laranja)" />
           </g>
         </g>
       </svg>

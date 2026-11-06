@@ -162,23 +162,62 @@ export function StickerR({
   );
 }
 
-/** Anel amarelo com o ponto laranja. Por dentro, meio preto e meio off-white giram devagar. */
-export function AnelMeio({ className }: { className?: string }) {
+/** Selo de anéis concêntricos: os dois pontos orbitam devagar em volta do 162. */
+export function SeloAneis({ className }: { className?: string }) {
   return (
-    <svg viewBox="-100 -100 200 200" aria-hidden="true" className={className} xmlns="http://www.w3.org/2000/svg">
+    <svg
+      role="img"
+      aria-label="162"
+      viewBox="-110 -110 220 220"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle r="104" fill="none" stroke="var(--color-idv-off)" strokeWidth="2.5" />
+      <circle r="80" fill="none" stroke="var(--color-idv-off)" strokeWidth="2.5" />
+      <circle r="56" fill="none" stroke="var(--color-idv-off)" strokeWidth="2.5" />
+      <g transform="translate(-46.61 17.01) scale(0.2175)" fill="var(--color-idv-off)">
+        <path d={D162} />
+      </g>
+      <g className="orbita-a">
+        <circle cx="0" cy="-80" r="6" fill="var(--color-idv-laranja)" />
+      </g>
+      <g className="orbita-b">
+        <circle cx="56" cy="0" r="5" fill="var(--color-idv-amarelo)" />
+      </g>
+    </svg>
+  );
+}
+
+/**
+ * Dois anéis (amarelo e off-white) que se cruzam; onde se sobrepõem fica laranja.
+ * Mostra só a metade de cima, para ser cortado pela borda de baixo.
+ */
+export function AneisIntersecao({ className }: { className?: string }) {
+  const rExt = 252;
+  const rInt = 126;
+  const cy = 252;
+  const anel = (cx: number) =>
+    `M${cx - rExt} ${cy}A${rExt} ${rExt} 0 1 0 ${cx + rExt} ${cy}A${rExt} ${rExt} 0 1 0 ${cx - rExt} ${cy}Z` +
+    `M${cx - rInt} ${cy}A${rInt} ${rInt} 0 1 0 ${cx + rInt} ${cy}A${rInt} ${rInt} 0 1 0 ${cx - rInt} ${cy}Z`;
+  const a = anel(252);
+  const b = anel(486);
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 738 262"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
-        <clipPath id="anel-miolo">
-          <circle r="50" />
+        <clipPath id="aneis-b">
+          <path d={b} clipRule="evenodd" />
         </clipPath>
       </defs>
-      <circle r="75" fill="none" stroke="var(--color-idv-amarelo)" strokeWidth="50" />
-      <g clipPath="url(#anel-miolo)">
-        <g className="anel-gira">
-          <rect x="-60" y="-60" width="120" height="60" fill="var(--color-idv-preto)" />
-          <rect x="-60" y="0" width="120" height="60" fill="var(--color-idv-off)" />
-        </g>
+      <path d={a} fillRule="evenodd" fill="var(--color-idv-amarelo)" />
+      <path d={b} fillRule="evenodd" fill="var(--color-idv-off)" />
+      <g clipPath="url(#aneis-b)">
+        <path d={a} fillRule="evenodd" fill="var(--color-idv-laranja)" />
       </g>
-      <circle r="27" fill="var(--color-idv-laranja)" />
     </svg>
   );
 }

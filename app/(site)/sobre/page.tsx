@@ -2,7 +2,7 @@ import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
-import { AnelMeio, Cruz } from "@/components/ui/IdvElementos";
+import { AneisIntersecao, Cruz, SeloAneis } from "@/components/ui/IdvElementos";
 
 const PARAGRAFOS: Segmento[][] = [
   [
@@ -73,7 +73,7 @@ export default function SobrePage() {
               className="mt-24 flex flex-col gap-8 text-[clamp(1.375rem,2.5vw,2.375rem)] font-medium leading-[1.25] tracking-tight text-idv-off"
             />
 
-            <div className="mt-28 flex min-h-64 items-center border-t border-idv-grafite pt-14 md:min-h-80">
+            <div className="mt-28 flex flex-col items-center border-t border-idv-grafite pt-14">
               <a
                 href="/orcamento"
                 className="inline-flex items-center justify-center bg-idv-amarelo px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
@@ -83,8 +83,11 @@ export default function SobrePage() {
             </div>
           </div>
 
-          {/* O anel fica na extremidade da página, parte dele sai da tela. */}
-          <AnelMeio className="absolute bottom-12 right-0 h-64 w-64 translate-x-[30%] md:h-80 md:w-80" />
+          {/* Dois anéis que se cruzam, cortados pela borda de baixo, logo acima do rodapé. */}
+          <AneisIntersecao className="mx-auto mt-16 block w-full max-w-3xl px-6 md:px-0" />
+
+          {/* O selo fica na extremidade da página, cortado ao meio. */}
+          <SeloAneis className="absolute bottom-[10rem] right-0 h-36 w-36 translate-x-1/2 md:bottom-[12.75rem] md:h-56 md:w-56 lg:bottom-[10.75rem] lg:h-72 lg:w-72" />
         </div>
       </div>
     </div>

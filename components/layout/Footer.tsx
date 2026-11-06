@@ -1,6 +1,7 @@
 import { site } from "@/site.config";
 import { isTodo, publicados, todoClass } from "@/lib/placeholder";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { SeloRegua } from "@/components/ui/IdvElementos";
 
 function Campo({ value }: { value: string }) {
   return isTodo(value) ? <span className={todoClass}>{value}</span> : <>{value}</>;
@@ -12,7 +13,7 @@ export function Footer() {
 
   return (
     <footer className="bg-idv-amarelo text-idv-preto px-6 py-16 md:px-[clamp(1.5rem,5vw,6rem)]">
-      <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr]">
+      <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_auto]">
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -58,6 +59,16 @@ export function Footer() {
               ),
             )}
           </div>
+        </div>
+
+        <div className="flex items-center gap-6 md:flex-col md:items-end md:gap-5">
+          <SeloRegua className="h-24 w-24 md:h-28 md:w-28" />
+          <a
+            href="/orcamento"
+            className="inline-flex items-center justify-center bg-idv-preto px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo transition-transform hover:-translate-y-0.5"
+          >
+            Solicitar orçamento
+          </a>
         </div>
       </div>
 

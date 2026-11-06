@@ -1,6 +1,7 @@
 import { publicados } from "@/lib/placeholder";
 import { site } from "@/site.config";
 import { ChannelRow } from "@/components/ui/ChannelRow";
+import { SeloAdesivo } from "@/components/ui/IdvElementos";
 
 export default function ContatoPage() {
   const redes = publicados(site.redes).filter((r) => r.label !== "Behance");
@@ -56,16 +57,19 @@ export default function ContatoPage() {
         ))}
       </div>
 
-      <div className="mt-20 flex flex-col items-center gap-6 text-center">
-        <p className="whitespace-nowrap text-2xl text-cal">
-          Quais são seus desafios?
-        </p>
-        <a
-          href="/orcamento"
-          className="inline-flex items-center justify-center rounded-full bg-sinal px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-concreto transition-transform hover:-translate-y-0.5"
-        >
-          Solicitar orçamento
-        </a>
+      <div className="mt-20 flex flex-col items-center gap-8 text-center md:flex-row md:justify-center md:gap-14 md:text-left">
+        <SeloAdesivo className="h-36 w-36 shrink-0 md:h-44 md:w-44" />
+        <div className="flex flex-col items-center gap-6 md:items-start">
+          <p className="whitespace-nowrap text-2xl text-cal">
+            Quais são seus desafios?
+          </p>
+          <a
+            href="/orcamento"
+            className="inline-flex items-center justify-center rounded-full bg-sinal px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-concreto transition-transform hover:-translate-y-0.5"
+          >
+            Solicitar orçamento
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -221,3 +221,76 @@ export function AneisIntersecao({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/** Selo de régua: 60 marcas girando devagar em volta do 162, com a marca do topo em laranja. */
+export function SeloRegua({ className, tinta = "var(--color-idv-preto)" }: { className?: string; tinta?: string }) {
+  const marcas = Array.from({ length: 60 }, (_, i) => {
+    const a = (i * 6 * Math.PI) / 180;
+    const maior = i % 5 === 0;
+    const r1 = maior ? 84 : 92;
+    const r2 = 104;
+    const x = (r: number) => (r * Math.sin(a)).toFixed(2);
+    const y = (r: number) => (-r * Math.cos(a)).toFixed(2);
+    return { d: `M${x(r1)} ${y(r1)}L${x(r2)} ${y(r2)}`, w: maior ? 2.6 : 1.2, topo: i === 0 };
+  });
+  return (
+    <svg
+      role="img"
+      aria-label="162"
+      viewBox="-110 -110 220 220"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g className="selo-gira" style={{ transformOrigin: "0 0" }}>
+        {marcas.map((m, i) => (
+          <path
+            key={i}
+            d={m.d}
+            stroke={m.topo ? "var(--color-idv-laranja)" : tinta}
+            strokeWidth={m.topo ? 4 : m.w}
+            fill="none"
+          />
+        ))}
+      </g>
+      <g transform="translate(-46.61 17.01) scale(0.2175)" fill={tinta}>
+        <path d={D162} />
+      </g>
+    </svg>
+  );
+}
+
+/** Adesivo redondo amarelo: o texto corre em volta do 162 e do ponto laranja. */
+export function SeloAdesivo({ className }: { className?: string }) {
+  const r = 84;
+  const circ = 2 * Math.PI * r;
+  const anel = `M0,${-r} A${r},${r} 0 1 1 0,${r} A${r},${r} 0 1 1 0,${-r}`;
+  return (
+    <svg
+      role="img"
+      aria-label="R. Lisboa, Estúdio 162"
+      viewBox="-110 -110 220 220"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle r="104" fill="var(--color-idv-amarelo)" />
+      <g className="selo-gira" style={{ transformOrigin: "0 0" }}>
+        <path id="adesivo-anel" d={anel} fill="none" />
+        <text
+          fontSize="12.5"
+          fontWeight="700"
+          fill="var(--color-idv-preto)"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          <textPath href="#adesivo-anel" textLength={circ - 2} lengthAdjust="spacing">
+            R. LISBOA · ESTÚDIO 162 ·{" "}
+          </textPath>
+        </text>
+      </g>
+      <circle r="64" fill="none" stroke="var(--color-idv-preto)" strokeWidth="2" />
+      <g transform="translate(-46.61 17.01) scale(0.2175)" fill="var(--color-idv-preto)">
+        <path d={D162} />
+      </g>
+      <circle cx="48" cy="22" r="6" fill="var(--color-idv-laranja)" />
+    </svg>
+  );
+}

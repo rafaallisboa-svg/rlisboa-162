@@ -5,6 +5,7 @@ import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
 import { Cruz, SeloAneis, SeloRegua } from "@/components/ui/IdvElementos";
 import { AneisAnimados } from "@/components/motion/AneisAnimados";
+import { AutoRolar } from "@/components/motion/AutoRolar";
 
 const PARAGRAFOS: Segmento[][] = [
   [
@@ -46,6 +47,7 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <div className="relative text-idv-off">
+      <AutoRolar alvoId="sobre-intro" />
       {/* Retrato fixo no topo: some aos poucos enquanto o texto sobe por cima, no mesmo fundo. */}
       <RetratoFixo
         src="/sobre/sobre-horizontal.webp"
@@ -73,7 +75,7 @@ export default function SobrePage() {
           <Cruz className="absolute right-6 top-32 hidden h-5 w-5 text-idv-grafite md:right-16 md:block" />
 
           <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-32 md:px-16 lg:px-0">
-            <div className="relative flex flex-col items-center border-b border-idv-grafite pb-24 text-center">
+            <div id="sobre-intro" className="relative flex flex-col items-center border-b border-idv-grafite pb-24 text-center">
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
                 Estúdio 162 — desde <span className="text-idv-amarelo">{site.anoFundacao}</span>
               </p>

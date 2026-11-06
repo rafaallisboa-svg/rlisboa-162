@@ -54,7 +54,7 @@ export function Footer() {
                   aria-label={r.label}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-idv-preto/35 text-idv-preto transition-colors hover:bg-idv-preto hover:text-idv-amarelo"
                 >
-                  <SocialIcon nome={r.label} className="h-4 w-4" />
+                  <SocialIcon nome={r.label} className="h-5 w-5" />
                 </a>
               ),
             )}

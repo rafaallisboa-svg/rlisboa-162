@@ -5,13 +5,14 @@ import { useEffect, useRef } from "react";
 import { NOMES_SERVICOS, rotuloServico, slugServico } from "@/lib/servicos";
 import { Cruz, Sticker162 } from "@/components/ui/IdvElementos";
 
-// O fundo troca de cor enquanto as palavras passam. Em cada fundo, as palavras ficam em
+// O fundo troca de cor enquanto as palavras passam e termina escuro. Em cada fundo, as palavras ficam em
 // cinzas (par/ímpar) e só a que está no centro da tela acende, com um ponto laranja no fim.
 const TEMAS = [
   { bg: "#ffc300", par: "#3a3a38", impar: "#85857f", on: "#0e0e0d" },
-  { bg: "#0e0e0d", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
   { bg: "#f1f0eb", par: "#c9c8c2", impar: "#85857f", on: "#0e0e0d" },
-  { bg: "#ffc300", par: "#3a3a38", impar: "#85857f", on: "#0e0e0d" },
+  // Os dois últimos usam o mesmo fundo do bloco seguinte (concreto), para a transição fluir.
+  { bg: "#1c1c1b", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
+  { bg: "#1c1c1b", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
 ];
 const temaDaPalavra = (i: number) => Math.min(TEMAS.length - 1, Math.floor(i / 2));
 

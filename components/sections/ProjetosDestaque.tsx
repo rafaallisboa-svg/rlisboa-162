@@ -14,7 +14,7 @@ export function ProjetosDestaque() {
     <section
       id="projetos"
       aria-label="Projetos em destaque"
-      className="relative border-t border-white/10 bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
+      className="relative bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
     >
       <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
       <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">

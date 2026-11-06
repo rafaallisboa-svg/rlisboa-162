@@ -50,13 +50,13 @@ export function Header() {
   return (
     <>
       <header
-        className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-concreto/95 backdrop-blur-sm transition-transform duration-300 ease-out md:bg-concreto/85"
+        className="fixed inset-x-0 top-0 z-50 border-b border-idv-preto/15 bg-idv-amarelo text-idv-preto transition-transform duration-300 ease-out"
         style={{ transform: escondido && !aberto ? "translateY(-100%)" : "none" }}
       >
       <div className="flex items-center justify-between px-6 py-4 md:px-[clamp(1.5rem,5vw,6rem)]">
         <Link href="/" className="flex items-baseline gap-2" onClick={fechar}>
-          <Logo className="h-5 w-auto text-cal md:h-6" />
-          <span className="font-mono text-xs tabular-nums text-maresia">
+          <Logo className="h-5 w-auto text-idv-preto md:h-6" />
+          <span className="font-mono text-xs tabular-nums text-idv-preto/60">
             {site.numero}
           </span>
         </Link>
@@ -66,11 +66,11 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-cal"
+              className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-idv-preto"
             >
-              <IconeMenu nome={item.icone} className="h-3 w-3 text-maresia transition-colors group-hover:text-idv-amarelo" />
+              <IconeMenu nome={item.icone} className="h-3 w-3 text-idv-preto transition-transform duration-200 group-hover:scale-125" />
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-sinal transition-[width] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-idv-preto transition-[width] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
             </Link>
           ))}
         </nav>
@@ -84,19 +84,19 @@ export function Header() {
         >
           <span
             aria-hidden="true"
-            className="h-px w-6 bg-cal transition-transform duration-300"
+            className="h-px w-6 bg-idv-preto transition-transform duration-300"
             style={{
               transform: aberto ? "translateY(6px) rotate(45deg)" : "none",
             }}
           />
           <span
             aria-hidden="true"
-            className="h-px w-6 bg-cal transition-opacity duration-200"
+            className="h-px w-6 bg-idv-preto transition-opacity duration-200"
             style={{ opacity: aberto ? 0 : 1 }}
           />
           <span
             aria-hidden="true"
-            className="h-px w-6 bg-cal transition-transform duration-300"
+            className="h-px w-6 bg-idv-preto transition-transform duration-300"
             style={{
               transform: aberto ? "translateY(-6px) rotate(-45deg)" : "none",
             }}
@@ -111,14 +111,14 @@ export function Header() {
           barra (64px) em vez da tela inteira. z-40 (abaixo do header,
           z-50) pra o botão de fechar continuar visível por cima. */}
       <div
-        className="fixed inset-0 z-40 flex flex-col bg-concreto md:hidden"
+        className="fixed inset-0 z-40 flex flex-col bg-idv-amarelo text-idv-preto md:hidden"
         style={{
           opacity: aberto ? 1 : 0,
           visibility: aberto ? "visible" : "hidden",
           transition: "opacity 280ms ease, visibility 0s linear " + (aberto ? "0s" : "280ms"),
         }}
       >
-        <div className="h-[65px] shrink-0 border-b border-white/10" />
+        <div className="h-[65px] shrink-0 border-b border-idv-preto/15" />
 
         <nav
           aria-label="Navegação principal (mobile)"
@@ -129,24 +129,24 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={fechar}
-              className="group flex items-baseline gap-4 border-b border-white/10 py-5"
+              className="group flex items-baseline gap-4 border-b border-idv-preto/20 py-5"
             >
-              <span className="font-mono text-xs tabular-nums text-maresia">
+              <span className="font-mono text-xs tabular-nums text-idv-preto/60">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="flex items-center gap-3 font-display text-4xl uppercase tracking-tight text-cal transition-colors group-hover:text-idv-amarelo">
-                <IconeMenu nome={item.icone} className="h-6 w-6 text-maresia transition-colors group-hover:text-idv-amarelo" />
+              <span className="flex items-center gap-3 font-display text-4xl uppercase tracking-tight text-idv-preto transition-transform group-hover:translate-x-2">
+                <IconeMenu nome={item.icone} className="h-6 w-6 text-idv-preto" />
                 {item.label}
               </span>
             </Link>
           ))}
         </nav>
 
-        <div className="flex flex-col gap-4 border-t border-white/10 px-6 py-8">
+        <div className="flex flex-col gap-4 border-t border-idv-preto/20 px-6 py-8">
           <a
             href={`mailto:${site.contato.email}`}
             onClick={fechar}
-            className="flex items-center gap-3 font-mono text-sm text-maresia"
+            className="flex items-center gap-3 font-mono text-sm text-idv-preto"
           >
             <IconeEmail />
             {site.contato.email}
@@ -156,7 +156,7 @@ export function Header() {
             onClick={fechar}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 font-mono text-sm text-maresia"
+            className="flex items-center gap-3 font-mono text-sm text-idv-preto"
           >
             <IconeWhatsApp />
             {site.contato.telefone}
@@ -172,7 +172,7 @@ export function Header() {
                   rel="noopener noreferrer"
                   aria-label={r.label}
                   onClick={fechar}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-cal transition-colors hover:border-sinal hover:text-sinal"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-idv-preto/40 text-idv-preto transition-colors hover:border-idv-preto hover:bg-idv-preto hover:text-idv-amarelo"
                 >
                   <SocialIcon nome={r.label} />
                 </a>

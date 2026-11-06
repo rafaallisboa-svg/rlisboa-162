@@ -268,16 +268,16 @@ export default function ServicosPage() {
     <>
     <div className="relative min-h-screen bg-idv-amarelo px-6 pb-24 pt-32 text-idv-preto md:px-[clamp(1.5rem,5vw,6rem)]">
       <Cruz className="absolute right-6 top-28 hidden h-5 w-5 text-idv-preto/40 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
-      <div className="flex items-start justify-between gap-6">
+      <div className="relative flex items-start justify-between gap-6">
         <div className="min-w-0">
           <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
             Serviços
           </p>
-          <h1 className="mt-2 font-display uppercase leading-none text-h1 text-idv-preto">
+          <h1 className="mt-2 font-display text-[clamp(1.5rem,7.2vw,2.5rem)] uppercase leading-none text-idv-preto sm:text-h1">
             <HeadlineRotator palavras={PALAVRAS_TITULO} />
           </h1>
         </div>
-        <StickerRafa className="mt-2 h-14 w-auto shrink-0 sm:h-24 md:h-36" />
+        <StickerRafa className="absolute -top-3 right-0 h-14 w-auto sm:static sm:mt-2 sm:h-24 sm:shrink-0 md:h-36" />
       </div>
 
       <div className="mt-12 border-t border-idv-preto/25">

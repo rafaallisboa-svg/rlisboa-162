@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { slugServico } from "@/lib/servicos";
 import { Cruz, StickerRafa } from "@/components/ui/IdvElementos";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
@@ -250,6 +250,20 @@ function CartaoLista({
 export default function ServicosPage() {
   const [aberto, setAberto] = useState<number | null>(null);
   const [destaque, setDestaque] = useState(0);
+  const linhasRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Ao abrir um serviço, leva a tela até ele (logo abaixo do menu), para não precisar rolar.
+  // Espera a animação de abrir/fechar terminar para medir a posição final.
+  useEffect(() => {
+    if (aberto === null) return;
+    const id = window.setTimeout(() => {
+      const el = linhasRef.current[aberto];
+      if (!el) return;
+      const topo = el.getBoundingClientRect().top + window.scrollY - 84;
+      window.scrollTo({ top: Math.max(0, topo), behavior: "smooth" });
+    }, 340);
+    return () => window.clearTimeout(id);
+  }, [aberto]);
 
   useEffect(() => {
     const hash = decodeURIComponent(window.location.hash.slice(1));
@@ -287,6 +301,9 @@ export default function ServicosPage() {
           return (
             <div
               key={s.nome}
+              ref={(el) => {
+                linhasRef.current[i] = el;
+              }}
               className="group/row border-b border-idv-preto/25"
             >
               <button

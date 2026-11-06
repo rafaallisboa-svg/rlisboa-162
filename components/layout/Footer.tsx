@@ -17,9 +17,9 @@ export function Footer() {
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/idv/assinatura-horizontal-preto.svg"
+            src="/idv/assinatura-horizontal-menor.svg"
             alt={site.nomeCompleto}
-            className="h-7 w-auto md:h-9"
+            className="h-8 w-auto md:h-11"
           />
           <address className="mt-4 font-mono text-xs not-italic leading-relaxed tracking-wide text-idv-preto/70">
             CNPJ <span className="tabular-nums">{site.cadastro.cnpj}</span>

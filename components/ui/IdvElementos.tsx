@@ -4,12 +4,21 @@
  */
 
 /** Quatro células de pavimento com o quadradinho laranja. */
-export function Pavimento({ className, u = 36 }: { className?: string; u?: number }) {
+export function Pavimento({
+  className,
+  u = 36,
+  style,
+}: {
+  className?: string;
+  u?: number;
+  style?: React.CSSProperties;
+}) {
   return (
     <svg
       aria-hidden="true"
       viewBox={`0 0 ${u * 2} ${u * 2 + 4}`}
       className={className}
+      style={style}
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width={u} height={u} fill="var(--color-idv-off)" />

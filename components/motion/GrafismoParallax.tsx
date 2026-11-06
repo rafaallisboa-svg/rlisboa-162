@@ -12,15 +12,20 @@ const clamp = (v: number) => Math.min(1, Math.max(0, v));
  * (esquerda ou direita) e some. Sem movimento, fica montado.
  */
 const GRAFISMOS = {
-  // Anéis em grade, com dois pontos de cor (Contato).
-  aneis: {
-    colunas: 6,
-    largura: "min(88vw, 540px)",
-    celulas: Array.from({ length: 18 }, (_, i): Celula => {
-      if (i === 4) return { cor: "var(--color-idv-off)", ponto: "amarelo" };
-      if (i === 8) return { cor: "var(--color-idv-off)", ponto: "laranja" };
-      return { cor: "var(--color-idv-off)" };
-    }),
+  // Pavimento para fundo escuro (Contato): os quadrados escuros quase somem no fundo e só as cores aparecem.
+  pavimentoEscuro: {
+    colunas: 4,
+    largura: "min(88vw, 640px)",
+    celulas: [
+      { cor: "var(--color-idv-off)" },
+      { cor: "var(--color-idv-preto)" },
+      { cor: "var(--color-idv-amarelo)" },
+      { cor: "var(--color-idv-preto)" },
+      { cor: "var(--color-idv-preto)" },
+      { cor: "var(--color-idv-grafite)" },
+      { cor: "var(--color-idv-preto)" },
+      { cor: "var(--color-idv-off)", ponto: "quadrado" },
+    ] as Celula[],
   },
   // Pavimento de quadrados (Serviços).
   pavimento: {
@@ -116,22 +121,14 @@ export function GrafismoParallax({
             className="relative aspect-square"
             style={{ willChange: "transform, opacity" }}
           >
-            {tipo === "aneis" ? (
-              <svg viewBox="0 0 100 100" className="h-full w-full">
-                <circle cx="50" cy="50" r="37" fill="none" stroke={c.cor} strokeWidth="24" />
-                {c.ponto === "laranja" && <circle cx="50" cy="50" r="9" fill="var(--color-idv-laranja)" />}
-                {c.ponto === "amarelo" && <circle cx="50" cy="50" r="8" fill="var(--color-idv-amarelo)" />}
-              </svg>
-            ) : (
-              <div className="h-full w-full" style={{ background: c.cor }}>
-                {c.ponto === "quadrado" && (
-                  <span
-                    className="absolute bottom-[8%] right-[8%] h-[9%] w-[9%]"
-                    style={{ background: "var(--color-idv-laranja)" }}
-                  />
-                )}
-              </div>
-            )}
+            <div className="h-full w-full" style={{ background: c.cor }}>
+              {c.ponto === "quadrado" && (
+                <span
+                  className="absolute bottom-[8%] right-[8%] h-[9%] w-[9%]"
+                  style={{ background: "var(--color-idv-laranja)" }}
+                />
+              )}
+            </div>
           </div>
         ))}
       </div>

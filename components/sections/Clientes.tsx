@@ -15,10 +15,10 @@ export function Clientes() {
   return (
     <section
       aria-label="Clientes"
-      className="relative border-t border-white/10 bg-concreto py-20"
+      className="relative bg-white py-20"
     >
-      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
-      <p className="px-6 font-mono text-xs uppercase tracking-[0.12em] text-maresia md:px-[clamp(1.5rem,5vw,6rem)]">
+      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-pedra md:right-[clamp(1.5rem,5vw,6rem)]" />
+      <p className="px-6 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza md:px-[clamp(1.5rem,5vw,6rem)]">
         Clientes<span className="text-idv-laranja">.</span>
       </p>
 
@@ -31,7 +31,7 @@ export function Clientes() {
             // "escala" ajusta o tamanho do logo dentro da caixa (não a caixa).
             <div
               key={`${c.nome}-${i}`}
-              className="flex h-24 w-36 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-black bg-white p-6 md:h-28 md:w-44"
+              className="flex h-24 w-36 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-idv-pedra bg-white p-6 md:h-28 md:w-44"
             >
               <img
                 src={c.logo}

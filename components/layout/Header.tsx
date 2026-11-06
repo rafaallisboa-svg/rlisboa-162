@@ -17,7 +17,23 @@ const NAV: readonly { label: string; href: string; icone: NomeIconeMenu }[] = [
 
 export function Header() {
   const [aberto, setAberto] = useState(false);
+  const [escondido, setEscondido] = useState(false);
   const redes = publicados(site.redes);
+
+  // O menu some quando a página desce e volta assim que sobe.
+  useEffect(() => {
+    let ultimo = window.scrollY;
+    const aoRolar = () => {
+      const y = window.scrollY;
+      const delta = y - ultimo;
+      if (y < 80) setEscondido(false);
+      else if (delta > 6) setEscondido(true);
+      else if (delta < -6) setEscondido(false);
+      if (Math.abs(delta) > 6) ultimo = y;
+    };
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    return () => window.removeEventListener("scroll", aoRolar);
+  }, []);
 
   // Trava o scroll da página por trás enquanto o menu em tela cheia
   // está aberto.
@@ -32,7 +48,10 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-concreto/95 backdrop-blur-sm md:bg-concreto/85">
+      <header
+        className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-concreto/95 backdrop-blur-sm transition-transform duration-300 ease-out md:bg-concreto/85"
+        style={{ transform: escondido && !aberto ? "translateY(-100%)" : "none" }}
+      >
       <div className="flex items-center justify-between px-6 py-4 md:px-[clamp(1.5rem,5vw,6rem)]">
         <Link href="/" className="flex items-baseline gap-2" onClick={fechar}>
           <Logo className="h-5 w-auto text-cal md:h-6" />

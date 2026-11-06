@@ -1,7 +1,6 @@
 import { site } from "@/site.config";
 import { isTodo, publicados, todoClass } from "@/lib/placeholder";
 import { SocialIcon } from "@/components/ui/SocialIcon";
-import { SeloRegua } from "@/components/ui/IdvElementos";
 
 function Campo({ value }: { value: string }) {
   return isTodo(value) ? <span className={todoClass}>{value}</span> : <>{value}</>;
@@ -61,8 +60,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex items-center gap-6 md:flex-col md:items-end md:gap-5">
-          <SeloRegua className="h-24 w-24 md:h-28 md:w-28" />
+        <div className="flex items-start md:justify-end">
           <a
             href="/orcamento"
             className="inline-flex items-center justify-center bg-idv-preto px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo transition-transform hover:-translate-y-0.5"

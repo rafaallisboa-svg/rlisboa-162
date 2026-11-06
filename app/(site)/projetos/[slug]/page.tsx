@@ -12,7 +12,7 @@ function VisitarSite({ href }: { href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-3 border border-violeta px-7 py-4 font-mono text-sm font-bold uppercase tracking-[0.12em] text-violeta transition-colors duration-200 hover:bg-violeta/10"
+      className="group inline-flex items-center gap-3 border border-sinal px-7 py-4 font-mono text-sm font-bold uppercase tracking-[0.12em] text-sinal transition-colors duration-200 hover:bg-sinal/10"
     >
       Visitar o site
       <span

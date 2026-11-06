@@ -178,7 +178,7 @@ const TONS = {
   off: {
     card: "bg-idv-off text-idv-preto",
     rotulo: "bg-idv-preto text-idv-off",
-    pill: "border-idv-preto/30 text-idv-preto",
+    pill: "border-idv-preto/50 text-idv-preto",
     num: "text-idv-preto/50",
   },
   pedra: {
@@ -190,7 +190,7 @@ const TONS = {
   preto: {
     card: "bg-idv-preto text-idv-off",
     rotulo: "bg-idv-amarelo text-idv-preto",
-    pill: "border-idv-off/30 text-idv-off",
+    pill: "border-idv-off/45 text-idv-off",
     num: "text-idv-cinza",
   },
 } as const;
@@ -217,13 +217,10 @@ function CartaoLista({
         ) : (
           <span />
         )}
-        <span className={`font-display text-4xl leading-none tabular-nums md:text-5xl ${c.num}`}>
-          {String(itens.length).padStart(2, "0")}
-        </span>
       </div>
       <ul className="mt-6 flex flex-wrap gap-2">
         {itens.map((item) => (
-          <li key={item} className={`rounded-full border px-4 py-2 text-xs md:text-sm ${c.pill}`}>
+          <li key={item} className={`rounded-full border px-4 py-2 text-sm font-medium md:text-[0.95rem] ${c.pill}`}>
             {item}
           </li>
         ))}
@@ -314,10 +311,10 @@ export default function ServicosPage() {
                   <div className="mb-8 mt-1 grid gap-3 md:grid-cols-12">
                     <div className="flex flex-col gap-3 md:col-span-4">
                       <div className="flex flex-1 flex-col justify-between gap-10 rounded-[2.75rem] rounded-tr-[0.75rem] bg-idv-pedra p-6 text-idv-preto md:p-8">
-                        <span className="font-display text-5xl leading-none tabular-nums md:text-6xl">
-                          {String(i + 1).padStart(2, "0")}
+                        <span className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
+                          Sobre o serviço
                         </span>
-                        <p className="text-lg leading-snug md:text-xl">{s.descricao}</p>
+                        <p className="text-lg font-medium leading-snug md:text-xl">{s.descricao}</p>
                       </div>
 
                       <div className="rounded-[0.75rem] rounded-br-[3rem] bg-idv-preto p-6 text-idv-off md:p-8">

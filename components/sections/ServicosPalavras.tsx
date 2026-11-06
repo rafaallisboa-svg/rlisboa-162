@@ -3,6 +3,18 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { NOMES_SERVICOS, rotuloServico, slugServico } from "@/lib/servicos";
+import { Cruz, Sticker162 } from "@/components/ui/IdvElementos";
+
+// Cada palavra tem a sua cor sobre o amarelo; a que está no centro da tela acende em laranja.
+const CORES = [
+  "text-idv-preto",
+  "text-idv-off",
+  "text-idv-grafite",
+  "text-idv-preto",
+  "text-idv-off",
+  "text-idv-grafite",
+  "text-idv-preto",
+];
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 
@@ -91,8 +103,11 @@ export function ServicosPalavras() {
     <section
       ref={secaoRef}
       aria-label="Serviços"
-      className="overflow-hidden bg-concreto pb-20 pt-28 md:pb-32 md:pt-40"
+      className="relative overflow-hidden bg-idv-amarelo pb-20 pt-28 md:pb-32 md:pt-40"
     >
+      <Cruz className="absolute left-6 top-24 h-5 w-5 text-idv-preto/50 md:left-[clamp(1.5rem,5vw,6rem)]" />
+      <Cruz className="absolute right-6 top-24 hidden h-5 w-5 text-idv-preto/50 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
+      <Sticker162 className="absolute bottom-6 right-6 h-20 w-auto md:bottom-10 md:right-[clamp(1.5rem,5vw,6rem)] md:h-28" />
       <div
         ref={colunaRef}
         className="mx-auto flex w-full flex-col gap-3 px-6 md:px-[clamp(1.5rem,5vw,6rem)]"
@@ -104,9 +119,9 @@ export function ServicosPalavras() {
             ref={(el) => {
               linksRef.current[i] = el;
             }}
-            className={`block w-max whitespace-nowrap font-display uppercase leading-[0.9] tracking-tight text-cal transition-colors duration-300 data-[ativa=true]:text-sinal [@media(hover:hover)]:hover:text-sinal ${
-              i % 2 === 0 ? "self-start" : "self-end"
-            }`}
+            className={`block w-max whitespace-nowrap font-display uppercase leading-[0.9] tracking-tight transition-colors duration-300 data-[ativa=true]:text-idv-laranja [@media(hover:hover)]:hover:text-idv-laranja ${
+              CORES[i % CORES.length]
+            } ${i % 2 === 0 ? "self-start" : "self-end"}`}
             style={{ fontSize: "min(14vw, 9rem)", willChange: "transform" }}
           >
             {rotuloServico(nome)}

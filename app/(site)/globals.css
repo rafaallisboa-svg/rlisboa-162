@@ -5,12 +5,12 @@
  * tamanho fora daqui. Qualquer novo token nasce nesta seção, nunca inline.
  */
 @theme {
-  --color-concreto: #1a1c1b;
-  --color-cal: #f0efea;
-  --color-maresia: #7a8b85;
-  --color-blueprint: #194b32;
-  --color-sinal: #93b4db;
-  --color-violeta: #a78bfa;
+  /* Paleta do site = paleta da IDV: os nomes antigos apontam para as cores novas. */
+  --color-concreto: #1c1c1b;
+  --color-cal: #f1f0eb;
+  --color-maresia: #85857f;
+  --color-blueprint: #3a3a38;
+  --color-sinal: #ffc300;
 
   /* Identidade visual (IDV) do estúdio: preto, cinzas e amarelo, laranja só no detalhe. */
   --color-idv-preto: #0e0e0d;
@@ -46,7 +46,7 @@
   *::before,
   *::after {
     border-radius: 0;
-    border-color: rgba(240, 239, 234, 0.12);
+    border-color: rgba(241, 240, 235, 0.12);
   }
 
   * {
@@ -95,7 +95,7 @@
 
   hr {
     border: none;
-    border-top: 1px solid rgba(240, 239, 234, 0.12);
+    border-top: 1px solid rgba(241, 240, 235, 0.12);
   }
 
   ::selection {

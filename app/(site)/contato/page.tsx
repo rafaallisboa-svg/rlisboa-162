@@ -48,9 +48,9 @@ export default function ContatoPage() {
             você.
           </p>
 
-          <div className="mt-12 border-t border-white/10">
+          <div className="mt-12 grid gap-3 sm:grid-cols-2">
             {canais.map((c) => (
-              <ChannelRow key={c.label} label={c.label} valor={c.valor} href={c.href} />
+              <ChannelRow key={c.label} label={c.label} valor={c.valor} href={c.href} compacto />
             ))}
           </div>
         </div>

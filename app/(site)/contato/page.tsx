@@ -1,7 +1,7 @@
 import { publicados } from "@/lib/placeholder";
 import { site } from "@/site.config";
 import { ChannelRow } from "@/components/ui/ChannelRow";
-import { Cruz, SeloAdesivo } from "@/components/ui/IdvElementos";
+import { Cruz, SeloRegua } from "@/components/ui/IdvElementos";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 
 export default function ContatoPage() {
@@ -62,10 +62,10 @@ export default function ContatoPage() {
         ))}
       </div>
 
-      <div className="mt-20 flex flex-col items-center gap-8 text-center md:flex-row md:justify-center md:gap-14 md:text-left">
-        <SeloAdesivo className="h-36 w-36 shrink-0 md:h-44 md:w-44" />
-        <div className="flex flex-col items-center gap-6 md:items-start">
-          <p className="whitespace-nowrap text-2xl text-cal">
+      <div className="relative mx-auto mt-20 flex h-[22rem] w-[22rem] items-center justify-center md:h-[30rem] md:w-[30rem]">
+        <SeloRegua tinta="var(--color-idv-off)" numero={false} className="absolute inset-0 h-full w-full" />
+        <div className="relative flex flex-col items-center gap-6 text-center">
+          <p className="max-w-[11rem] text-2xl leading-tight text-cal md:max-w-[13rem] md:text-3xl">
             Quais são seus desafios?
           </p>
           <a

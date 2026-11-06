@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 
@@ -10,6 +11,14 @@ import "lenis/dist/lenis.css";
  */
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const caminho = usePathname();
+
+  // Toda página nova abre no começo (menos quando o link leva a uma âncora, como /#projetos).
+  useEffect(() => {
+    if (window.location.hash) return;
+    window.scrollTo(0, 0);
+    lenisRef.current?.scrollTo(0, { immediate: true, force: true });
+  }, [caminho]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getProjetosDestaque } from "@/lib/projetos";
+import { Cruz } from "@/components/ui/IdvElementos";
 
 /**
  * Pavimento 02 — projetos em destaque. Construído fora de ordem do
@@ -13,10 +14,11 @@ export function ProjetosDestaque() {
     <section
       id="projetos"
       aria-label="Projetos em destaque"
-      className="border-t border-white/10 bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
+      className="relative border-t border-white/10 bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
     >
+      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
       <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-        Projetos em destaque
+        Projetos em destaque<span className="text-idv-laranja">.</span>
       </p>
 
       <div className="mt-10 grid gap-8 md:grid-cols-2">
@@ -42,12 +44,12 @@ export function ProjetosDestaque() {
             </div>
             <div className="mt-4 flex items-baseline justify-between gap-4">
               <div>
-                <p className="font-display text-xl uppercase tracking-tight">
+                <p className="font-display text-xl uppercase tracking-tight transition-colors group-hover:text-idv-amarelo">
                   {p.titulo}
                 </p>
                 <p className="mt-1 text-sm text-maresia">{p.subtitulo}</p>
               </div>
-              <span className="shrink-0 font-mono text-xs tabular-nums text-maresia">
+              <span className="shrink-0 font-mono text-xs tabular-nums text-idv-amarelo">
                 {p.ano}
               </span>
             </div>

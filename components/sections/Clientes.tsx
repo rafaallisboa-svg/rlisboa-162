@@ -1,5 +1,6 @@
 import { publicados } from "@/lib/placeholder";
 import clientesData from "@/content/clientes.json";
+import { Cruz } from "@/components/ui/IdvElementos";
 
 /**
  * Pavimento 04 — marquee infinito. Cartões brancos com contorno preto e os
@@ -14,10 +15,11 @@ export function Clientes() {
   return (
     <section
       aria-label="Clientes"
-      className="border-t border-white/10 bg-concreto py-20"
+      className="relative border-t border-white/10 bg-concreto py-20"
     >
+      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
       <p className="px-6 font-mono text-xs uppercase tracking-[0.12em] text-maresia md:px-[clamp(1.5rem,5vw,6rem)]">
-        Clientes
+        Clientes<span className="text-idv-laranja">.</span>
       </p>
 
       <div className="mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

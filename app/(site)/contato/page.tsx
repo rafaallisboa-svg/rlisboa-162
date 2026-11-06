@@ -65,21 +65,18 @@ export default function ContatoPage() {
       <div className="relative mx-auto mt-20 flex h-[22rem] w-[22rem] items-center justify-center md:h-[30rem] md:w-[30rem]">
         <SeloRegua tinta="var(--color-idv-off)" numero={false} className="absolute inset-0 h-full w-full" />
         <div className="relative flex flex-col items-center gap-6 text-center">
-          <div className="flex flex-col items-center gap-3">
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-maresia">
-              Quais são seus desafios?
-            </p>
-            <p className="font-display text-4xl uppercase leading-[0.95] tracking-tight text-cal md:text-5xl">
-              Chame
-              <br />o Rafa<span className="text-idv-laranja">.</span>
-            </p>
-          </div>
+          <p className="max-w-[11rem] text-2xl leading-tight text-cal md:max-w-[13rem] md:text-3xl">
+            Quais são seus desafios?
+          </p>
           <a
             href="/orcamento"
             className="inline-flex items-center justify-center rounded-full bg-sinal px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-concreto transition-transform hover:-translate-y-0.5"
           >
             Solicitar orçamento
           </a>
+          <p className="-mt-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-maresia">
+            Chame o Rafa<span className="text-idv-laranja">.</span>
+          </p>
         </div>
       </div>
     </div>

@@ -173,6 +173,51 @@ const SERVICOS = [
   },
 ] as const;
 
+
+const TONS = {
+  off: { card: "bg-idv-off text-idv-preto", pill: "border-idv-preto/30 text-idv-preto", mudo: "text-idv-preto/55" },
+  carbono: { card: "bg-idv-carbono text-idv-off", pill: "border-idv-off/25 text-idv-off", mudo: "text-idv-cinza" },
+  amarelo: { card: "bg-idv-amarelo text-idv-preto", pill: "border-idv-preto/40 text-idv-preto", mudo: "text-idv-preto/60" },
+  pedra: { card: "bg-idv-pedra text-idv-preto", pill: "border-idv-preto/30 text-idv-preto", mudo: "text-idv-preto/60" },
+} as const;
+
+function CartaoLista({
+  rotulo,
+  itens,
+  tom,
+  className = "",
+}: {
+  rotulo?: string;
+  itens: readonly string[];
+  tom: keyof typeof TONS;
+  className?: string;
+}) {
+  const c = TONS[tom];
+  return (
+    <div className={`rounded-[1.75rem] p-6 md:p-7 ${c.card} ${className}`}>
+      <div className="flex items-start justify-between gap-4">
+        {rotulo ? (
+          <span className={`rounded-full border px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] ${c.pill}`}>
+            {rotulo}
+          </span>
+        ) : (
+          <span />
+        )}
+        <span className="font-display text-4xl leading-none tabular-nums md:text-5xl">
+          {String(itens.length).padStart(2, "0")}
+        </span>
+      </div>
+      <ul className="mt-6 flex flex-wrap gap-2">
+        {itens.map((item) => (
+          <li key={item} className={`rounded-full border px-4 py-2 text-xs md:text-sm ${c.pill}`}>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function ServicosPage() {
   const [aberto, setAberto] = useState<number | null>(null);
   const [destaque, setDestaque] = useState(0);
@@ -257,66 +302,51 @@ export default function ServicosPage() {
                 }}
               >
                 <div style={{ minHeight: 0, overflow: "hidden" }}>
-                  <div className="grid gap-6 pb-10 pt-2 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_auto] md:items-start md:gap-10">
-                    <p className="max-w-xs text-sm text-idv-off/80">
-                      {s.descricao}
-                    </p>
+                  <div className="grid gap-3 pb-8 pt-2 md:grid-cols-12">
+                    <div className="flex flex-col gap-3 md:col-span-4">
+                      <div className="flex flex-1 flex-col justify-between gap-10 rounded-[1.75rem] bg-idv-off p-6 text-idv-preto md:p-7">
+                        <span className="font-display text-5xl leading-none tabular-nums md:text-6xl">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <p className="text-lg leading-snug md:text-xl">{s.descricao}</p>
+                      </div>
 
-                    <div>
-                      {"grupos" in s ? (
-                        <div className="flex flex-col gap-6">
-                          {s.grupos.map((grupo) => (
-                            <div key={grupo.nome}>
-                              <p className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo">
-                                {grupo.nome}
-                              </p>
-                              <ul className="mt-3 flex flex-wrap gap-2">
-                                {grupo.incluido.map((item) => (
-                                  <li
-                                    key={item}
-                                    className="rounded-full border border-idv-off/30 px-4 py-2 text-xs text-idv-off"
-                                  >
-                                    {item}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <>
-                          {rotulo && (
-                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
-                              {rotulo}
-                            </p>
-                          )}
-                          <ul className={`flex flex-wrap gap-2 ${rotulo ? "mt-4" : ""}`}>
-                            {s.incluido.map((item) => (
-                              <li
-                                key={item}
-                                className="rounded-full border border-idv-off/30 px-4 py-2 text-xs text-idv-off"
-                              >
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      )}
-                    </div>
-
-                    <div className="flex flex-col items-start gap-4 md:items-end">
-                      <div className="md:text-right">
-                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
+                      <div className="rounded-[1.75rem] bg-idv-pedra p-6 text-idv-preto md:p-7">
+                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
                           Investimento
                         </p>
-                        <p className="mt-1 text-sm text-idv-off">Sob consulta</p>
+                        <p className="mt-1 font-display text-2xl uppercase leading-none tracking-tight md:text-3xl">
+                          Sob consulta
+                        </p>
+                        <a
+                          href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
+                          className="mt-6 inline-flex items-center gap-3 rounded-full bg-idv-preto py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-off transition-transform hover:-translate-y-0.5"
+                        >
+                          Solicitar orçamento
+                          <span
+                            aria-hidden="true"
+                            className="flex h-8 w-8 items-center justify-center rounded-full bg-idv-amarelo text-base text-idv-preto"
+                          >
+                            ↗
+                          </span>
+                        </a>
                       </div>
-                      <a
-                        href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
-                        className="inline-flex items-center justify-center rounded-full bg-idv-amarelo px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
-                      >
-                        Solicitar orçamento
-                      </a>
+                    </div>
+
+                    <div className="flex flex-col gap-3 md:col-span-8">
+                      {"grupos" in s ? (
+                        s.grupos.map((grupo, gi) => (
+                          <CartaoLista
+                            key={grupo.nome}
+                            rotulo={grupo.nome}
+                            itens={grupo.incluido}
+                            tom={gi === 0 ? "carbono" : "amarelo"}
+                            className="flex-1"
+                          />
+                        ))
+                      ) : (
+                        <CartaoLista rotulo={rotulo || undefined} itens={s.incluido} tom="amarelo" className="flex-1" />
+                      )}
                     </div>
                   </div>
                 </div>

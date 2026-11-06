@@ -187,6 +187,12 @@ const TONS = {
     pill: "border-idv-preto/30 text-idv-preto",
     num: "text-idv-preto/50",
   },
+  contorno: {
+    card: "border-2 border-idv-preto text-idv-preto",
+    rotulo: "bg-idv-preto text-idv-amarelo",
+    pill: "border-idv-preto/60 text-idv-preto",
+    num: "text-idv-preto/50",
+  },
   preto: {
     card: "bg-idv-preto text-idv-off",
     rotulo: "bg-idv-amarelo text-idv-preto",
@@ -346,7 +352,7 @@ export default function ServicosPage() {
                             key={grupo.nome}
                             rotulo={grupo.nome}
                             itens={grupo.incluido}
-                            tom={gi % 2 === 0 ? "off" : "preto"}
+                            tom={gi % 2 === 0 ? (i % 2 === 0 ? "off" : "contorno") : "preto"}
                             className={`flex-1 ${
                               gi % 2 === 0
                                 ? "rounded-[0.75rem] rounded-tl-[3rem]"
@@ -358,7 +364,7 @@ export default function ServicosPage() {
                         <CartaoLista
                           rotulo={rotulo || undefined}
                           itens={s.incluido}
-                          tom="off"
+                          tom="contorno"
                           className="flex-1 rounded-[0.75rem] rounded-tl-[3rem]"
                         />
                       )}

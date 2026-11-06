@@ -68,15 +68,15 @@ export default function ContatoPage() {
           <p className="max-w-[11rem] text-2xl leading-tight text-cal md:max-w-[13rem] md:text-3xl">
             Quais são seus desafios?
           </p>
+          <p className="-mb-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-maresia">
+            Chama o Rafa<span className="text-idv-laranja">.</span>
+          </p>
           <a
             href="/orcamento"
             className="inline-flex items-center justify-center rounded-full bg-sinal px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-concreto transition-transform hover:-translate-y-0.5"
           >
             Solicitar orçamento
           </a>
-          <p className="-mt-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-maresia">
-            Chama o Rafa<span className="text-idv-laranja">.</span>
-          </p>
         </div>
       </div>
     </div>

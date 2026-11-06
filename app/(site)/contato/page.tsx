@@ -47,13 +47,13 @@ export default function ContatoPage() {
             Conte a ideia e o prazo — respondo pelo canal que for melhor pra
             você.
           </p>
-
-          <div className="mt-12 grid gap-3 sm:grid-cols-2">
-            {canais.map((c) => (
-              <ChannelRow key={c.label} label={c.label} valor={c.valor} href={c.href} compacto />
-            ))}
-          </div>
         </div>
+      </div>
+
+      <div className="mt-16 grid gap-x-12 border-t border-white/10 sm:grid-cols-2">
+        {canais.map((c) => (
+          <ChannelRow key={c.label} label={c.label} valor={c.valor} href={c.href} />
+        ))}
       </div>
 
       <div className="mt-20 flex flex-col items-center gap-6 text-center">

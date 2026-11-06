@@ -7,8 +7,6 @@ type Props = {
   label: string;
   valor: string;
   href: string;
-  /** Cartão estático (rótulo em cima, valor embaixo), para grades de 2 colunas. */
-  compacto?: boolean;
 };
 
 /**
@@ -16,14 +14,13 @@ type Props = {
  * velocidade — batem nas bordas da linha e batem uma na outra (colisão
  * elástica simples, estilo DVD screensaver / pong). Para no hover.
  */
-export function ChannelRow({ label, valor, href, compacto = false }: Props) {
+export function ChannelRow({ label, valor, href }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
   const valorRef = useRef<HTMLSpanElement>(null);
   const pausedRef = useRef(false);
 
   useEffect(() => {
-    if (compacto) return;
     const track = trackRef.current;
     const labelEl = labelRef.current;
     const valorEl = valorRef.current;
@@ -110,33 +107,9 @@ export function ChannelRow({ label, valor, href, compacto = false }: Props) {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
     };
-  }, [compacto]);
+  }, []);
 
   const externo = href.startsWith("http");
-
-  if (compacto) {
-    return (
-      <Link
-        href={href}
-        target={externo ? "_blank" : undefined}
-        rel={externo ? "noopener noreferrer" : undefined}
-        className="group flex min-h-36 flex-col justify-between gap-6 border border-idv-grafite p-5 transition-colors hover:border-idv-amarelo hover:bg-idv-amarelo hover:text-idv-preto md:p-6"
-      >
-        <span className="flex items-start justify-between gap-3">
-          <span className="font-display text-2xl uppercase tracking-tight md:text-3xl">{label}</span>
-          <span
-            aria-hidden="true"
-            className="font-mono text-xl text-idv-cinza transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-idv-preto"
-          >
-            ↗
-          </span>
-        </span>
-        <span className="break-all font-mono text-sm text-idv-cinza transition-colors group-hover:text-idv-preto">
-          {valor}
-        </span>
-      </Link>
-    );
-  }
 
   return (
     <Link

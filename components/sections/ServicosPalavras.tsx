@@ -5,16 +5,23 @@ import { useEffect, useRef } from "react";
 import { NOMES_SERVICOS, rotuloServico, slugServico } from "@/lib/servicos";
 import { Cruz, Sticker162 } from "@/components/ui/IdvElementos";
 
-// Cada palavra tem a sua cor sobre o amarelo; a que está no centro da tela acende em laranja.
-const CORES = [
-  "text-idv-preto",
-  "text-idv-off",
-  "text-idv-grafite",
-  "text-idv-preto",
-  "text-idv-off",
-  "text-idv-grafite",
-  "text-idv-preto",
+// O fundo troca de cor enquanto as palavras passam. Em cada fundo, as palavras ficam em
+// cinzas (par/ímpar) e só a que está no centro da tela acende, com um ponto laranja no fim.
+const TEMAS = [
+  { bg: "#ffc300", par: "#3a3a38", impar: "#85857f", on: "#0e0e0d" },
+  { bg: "#0e0e0d", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
+  { bg: "#f1f0eb", par: "#c9c8c2", impar: "#85857f", on: "#0e0e0d" },
+  { bg: "#ffc300", par: "#3a3a38", impar: "#85857f", on: "#0e0e0d" },
 ];
+const temaDaPalavra = (i: number) => Math.min(TEMAS.length - 1, Math.floor(i / 2));
+
+function aplicarTema(el: HTMLElement, i: number) {
+  const tema = TEMAS[temaDaPalavra(Math.max(0, i))];
+  el.style.setProperty("--sp-bg", tema.bg);
+  el.style.setProperty("--sp-par", tema.par);
+  el.style.setProperty("--sp-impar", tema.impar);
+  el.style.setProperty("--sp-on", tema.on);
+}
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 
@@ -77,6 +84,7 @@ export function ServicosPalavras() {
       if (dentro !== ativa) {
         ativa = dentro;
         links.forEach((link, i) => (link.dataset.ativa = String(i === dentro)));
+        if (dentro >= 0) aplicarTema(secao, dentro);
       }
     };
     const aoRolar = () => {
@@ -103,10 +111,16 @@ export function ServicosPalavras() {
     <section
       ref={secaoRef}
       aria-label="Serviços"
-      className="relative overflow-hidden bg-idv-amarelo pb-20 pt-28 md:pb-32 md:pt-40"
+      className="relative overflow-hidden bg-[var(--sp-bg)] pb-20 pt-28 transition-colors duration-700 md:pb-32 md:pt-40"
+      style={{
+        "--sp-bg": TEMAS[0].bg,
+        "--sp-par": TEMAS[0].par,
+        "--sp-impar": TEMAS[0].impar,
+        "--sp-on": TEMAS[0].on,
+      } as React.CSSProperties}
     >
-      <Cruz className="absolute left-6 top-24 h-5 w-5 text-idv-preto/50 md:left-[clamp(1.5rem,5vw,6rem)]" />
-      <Cruz className="absolute right-6 top-24 hidden h-5 w-5 text-idv-preto/50 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
+      <Cruz className="absolute left-6 top-24 h-5 w-5 text-[var(--sp-impar)] md:left-[clamp(1.5rem,5vw,6rem)]" />
+      <Cruz className="absolute right-6 top-24 hidden h-5 w-5 text-[var(--sp-impar)] md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
       <Sticker162 className="absolute bottom-6 right-6 h-20 w-auto md:bottom-10 md:right-[clamp(1.5rem,5vw,6rem)] md:h-28" />
       <div
         ref={colunaRef}
@@ -119,12 +133,13 @@ export function ServicosPalavras() {
             ref={(el) => {
               linksRef.current[i] = el;
             }}
-            className={`block w-max whitespace-nowrap font-display uppercase leading-[0.9] tracking-tight transition-colors duration-300 data-[ativa=true]:text-idv-laranja [@media(hover:hover)]:hover:text-idv-laranja ${
-              CORES[i % CORES.length]
-            } ${i % 2 === 0 ? "self-start" : "self-end"}`}
+            className={`group block w-max whitespace-nowrap font-display uppercase leading-[0.9] tracking-tight transition-colors duration-500 data-[ativa=true]:text-[var(--sp-on)] [@media(hover:hover)]:hover:text-[var(--sp-on)] ${
+              i % 2 === 0 ? "text-[var(--sp-par)] self-start" : "text-[var(--sp-impar)] self-end"
+            }`}
             style={{ fontSize: "min(14vw, 9rem)", willChange: "transform" }}
           >
             {rotuloServico(nome)}
+            <span aria-hidden="true" className="text-idv-laranja opacity-0 transition-opacity duration-500 group-data-[ativa=true]:opacity-100">.</span>
           </Link>
         ))}
       </div>

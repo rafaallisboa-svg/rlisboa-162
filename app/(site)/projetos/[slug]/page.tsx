@@ -1,10 +1,13 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProjeto, getProjetos } from "@/lib/projetos";
 import { Galeria } from "@/components/ui/Galeria";
 import { CoberturaCase } from "@/components/ui/CoberturaCase";
 import { EmbedAutoAltura } from "@/components/ui/EmbedAutoAltura";
-import { real } from "@/lib/placeholder";
+import { real, isTodo, isPlaceholderImg } from "@/lib/placeholder";
+import { SEO, urlAbsoluta, urlDoSite } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 function VisitarSite({ href }: { href: string }) {
   return (
@@ -29,6 +32,38 @@ export function generateStaticParams() {
   return getProjetos().map((p) => ({ slug: p.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const projeto = await getProjeto(slug);
+  if (!projeto) return {};
+  const f = projeto.frontmatter;
+  const titulo = isTodo(f.titulo) ? "Projeto" : f.titulo;
+  const sub = isTodo(f.subtitulo) ? "" : f.subtitulo;
+  const resultado = f.resultado && !isTodo(f.resultado) ? ` ${f.resultado}` : "";
+  const descricao =
+    `${titulo}${sub ? `: ${sub}` : ""}. Case do estúdio R. Lisboa — Estúdio 162, em Itapema, SC.${resultado}`.slice(0, 200);
+  const capa = f.thumb ?? f.capa;
+  const imagem = capa && !isPlaceholderImg(capa) ? capa : SEO.imagemOg;
+  return {
+    title: sub ? `${titulo}: ${sub}` : titulo,
+    description: descricao,
+    alternates: { canonical: `/projetos/${slug}` },
+    openGraph: {
+      type: "article",
+      url: `/projetos/${slug}`,
+      title: `${titulo} | ${SEO.tituloPadrao.split(" | ")[0]}`,
+      description: descricao,
+      images: [{ url: imagem, alt: `${titulo}: ${sub}` }],
+    },
+    twitter: { card: "summary_large_image", title: titulo, description: descricao, images: [imagem] },
+    ...(f.pendente ? { robots: { index: false, follow: false } } : {}),
+  };
+}
+
 export default async function ProjetoPage({
   params,
 }: {
@@ -46,8 +81,35 @@ export default async function ProjetoPage({
       ? publicados[(indice + 1) % publicados.length]
       : null;
 
+  const tituloSeo = isTodo(frontmatter.titulo) ? "Projeto" : frontmatter.titulo;
+  const capaSeo = frontmatter.thumb ?? frontmatter.capa;
+  const dadosSeo = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        name: tituloSeo,
+        description: isTodo(frontmatter.subtitulo) ? undefined : frontmatter.subtitulo,
+        url: urlAbsoluta(`/projetos/${slug}`),
+        image: capaSeo && !isPlaceholderImg(capaSeo) ? urlAbsoluta(capaSeo) : undefined,
+        dateCreated: String(frontmatter.ano),
+        creator: { "@id": `${urlDoSite}/#estudio` },
+        inLanguage: "pt-BR",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Início", item: urlDoSite },
+          { "@type": "ListItem", position: 2, name: "Projetos", item: urlAbsoluta("/projetos") },
+          { "@type": "ListItem", position: 3, name: tituloSeo, item: urlAbsoluta(`/projetos/${slug}`) },
+        ],
+      },
+    ],
+  };
+
   return (
     <article>
+      <JsonLd dados={dadosSeo} />
       <Link
         href="/#projetos"
         aria-label="Voltar para projetos"

@@ -4,6 +4,8 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { site } from "@/site.config";
+import { SEO, grafoDoEstudio, robotsDoSite, urlDoSite } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -22,8 +24,32 @@ const unbounded = Unbounded({
 });
 
 export const metadata: Metadata = {
-  title: site.nomeCompleto,
-  description: site.descricao.startsWith("[[") ? undefined : site.descricao,
+  metadataBase: new URL(urlDoSite),
+  title: { default: SEO.tituloPadrao, template: `%s | ${site.nomeCompleto}` },
+  description: SEO.descricao,
+  applicationName: site.nomeCompleto,
+  authors: [{ name: site.titular.nome, url: `${urlDoSite}/sobre` }],
+  creator: site.titular.nome,
+  publisher: site.nomeCompleto,
+  keywords: [...SEO.palavrasChave],
+  category: "design",
+  alternates: { canonical: "/" },
+  robots: robotsDoSite,
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/",
+    siteName: site.nomeCompleto,
+    title: SEO.tituloPadrao,
+    description: SEO.descricao,
+    images: [{ url: SEO.imagemOg, width: 1200, height: 630, alt: SEO.imagemOgAlt }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SEO.tituloPadrao,
+    description: SEO.descricao,
+    images: [SEO.imagemOg],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -42,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <JsonLd dados={grafoDoEstudio()} />
         <SmoothScroll>
           <Header />
           <main>{children}</main>

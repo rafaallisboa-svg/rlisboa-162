@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import { publicados } from "@/lib/placeholder";
 import { site } from "@/site.config";
 import { ChannelRow } from "@/components/ui/ChannelRow";
-import { Cruz, SeloRegua } from "@/components/ui/IdvElementos";
+import { Cruz, SeloRegua, StickerRafa } from "@/components/ui/IdvElementos";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
+
+export const metadata: Metadata = {
+  title: "Contato: fale com o estúdio de design em Itapema, SC",
+  description:
+    "Conta a ideia e o prazo do seu projeto de identidade visual, site, apresentação ou motion. Respondo por e-mail, WhatsApp, Instagram ou LinkedIn.",
+  alternates: { canonical: "/contato" },
+  openGraph: { url: "/contato" },
+};
 
 export default function ContatoPage() {
   const redes = publicados(site.redes).filter((r) => r.label !== "Behance");
@@ -28,6 +37,7 @@ export default function ContatoPage() {
         {/* Retrato de perfil, à direita. Some na base, no mesmo fundo do site. */}
         <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:mx-0 lg:max-w-none lg:-mt-6">
           <Cruz className="absolute right-0 top-4 h-5 w-5 text-idv-grafite" />
+          <StickerRafa className="absolute bottom-[14%] left-[2%] z-10 h-24 w-auto md:h-32" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/contato/perfil.webp"

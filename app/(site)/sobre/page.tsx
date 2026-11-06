@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
@@ -33,6 +34,14 @@ const PARAGRAFOS: Segmento[][] = [
     },
   ],
 ];
+
+export const metadata: Metadata = {
+  title: "Sobre o estúdio e o designer Rafael Lisboa",
+  description:
+    "Rafael Lisboa é designer e diretor de criação, com mais de 15 anos de experiência em identidade visual, sites, apresentações e motion para marcas e eventos, em Itapema, SC.",
+  alternates: { canonical: "/sobre" },
+  openGraph: { url: "/sobre" },
+};
 
 export default function SobrePage() {
   return (

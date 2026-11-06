@@ -274,7 +274,7 @@
   }
 }
 
-/* Sticker do Rafa: "Rafa." vira "R." uma vez, sem repetir. */
+/* Sticker do Rafa: "Rafa." vira "R." e volta, em ciclo de 10 s com o "R." parado por 5 s. */
 .rafa-escala,
 .rafa-afa,
 .rafa-ponto {
@@ -283,49 +283,61 @@
 
 .rafa-escala {
   transform: translate(18.6px, 189px) scale(0.8);
-  animation: rafa-escala 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s 1 both;
+  animation: rafa-escala 10s cubic-bezier(0.65, 0, 0.35, 1) 0.3s infinite;
 }
 
 .rafa-afa {
   transform: translateX(-440.4px);
-  animation: rafa-afa 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s 1 both;
+  animation: rafa-afa 10s cubic-bezier(0.65, 0, 0.35, 1) 0.3s infinite;
 }
 
 .rafa-ponto {
   transform: translateX(-428.2px);
-  animation: rafa-ponto 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s 1 both;
+  animation: rafa-ponto 10s cubic-bezier(0.65, 0, 0.35, 1) 0.3s infinite;
 }
 
 @keyframes rafa-escala {
   0%,
-  15% {
+  8% {
     transform: translate(18px, 150.75px) scale(0.29);
   }
-  75%,
-  100% {
+  28%,
+  78% {
     transform: translate(18.6px, 189px) scale(0.8);
+  }
+  98%,
+  100% {
+    transform: translate(18px, 150.75px) scale(0.29);
   }
 }
 
 @keyframes rafa-afa {
   0%,
-  15% {
+  8% {
     transform: translateX(0);
   }
-  75%,
-  100% {
+  28%,
+  78% {
     transform: translateX(-440.4px);
+  }
+  98%,
+  100% {
+    transform: translateX(0);
   }
 }
 
 @keyframes rafa-ponto {
   0%,
-  15% {
+  8% {
     transform: translateX(0);
   }
-  75%,
-  100% {
+  28%,
+  78% {
     transform: translateX(-428.2px);
+  }
+  98%,
+  100% {
+    transform: translateX(0);
   }
 }
 

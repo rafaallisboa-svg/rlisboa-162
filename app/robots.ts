@@ -5,6 +5,8 @@ import type { MetadataRoute } from "next";
  * bloqueado para buscadores. Trava de segurança contra indexação acidental
  * de preview ou de conteúdo com placeholder.
  */
+import { urlDoSite } from "@/lib/seo";
+
 export default function robots(): MetadataRoute.Robots {
   const live = process.env.NEXT_PUBLIC_SITE_LIVE === "true";
 
@@ -13,7 +15,8 @@ export default function robots(): MetadataRoute.Robots {
   }
 
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/propostas/"] },
+    sitemap: `${urlDoSite}/sitemap.xml`,
+    host: urlDoSite,
   };
 }

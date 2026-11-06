@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import { OrcamentoForm } from "@/components/ui/OrcamentoForm";
 import { StickerRafa } from "@/components/ui/IdvElementos";
+
+export const metadata: Metadata = {
+  title: "Solicitar orçamento de design",
+  description: "Conta sobre o projeto e receba o orçamento por e-mail.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: "/orcamento" },
+};
 
 export default function OrcamentoPage() {
   return (

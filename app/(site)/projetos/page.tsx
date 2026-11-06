@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getProjetos } from "@/lib/projetos";
 import { isTodo, todoClass } from "@/lib/placeholder";
+
+export const metadata: Metadata = {
+  title: "Projetos: cases de identidade visual, sites e motion",
+  description:
+    "Cases do estúdio: identidade visual, sites, eventos e motion graphics para marcas como Security Leaders, Inovativos e Priscila Andrade.",
+  alternates: { canonical: "/projetos" },
+  openGraph: { url: "/projetos" },
+};
 
 export default function ProjetosPage() {
   const projetos = getProjetos();

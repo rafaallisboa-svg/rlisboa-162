@@ -69,7 +69,7 @@ export const site = {
   // ── Domínio e SEO ───────────────────────────────────────────
   url: "https://www.rlisboadesign.com.br",
   descricao:
-    "[[ TODO: 155 caracteres. Incluir 'identidade visual', 'construtoras' e 'Itapema'. ]]",
+    "Estúdio de design em Itapema, SC: identidade visual, sites, apresentações, redes sociais e motion graphics para marcas e eventos, com atendimento em todo o Brasil.",
   ogImagem: "/api/ph?w=1200&h=630&label=Open Graph",
 
   // ── Mídia ───────────────────────────────────────────────────

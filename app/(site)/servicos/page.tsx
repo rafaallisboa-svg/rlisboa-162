@@ -256,7 +256,7 @@ export default function ServicosPage() {
     <div className="relative min-h-screen bg-idv-amarelo px-6 pb-24 pt-32 text-idv-preto md:px-[clamp(1.5rem,5vw,6rem)]">
       <Cruz className="absolute right-6 top-28 hidden h-5 w-5 text-idv-preto/40 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
       <div className="flex items-start justify-between gap-6">
-        <div>
+        <div className="min-w-0">
           <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
             Serviços
           </p>
@@ -264,7 +264,7 @@ export default function ServicosPage() {
             <HeadlineRotator palavras={PALAVRAS_TITULO} />
           </h1>
         </div>
-        <StickerR className="mt-2 h-24 w-auto shrink-0 md:h-36" />
+        <StickerR className="mt-2 h-14 w-auto shrink-0 sm:h-24 md:h-36" />
       </div>
 
       <div className="mt-12 border-t border-idv-preto/25">

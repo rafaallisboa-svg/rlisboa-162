@@ -91,3 +91,39 @@ export function Sticker162({
     </svg>
   );
 }
+
+/** Selo circular: o texto gira devagar em volta do 162. */
+export function Selo({ className }: { className?: string }) {
+  const r = 84;
+  const circ = 2 * Math.PI * r;
+  const anel = `M0,${-r} A${r},${r} 0 1 1 0,${r} A${r},${r} 0 1 1 0,${-r}`;
+  return (
+    <svg
+      role="img"
+      aria-label="Estúdio 162, R. Lisboa"
+      viewBox="-110 -110 220 220"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle r="104" fill="none" stroke="var(--color-idv-off)" strokeWidth="2.5" />
+      <circle r="66" fill="none" stroke="var(--color-idv-off)" strokeWidth="1.5" />
+      <g className="selo-gira" style={{ transformOrigin: "0 0" }}>
+        <path id="selo-anel" d={anel} fill="none" />
+        <text
+          fontSize="12.5"
+          fontWeight="700"
+          fill="var(--color-idv-off)"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          <textPath href="#selo-anel" textLength={circ - 2} lengthAdjust="spacing">
+            ESTÚDIO 162 · R. LISBOA · ESTÚDIO 162 · R. LISBOA ·
+          </textPath>
+        </text>
+      </g>
+      <g transform="translate(-46.61 17.01) scale(0.2175)" fill="var(--color-idv-off)">
+        <path d={D162} />
+      </g>
+      <circle cx="50" cy="26" r="6" fill="var(--color-idv-laranja)" />
+    </svg>
+  );
+}

@@ -14,9 +14,12 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-concreto px-6 py-16 md:px-[clamp(1.5rem,5vw,6rem)]">
       <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr]">
         <div>
-          <p className="font-display text-2xl uppercase tracking-tight">
-            {site.nomeCompleto}
-          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/idv/assinatura-horizontal.svg"
+            alt={site.nomeCompleto}
+            className="h-7 w-auto md:h-9"
+          />
           <address className="mt-4 font-mono text-xs not-italic leading-relaxed tracking-wide text-maresia">
             CNPJ <span className="tabular-nums">{site.cadastro.cnpj}</span>
           </address>

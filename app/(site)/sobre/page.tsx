@@ -2,7 +2,7 @@ import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
-import { Cruz, Sticker162 } from "@/components/ui/IdvElementos";
+import { Cruz, Selo, Sticker162 } from "@/components/ui/IdvElementos";
 
 const PARAGRAFOS: Segmento[][] = [
   [
@@ -60,7 +60,7 @@ export default function SobrePage() {
           <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-32 md:px-16 lg:px-0">
             <div className="relative flex flex-col items-center border-b border-idv-grafite pb-24 text-center">
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
-                <span className="text-idv-amarelo">01</span> · Estúdio 162 — desde {site.anoFundacao}
+                Estúdio 162 — desde <span className="text-idv-amarelo">{site.anoFundacao}</span>
               </p>
               <h2 className="mt-6 max-w-2xl font-display uppercase leading-[0.95] text-h1 text-idv-off">
                 <HeadlineRotator palavras={["Design Gráfico", "Web Design", "Motion Design"]} />
@@ -73,18 +73,8 @@ export default function SobrePage() {
               className="mt-24 flex flex-col gap-8 text-[clamp(1.375rem,2.5vw,2.375rem)] font-medium leading-[1.25] tracking-tight text-idv-off"
             />
 
-            <div className="mt-28 flex flex-col items-start justify-between gap-10 border-t border-idv-grafite pt-12 md:flex-row md:items-end">
-              <div>
-                <p className="mb-6 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
-                  <span className="text-idv-amarelo">02</span> · Assinatura
-                </p>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/idv/assinatura-horizontal.svg"
-                  alt="R. Lisboa — Estúdio 162"
-                  className="h-8 w-auto md:h-10"
-                />
-              </div>
+            <div className="mt-28 flex flex-col items-center justify-between gap-10 border-t border-idv-grafite pt-14 md:flex-row">
+              <Selo className="h-40 w-40 md:h-48 md:w-48" />
               <div className="flex items-end gap-8">
                 <a
                   href="/orcamento"

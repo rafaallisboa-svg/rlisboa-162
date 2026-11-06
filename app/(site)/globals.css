@@ -199,3 +199,20 @@
   }
 }
 
+
+/* Selo da identidade: o anel de texto gira devagar. */
+@keyframes selo-gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.selo-gira {
+  animation: selo-gira 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selo-gira {
+    animation: none;
+  }
+}

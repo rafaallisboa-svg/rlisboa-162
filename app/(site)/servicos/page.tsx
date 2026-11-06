@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { slugServico } from "@/lib/servicos";
+import { Cruz, StickerR } from "@/components/ui/IdvElementos";
 
 const SERVICOS = [
   {
@@ -186,20 +187,26 @@ export default function ServicosPage() {
   }, []);
 
   return (
-    <div className="px-6 pb-20 pt-32 md:px-[clamp(1.5rem,5vw,6rem)]">
-      <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-        Serviços
-      </p>
-      <h1 className="mt-2 font-display uppercase leading-none text-h1">
-        O que eu faço
-      </h1>
+    <div className="relative min-h-screen bg-idv-amarelo px-6 pb-24 pt-32 text-idv-preto md:px-[clamp(1.5rem,5vw,6rem)]">
+      <Cruz className="absolute right-6 top-28 hidden h-5 w-5 text-idv-preto/40 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
+      <div className="flex items-start justify-between gap-6">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
+            Serviços
+          </p>
+          <h1 className="mt-2 font-display uppercase leading-none text-h1 text-idv-preto">
+            O que eu faço
+          </h1>
+        </div>
+        <StickerR className="mt-2 h-24 w-auto shrink-0 md:h-36" />
+      </div>
 
-      <div className="mt-12 border-t border-white/10">
+      <div className="mt-12 border-t border-idv-preto/25">
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           return (
-            <div key={s.nome} className="border-b border-white/10">
+            <div key={s.nome} className="border-b border-idv-preto/25">
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
@@ -208,7 +215,7 @@ export default function ServicosPage() {
               >
                 <span
                   className={`font-display text-xl uppercase tracking-tight transition-colors md:text-2xl ${
-                    isOpen ? "text-sinal" : "text-cal"
+                    isOpen ? "text-idv-preto" : "text-idv-preto/80"
                   }`}
                 >
                   {s.nome}
@@ -224,7 +231,7 @@ export default function ServicosPage() {
                         }
                       : undefined
                   }
-                  className={`flex h-7 w-7 items-center justify-center font-mono text-xl leading-none text-maresia transition-transform duration-300 ${
+                  className={`flex h-7 w-7 items-center justify-center font-mono text-xl leading-none text-idv-preto transition-transform duration-300 ${
                     isOpen ? "rotate-45" : ""
                   }`}
                 >
@@ -242,7 +249,7 @@ export default function ServicosPage() {
               >
                 <div style={{ minHeight: 0, overflow: "hidden" }}>
                   <div className="grid gap-6 pb-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_auto] md:items-start md:gap-10">
-                    <p className="max-w-xs text-sm text-maresia">
+                    <p className="max-w-xs text-sm text-idv-preto/75">
                       {s.descricao}
                     </p>
 
@@ -251,14 +258,14 @@ export default function ServicosPage() {
                         <div className="flex flex-col gap-6">
                           {s.grupos.map((grupo) => (
                             <div key={grupo.nome}>
-                              <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
+                              <p className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto">
                                 {grupo.nome}
                               </p>
                               <ul className="mt-3 flex flex-wrap gap-2">
                                 {grupo.incluido.map((item) => (
                                   <li
                                     key={item}
-                                    className="rounded-full border border-white/15 px-4 py-2 text-xs text-cal"
+                                    className="rounded-full border border-idv-preto/35 px-4 py-2 text-xs text-idv-preto"
                                   >
                                     {item}
                                   </li>
@@ -270,7 +277,7 @@ export default function ServicosPage() {
                       ) : (
                         <>
                           {rotulo && (
-                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
                               {rotulo}
                             </p>
                           )}
@@ -278,7 +285,7 @@ export default function ServicosPage() {
                             {s.incluido.map((item) => (
                               <li
                                 key={item}
-                                className="rounded-full border border-white/15 px-4 py-2 text-xs text-cal"
+                                className="rounded-full border border-idv-preto/35 px-4 py-2 text-xs text-idv-preto"
                               >
                                 {item}
                               </li>
@@ -290,14 +297,14 @@ export default function ServicosPage() {
 
                     <div className="flex flex-col items-start gap-4 md:items-end">
                       <div className="md:text-right">
-                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
                           Investimento
                         </p>
-                        <p className="mt-1 text-sm text-cal">Sob consulta</p>
+                        <p className="mt-1 text-sm text-idv-preto">Sob consulta</p>
                       </div>
                       <a
                         href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
-                        className="inline-flex items-center justify-center rounded-full bg-sinal px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-concreto transition-transform hover:-translate-y-0.5"
+                        className="inline-flex items-center justify-center rounded-full bg-idv-preto px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo transition-transform hover:-translate-y-0.5"
                       >
                         Solicitar orçamento
                       </a>

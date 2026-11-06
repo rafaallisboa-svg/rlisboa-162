@@ -11,22 +11,22 @@ export function Footer() {
   const ano = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-concreto px-6 py-16 md:px-[clamp(1.5rem,5vw,6rem)]">
+    <footer className="border-t border-idv-preto/25 bg-idv-amarelo text-idv-preto px-6 py-16 md:px-[clamp(1.5rem,5vw,6rem)]">
       <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr]">
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/idv/assinatura-horizontal.svg"
+            src="/idv/assinatura-horizontal-preto.svg"
             alt={site.nomeCompleto}
             className="h-7 w-auto md:h-9"
           />
-          <address className="mt-4 font-mono text-xs not-italic leading-relaxed tracking-wide text-maresia">
+          <address className="mt-4 font-mono text-xs not-italic leading-relaxed tracking-wide text-idv-preto/70">
             CNPJ <span className="tabular-nums">{site.cadastro.cnpj}</span>
           </address>
         </div>
 
-        <div className="font-mono text-xs tracking-wide text-maresia">
-          <p className="mb-3 uppercase tracking-[0.12em] text-cal">Contato</p>
+        <div className="font-mono text-xs tracking-wide text-idv-preto/70">
+          <p className="mb-3 font-bold uppercase tracking-[0.12em] text-idv-preto">Contato</p>
           <p>
             <Campo value={site.contato.email} />
           </p>
@@ -35,8 +35,8 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="font-mono text-xs tracking-wide text-maresia">
-          <p className="mb-3 uppercase tracking-[0.12em] text-cal">Redes</p>
+        <div className="font-mono text-xs tracking-wide text-idv-preto/70">
+          <p className="mb-3 font-bold uppercase tracking-[0.12em] text-idv-preto">Redes</p>
           {redes.length === 0 && <span className={todoClass}>Pendente</span>}
           <div className="flex gap-3">
             {redes.map((r) =>
@@ -51,7 +51,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={r.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-maresia transition-colors hover:border-sinal hover:text-sinal"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-idv-preto/35 text-idv-preto transition-colors hover:bg-idv-preto hover:text-idv-amarelo"
                 >
                   <SocialIcon nome={r.label} className="h-4 w-4" />
                 </a>
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="mt-16 font-mono text-[0.7rem] tabular-nums text-maresia">
+      <p className="mt-16 font-mono text-[0.7rem] tabular-nums text-idv-preto/70">
         © {site.anoFundacao}–{ano} {site.nomeCompleto}
       </p>
     </footer>

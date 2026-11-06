@@ -127,3 +127,37 @@ export function Selo({ className }: { className?: string }) {
     </svg>
   );
 }
+
+const D_R = "M42.60-54L42.60-84.40L97.20-84.40Q107.20-84.40 112.80-89Q118.40-93.60 118.40-101.80L118.40-101.80Q118.40-110.20 112.80-114.70Q107.20-119.20 97.20-119.20L97.20-119.20L36.80-119.20L55.40-139L55.40 0L14 0L14-150L103-150Q120.20-150 133-143.90Q145.80-137.80 153-127.10Q160.20-116.40 160.20-101.80L160.20-101.80Q160.20-87.60 153-76.80Q145.80-66 133-60Q120.20-54 103-54L103-54L42.60-54ZM117.40 0L65-70.20L111.60-70.20L165.40 0L117.40 0Z";
+
+/** Sticker "R.", a placa amarela com o R e o ponto laranja. */
+export function StickerR({
+  className,
+  angulo = -6,
+  cor = "amarelo",
+}: {
+  className?: string;
+  angulo?: number;
+  cor?: "amarelo" | "off" | "preto";
+}) {
+  const placa =
+    cor === "off" ? "var(--color-idv-off)" : cor === "preto" ? "var(--color-idv-preto)" : "var(--color-idv-amarelo)";
+  const tinta = cor === "preto" ? "var(--color-idv-off)" : "var(--color-idv-preto)";
+  return (
+    <svg
+      role="img"
+      aria-label="R."
+      viewBox="-24 -30 278 318"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g transform={`rotate(${angulo} 115 129)`}>
+        <rect width="230" height="258" fill={placa} />
+        <g transform="translate(18.60 195.00) scale(0.8000)">
+          <path d={D_R} fill={tinta} />
+          <circle cx="204.00" cy="-21.00" r="23.00" fill="var(--color-idv-laranja)" />
+        </g>
+      </g>
+    </svg>
+  );
+}

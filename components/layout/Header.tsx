@@ -6,13 +6,14 @@ import { site } from "@/site.config";
 import { publicados } from "@/lib/placeholder";
 import { SocialIcon, IconeEmail, IconeWhatsApp } from "@/components/ui/SocialIcon";
 import { Logo } from "@/components/ui/Logo";
+import { IconeMenu, type NomeIconeMenu } from "@/components/ui/IconeMenu";
 
-const NAV = [
-  { label: "Projetos", href: "/#projetos" },
-  { label: "Sobre", href: "/sobre" },
-  { label: "Serviços", href: "/servicos" },
-  { label: "Contato", href: "/contato" },
-] as const;
+const NAV: readonly { label: string; href: string; icone: NomeIconeMenu }[] = [
+  { label: "Projetos", href: "/#projetos", icone: "projetos" },
+  { label: "Sobre", href: "/sobre", icone: "sobre" },
+  { label: "Serviços", href: "/servicos", icone: "servicos" },
+  { label: "Contato", href: "/contato", icone: "contato" },
+];
 
 export function Header() {
   const [aberto, setAberto] = useState(false);
@@ -45,8 +46,9 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="group relative font-mono text-xs uppercase tracking-[0.12em] text-cal"
+              className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-cal"
             >
+              <IconeMenu nome={item.icone} className="h-3 w-3 text-maresia transition-colors group-hover:text-idv-amarelo" />
               {item.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-sinal transition-[width] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
             </Link>
@@ -112,7 +114,8 @@ export function Header() {
               <span className="font-mono text-xs tabular-nums text-maresia">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="font-display text-4xl uppercase tracking-tight text-cal transition-colors group-hover:text-sinal">
+              <span className="flex items-center gap-3 font-display text-4xl uppercase tracking-tight text-cal transition-colors group-hover:text-idv-amarelo">
+                <IconeMenu nome={item.icone} className="h-6 w-6 text-maresia transition-colors group-hover:text-idv-amarelo" />
                 {item.label}
               </span>
             </Link>

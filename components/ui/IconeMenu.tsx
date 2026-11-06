@@ -3,6 +3,10 @@
  * uma cor só: currentColor).
  */
 const ICONES = {
+  home: {
+    k: 0.95,
+    d: "M32 4L2 30H10V58H54V30H62Z M26 58V40H38V58Z",
+  },
   projetos: {
     k: 0.88,
     d: "M4 4H60V60H4Z M10 10H26V54H10Z M32 10H54V30H32Z M32 36H54V54H32Z",

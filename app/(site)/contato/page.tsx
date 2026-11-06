@@ -1,7 +1,7 @@
 import { publicados } from "@/lib/placeholder";
 import { site } from "@/site.config";
 import { ChannelRow } from "@/components/ui/ChannelRow";
-import { SeloAdesivo } from "@/components/ui/IdvElementos";
+import { Cruz, SeloAdesivo } from "@/components/ui/IdvElementos";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 
 export default function ContatoPage() {
@@ -26,12 +26,18 @@ export default function ContatoPage() {
     <div className="mx-auto max-w-6xl px-6 pb-28 pt-40 md:px-16 lg:px-0">
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-16">
         {/* Retrato de perfil, à direita. Some na base, no mesmo fundo do site. */}
-        <div className="order-1 mx-auto w-full max-w-md lg:order-2 lg:mx-0 lg:max-w-none lg:-mt-6">
+        <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:mx-0 lg:max-w-none lg:-mt-6">
+          {/* Disco amarelo atrás do perfil, o gesto do key visual. */}
+          <div
+            aria-hidden="true"
+            className="absolute left-[6%] top-[4%] aspect-square w-[80%] rounded-full bg-idv-amarelo"
+          />
+          <Cruz className="absolute right-0 top-4 h-5 w-5 text-idv-grafite" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/contato/perfil.webp"
             alt="Rafael Lisboa, de perfil"
-            className="block w-full"
+            className="relative block w-full"
             style={{
               WebkitMaskImage: "linear-gradient(to bottom, #000 68%, transparent 100%)",
               maskImage: "linear-gradient(to bottom, #000 68%, transparent 100%)",
@@ -40,13 +46,15 @@ export default function ContatoPage() {
         </div>
 
         <div className="order-2 lg:order-1">
-          <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+          <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+            <span aria-hidden="true" className="inline-block h-2 w-2 bg-idv-amarelo" />
             Contato
           </p>
           <h1 className="mt-2 max-w-2xl font-display uppercase leading-none text-h1">
-            Vamos conversar sobre o seu projeto.
+            Vamos conversar sobre o seu projeto<span className="text-idv-laranja">.</span>
           </h1>
-          <p className="mt-6 max-w-sm text-body text-maresia">
+          <span aria-hidden="true" className="mt-6 block h-[3px] w-24 bg-idv-amarelo" />
+          <p className="mt-5 max-w-sm text-body text-maresia">
             Conte a ideia e o prazo — respondo pelo canal que for melhor pra
             você.
           </p>

@@ -9,6 +9,7 @@ import { Logo } from "@/components/ui/Logo";
 import { IconeMenu, type NomeIconeMenu } from "@/components/ui/IconeMenu";
 
 const NAV: readonly { label: string; href: string; icone: NomeIconeMenu }[] = [
+  { label: "Home", href: "/", icone: "home" },
   { label: "Projetos", href: "/#projetos", icone: "projetos" },
   { label: "Sobre", href: "/sobre", icone: "sobre" },
   { label: "Serviços", href: "/servicos", icone: "servicos" },

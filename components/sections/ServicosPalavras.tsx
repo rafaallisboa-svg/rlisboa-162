@@ -14,10 +14,9 @@ const TEMAS = [
   { bg: "#1c1c1b", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
   { bg: "#1c1c1b", par: "#3a3a38", impar: "#85857f", on: "#ffc300" },
 ];
-const temaDaPalavra = (i: number) => Math.min(TEMAS.length - 1, Math.floor(i / 2));
 
 function aplicarTema(el: HTMLElement, i: number) {
-  const tema = TEMAS[temaDaPalavra(Math.max(0, i))];
+  const tema = TEMAS[Math.min(TEMAS.length - 1, Math.max(0, i))];
   el.style.setProperty("--sp-bg", tema.bg);
   el.style.setProperty("--sp-par", tema.par);
   el.style.setProperty("--sp-impar", tema.impar);
@@ -46,6 +45,7 @@ export function ServicosPalavras() {
 
     let amplitude = 0;
     let ativa = -1;
+    let temaAtual = -1;
     let frame = 0;
 
     const ajustarFonte = () => {
@@ -66,6 +66,14 @@ export function ServicosPalavras() {
       const r = secao.getBoundingClientRect();
       const vh = window.innerHeight;
       const q = clamp((vh - r.top) / (vh + r.height));
+      // O fundo segue o quanto da seção já passou pelo topo da tela (não a palavra do meio),
+      // então no topo da página ele é sempre amarelo e termina escuro, em qualquer tamanho de tela.
+      const progresso = clamp(-r.top / Math.max(r.height - vh * 0.6, 1));
+      const idxTema = Math.min(TEMAS.length - 1, Math.floor(progresso * TEMAS.length));
+      if (idxTema !== temaAtual) {
+        temaAtual = idxTema;
+        aplicarTema(secao, idxTema);
+      }
       links.forEach((link, i) => {
         const dir = i % 2 === 0 ? 1 : -1;
         link.style.transform = `translate3d(${dir * (q - 0.5) * 2 * amplitude}px, 0, 0)`;
@@ -85,7 +93,6 @@ export function ServicosPalavras() {
       if (dentro !== ativa) {
         ativa = dentro;
         links.forEach((link, i) => (link.dataset.ativa = String(i === dentro)));
-        if (dentro >= 0) aplicarTema(secao, dentro);
       }
     };
     const aoRolar = () => {
@@ -112,7 +119,7 @@ export function ServicosPalavras() {
     <section
       ref={secaoRef}
       aria-label="Serviços"
-      className="relative overflow-hidden bg-[var(--sp-bg)] pb-40 pt-32 transition-colors duration-700 md:pb-32 md:pt-40"
+      className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[var(--sp-bg)] pb-36 pt-28 transition-colors duration-700 md:block md:min-h-0 md:pb-32 md:pt-40"
       style={{
         "--sp-bg": TEMAS[0].bg,
         "--sp-par": TEMAS[0].par,
@@ -125,7 +132,7 @@ export function ServicosPalavras() {
       <Sticker162 className="absolute bottom-5 right-6 h-[4.5rem] w-auto md:bottom-10 md:right-[clamp(1.5rem,5vw,6rem)] md:h-28" />
       <div
         ref={colunaRef}
-        className="mx-auto flex w-full flex-col gap-3 px-6 md:px-[clamp(1.5rem,5vw,6rem)]"
+        className="mx-auto flex w-full flex-1 flex-col justify-evenly gap-3 px-6 md:flex-none md:justify-start md:px-[clamp(1.5rem,5vw,6rem)]"
       >
         {NOMES_SERVICOS.map((nome, i) => (
           <Link

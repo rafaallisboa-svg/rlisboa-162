@@ -2,7 +2,8 @@ import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
-import { AneisIntersecao, Cruz, SeloAneis, SeloRegua } from "@/components/ui/IdvElementos";
+import { Cruz, SeloAneis, SeloRegua } from "@/components/ui/IdvElementos";
+import { AneisAnimados } from "@/components/motion/AneisAnimados";
 
 const PARAGRAFOS: Segmento[][] = [
   [
@@ -88,8 +89,8 @@ export default function SobrePage() {
             </div>
           </div>
 
-          {/* Dois anéis que se cruzam, cortados pela borda de baixo, logo acima do rodapé. */}
-          <AneisIntersecao className="mx-auto mt-16 block w-full max-w-3xl px-6 md:px-0" />
+          {/* Dois anéis que se cruzam e deslizam um no outro, cortados pela borda de baixo, acima do rodapé. */}
+          <AneisAnimados className="mt-16" />
 
           {/* O selo fica na extremidade da página, cortado ao meio. */}
           <SeloAneis className="absolute bottom-[10rem] right-0 h-36 w-36 translate-x-1/2 md:bottom-[12.75rem] md:h-56 md:w-56 lg:bottom-[10.75rem] lg:h-72 lg:w-72" />

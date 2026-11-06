@@ -210,40 +210,6 @@ export function SeloAneis({ className }: { className?: string }) {
   );
 }
 
-/**
- * Dois anéis (amarelo e off-white) que se cruzam; onde se sobrepõem fica laranja.
- * Mostra só a metade de cima, para ser cortado pela borda de baixo.
- */
-export function AneisIntersecao({ className }: { className?: string }) {
-  const rExt = 252;
-  const rInt = 126;
-  const cy = 252;
-  const anel = (cx: number) =>
-    `M${cx - rExt} ${cy}A${rExt} ${rExt} 0 1 0 ${cx + rExt} ${cy}A${rExt} ${rExt} 0 1 0 ${cx - rExt} ${cy}Z` +
-    `M${cx - rInt} ${cy}A${rInt} ${rInt} 0 1 0 ${cx + rInt} ${cy}A${rInt} ${rInt} 0 1 0 ${cx - rInt} ${cy}Z`;
-  const a = anel(252);
-  const b = anel(486);
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 738 262"
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <clipPath id="aneis-b">
-          <path d={b} clipRule="evenodd" />
-        </clipPath>
-      </defs>
-      <path d={a} fillRule="evenodd" fill="var(--color-idv-amarelo)" />
-      <path d={b} fillRule="evenodd" fill="var(--color-idv-off)" />
-      <g clipPath="url(#aneis-b)">
-        <path d={a} fillRule="evenodd" fill="var(--color-idv-laranja)" />
-      </g>
-    </svg>
-  );
-}
-
 /** Selo de régua: 60 marcas girando devagar em volta do 162, com a marca do topo em laranja. */
 export function SeloRegua({
   className,

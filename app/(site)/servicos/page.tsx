@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { slugServico } from "@/lib/servicos";
-import { Cruz, StickerR } from "@/components/ui/IdvElementos";
+import { Cruz, StickerRafa } from "@/components/ui/IdvElementos";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 import { IconeServico, type NomeIconeServico } from "@/components/ui/IconeServico";
@@ -277,7 +277,7 @@ export default function ServicosPage() {
             <HeadlineRotator palavras={PALAVRAS_TITULO} />
           </h1>
         </div>
-        <StickerR className="mt-2 h-14 w-auto shrink-0 sm:h-24 md:h-36" />
+        <StickerRafa className="mt-2 h-14 w-auto shrink-0 sm:h-24 md:h-36" />
       </div>
 
       <div className="mt-12 border-t border-idv-preto/25">

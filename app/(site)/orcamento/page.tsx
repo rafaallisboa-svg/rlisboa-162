@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { OrcamentoForm } from "@/components/ui/OrcamentoForm";
-import { StickerR } from "@/components/ui/IdvElementos";
+import { StickerRafa } from "@/components/ui/IdvElementos";
 
 export default function OrcamentoPage() {
   return (
@@ -25,7 +25,7 @@ export default function OrcamentoPage() {
             Conte o projeto
           </h1>
         </div>
-        <StickerR className="hidden h-28 w-auto shrink-0 md:block" />
+        <StickerRafa className="hidden h-28 w-auto shrink-0 md:block" />
       </div>
 
       <Suspense fallback={null}>

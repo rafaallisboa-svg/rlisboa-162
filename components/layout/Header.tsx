@@ -183,9 +183,9 @@ export function Header() {
                   rel="noopener noreferrer"
                   aria-label={r.label}
                   onClick={fechar}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-idv-preto/40 text-idv-preto transition-colors hover:border-idv-preto hover:bg-idv-preto hover:text-idv-amarelo"
+                  className="flex h-10 w-10 items-center justify-center text-idv-preto transition-transform duration-200 hover:scale-110"
                 >
-                  <SocialIcon nome={r.label} />
+                  <SocialIcon nome={r.label} className="h-9 w-9" />
                 </a>
               ))}
             </div>

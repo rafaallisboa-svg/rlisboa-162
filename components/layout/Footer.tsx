@@ -8,7 +8,10 @@ function Campo({ value }: { value: string }) {
 }
 
 export function Footer() {
-  const redes = publicados(site.redes);
+  const redes = [
+    ...publicados(site.redes),
+    { label: "WhatsApp", url: `https://wa.me/${site.contato.whatsapp}`, pendente: false },
+  ];
   const ano = new Date().getFullYear();
 
   return (
@@ -39,7 +42,7 @@ export function Footer() {
         <div className="font-mono text-xs tracking-wide text-idv-preto/70">
           <p className="mb-3 font-bold uppercase tracking-[0.12em] text-idv-preto">Redes</p>
           {redes.length === 0 && <span className={todoClass}>Pendente</span>}
-          <div className="flex gap-3">
+          <div className="flex items-center gap-5">
             {redes.map((r) =>
               isTodo(r.url) ? (
                 <span key={r.label} className={todoClass}>
@@ -52,9 +55,9 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={r.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-idv-preto/35 text-idv-preto transition-colors hover:bg-idv-preto hover:text-idv-amarelo"
+                  className="flex h-8 w-8 items-center justify-center text-idv-preto transition-transform duration-200 hover:-translate-y-0.5 hover:scale-110"
                 >
-                  <SocialIcon nome={r.label} className="h-5 w-5" />
+                  <SocialIcon nome={r.label} className="h-8 w-8" />
                 </a>
               ),
             )}

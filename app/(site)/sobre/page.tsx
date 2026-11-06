@@ -2,7 +2,7 @@ import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
-import { Cruz, Selo, Sticker162 } from "@/components/ui/IdvElementos";
+import { AnelMeio, Cruz } from "@/components/ui/IdvElementos";
 
 const PARAGRAFOS: Segmento[][] = [
   [
@@ -53,11 +53,11 @@ export default function SobrePage() {
       </RetratoFixo>
 
       <div className="relative z-10 -mt-[18svh]">
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <Cruz className="absolute left-6 top-32 h-5 w-5 text-idv-grafite md:left-16" />
           <Cruz className="absolute right-6 top-32 hidden h-5 w-5 text-idv-grafite md:right-16 md:block" />
 
-          <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-32 md:px-16 lg:px-0">
+          <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-32 md:px-16 lg:px-0">
             <div className="relative flex flex-col items-center border-b border-idv-grafite pb-24 text-center">
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
                 Estúdio 162 — desde <span className="text-idv-amarelo">{site.anoFundacao}</span>
@@ -73,19 +73,18 @@ export default function SobrePage() {
               className="mt-24 flex flex-col gap-8 text-[clamp(1.375rem,2.5vw,2.375rem)] font-medium leading-[1.25] tracking-tight text-idv-off"
             />
 
-            <div className="mt-28 flex flex-col items-center justify-between gap-10 border-t border-idv-grafite pt-14 md:flex-row">
-              <Selo className="h-40 w-40 md:h-48 md:w-48" />
-              <div className="flex items-end gap-8">
-                <a
-                  href="/orcamento"
-                  className="inline-flex items-center justify-center bg-idv-amarelo px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
-                >
-                  Solicitar orçamento
-                </a>
-                <Sticker162 className="h-28 w-auto md:h-36" />
-              </div>
+            <div className="mt-28 flex min-h-64 items-center border-t border-idv-grafite pt-14 md:min-h-80">
+              <a
+                href="/orcamento"
+                className="inline-flex items-center justify-center bg-idv-amarelo px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
+              >
+                Solicitar orçamento
+              </a>
             </div>
           </div>
+
+          {/* O anel fica na extremidade da página, parte dele sai da tela. */}
+          <AnelMeio className="absolute bottom-12 right-0 h-64 w-64 translate-x-[30%] md:h-80 md:w-80" />
         </div>
       </div>
     </div>

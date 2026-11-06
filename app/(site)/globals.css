@@ -211,8 +211,14 @@
   animation: selo-gira 40s linear infinite;
 }
 
+.anel-gira {
+  transform-origin: 0 0;
+  animation: selo-gira 16s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .selo-gira {
+  .selo-gira,
+  .anel-gira {
     animation: none;
   }
 }

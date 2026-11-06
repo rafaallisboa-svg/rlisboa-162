@@ -161,3 +161,24 @@ export function StickerR({
     </svg>
   );
 }
+
+/** Anel amarelo com o ponto laranja. Por dentro, meio preto e meio off-white giram devagar. */
+export function AnelMeio({ className }: { className?: string }) {
+  return (
+    <svg viewBox="-100 -100 200 200" aria-hidden="true" className={className} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="anel-miolo">
+          <circle r="50" />
+        </clipPath>
+      </defs>
+      <circle r="75" fill="none" stroke="var(--color-idv-amarelo)" strokeWidth="50" />
+      <g clipPath="url(#anel-miolo)">
+        <g className="anel-gira">
+          <rect x="-60" y="-60" width="120" height="60" fill="var(--color-idv-preto)" />
+          <rect x="-60" y="0" width="120" height="60" fill="var(--color-idv-off)" />
+        </g>
+      </g>
+      <circle r="27" fill="var(--color-idv-laranja)" />
+    </svg>
+  );
+}

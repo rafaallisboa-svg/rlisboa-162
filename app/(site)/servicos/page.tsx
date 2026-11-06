@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { slugServico } from "@/lib/servicos";
 import { Cruz, StickerR } from "@/components/ui/IdvElementos";
+import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
+
+// Fora do componente: a lista precisa ser sempre a mesma referência.
+const PALAVRAS_TITULO = ["Design Gráfico", "Web Design", "Motion Design"];
 
 const SERVICOS = [
   {
@@ -195,7 +199,7 @@ export default function ServicosPage() {
             Serviços
           </p>
           <h1 className="mt-2 font-display uppercase leading-none text-h1 text-idv-preto">
-            O que eu faço
+            <HeadlineRotator palavras={PALAVRAS_TITULO} />
           </h1>
         </div>
         <StickerR className="mt-2 h-24 w-auto shrink-0 md:h-36" />
@@ -206,7 +210,12 @@ export default function ServicosPage() {
           const isOpen = aberto === i;
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           return (
-            <div key={s.nome} className="border-b border-idv-preto/25">
+            <div
+              key={s.nome}
+              className={`border-b px-5 transition-colors duration-300 md:px-8 ${
+                isOpen ? "border-idv-preto bg-idv-preto text-idv-off" : "border-idv-preto/25"
+              }`}
+            >
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
@@ -215,7 +224,7 @@ export default function ServicosPage() {
               >
                 <span
                   className={`font-display text-xl uppercase tracking-tight transition-colors md:text-2xl ${
-                    isOpen ? "text-idv-preto" : "text-idv-preto/80"
+                    isOpen ? "text-idv-amarelo" : "text-idv-preto/80"
                   }`}
                 >
                   {s.nome}
@@ -231,8 +240,8 @@ export default function ServicosPage() {
                         }
                       : undefined
                   }
-                  className={`flex h-7 w-7 items-center justify-center font-mono text-xl leading-none text-idv-preto transition-transform duration-300 ${
-                    isOpen ? "rotate-45" : ""
+                  className={`flex h-7 w-7 items-center justify-center font-mono text-xl leading-none transition-transform duration-300 ${
+                    isOpen ? "rotate-45 text-idv-amarelo" : "text-idv-preto"
                   }`}
                 >
                   +
@@ -248,8 +257,8 @@ export default function ServicosPage() {
                 }}
               >
                 <div style={{ minHeight: 0, overflow: "hidden" }}>
-                  <div className="grid gap-6 pb-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_auto] md:items-start md:gap-10">
-                    <p className="max-w-xs text-sm text-idv-preto/75">
+                  <div className="grid gap-6 pb-10 pt-2 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_auto] md:items-start md:gap-10">
+                    <p className="max-w-xs text-sm text-idv-off/80">
                       {s.descricao}
                     </p>
 
@@ -258,14 +267,14 @@ export default function ServicosPage() {
                         <div className="flex flex-col gap-6">
                           {s.grupos.map((grupo) => (
                             <div key={grupo.nome}>
-                              <p className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto">
+                              <p className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo">
                                 {grupo.nome}
                               </p>
                               <ul className="mt-3 flex flex-wrap gap-2">
                                 {grupo.incluido.map((item) => (
                                   <li
                                     key={item}
-                                    className="rounded-full border border-idv-preto/35 px-4 py-2 text-xs text-idv-preto"
+                                    className="rounded-full border border-idv-off/30 px-4 py-2 text-xs text-idv-off"
                                   >
                                     {item}
                                   </li>
@@ -277,7 +286,7 @@ export default function ServicosPage() {
                       ) : (
                         <>
                           {rotulo && (
-                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
+                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
                               {rotulo}
                             </p>
                           )}
@@ -285,7 +294,7 @@ export default function ServicosPage() {
                             {s.incluido.map((item) => (
                               <li
                                 key={item}
-                                className="rounded-full border border-idv-preto/35 px-4 py-2 text-xs text-idv-preto"
+                                className="rounded-full border border-idv-off/30 px-4 py-2 text-xs text-idv-off"
                               >
                                 {item}
                               </li>
@@ -297,14 +306,14 @@ export default function ServicosPage() {
 
                     <div className="flex flex-col items-start gap-4 md:items-end">
                       <div className="md:text-right">
-                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
+                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
                           Investimento
                         </p>
-                        <p className="mt-1 text-sm text-idv-preto">Sob consulta</p>
+                        <p className="mt-1 text-sm text-idv-off">Sob consulta</p>
                       </div>
                       <a
                         href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
-                        className="inline-flex items-center justify-center rounded-full bg-idv-preto px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo transition-transform hover:-translate-y-0.5"
+                        className="inline-flex items-center justify-center rounded-full bg-idv-amarelo px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
                       >
                         Solicitar orçamento
                       </a>

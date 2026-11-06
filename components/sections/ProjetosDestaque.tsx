@@ -42,16 +42,12 @@ export function ProjetosDestaque() {
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               />
             </div>
-            <div className="mt-4 flex items-baseline justify-between gap-4">
+            <div className="flex items-start justify-between gap-4 bg-idv-off px-5 py-4 text-idv-preto transition-colors duration-200 group-hover:bg-idv-amarelo">
               <div>
-                <p className="font-display text-xl uppercase tracking-tight transition-colors group-hover:text-idv-amarelo">
-                  {p.titulo}
-                </p>
-                <p className="mt-1 text-sm text-maresia">{p.subtitulo}</p>
+                <p className="font-display text-xl uppercase tracking-tight">{p.titulo}</p>
+                <p className="mt-1 text-sm font-medium text-idv-grafite">{p.subtitulo}</p>
               </div>
-              <span className="shrink-0 font-mono text-xs tabular-nums text-idv-amarelo">
-                {p.ano}
-              </span>
+              <span className="shrink-0 font-mono text-xs font-bold tabular-nums">{p.ano}</span>
             </div>
           </Link>
           );

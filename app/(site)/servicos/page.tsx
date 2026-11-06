@@ -175,10 +175,24 @@ const SERVICOS = [
 
 
 const TONS = {
-  off: { card: "bg-idv-off text-idv-preto", pill: "border-idv-preto/30 text-idv-preto", mudo: "text-idv-preto/55" },
-  carbono: { card: "bg-idv-carbono text-idv-off", pill: "border-idv-off/25 text-idv-off", mudo: "text-idv-cinza" },
-  amarelo: { card: "bg-idv-amarelo text-idv-preto", pill: "border-idv-preto/40 text-idv-preto", mudo: "text-idv-preto/60" },
-  pedra: { card: "bg-idv-pedra text-idv-preto", pill: "border-idv-preto/30 text-idv-preto", mudo: "text-idv-preto/60" },
+  off: {
+    card: "bg-idv-off text-idv-preto",
+    rotulo: "bg-idv-preto text-idv-off",
+    pill: "border-idv-preto/30 text-idv-preto",
+    num: "text-idv-preto/50",
+  },
+  pedra: {
+    card: "bg-idv-pedra text-idv-preto",
+    rotulo: "bg-idv-preto text-idv-off",
+    pill: "border-idv-preto/30 text-idv-preto",
+    num: "text-idv-preto/50",
+  },
+  preto: {
+    card: "bg-idv-preto text-idv-off",
+    rotulo: "bg-idv-amarelo text-idv-preto",
+    pill: "border-idv-off/30 text-idv-off",
+    num: "text-idv-cinza",
+  },
 } as const;
 
 function CartaoLista({
@@ -194,16 +208,16 @@ function CartaoLista({
 }) {
   const c = TONS[tom];
   return (
-    <div className={`p-6 md:p-7 ${c.card} ${className}`}>
-      <div className="flex items-start justify-between gap-4">
+    <div className={`p-6 md:p-8 ${c.card} ${className}`}>
+      <div className="flex items-center justify-between gap-4">
         {rotulo ? (
-          <span className={`rounded-full border px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] ${c.pill}`}>
+          <span className={`rounded-full px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] ${c.rotulo}`}>
             {rotulo}
           </span>
         ) : (
           <span />
         )}
-        <span className="font-display text-4xl leading-none tabular-nums md:text-5xl">
+        <span className={`font-display text-4xl leading-none tabular-nums md:text-5xl ${c.num}`}>
           {String(itens.length).padStart(2, "0")}
         </span>
       </div>
@@ -255,12 +269,7 @@ export default function ServicosPage() {
           const isOpen = aberto === i;
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           return (
-            <div
-              key={s.nome}
-              className={`border-b px-5 transition-colors duration-300 md:px-8 ${
-                isOpen ? "border-idv-preto bg-idv-preto text-idv-off" : "border-idv-preto/25"
-              }`}
-            >
+            <div key={s.nome} className="border-b border-idv-preto/25">
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
@@ -269,7 +278,7 @@ export default function ServicosPage() {
               >
                 <span
                   className={`font-display text-xl uppercase tracking-tight transition-colors md:text-2xl ${
-                    isOpen ? "text-idv-amarelo" : "text-idv-preto/80"
+                    isOpen ? "text-idv-preto" : "text-idv-preto/80"
                   }`}
                 >
                   {s.nome}
@@ -285,8 +294,8 @@ export default function ServicosPage() {
                         }
                       : undefined
                   }
-                  className={`flex h-7 w-7 items-center justify-center font-mono text-xl leading-none transition-transform duration-300 ${
-                    isOpen ? "rotate-45 text-idv-amarelo" : "text-idv-preto"
+                  className={`flex h-7 w-7 items-center justify-center font-mono text-xl leading-none text-idv-preto transition-transform duration-300 ${
+                    isOpen ? "rotate-45" : ""
                   }`}
                 >
                   +
@@ -302,30 +311,30 @@ export default function ServicosPage() {
                 }}
               >
                 <div style={{ minHeight: 0, overflow: "hidden" }}>
-                  <div className="grid gap-3 pb-8 pt-2 md:grid-cols-12">
+                  <div className="mb-8 mt-1 grid gap-3 md:grid-cols-12">
                     <div className="flex flex-col gap-3 md:col-span-4">
-                      <div className="flex flex-1 flex-col justify-between gap-10 rounded-[2.75rem] rounded-tr-[0.75rem] bg-idv-off p-6 text-idv-preto md:p-7">
+                      <div className="flex flex-1 flex-col justify-between gap-10 rounded-[2.75rem] rounded-tr-[0.75rem] bg-idv-pedra p-6 text-idv-preto md:p-8">
                         <span className="font-display text-5xl leading-none tabular-nums md:text-6xl">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <p className="text-lg leading-snug md:text-xl">{s.descricao}</p>
                       </div>
 
-                      <div className="rounded-[0.75rem] rounded-br-[3rem] bg-idv-pedra p-6 text-idv-preto md:p-7">
-                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
+                      <div className="rounded-[0.75rem] rounded-br-[3rem] bg-idv-preto p-6 text-idv-off md:p-8">
+                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
                           Investimento
                         </p>
-                        <p className="mt-1 font-display text-2xl uppercase leading-none tracking-tight md:text-3xl">
+                        <p className="mt-1 font-display text-2xl uppercase leading-none tracking-tight">
                           Sob consulta
                         </p>
                         <a
                           href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
-                          className="mt-6 inline-flex items-center gap-3 rounded-full bg-idv-preto py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-off transition-transform hover:-translate-y-0.5"
+                          className="mt-6 inline-flex items-center gap-3 rounded-full bg-idv-amarelo py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
                         >
                           Solicitar orçamento
                           <span
                             aria-hidden="true"
-                            className="flex h-8 w-8 items-center justify-center rounded-full bg-idv-amarelo text-base text-idv-preto"
+                            className="flex h-8 w-8 items-center justify-center rounded-full bg-idv-preto text-base text-idv-amarelo"
                           >
                             ↗
                           </span>
@@ -340,7 +349,7 @@ export default function ServicosPage() {
                             key={grupo.nome}
                             rotulo={grupo.nome}
                             itens={grupo.incluido}
-                            tom={gi === 0 ? "carbono" : "amarelo"}
+                            tom={gi % 2 === 0 ? "off" : "preto"}
                             className={`flex-1 ${
                               gi % 2 === 0
                                 ? "rounded-[0.75rem] rounded-tl-[3rem]"
@@ -349,7 +358,12 @@ export default function ServicosPage() {
                           />
                         ))
                       ) : (
-                        <CartaoLista rotulo={rotulo || undefined} itens={s.incluido} tom="amarelo" className="flex-1 rounded-[3rem] rounded-bl-[0.75rem]" />
+                        <CartaoLista
+                          rotulo={rotulo || undefined}
+                          itens={s.incluido}
+                          tom="off"
+                          className="flex-1 rounded-[0.75rem] rounded-tl-[3rem]"
+                        />
                       )}
                     </div>
                   </div>

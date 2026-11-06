@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/site.config";
 import { publicados } from "@/lib/placeholder";
@@ -19,14 +20,18 @@ const NAV: readonly { label: string; href: string; icone: NomeIconeMenu }[] = [
 export function Header() {
   const [aberto, setAberto] = useState(false);
   const [escondido, setEscondido] = useState(false);
+  const [noTopo, setNoTopo] = useState(true);
+  const caminho = usePathname();
   const redes = publicados(site.redes);
 
   // O menu some quando a página desce e volta assim que sobe.
   useEffect(() => {
     let ultimo = window.scrollY;
+    setNoTopo(ultimo < 80);
     const aoRolar = () => {
       const y = window.scrollY;
       const delta = y - ultimo;
+      setNoTopo(y < 80);
       if (y < 80) setEscondido(false);
       else if (delta > 6) setEscondido(true);
       else if (delta < -6) setEscondido(false);
@@ -47,16 +52,22 @@ export function Header() {
 
   const fechar = () => setAberto(false);
 
+  // No topo da Home e do Contato o menu fica preto; no resto, amarelo.
+  const escuro = noTopo && !aberto && (caminho === "/" || caminho === "/contato");
+  const cores = (escuro
+    ? { "--h-bg": "var(--color-idv-preto)", "--h-fg": "var(--color-idv-off)" }
+    : { "--h-bg": "var(--color-idv-amarelo)", "--h-fg": "var(--color-idv-preto)" }) as React.CSSProperties;
+
   return (
     <>
       <header
-        className="fixed inset-x-0 top-0 z-50 border-b border-idv-preto/15 bg-idv-amarelo text-idv-preto transition-transform duration-300 ease-out"
-        style={{ transform: escondido && !aberto ? "translateY(-100%)" : "none" }}
+        className="fixed inset-x-0 top-0 z-50 border-b border-[var(--h-fg)]/15 bg-[var(--h-bg)] text-[var(--h-fg)] transition-[transform,background-color,color] duration-300 ease-out"
+        style={{ ...cores, transform: escondido && !aberto ? "translateY(-100%)" : "none" }}
       >
       <div className="flex items-center justify-between px-6 py-4 md:px-[clamp(1.5rem,5vw,6rem)]">
         <Link href="/" className="flex items-baseline gap-2" onClick={fechar}>
-          <Logo className="h-5 w-auto text-idv-preto md:h-6" />
-          <span className="font-mono text-xs tabular-nums text-idv-preto/60">
+          <Logo className="h-5 w-auto text-[var(--h-fg)] md:h-6" />
+          <span className="font-mono text-xs tabular-nums text-[var(--h-fg)]/60">
             {site.numero}
           </span>
         </Link>
@@ -66,11 +77,11 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-idv-preto"
+              className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-[var(--h-fg)]"
             >
-              <IconeMenu nome={item.icone} className="h-3 w-3 text-idv-preto transition-transform duration-200 group-hover:scale-125" />
+              <IconeMenu nome={item.icone} className="h-3 w-3 text-[var(--h-fg)] transition-transform duration-200 group-hover:scale-125" />
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-idv-preto transition-[width] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[var(--h-fg)] transition-[width] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
             </Link>
           ))}
         </nav>
@@ -84,19 +95,19 @@ export function Header() {
         >
           <span
             aria-hidden="true"
-            className="h-px w-6 bg-idv-preto transition-transform duration-300"
+            className="h-px w-6 bg-[var(--h-fg)] transition-transform duration-300"
             style={{
               transform: aberto ? "translateY(6px) rotate(45deg)" : "none",
             }}
           />
           <span
             aria-hidden="true"
-            className="h-px w-6 bg-idv-preto transition-opacity duration-200"
+            className="h-px w-6 bg-[var(--h-fg)] transition-opacity duration-200"
             style={{ opacity: aberto ? 0 : 1 }}
           />
           <span
             aria-hidden="true"
-            className="h-px w-6 bg-idv-preto transition-transform duration-300"
+            className="h-px w-6 bg-[var(--h-fg)] transition-transform duration-300"
             style={{
               transform: aberto ? "translateY(-6px) rotate(-45deg)" : "none",
             }}

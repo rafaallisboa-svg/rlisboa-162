@@ -2,12 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-const R_EXT = 252;
-const R_INT = 126;
-const CY = 252;
-const CX_A = 252;
-const CX_B = 486;
-const LARGURA = 738;
+const R_EXT = 140;
+const R_INT = 70;
+const CY = 140;
+const LARGURA = 520;
+const ALTURA = 210;
+const TOPO = -60;
+const CENTROS = { a: 140, b: 260, c: 380 };
 
 const anel = (cx: number) =>
   `M${cx - R_EXT} ${CY}A${R_EXT} ${R_EXT} 0 1 0 ${cx + R_EXT} ${CY}A${R_EXT} ${R_EXT} 0 1 0 ${cx - R_EXT} ${CY}Z` +
@@ -15,19 +16,25 @@ const anel = (cx: number) =>
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 
+// Cores de cada anel e do que nasce quando eles se cruzam, como na mistura de cores primárias.
+const COR = {
+  a: "var(--color-idv-amarelo)",
+  b: "var(--color-idv-off)",
+  c: "var(--color-idv-grafite)",
+  ab: "var(--color-idv-laranja)", // amarelo + off-white
+  bc: "var(--color-idv-cinza)", // off-white + grafite
+  ac: "#9c7e1c", // amarelo + grafite: ocre
+  abc: "var(--color-idv-preto)", // os três juntos
+};
+
 /**
- * Dois anéis (amarelo e off-white) que se cruzam, o cruzamento em laranja, cortados pela borda
- * de baixo. Chegando ao fim da página eles sobem de trás do rodapé, um depois do outro, e
- * assentam; parados, sobem e descem de leve em sentidos opostos, então o laranja do cruzamento
- * muda de forma o tempo todo.
+ * Três anéis em linha (amarelo, off-white e grafite), cortados pela borda de baixo. Chegando ao
+ * fim da página eles sobem de trás do rodapé, um depois do outro; onde se cruzam nascem cores
+ * novas: laranja, cinza, ocre e, no meio dos três, preto. Rolando para cima, descem de volta.
  */
 export function AneisAnimados({ className = "" }: { className?: string }) {
   const secaoRef = useRef<HTMLElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const gARef = useRef<SVGGElement>(null);
-  const gBRef = useRef<SVGGElement>(null);
-  const clipRef = useRef<SVGPathElement>(null);
-  const laranjaRef = useRef<SVGGElement>(null);
 
   useEffect(() => {
     const secao = secaoRef.current;
@@ -36,64 +43,46 @@ export function AneisAnimados({ className = "" }: { className?: string }) {
     const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let frame = 0;
-    let visivel = true;
-    const inicio = performance.now();
-
-    const desenhar = (agora: number) => {
+    const desenhar = () => {
       frame = 0;
       const r = secao.getBoundingClientRect();
-      const vw = window.innerWidth;
       const vh = window.innerHeight;
       const rodape = document.querySelector("footer")?.getBoundingClientRect().height ?? 0;
-      // Chegando ao fim da página os anéis sobem de trás do rodapé, um depois do outro;
-      // rolando para cima eles descem de volta. Parados, sobem e descem de leve, em sentidos opostos.
       const e = reduzido ? 0 : clamp(Math.abs(r.bottom - (vh - rodape)) / (vh * 0.85));
-      const p = clamp(1 - e / 0.55);
+      const p = clamp(1 - e / 0.6);
       const sai = (v: number) => {
         // easeOutBack: passa um pouco do ponto e assenta.
-        const c1 = 1.4;
+        const c1 = 1.3;
         const c3 = c1 + 1;
         return 1 + c3 * Math.pow(v - 1, 3) + c1 * Math.pow(v - 1, 2);
       };
-      const t = (agora - inicio) / 1000;
-      const pa = sai(clamp(p / 0.8));
-      const pb = sai(clamp((p - 0.2) / 0.8));
-      const bob = reduzido ? 0 : Math.sin(t * 1.1) * 10 * p;
-      const ay = (1 - pa) * 300 + bob;
-      const by = (1 - pb) * 300 - bob;
-      const ax = 0;
-      const bx = 0;
-      void vw;
-
-      gARef.current?.setAttribute("transform", `translate(${ax} ${ay})`);
-      gBRef.current?.setAttribute("transform", `translate(${bx} ${by})`);
-      // O laranja é o anel A recortado pelo anel B, então os dois se movem juntos.
-      clipRef.current?.setAttribute("transform", `translate(${bx} ${by})`);
-      laranjaRef.current?.setAttribute("transform", `translate(${ax} ${ay})`);
-
-      if (!reduzido && visivel) frame = requestAnimationFrame(desenhar);
+      const y = {
+        a: (1 - sai(clamp(p / 0.7))) * 260,
+        b: (1 - sai(clamp((p - 0.15) / 0.7))) * 260,
+        c: (1 - sai(clamp((p - 0.3) / 0.7))) * 260,
+      };
+      (["a", "b", "c"] as const).forEach((k) => {
+        svg.querySelectorAll(`[data-r="${k}"]`).forEach((el) => {
+          el.setAttribute("transform", `translate(0 ${y[k]})`);
+        });
+      });
     };
-
-    const observador = new IntersectionObserver(
-      ([entrada]) => {
-        visivel = entrada.isIntersecting;
-        if (visivel && !frame) frame = requestAnimationFrame(desenhar);
-      },
-      { rootMargin: "200px" },
-    );
-    observador.observe(secao);
-
-    frame = requestAnimationFrame(desenhar);
-    const aoRedimensionar = () => {
+    const aoMudar = () => {
       if (!frame) frame = requestAnimationFrame(desenhar);
     };
-    window.addEventListener("resize", aoRedimensionar);
+    desenhar();
+    window.addEventListener("scroll", aoMudar, { passive: true });
+    window.addEventListener("resize", aoMudar);
     return () => {
       if (frame) cancelAnimationFrame(frame);
-      observador.disconnect();
-      window.removeEventListener("resize", aoRedimensionar);
+      window.removeEventListener("scroll", aoMudar);
+      window.removeEventListener("resize", aoMudar);
     };
   }, []);
+
+  const a = anel(CENTROS.a);
+  const b = anel(CENTROS.b);
+  const c = anel(CENTROS.c);
 
   return (
     <section
@@ -103,25 +92,53 @@ export function AneisAnimados({ className = "" }: { className?: string }) {
     >
       <svg
         ref={svgRef}
-        viewBox={`0 -60 ${LARGURA} 322`}
+        viewBox={`0 ${TOPO} ${LARGURA} ${ALTURA}`}
         className="block w-full max-w-3xl"
-        style={{ overflow: "visible" }}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <clipPath id="aneis-anim-b" clipPathUnits="userSpaceOnUse">
-            <path ref={clipRef} d={anel(CX_B)} clipRule="evenodd" />
+          <clipPath id="aneis-clip-b" clipPathUnits="userSpaceOnUse">
+            <path data-r="b" d={b} clipRule="evenodd" />
+          </clipPath>
+          <clipPath id="aneis-clip-c" clipPathUnits="userSpaceOnUse">
+            <path data-r="c" d={c} clipRule="evenodd" />
           </clipPath>
         </defs>
-        <g ref={gARef}>
-          <path d={anel(CX_A)} fillRule="evenodd" fill="var(--color-idv-amarelo)" />
+
+        <g data-r="a">
+          <path d={a} fillRule="evenodd" fill={COR.a} />
         </g>
-        <g ref={gBRef}>
-          <path d={anel(CX_B)} fillRule="evenodd" fill="var(--color-idv-off)" />
+        <g data-r="b">
+          <path d={b} fillRule="evenodd" fill={COR.b} />
         </g>
-        <g clipPath="url(#aneis-anim-b)">
-          <g ref={laranjaRef}>
-            <path d={anel(CX_A)} fillRule="evenodd" fill="var(--color-idv-laranja)" />
+        <g data-r="c">
+          <path d={c} fillRule="evenodd" fill={COR.c} />
+        </g>
+
+        {/* amarelo + off-white */}
+        <g clipPath="url(#aneis-clip-b)">
+          <g data-r="a">
+            <path d={a} fillRule="evenodd" fill={COR.ab} />
+          </g>
+        </g>
+        {/* off-white + grafite */}
+        <g clipPath="url(#aneis-clip-c)">
+          <g data-r="b">
+            <path d={b} fillRule="evenodd" fill={COR.bc} />
+          </g>
+        </g>
+        {/* amarelo + grafite */}
+        <g clipPath="url(#aneis-clip-c)">
+          <g data-r="a">
+            <path d={a} fillRule="evenodd" fill={COR.ac} />
+          </g>
+        </g>
+        {/* os três */}
+        <g clipPath="url(#aneis-clip-b)">
+          <g clipPath="url(#aneis-clip-c)">
+            <g data-r="a">
+              <path d={a} fillRule="evenodd" fill={COR.abc} />
+            </g>
           </g>
         </g>
       </svg>

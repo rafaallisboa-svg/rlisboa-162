@@ -2,6 +2,7 @@ import { publicados } from "@/lib/placeholder";
 import { site } from "@/site.config";
 import { ChannelRow } from "@/components/ui/ChannelRow";
 import { SeloAdesivo } from "@/components/ui/IdvElementos";
+import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 
 export default function ContatoPage() {
   const redes = publicados(site.redes).filter((r) => r.label !== "Behance");
@@ -21,6 +22,7 @@ export default function ContatoPage() {
   ];
 
   return (
+    <>
     <div className="mx-auto max-w-6xl px-6 pb-28 pt-40 md:px-16 lg:px-0">
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-16">
         {/* Retrato de perfil, à direita. Some na base, no mesmo fundo do site. */}
@@ -72,5 +74,7 @@ export default function ContatoPage() {
         </div>
       </div>
     </div>
+    <GrafismoParallax tipo="aneis" />
+    </>
   );
 }

@@ -4,6 +4,18 @@ import { useEffect, useState } from "react";
 import { slugServico } from "@/lib/servicos";
 import { Cruz, StickerR } from "@/components/ui/IdvElementos";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
+import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
+import { IconeServico, type NomeIconeServico } from "@/components/ui/IconeServico";
+
+const ICONE_DO_SERVICO: Record<string, NomeIconeServico> = {
+  "Identidade Visual": "identidade",
+  Website: "site",
+  "Apresentação": "slide",
+  "Social Media Kit": "redes",
+  "Vídeo & Motion Graphics": "video",
+  Eventos: "eventos",
+  "Materiais Gráficos": "materiais",
+};
 
 // Fora do componente: a lista precisa ser sempre a mesma referência.
 const PALAVRAS_TITULO = ["Design Gráfico", "Web Design", "Motion Design"];
@@ -178,25 +190,25 @@ const TONS = {
   off: {
     card: "bg-idv-off text-idv-preto",
     rotulo: "bg-idv-preto text-idv-off",
-    pill: "border-idv-preto/50 text-idv-preto",
+    pill: "border-idv-preto/50 text-idv-preto hover:border-idv-preto hover:bg-idv-preto hover:text-idv-off",
     num: "text-idv-preto/50",
   },
   pedra: {
     card: "bg-idv-pedra text-idv-preto",
     rotulo: "bg-idv-preto text-idv-off",
-    pill: "border-idv-preto/30 text-idv-preto",
+    pill: "border-idv-preto/30 text-idv-preto hover:border-idv-preto hover:bg-idv-preto hover:text-idv-off",
     num: "text-idv-preto/50",
   },
   contorno: {
     card: "border-2 border-idv-preto text-idv-preto",
     rotulo: "bg-idv-preto text-idv-amarelo",
-    pill: "border-idv-preto/60 text-idv-preto",
+    pill: "border-idv-preto/60 text-idv-preto hover:border-idv-preto hover:bg-idv-preto hover:text-idv-amarelo",
     num: "text-idv-preto/50",
   },
   preto: {
     card: "bg-idv-preto text-idv-off",
     rotulo: "bg-idv-amarelo text-idv-preto",
-    pill: "border-idv-off/45 text-idv-off",
+    pill: "border-idv-off/45 text-idv-off hover:border-idv-amarelo hover:bg-idv-amarelo hover:text-idv-preto",
     num: "text-idv-cinza",
   },
 } as const;
@@ -226,7 +238,7 @@ function CartaoLista({
       </div>
       <ul className="mt-6 flex flex-wrap gap-2">
         {itens.map((item) => (
-          <li key={item} className={`rounded-full border px-4 py-2 text-sm font-medium md:text-[0.95rem] ${c.pill}`}>
+          <li key={item} className={`cursor-default rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-150 md:text-[0.95rem] ${c.pill}`}>
             {item}
           </li>
         ))}
@@ -253,6 +265,7 @@ export default function ServicosPage() {
   }, []);
 
   return (
+    <>
     <div className="relative min-h-screen bg-idv-amarelo px-6 pb-24 pt-32 text-idv-preto md:px-[clamp(1.5rem,5vw,6rem)]">
       <Cruz className="absolute right-6 top-28 hidden h-5 w-5 text-idv-preto/40 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
       <div className="flex items-start justify-between gap-6">
@@ -272,7 +285,12 @@ export default function ServicosPage() {
           const isOpen = aberto === i;
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           return (
-            <div key={s.nome} className="border-b border-idv-preto/25">
+            <div
+              key={s.nome}
+              className={`group/row border-b border-idv-preto/25 transition-colors duration-200 ${
+                isOpen ? "" : "hover:bg-idv-preto/[0.06]"
+              }`}
+            >
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
@@ -280,10 +298,16 @@ export default function ServicosPage() {
                 className="flex w-full items-center justify-between gap-6 py-6 text-left"
               >
                 <span
-                  className={`font-display text-xl uppercase tracking-tight transition-colors md:text-2xl ${
-                    isOpen ? "text-idv-preto" : "text-idv-preto/80"
+                  className={`flex items-center gap-4 font-display text-xl uppercase tracking-tight transition-all duration-200 md:gap-5 md:text-2xl ${
+                    isOpen ? "text-idv-preto" : "text-idv-preto/80 group-hover/row:translate-x-2 group-hover/row:text-idv-preto"
                   }`}
                 >
+                  {ICONE_DO_SERVICO[s.nome] && (
+                    <IconeServico
+                      nome={ICONE_DO_SERVICO[s.nome]}
+                      className="h-7 w-7 shrink-0 transition-transform duration-200 group-hover/row:scale-110 md:h-9 md:w-9"
+                    />
+                  )}
                   {s.nome}
                 </span>
                 <span
@@ -377,5 +401,7 @@ export default function ServicosPage() {
         })}
       </div>
     </div>
+    <GrafismoParallax tipo="pavimento" className="bg-idv-amarelo" />
+    </>
   );
 }

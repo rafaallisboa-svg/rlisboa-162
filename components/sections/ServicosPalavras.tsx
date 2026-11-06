@@ -134,7 +134,7 @@ export function ServicosPalavras() {
             ref={(el) => {
               linksRef.current[i] = el;
             }}
-            className={`group block w-max whitespace-nowrap font-display uppercase leading-[0.9] tracking-tight transition-colors duration-500 data-[ativa=true]:text-[var(--sp-on)] [@media(hover:hover)]:hover:text-[var(--sp-on)] ${
+            className={`group block w-max whitespace-nowrap font-marca font-normal uppercase leading-[1.05] tracking-[-0.03em] transition-colors duration-500 data-[ativa=true]:text-[var(--sp-on)] [@media(hover:hover)]:hover:text-[var(--sp-on)] ${
               i % 2 === 0 ? "text-[var(--sp-par)] self-start" : "text-[var(--sp-impar)] self-end"
             }`}
             style={{ fontSize: "min(14vw, 9rem)", willChange: "transform" }}

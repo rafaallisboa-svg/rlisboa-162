@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Unbounded } from "next/font/google";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -13,6 +13,14 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+// Fonte do logotipo: usada nos momentos da marca (key visual), não no texto corrido.
+const unbounded = Unbounded({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-unbounded",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: site.nomeCompleto,
   description: site.descricao.startsWith("[[") ? undefined : site.descricao,
@@ -20,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={jetbrainsMono.variable}>
+    <html lang="pt-BR" className={`${jetbrainsMono.variable} ${unbounded.variable}`}>
       <head>
         {/* Satoshi e Clash Display não estão no Google Fonts — via Fontshare, com display=swap. */}
         <link

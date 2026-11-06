@@ -13,15 +13,15 @@ export function Footer() {
 
   return (
     <footer className="bg-idv-amarelo text-idv-preto px-6 py-12 md:px-[clamp(1.5rem,5vw,6rem)]">
-      <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr_auto] md:items-center">
+      <div className="grid gap-8 md:grid-cols-[1.5fr_1fr_1fr_1.25fr] md:items-start md:gap-10">
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/idv/assinatura-horizontal-menor.svg"
             alt={site.nomeCompleto}
-            className="h-8 w-auto md:h-11"
+            className="-ml-1.5 -mt-1 h-6 w-auto md:h-8"
           />
-          <address className="mt-4 font-mono text-xs not-italic leading-relaxed tracking-wide text-idv-preto/70">
+          <address className="mt-3 font-mono text-xs not-italic leading-relaxed tracking-wide text-idv-preto/70">
             CNPJ <span className="tabular-nums">{site.cadastro.cnpj}</span>
           </address>
         </div>
@@ -61,7 +61,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 md:justify-end">
+        <div className="flex items-center gap-4 md:-mt-1">
           <RodapeRelogio />
           <a
             href="/orcamento"

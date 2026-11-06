@@ -26,6 +26,7 @@
      vêm via Fontshare (link no <head>, não estão no Google Fonts). */
   --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-marca: var(--font-unbounded), "Unbounded", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jbmono), ui-monospace, "SFMono-Regular", monospace;
 
   --text-hero: clamp(3.5rem, 11vw, 11rem);

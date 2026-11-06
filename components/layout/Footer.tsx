@@ -11,7 +11,7 @@ export function Footer() {
   const ano = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-idv-preto/25 bg-idv-amarelo text-idv-preto px-6 py-16 md:px-[clamp(1.5rem,5vw,6rem)]">
+    <footer className="bg-idv-amarelo text-idv-preto px-6 py-16 md:px-[clamp(1.5rem,5vw,6rem)]">
       <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr]">
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}

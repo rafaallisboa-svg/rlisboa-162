@@ -43,12 +43,12 @@ export function ProjetosDestaque() {
               />
             </div>
             <div className="mt-4 flex items-start justify-between gap-4">
-              <p className="min-w-0 font-display text-xl uppercase leading-[2.1] tracking-tight text-idv-preto">
-                <span className="bg-idv-amarelo px-3 py-1 transition-colors duration-200 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] group-hover:bg-idv-off">
+              <p className="min-w-0 font-display text-sm uppercase leading-[2.2] tracking-tight text-idv-preto md:text-xl md:leading-[2.1]">
+                <span className="bg-idv-amarelo px-2 py-0.5 transition-colors md:px-3 md:py-1 duration-200 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] group-hover:bg-idv-off">
                   {p.titulo}
                 </span>
               </p>
-              <span className="shrink-0 pt-3 font-mono text-xs tabular-nums text-idv-amarelo transition-colors group-hover:text-idv-off">{p.ano}</span>
+              <span className="shrink-0 pt-2 font-mono text-xs tabular-nums md:pt-3 text-idv-amarelo transition-colors group-hover:text-idv-off">{p.ano}</span>
             </div>
             <p className="mt-2 text-sm font-medium text-idv-pedra transition-colors group-hover:text-idv-off">
               {p.subtitulo}

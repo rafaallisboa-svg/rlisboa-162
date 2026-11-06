@@ -147,7 +147,7 @@ export function OrcamentoForm() {
 
       <div>
         <label className={labelClasse} htmlFor="mensagem">
-          Conte sobre o projeto
+          Conta sobre o projeto
         </label>
         <textarea
           id="mensagem"

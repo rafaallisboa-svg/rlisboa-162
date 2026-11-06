@@ -50,7 +50,7 @@ export default function ContatoPage() {
           </h1>
           <span aria-hidden="true" className="mt-6 block h-[3px] w-24 bg-idv-amarelo" />
           <p className="mt-5 max-w-sm text-body text-maresia">
-            Conte a ideia e o prazo — respondo pelo canal que for melhor pra
+            Conta a ideia e o prazo — respondo pelo canal que for melhor pra
             você.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function ContatoPage() {
             Solicitar orçamento
           </a>
           <p className="-mt-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-maresia">
-            Chame o Rafa<span className="text-idv-laranja">.</span>
+            Chama o Rafa<span className="text-idv-laranja">.</span>
           </p>
         </div>
       </div>

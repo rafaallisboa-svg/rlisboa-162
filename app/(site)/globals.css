@@ -282,25 +282,25 @@
 
 .rafa-escala {
   transform: translate(18.6px, 189px) scale(0.8);
-  animation: rafa-escala 3.6s cubic-bezier(0.65, 0, 0.35, 1) 0.6s 1 both;
+  animation: rafa-escala 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s 1 both;
 }
 
 .rafa-afa {
   transform: translateX(-440.4px);
-  animation: rafa-afa 3.6s cubic-bezier(0.65, 0, 0.35, 1) 0.6s 1 both;
+  animation: rafa-afa 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s 1 both;
 }
 
 .rafa-ponto {
   transform: translateX(-428.2px);
-  animation: rafa-ponto 3.6s cubic-bezier(0.65, 0, 0.35, 1) 0.6s 1 both;
+  animation: rafa-ponto 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s 1 both;
 }
 
 @keyframes rafa-escala {
   0%,
-  28% {
+  15% {
     transform: translate(18px, 150.75px) scale(0.29);
   }
-  72%,
+  75%,
   100% {
     transform: translate(18.6px, 189px) scale(0.8);
   }
@@ -308,10 +308,10 @@
 
 @keyframes rafa-afa {
   0%,
-  28% {
+  15% {
     transform: translateX(0);
   }
-  72%,
+  75%,
   100% {
     transform: translateX(-440.4px);
   }
@@ -319,10 +319,10 @@
 
 @keyframes rafa-ponto {
   0%,
-  28% {
+  15% {
     transform: translateX(0);
   }
-  72%,
+  75%,
   100% {
     transform: translateX(-428.2px);
   }

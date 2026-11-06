@@ -22,7 +22,7 @@ export default function OrcamentoPage() {
             Orçamento<span className="text-idv-laranja">.</span>
           </p>
           <h1 className="mt-2 font-display uppercase leading-none text-h1">
-            Conte o projeto
+            Conta o projeto
           </h1>
         </div>
         <StickerRafa className="hidden h-28 w-auto shrink-0 md:block" />

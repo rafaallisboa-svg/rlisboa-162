@@ -29,8 +29,11 @@ export function ProjetosDestaque() {
           <Link
             key={p.slug}
             href={`/projetos/${p.slug}`}
-            className={`group block ${destaque ? "md:col-span-2" : ""}`}
+            className={`group relative block pt-4 ${destaque ? "md:col-span-2" : ""}`}
           >
+            <p className="absolute left-4 top-0 z-10 max-w-[calc(100%-2rem)] bg-idv-off px-3 py-1.5 text-sm font-medium text-idv-preto transition-colors duration-200 group-hover:bg-idv-amarelo md:left-6">
+              {p.subtitulo}
+            </p>
             <div
               className={`overflow-hidden bg-blueprint ${
                 destaque ? "aspect-[3/2] md:aspect-[21/9]" : "aspect-[3/2]"
@@ -46,9 +49,6 @@ export function ProjetosDestaque() {
               <div>
                 <p className="font-display text-xl uppercase tracking-tight transition-colors group-hover:text-idv-amarelo">
                   {p.titulo}
-                </p>
-                <p className="mt-2 inline-block bg-idv-off px-3 py-1.5 text-sm font-medium text-idv-preto transition-colors duration-200 group-hover:bg-idv-amarelo">
-                  {p.subtitulo}
                 </p>
               </div>
               <span className="shrink-0 font-mono text-xs tabular-nums text-idv-amarelo">{p.ano}</span>

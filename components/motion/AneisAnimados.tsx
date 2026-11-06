@@ -103,7 +103,7 @@ export function AneisAnimados({ className = "" }: { className?: string }) {
     >
       <svg
         ref={svgRef}
-        viewBox={`0 0 ${LARGURA} 262`}
+        viewBox={`0 -60 ${LARGURA} 322`}
         className="block w-full max-w-3xl"
         style={{ overflow: "visible" }}
         xmlns="http://www.w3.org/2000/svg"

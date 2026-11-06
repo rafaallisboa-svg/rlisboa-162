@@ -32,7 +32,7 @@ export function ProjetosDestaque() {
             className={`group block ${destaque ? "md:col-span-2" : ""}`}
           >
             <div
-              className={`overflow-hidden bg-blueprint ${
+              className={`-mx-6 overflow-hidden bg-blueprint md:mx-0 ${
                 destaque ? "aspect-[3/2] md:aspect-[21/9]" : "aspect-[3/2]"
               }`}
             >
@@ -43,10 +43,12 @@ export function ProjetosDestaque() {
               />
             </div>
             <div className="mt-4 flex items-start justify-between gap-4">
-              <p className="inline-block bg-idv-amarelo px-3 py-1.5 font-display text-xl uppercase tracking-tight text-idv-preto transition-colors duration-200 group-hover:bg-idv-off">
-                {p.titulo}
+              <p className="min-w-0 font-display text-xl uppercase leading-[2.1] tracking-tight text-idv-preto">
+                <span className="bg-idv-amarelo px-3 py-1 transition-colors duration-200 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] group-hover:bg-idv-off">
+                  {p.titulo}
+                </span>
               </p>
-              <span className="shrink-0 pt-2 font-mono text-xs tabular-nums text-idv-amarelo transition-colors group-hover:text-idv-off">{p.ano}</span>
+              <span className="shrink-0 pt-3 font-mono text-xs tabular-nums text-idv-amarelo transition-colors group-hover:text-idv-off">{p.ano}</span>
             </div>
             <p className="mt-2 text-sm font-medium text-idv-pedra transition-colors group-hover:text-idv-off">
               {p.subtitulo}

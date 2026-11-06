@@ -112,7 +112,7 @@ export function ServicosPalavras() {
     <section
       ref={secaoRef}
       aria-label="Serviços"
-      className="relative overflow-hidden bg-[var(--sp-bg)] pb-20 pt-28 transition-colors duration-700 md:pb-32 md:pt-40"
+      className="relative overflow-hidden bg-[var(--sp-bg)] pb-40 pt-32 transition-colors duration-700 md:pb-32 md:pt-40"
       style={{
         "--sp-bg": TEMAS[0].bg,
         "--sp-par": TEMAS[0].par,
@@ -120,9 +120,9 @@ export function ServicosPalavras() {
         "--sp-on": TEMAS[0].on,
       } as React.CSSProperties}
     >
-      <Cruz className="absolute left-6 top-24 h-5 w-5 text-[var(--sp-impar)] md:left-[clamp(1.5rem,5vw,6rem)]" />
+      <Cruz className="absolute left-6 top-20 h-5 w-5 text-[var(--sp-impar)] md:left-[clamp(1.5rem,5vw,6rem)] md:top-24" />
       <Cruz className="absolute right-6 top-24 hidden h-5 w-5 text-[var(--sp-impar)] md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
-      <Sticker162 className="absolute bottom-6 right-6 h-20 w-auto md:bottom-10 md:right-[clamp(1.5rem,5vw,6rem)] md:h-28" />
+      <Sticker162 className="absolute bottom-5 right-6 h-[4.5rem] w-auto md:bottom-10 md:right-[clamp(1.5rem,5vw,6rem)] md:h-28" />
       <div
         ref={colunaRef}
         className="mx-auto flex w-full flex-col gap-3 px-6 md:px-[clamp(1.5rem,5vw,6rem)]"

@@ -27,11 +27,6 @@ export default function ContatoPage() {
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-16">
         {/* Retrato de perfil, à direita. Some na base, no mesmo fundo do site. */}
         <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:mx-0 lg:max-w-none lg:-mt-6">
-          {/* Disco amarelo atrás do perfil, o gesto do key visual. */}
-          <div
-            aria-hidden="true"
-            className="absolute left-[6%] top-[4%] aspect-square w-[80%] rounded-full bg-idv-amarelo"
-          />
           <Cruz className="absolute right-0 top-4 h-5 w-5 text-idv-grafite" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

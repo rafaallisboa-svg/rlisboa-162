@@ -2,8 +2,7 @@ import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
-import { AneisIntersecao, Cruz, Pavimento, SeloAneis } from "@/components/ui/IdvElementos";
-import { Logo } from "@/components/ui/Logo";
+import { AneisIntersecao, Cruz, SeloAneis, SeloRegua } from "@/components/ui/IdvElementos";
 
 const PARAGRAFOS: Segmento[][] = [
   [
@@ -43,33 +42,18 @@ export default function SobrePage() {
         srcMobile="/sobre/sobre-vertical.webp"
         alt="Rafael Lisboa sorrindo, ao lado do sticker 162"
       >
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[65px]">
-          <Cruz className="absolute bottom-8 right-6 hidden h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
-          <Cruz className="absolute left-6 top-6 hidden h-5 w-5 text-idv-grafite md:left-[clamp(1.5rem,5vw,6rem)] md:block" />
+        <div className="absolute bottom-10 left-6 md:bottom-14 md:left-16">
+          <p className="font-display text-base uppercase tracking-tight text-idv-off">
+            Rafael Lisboa
+          </p>
+          <p className="mt-1 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
+            Designer e diretor de criação
+          </p>
+        </div>
 
-          <div className="absolute hidden left-6 md:bottom-1/2 md:block md:left-[clamp(1.5rem,5vw,6rem)] md:translate-y-1/2">
-            <Pavimento className="entra mb-6 hidden h-12 w-auto md:block" style={{ animationDelay: "0.1s" }} />
-            <Logo className="entra h-9 w-auto text-idv-off md:h-14 lg:h-20" atraso={1.4} />
-            <span
-              aria-hidden="true"
-              className="regua-cresce mt-4 block h-[3px] w-24 bg-idv-amarelo md:mt-6 md:w-32"
-              style={{ animationDelay: "0.7s" }}
-            />
-            <p
-              className="entra mt-3 font-display text-lg tracking-tight text-idv-cinza md:mt-4 md:text-3xl"
-              style={{ animationDelay: "0.9s" }}
-            >
-              Estúdio 162
-            </p>
-            <p
-              className="entra mt-6 hidden font-mono text-[0.7rem] uppercase leading-relaxed tracking-[0.14em] text-idv-cinza md:block"
-              style={{ animationDelay: "1.1s" }}
-            >
-              Identidade visual · websites
-              <br />
-              motion · social · impressos
-            </p>
-          </div>
+        {/* Relógio na extremidade direita, metade para fora da tela, girando devagar. */}
+        <div className="pointer-events-none absolute right-0 top-[30%] h-40 w-40 translate-x-1/2 md:h-56 md:w-56 lg:h-72 lg:w-72">
+          <SeloRegua tinta="var(--color-idv-off)" className="h-full w-full" />
         </div>
       </RetratoFixo>
 

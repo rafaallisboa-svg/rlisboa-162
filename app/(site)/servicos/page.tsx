@@ -286,7 +286,14 @@ export default function ServicosPage() {
           const c = TILES[i % TILES.length];
           const escuro = c.fg === "text-idv-off";
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
-          const largura = isOpen ? "col-span-2 md:col-span-4" : i === SERVICOS.length - 1 ? "col-span-2" : "col-span-1";
+          const destaqueTile = i === 0; // Identidade Visual: o serviço principal, o maior
+          const largura = isOpen
+            ? "col-span-2 md:col-span-4"
+            : destaqueTile
+              ? "col-span-2 md:row-span-2 md:self-stretch"
+              : i === SERVICOS.length - 1
+                ? "col-span-2"
+                : "col-span-1";
           const grupos = "grupos" in s ? s.grupos : [{ nome: rotulo || "Entregas", incluido: s.incluido }];
           const numero = String(i + 1).padStart(2, "0");
           return (
@@ -307,7 +314,7 @@ export default function ServicosPage() {
                 className={`relative z-10 flex w-full text-left ${
                   isOpen
                     ? "min-h-[7.5rem] flex-row items-center justify-between gap-4 p-5 md:min-h-[9rem] md:p-7"
-                    : "min-h-[17rem] flex-col justify-between gap-3 p-4 md:min-h-[31rem] md:p-6"
+                    : `min-h-[17rem] flex-1 flex-col justify-between gap-3 p-4 md:min-h-[31rem] md:p-6 ${destaqueTile ? "min-h-[24rem] md:p-9" : ""}`
                 }`}
               >
                 {isOpen ? (
@@ -327,17 +334,21 @@ export default function ServicosPage() {
                   <>
                     <span className="flex items-center justify-between font-mono text-[0.65rem] uppercase tracking-[0.14em] opacity-70 md:text-[0.7rem]">
                       <span>
-                        {numero} / 07
+                        {numero} / 07{destaqueTile ? " · serviço principal" : ""}
                       </span>
                     </span>
                     <span className="flex flex-1 items-center justify-center py-1">
                       <IconeServico
                         nome={ICONE_DO_SERVICO[s.nome]}
-                        className={`h-full max-h-[19rem] w-auto max-w-[90%] transition-transform duration-500 group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
+                        className={`h-full w-auto max-w-[90%] transition-transform duration-500 ${destaqueTile ? "max-h-[36rem]" : "max-h-[19rem]"} group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
                       />
                     </span>
                     <span className="flex items-end justify-between gap-2">
-                      <span className="block font-display text-[0.78rem] uppercase leading-tight tracking-tight md:text-xl lg:text-2xl">
+                      <span
+                        className={`block font-display uppercase leading-tight tracking-tight ${
+                          destaqueTile ? "text-xl md:text-4xl lg:text-5xl" : "text-[0.78rem] md:text-xl lg:text-2xl"
+                        }`}
+                      >
                         {s.nome}
                         <span className="text-idv-laranja">.</span>
                       </span>

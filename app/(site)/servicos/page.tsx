@@ -249,6 +249,18 @@ function CartaoLista({
 
 
 // Composição de cores dos cartões de serviço (todas da IDV, com um tom de amarelo e um de cinza derivados).
+// Formas sobrepostas atrás do conteúdo de cada cartão (um círculo grande e um quadrado arredondado girado,
+// em cores da IDV com pouca opacidade), no estilo dos cartões de referência.
+const FORMAS = [
+  { a: "bg-idv-amarelo/25", b: "bg-idv-laranja/30" },
+  { a: "bg-idv-amarelo/55", b: "bg-idv-pedra/70" },
+  { a: "bg-idv-amarelo/60", b: "bg-idv-preto/10" },
+  { a: "bg-idv-off/80", b: "bg-idv-cinza/25" },
+  { a: "bg-idv-cinza/40", b: "bg-idv-amarelo/25" },
+  { a: "bg-idv-laranja/25", b: "bg-idv-amarelo/70" },
+  { a: "bg-idv-pedra/45", b: "bg-idv-grafite/20" },
+] as const;
+
 const CARTOES = [
   { bg: "bg-idv-preto", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[15.5rem] md:-rotate-[1.2deg]" },
   { bg: "bg-idv-off", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-amarelo", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-amarelo"], forma: "md:min-h-[12rem] md:translate-y-8 md:rotate-[1deg]" },
@@ -344,6 +356,8 @@ export default function ServicosPage() {
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
           const c = CARTOES[i % CARTOES.length];
+          const f = FORMAS[i % FORMAS.length];
+          const espelho = i % 2 === 1;
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           const largura = isOpen || i === SERVICOS.length - 1 ? "md:col-span-6" : "md:col-span-2";
           const total = "grupos" in s ? s.grupos.reduce((n, g) => n + g.incluido.length, 0) : s.incluido.length;
@@ -359,9 +373,17 @@ export default function ServicosPage() {
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className={`relative flex min-h-[8.5rem] w-full flex-col justify-between gap-6 rounded-[2.25rem] p-5 text-left shadow-[0_22px_40px_-22px_rgba(14,14,13,0.55)] transition-all duration-500 ease-out hover:-translate-y-1 md:p-7 ${c.bg} ${c.fg} ${isOpen ? "md:min-h-[9rem]" : c.forma}`}
+                className={`relative flex min-h-[8.5rem] w-full flex-col justify-between gap-6 rounded-[2.25rem] p-5 text-left shadow-[0_22px_40px_-22px_rgba(14,14,13,0.55)] transition-all duration-500 ease-out hover:-translate-y-1 md:p-7 overflow-hidden isolate ${c.bg} ${c.fg} ${isOpen ? "md:min-h-[9rem]" : c.forma}`}
               >
-                <span className="flex items-start justify-between gap-3">
+                <span
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute -top-14 h-44 w-44 rounded-full md:h-60 md:w-60 ${espelho ? "-left-14" : "-right-14"} ${f.a}`}
+                />
+                <span
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute top-16 h-28 w-28 rounded-[2rem] md:top-20 md:h-40 md:w-40 ${espelho ? "left-10 -rotate-12" : "right-10 rotate-12"} ${f.b}`}
+                />
+                <span className="relative z-10 flex items-start justify-between gap-3">
                   <span
                     className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover/row:-rotate-6 group-hover/row:scale-105 md:h-20 md:w-20 md:rounded-3xl ${c.selo}`}
                   >
@@ -383,7 +405,7 @@ export default function ServicosPage() {
                     +
                   </span>
                 </span>
-                <span className="flex flex-col gap-3">
+                <span className="relative z-10 flex flex-col gap-3">
                   <span className="font-display text-[clamp(1rem,4.6vw,1.25rem)] uppercase leading-tight tracking-tight md:text-xl lg:text-2xl">
                     {s.nome}
                   </span>

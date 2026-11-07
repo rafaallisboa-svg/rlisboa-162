@@ -252,6 +252,15 @@ export default function ServicosPage() {
   const [destaque, setDestaque] = useState(0);
   const linhasRef = useRef<(HTMLDivElement | null)[]>([]);
   const cabecalhoRef = useRef<HTMLDivElement>(null);
+  const [compacto, setCompacto] = useState(false);
+
+  // O título fica fixo no topo e encolhe quando a página rola.
+  useEffect(() => {
+    const aoRolar = () => setCompacto(window.scrollY > 140);
+    aoRolar();
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    return () => window.removeEventListener("scroll", aoRolar);
+  }, []);
 
   // Ao abrir um serviço, leva a tela até ele (logo abaixo do menu), para não precisar rolar.
   // Espera a animação de abrir/fechar terminar para medir a posição final.
@@ -286,18 +295,30 @@ export default function ServicosPage() {
       <Cruz className="absolute right-6 top-28 hidden h-5 w-5 text-idv-preto/40 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
       <div
         ref={cabecalhoRef}
-        className="sticky top-0 z-20 -mx-6 bg-idv-amarelo px-6 pb-5 pt-32 md:-mx-[clamp(1.5rem,5vw,6rem)] md:px-[clamp(1.5rem,5vw,6rem)]"
+        className={`sticky top-0 z-20 -mx-6 border-b bg-idv-amarelo px-6 pb-5 transition-[padding,border-color] duration-300 md:-mx-[clamp(1.5rem,5vw,6rem)] md:px-[clamp(1.5rem,5vw,6rem)] ${
+          compacto ? "border-idv-preto/20 pt-[76px]" : "border-transparent pt-32"
+        }`}
       >
         <div className="relative flex items-start justify-between gap-6">
           <div className="min-w-0">
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
               Serviços
             </p>
-            <h1 className="mt-2 font-display text-[clamp(1.5rem,7.2vw,2.5rem)] uppercase leading-none text-idv-preto sm:text-h1">
+            <h1
+              className={`mt-2 font-display uppercase leading-none text-idv-preto transition-[font-size] duration-300 ${
+                compacto
+                  ? "text-[clamp(1.25rem,5.5vw,1.75rem)] md:text-4xl"
+                  : "text-[clamp(1.5rem,7.2vw,2.5rem)] sm:text-h1"
+              }`}
+            >
               <HeadlineRotator palavras={PALAVRAS_TITULO} />
             </h1>
           </div>
-          <StickerRafa className="absolute -top-3 right-0 h-14 w-auto sm:static sm:mt-2 sm:h-24 sm:shrink-0 md:h-36" />
+          <StickerRafa
+            className={`absolute right-0 w-auto transition-[height] duration-300 sm:static sm:shrink-0 ${
+              compacto ? "-top-1 h-10 sm:mt-0 sm:h-12 md:h-14" : "-top-3 h-14 sm:mt-2 sm:h-24 md:h-36"
+            }`}
+          />
         </div>
       </div>
 

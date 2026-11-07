@@ -26,10 +26,10 @@ export default function HomePage() {
       <ServicosPalavras />
       <ProjetosDestaque />
       <ServicosHomeGrande />
-      <Clientes />
-      <section className="bg-concreto px-6 pb-28 pt-24">
+      <section className="bg-concreto px-6 pb-24 pt-24">
         <DesafiosRelogio />
       </section>
+      <Clientes />
       <GrafismoParallax tipo="aneis" />
     </>
   );

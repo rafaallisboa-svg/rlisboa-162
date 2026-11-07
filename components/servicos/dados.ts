@@ -17,42 +17,30 @@ export const SERVICOS = [
     nome: "Identidade Visual",
     descricao:
       "Sistema de marca — do zero ou redesign — pronto pra aplicar em qualquer ponto de contato. Do essencial ao sistema completo.",
-    grupos: [
-      {
-        nome: "Básico",
-        incluido: [
-          "Logotipo e variações",
-          "Paleta de cores",
-          "Tipografia",
-          "Manual de marca",
-          "Favicon e ícone de app",
-          "Arquivos finais (SVG, PNG) e fontes",
-        ],
-      },
-      {
-        nome: "Completo",
-        incluido: [
-          "Pesquisa e briefing",
-          "Conceito e símbolo",
-          "Logotipo e assinaturas (horizontal, vertical, com descritor)",
-          "Versões: positiva, negativa, monocromática e tons de cinza",
-          "Grade de construção, área de proteção e tamanhos mínimos",
-          "Paleta de cores, gradientes e contraste",
-          "Tipografia e escala tipográfica",
-          "Elementos gráficos e padrões",
-          "Sistema de ícones",
-          "Tom de voz e guia de escrita",
-          "Diretrizes de fotografia",
-          "Papelaria",
-          "Capa de LinkedIn",
-          "Templates de posts para redes sociais",
-          "Template de apresentação",
-          "Favicon e ícone de app",
-          "Manual de marca online",
-          "Arquivos finais (SVG, PNG) e fontes",
-        ],
-      },
-    ],
+    // Um plano por coluna, uma lista só: cada plano marca os itens que tem. `nota` detalha o item no Completo.
+    tabela: {
+      planos: ["Básico", "Completo"],
+      linhas: [
+        { item: "Logotipo e assinaturas (horizontal, vertical, com descritor)", em: [true, true] },
+        { item: "Versões: positiva, negativa, monocromática e tons de cinza", em: [true, true] },
+        { item: "Paleta de cores", em: [true, true], nota: "Completo: com gradientes e contraste" },
+        { item: "Tipografia", em: [true, true], nota: "Completo: com escala tipográfica" },
+        { item: "Manual de marca", em: [true, true], nota: "Completo: versão online" },
+        { item: "Favicon e ícone de app", em: [true, true] },
+        { item: "Arquivos finais (SVG, PNG) e fontes", em: [true, true] },
+        { item: "Pesquisa e briefing", em: [false, true] },
+        { item: "Conceito e símbolo", em: [false, true] },
+        { item: "Grade de construção, área de proteção e tamanhos mínimos", em: [false, true] },
+        { item: "Elementos gráficos e padrões", em: [false, true] },
+        { item: "Sistema de ícones", em: [false, true] },
+        { item: "Tom de voz e guia de escrita", em: [false, true] },
+        { item: "Diretrizes de fotografia", em: [false, true] },
+        { item: "Papelaria", em: [false, true] },
+        { item: "Capa de LinkedIn", em: [false, true] },
+        { item: "Templates de posts para redes sociais", em: [false, true] },
+        { item: "Template de apresentação", em: [false, true] },
+      ],
+    },
   },
   {
     nome: "Website",
@@ -181,13 +169,13 @@ export const SERVICOS = [
 // Cada serviço é um pôster vertical do key visual: fundo chapado, grade à vista, cruz de mira, mono em caixa
 // alta e o ícone gigante, quase na largura toda do quadro.
 export const TILES: readonly { bg: string; fg: string; icone: string; rotulo: string; chip: string }[] = [
-  { bg: "bg-idv-preto", fg: "text-idv-off", icone: "text-idv-amarelo", rotulo: "text-idv-amarelo", chip: "bg-idv-off text-idv-preto" },
-  { bg: "bg-idv-off", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
-  { bg: "bg-idv-laranja", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-amarelo", chip: "bg-idv-off text-idv-preto" },
-  { bg: "bg-idv-pedra", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
-  { bg: "bg-idv-grafite", fg: "text-idv-off", icone: "text-idv-amarelo", rotulo: "text-idv-amarelo", chip: "bg-idv-off text-idv-preto" },
-  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
-  { bg: "bg-idv-cinza", fg: "text-idv-preto", icone: "text-idv-off", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
+  { bg: "bg-idv-preto", fg: "text-idv-off", icone: "text-idv-amarelo", rotulo: "text-idv-amarelo", chip: "border border-idv-amarelo text-idv-amarelo" },
+  { bg: "bg-idv-off", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
+  { bg: "bg-idv-laranja", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-amarelo", chip: "border border-idv-preto text-idv-preto" },
+  { bg: "bg-idv-pedra", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
+  { bg: "bg-idv-grafite", fg: "text-idv-off", icone: "text-idv-amarelo", rotulo: "text-idv-amarelo", chip: "border border-idv-amarelo text-idv-amarelo" },
+  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
+  { bg: "bg-idv-cinza", fg: "text-idv-preto", icone: "text-idv-off", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
 ];
 
 

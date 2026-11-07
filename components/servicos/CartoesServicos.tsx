@@ -81,7 +81,8 @@ export function CartoesServicos({
         const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
         const destaqueTile = i === INDICE_DESTAQUE;
         const largura = isOpen ? "col-span-2 md:col-span-4" : ESPACOS[i % ESPACOS.length];
-        const grupos = "grupos" in s ? s.grupos : [{ nome: rotulo || "Entregas", incluido: s.incluido }];
+        const tabela = "tabela" in s ? s.tabela : null;
+        const grupos = "grupos" in s ? s.grupos : "incluido" in s ? [{ nome: rotulo || "Entregas", incluido: s.incluido }] : [];
 
           if (modo === "estatico") {
             return (
@@ -176,6 +177,51 @@ export function CartoesServicos({
                   </div>
 
                   <div className="flex flex-col gap-8 md:col-span-7">
+                    {tabela && (
+                      <div>
+                        <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>
+                          02 · O que está incluído · {tabela.linhas.length}
+                        </p>
+                        <div className="mt-4" role="table" aria-label={`O que cada plano de ${s.nome} inclui`}>
+                          <div role="row" className="grid grid-cols-[minmax(0,1fr)_4.25rem_4.25rem] items-end gap-x-2 pb-2 md:grid-cols-[minmax(0,1fr)_5.5rem_5.5rem]">
+                            <span role="columnheader" aria-label="Item" />
+                            {tabela.planos.map((pl, pi) => (
+                              <span key={pl} role="columnheader" className={`text-center font-mono text-[0.65rem] font-bold uppercase tracking-[0.12em] md:text-[0.7rem] ${c.rotulo}`}>
+                                {pl}
+                                <span className="block opacity-70">{tabela.linhas.filter((l) => l.em[pi]).length}</span>
+                              </span>
+                            ))}
+                          </div>
+                          {tabela.linhas.map((l) => (
+                            <div
+                              key={l.item}
+                              role="row"
+                              className="grid grid-cols-[minmax(0,1fr)_4.25rem_4.25rem] items-center gap-x-2 border-t border-current/15 py-2.5 md:grid-cols-[minmax(0,1fr)_5.5rem_5.5rem]"
+                            >
+                              <span role="cell" className="text-sm font-medium leading-snug md:text-[0.95rem]">
+                                {l.item}
+                                {"nota" in l && l.nota && <span className="mt-0.5 block text-xs font-normal opacity-60">{l.nota}</span>}
+                              </span>
+                              {l.em.map((tem, pi) => (
+                                <span key={pi} role="cell" className="flex justify-center">
+                                  {tem ? (
+                                    <span className={`flex h-5 w-5 items-center justify-center ${c.chip}`} aria-label="Incluído">
+                                      <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
+                                        <path d="M3 8.5l3.2 3.2L13 4.5" />
+                                      </svg>
+                                    </span>
+                                  ) : (
+                                    <span className="font-mono text-xs opacity-30" aria-label="Não incluído">
+                                      —
+                                    </span>
+                                  )}
+                                </span>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     {grupos.map((g, gi) => (
                       <div key={g.nome} className={gi > 0 ? "border-t border-current/20 pt-6" : ""}>
                         <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>

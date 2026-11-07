@@ -296,21 +296,21 @@ export default function ServicosPage() {
       <div
         ref={cabecalhoRef}
         className={`sticky top-0 z-20 -mx-6 px-6 pb-5 transition-[padding,background-color] duration-300 md:-mx-[clamp(1.5rem,5vw,6rem)] md:px-[clamp(1.5rem,5vw,6rem)] ${
-          compacto ? "bg-idv-preto pt-[76px]" : "bg-idv-amarelo pt-32"
+          compacto ? "bg-idv-off pt-[76px] shadow-[0_1px_0_rgba(14,14,13,0.2)]" : "bg-idv-amarelo pt-32"
         }`}
       >
         <div className="relative flex items-start justify-between gap-6">
           <div className="min-w-0">
             <p
               className={`font-mono text-xs uppercase tracking-[0.12em] transition-colors duration-300 ${
-                compacto ? "text-idv-cinza" : "text-idv-preto/60"
+                compacto ? "text-idv-preto/60" : "text-idv-preto/60"
               }`}
             >
               Serviços
             </p>
             <h1
               className={`mt-2 font-display uppercase leading-none transition-[font-size,color] duration-300 ${
-                compacto ? "text-idv-amarelo" : "text-idv-preto"
+                compacto ? "text-idv-preto" : "text-idv-preto"
               } ${
                 compacto
                   ? "text-[clamp(1.25rem,5.5vw,1.75rem)] md:text-4xl"
@@ -331,6 +331,7 @@ export default function ServicosPage() {
       <div className="mt-6 border-t border-idv-preto/25">
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
+          const p = Math.round((i / Math.max(1, SERVICOS.length - 1)) * 100);
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           return (
             <div
@@ -338,22 +339,30 @@ export default function ServicosPage() {
               ref={(el) => {
                 linhasRef.current[i] = el;
               }}
-              className="group/row border-b border-idv-preto/25"
+              className={`group/row mb-2 rounded-2xl px-4 transition-[background-color,color] duration-700 ease-out md:mb-3 md:rounded-3xl md:px-7 ${
+                isOpen ? "text-idv-preto" : p >= 50 ? "text-idv-off" : "text-idv-preto"
+              }`}
+              style={{
+                // degradê suave de cinza da IDV: de pedra (claro) a grafite (escuro), um tom por item
+                backgroundColor: isOpen
+                  ? "transparent"
+                  : `color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%)`,
+              }}
             >
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-6 py-7 text-left md:py-9"
+                className="flex w-full items-center justify-between gap-3 py-6 text-left md:gap-6 md:py-9"
               >
                 <span
-                  className={`flex items-center gap-3 font-display text-lg uppercase tracking-tight transition-all duration-200 md:gap-5 md:text-4xl ${
-                    isOpen ? "text-idv-preto" : "text-idv-preto/80 group-hover/row:translate-x-2 group-hover/row:text-idv-preto"
+                  className={`flex min-w-0 items-center gap-2 whitespace-nowrap font-display text-[clamp(0.7rem,3.9vw,1.125rem)] uppercase tracking-tight transition-all duration-200 md:gap-5 md:text-4xl ${
+                    isOpen ? "" : "group-hover/row:translate-x-2"
                   }`}
                 >
                   {ICONE_DO_SERVICO[s.nome] && (
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors duration-200 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja md:h-16 md:w-16">
-                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className="h-7 w-7 md:h-9 md:w-9" />
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors md:h-16 md:w-16 duration-200 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja md:h-16 md:w-16">
+                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className="h-5 w-5 md:h-9 md:w-9" />
                     </span>
                   )}
                   {s.nome}
@@ -369,7 +378,7 @@ export default function ServicosPage() {
                         }
                       : undefined
                   }
-                  className={`flex h-11 w-11 items-center justify-center rounded-full font-mono text-3xl leading-none text-idv-preto transition-all duration-300 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja ${
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-mono text-2xl leading-none md:h-11 md:w-11 md:text-3xl transition-all duration-300 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja ${
                     isOpen ? "rotate-45" : ""
                   }`}
                 >

@@ -340,13 +340,13 @@ export default function ServicosPage() {
                 linhasRef.current[i] = el;
               }}
               className={`group/row mb-2 rounded-2xl px-4 transition-[background-color,color] duration-700 ease-out md:mb-3 md:rounded-3xl md:px-7 ${
-                isOpen ? "text-idv-preto" : p >= 50 ? "text-idv-off" : "text-idv-preto"
+                "text-idv-preto"
               }`}
               style={{
-                // degradê suave de cinza da IDV: de pedra (claro) a grafite (escuro), um tom por item
+                // degradê suave de cinza da IDV (pedra a grafite), um tom por item, com pouca opacidade
                 backgroundColor: isOpen
                   ? "transparent"
-                  : `color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%)`,
+                  : `color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 38%, transparent)`,
               }}
             >
               <button

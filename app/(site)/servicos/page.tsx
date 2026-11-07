@@ -250,13 +250,13 @@ function CartaoLista({
 
 // Composição de cores dos cartões de serviço (todas da IDV, com um tom de amarelo e um de cinza derivados).
 const CARTOES = [
-  { bg: "bg-idv-preto", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", raio: "rounded-[2rem] rounded-tr-md" },
-  { bg: "bg-idv-off", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-amarelo", raio: "rounded-[2rem] rounded-bl-md" },
-  { bg: "bg-idv-laranja", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", raio: "rounded-[2rem] rounded-br-md" },
-  { bg: "bg-idv-pedra", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", raio: "rounded-[2rem] rounded-tl-md" },
-  { bg: "bg-idv-grafite", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", raio: "rounded-[2rem] rounded-tr-md" },
-  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", raio: "rounded-[2rem] rounded-bl-md" },
-  { bg: "bg-idv-cinza", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", raio: "rounded-[2rem] rounded-br-md" },
+  { bg: "bg-idv-preto", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[15.5rem] md:-rotate-[1.2deg]" },
+  { bg: "bg-idv-off", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-amarelo", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-amarelo"], forma: "md:min-h-[12rem] md:translate-y-8 md:rotate-[1deg]" },
+  { bg: "bg-idv-laranja", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", pontos: ["bg-idv-preto", "bg-idv-off", "bg-idv-amarelo"], forma: "md:min-h-[14rem] md:-translate-y-1 md:-rotate-[0.6deg]" },
+  { bg: "bg-idv-pedra", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-amarelo", "bg-idv-laranja"], forma: "md:min-h-[13rem] md:translate-y-5 md:rotate-[0.8deg]" },
+  { bg: "bg-idv-grafite", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-off", "bg-idv-laranja"], forma: "md:min-h-[16.5rem] md:-translate-y-2 md:-rotate-[0.9deg]" },
+  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[12rem] md:translate-y-7 md:rotate-[1.1deg]" },
+  { bg: "bg-idv-cinza", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", pontos: ["bg-idv-preto", "bg-idv-amarelo", "bg-idv-off"], forma: "md:min-h-[11rem]" },
 ] as const;
 
 export default function ServicosPage() {
@@ -340,12 +340,13 @@ export default function ServicosPage() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-3 md:grid-cols-6">
+      <div className="mt-8 grid items-start gap-x-4 gap-y-4 md:grid-cols-6 md:gap-x-5 md:gap-y-12">
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
           const c = CARTOES[i % CARTOES.length];
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           const largura = isOpen || i === SERVICOS.length - 1 ? "md:col-span-6" : "md:col-span-2";
+          const total = "grupos" in s ? s.grupos.reduce((n, g) => n + g.incluido.length, 0) : s.incluido.length;
           return (
             <div
               key={s.nome}
@@ -358,7 +359,7 @@ export default function ServicosPage() {
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className={`relative flex min-h-[8.5rem] w-full flex-col justify-between gap-6 p-5 text-left transition-transform duration-300 hover:-translate-y-0.5 md:min-h-[13rem] md:p-6 ${c.bg} ${c.fg} ${c.raio}`}
+                className={`relative flex min-h-[8.5rem] w-full flex-col justify-between gap-6 rounded-[2.25rem] p-5 text-left shadow-[0_22px_40px_-22px_rgba(14,14,13,0.55)] transition-all duration-500 ease-out hover:-translate-y-1 md:p-7 ${c.bg} ${c.fg} ${isOpen ? "md:min-h-[9rem]" : c.forma}`}
               >
                 <span className="flex items-start justify-between gap-3">
                   <span
@@ -375,15 +376,23 @@ export default function ServicosPage() {
                         ? { animation: "piscar 1.4s ease-in-out infinite" }
                         : undefined
                     }
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-current font-mono text-2xl leading-none transition-transform duration-300 ${
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center font-mono text-4xl leading-none transition-transform duration-300 ${
                       isOpen ? "rotate-45" : ""
                     }`}
                   >
                     +
                   </span>
                 </span>
-                <span className="font-display text-[clamp(1rem,4.6vw,1.25rem)] uppercase leading-tight tracking-tight md:text-xl lg:text-2xl">
-                  {s.nome}
+                <span className="flex flex-col gap-3">
+                  <span className="font-display text-[clamp(1rem,4.6vw,1.25rem)] uppercase leading-tight tracking-tight md:text-xl lg:text-2xl">
+                    {s.nome}
+                  </span>
+                  <span className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] opacity-75">
+                    {c.pontos.map((pt, k) => (
+                      <span key={k} className={`h-3.5 w-3.5 rounded-full ${pt}`} aria-hidden="true" />
+                    ))}
+                    <span className="ml-1">{total} entregas</span>
+                  </span>
                 </span>
               </button>
 

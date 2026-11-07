@@ -1,5 +1,5 @@
 import { IconeServico } from "@/components/ui/IconeServico";
-import { ADORNOS, ICONE_DO_SERVICO, INDICE_DESTAQUE, SERVICOS, TILES } from "./dados";
+import { ADORNOS, ICONE_DO_SERVICO, INDICE_DESTAQUE, PORTE, SERVICOS, TILES } from "./dados";
 
 // Elemento pequeno e animado que passa da margem do pôster (só no cartão fechado).
 export function Adorno({ i }: { i: number }) {
@@ -17,6 +17,7 @@ export function CartaoFechadoConteudo({ i, piscando }: { i: number; piscando: bo
   const s = SERVICOS[i];
   const c = TILES[i % TILES.length];
   const destaqueTile = i === INDICE_DESTAQUE;
+  const porte = PORTE[i % PORTE.length];
   return (
     <>
       {destaqueTile && (
@@ -36,13 +37,13 @@ export function CartaoFechadoConteudo({ i, piscando }: { i: number; piscando: bo
         )}
         <IconeServico
           nome={ICONE_DO_SERVICO[s.nome]}
-          className={`h-full w-auto max-w-[90%] transition-transform duration-500 ${destaqueTile ? "max-h-[36rem] [animation:flutuar_5s_ease-in-out_infinite]" : "max-h-[19rem]"} group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
+          className={`h-full w-auto max-w-[90%] transition-transform duration-500 ${porte.icone} ${destaqueTile ? "[animation:flutuar_5s_ease-in-out_infinite]" : ""} group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
         />
       </span>
       <span className="flex items-end justify-between gap-2">
         <span
           className={`block font-display uppercase leading-tight tracking-tight ${
-            destaqueTile ? "text-xl md:text-4xl lg:text-5xl" : "text-[0.78rem] md:text-xl lg:text-2xl"
+            porte.titulo
           }`}
         >
           {s.nome}

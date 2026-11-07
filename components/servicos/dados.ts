@@ -191,15 +191,26 @@ export const ADORNOS: readonly ({ pos: string; forma: string; anim: string } | n
 ];
 
 
-// Espaço de cada cartão na grade da página de Serviços (celular / desktop).
-export const ESPACOS = [
-  "col-span-2 md:col-span-2", // Identidade Visual: larga
-  "col-span-1", // Website
-  "col-span-1 md:row-span-2", // Apresentação: alta
-  "col-span-1", // Social Media Kit
-  "col-span-2 md:col-span-2 md:row-span-2", // Vídeo e Motion: o grande, único animado por dentro
-  "col-span-1", // Eventos
-  "col-span-2 md:col-span-1", // Materiais Gráficos
+// Peso de cada serviço na grade (1 = maior). O tamanho do card segue o peso: Identidade Visual (1) > Materiais
+// Gráficos (2) > Vídeo e Motion (3) > os demais (4). Desktop: grade de 4 colunas; celular: 2 colunas.
+//  - espaco: ocupação na grade (o `md:order` monta a ordem visual no desktop sem mexer na ordem de leitura)
+//  - altura: altura mínima do card fechado no celular
+//  - titulo / icone: tamanho do nome e do ícone gigante
+export const PORTE: readonly { espaco: string; altura: string; titulo: string; icone: string; pad: string }[] = [
+  // 1. Identidade Visual: o maior
+  { espaco: "col-span-2 md:col-span-3 md:row-span-2 md:order-1", altura: "min-h-[26rem]", titulo: "text-xl md:text-5xl lg:text-6xl", icone: "max-h-[40rem]", pad: "md:p-10" },
+  // 4. Website
+  { espaco: "col-span-1 md:order-2", altura: "min-h-[17rem]", titulo: "text-[0.78rem] md:text-xl lg:text-2xl", icone: "max-h-[19rem]", pad: "md:p-6" },
+  // 4. Apresentação
+  { espaco: "col-span-1 md:order-3", altura: "min-h-[17rem]", titulo: "text-[0.78rem] md:text-xl lg:text-2xl", icone: "max-h-[19rem]", pad: "md:p-6" },
+  // 4. Social Media Kit
+  { espaco: "col-span-1 md:order-6", altura: "min-h-[17rem]", titulo: "text-[0.78rem] md:text-xl lg:text-2xl", icone: "max-h-[19rem]", pad: "md:p-6" },
+  // 3. Vídeo e Motion: alto e estreito, o único animado por dentro
+  { espaco: "col-span-1 row-span-2 md:order-5", altura: "min-h-[17rem]", titulo: "text-base md:text-2xl lg:text-3xl", icone: "max-h-[30rem]", pad: "md:p-7" },
+  // 4. Eventos
+  { espaco: "col-span-1 md:order-7", altura: "min-h-[17rem]", titulo: "text-[0.78rem] md:text-xl lg:text-2xl", icone: "max-h-[19rem]", pad: "md:p-6" },
+  // 2. Materiais Gráficos: o segundo maior
+  { espaco: "col-span-2 md:col-span-2 md:row-span-2 md:order-4", altura: "min-h-[22rem]", titulo: "text-lg md:text-3xl lg:text-4xl", icone: "max-h-[32rem]", pad: "md:p-8" },
 ];
 
 // Vídeo e Motion Graphics: o grande, o único animado por dentro.

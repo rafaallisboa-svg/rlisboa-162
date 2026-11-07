@@ -5,7 +5,7 @@ import Link from "next/link";
 import { slugServico } from "@/lib/servicos";
 import { Cruz } from "@/components/ui/IdvElementos";
 import { IconeServico } from "@/components/ui/IconeServico";
-import { ICONE_DO_SERVICO, SERVICOS, TILES, ESPACOS, INDICE_DESTAQUE } from "./dados";
+import { ICONE_DO_SERVICO, SERVICOS, TILES, PORTE } from "./dados";
 import { Adorno, CartaoFechadoConteudo } from "./CartaoFechado";
 
 /**
@@ -79,19 +79,20 @@ export function CartoesServicos({
         const c = TILES[i % TILES.length];
         const escuro = c.fg === "text-idv-off";
         const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
-        const destaqueTile = i === INDICE_DESTAQUE;
-        const largura = isOpen ? "col-span-2 md:col-span-4" : ESPACOS[i % ESPACOS.length];
+        const porte = PORTE[i % PORTE.length];
+        const ordem = porte.espaco.split(" ").find((k) => k.startsWith("md:order-")) ?? "";
+        const largura = isOpen ? `col-span-2 md:col-span-4 ${ordem}` : porte.espaco;
         const tabela = "tabela" in s ? s.tabela : null;
         const grupos = "grupos" in s ? s.grupos : "incluido" in s ? [{ nome: rotulo || "Entregas", incluido: s.incluido }] : [];
 
           if (modo === "estatico") {
             return (
-              <div key={s.nome} className={`group/row relative isolate flex flex-col rounded-[3px] ${ESPACOS[i % ESPACOS.length]} ${c.bg} ${c.fg}`}>
+              <div key={s.nome} className={`group/row relative isolate flex flex-col rounded-[3px] ${porte.espaco} ${c.bg} ${c.fg}`}>
                 <Adorno i={i} />
                 <Link
                   href={`/servicos#${slugServico(s.nome)}`}
                   aria-label={`${s.nome}: ver na página de serviços`}
-                  className={`relative z-10 flex min-h-[17rem] flex-1 flex-col justify-between gap-3 p-4 ${destaqueTile ? "min-h-[24rem]" : ""}`}
+                  className={`relative z-10 flex ${porte.altura} flex-1 flex-col justify-between gap-3 p-4`}
                 >
                   <CartaoFechadoConteudo i={i} piscando={destaque === i} />
                 </Link>
@@ -118,7 +119,7 @@ export function CartoesServicos({
               className={`relative z-10 flex w-full text-left ${
                 isOpen
                   ? "min-h-[7.5rem] flex-row items-center justify-between gap-4 p-5 md:min-h-[9rem] md:p-7"
-                  : `min-h-[17rem] flex-1 flex-col justify-between gap-3 p-4 md:p-6 ${destaqueTile ? "min-h-[24rem] md:p-9" : ""}`
+                  : `${porte.altura} flex-1 flex-col justify-between gap-3 p-4 ${porte.pad}`
               }`}
             >
               {isOpen ? (

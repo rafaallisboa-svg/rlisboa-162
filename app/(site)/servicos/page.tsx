@@ -295,17 +295,23 @@ export default function ServicosPage() {
       <Cruz className="absolute right-6 top-28 hidden h-5 w-5 text-idv-preto/40 md:right-[clamp(1.5rem,5vw,6rem)] md:block" />
       <div
         ref={cabecalhoRef}
-        className={`sticky top-0 z-20 -mx-6 border-b bg-idv-amarelo px-6 pb-5 transition-[padding,border-color] duration-300 md:-mx-[clamp(1.5rem,5vw,6rem)] md:px-[clamp(1.5rem,5vw,6rem)] ${
-          compacto ? "border-idv-preto/20 pt-[76px]" : "border-transparent pt-32"
+        className={`sticky top-0 z-20 -mx-6 px-6 pb-5 transition-[padding,background-color] duration-300 md:-mx-[clamp(1.5rem,5vw,6rem)] md:px-[clamp(1.5rem,5vw,6rem)] ${
+          compacto ? "bg-idv-preto pt-[76px]" : "bg-idv-amarelo pt-32"
         }`}
       >
         <div className="relative flex items-start justify-between gap-6">
           <div className="min-w-0">
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
+            <p
+              className={`font-mono text-xs uppercase tracking-[0.12em] transition-colors duration-300 ${
+                compacto ? "text-idv-cinza" : "text-idv-preto/60"
+              }`}
+            >
               Serviços
             </p>
             <h1
-              className={`mt-2 font-display uppercase leading-none text-idv-preto transition-[font-size] duration-300 ${
+              className={`mt-2 font-display uppercase leading-none transition-[font-size,color] duration-300 ${
+                compacto ? "text-idv-amarelo" : "text-idv-preto"
+              } ${
                 compacto
                   ? "text-[clamp(1.25rem,5.5vw,1.75rem)] md:text-4xl"
                   : "text-[clamp(1.5rem,7.2vw,2.5rem)] sm:text-h1"

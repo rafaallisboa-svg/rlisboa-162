@@ -17,11 +17,7 @@ export function ProjetosDestaque() {
       className="relative bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
     >
       <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
-      <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
-        Projetos em destaque<span className="text-idv-laranja">.</span>
-      </p>
-
-      <div className="mt-10 grid gap-8 md:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-2">
         {projetos.map((p, i) => {
           const ultimo = projetos.length - 1;
           const destaque = i === 0 || (i === ultimo && ultimo % 2 === 1);

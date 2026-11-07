@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { slugServico } from "@/lib/servicos";
-import { Cruz, StickerRafa } from "@/components/ui/IdvElementos";
+import { Cruz, SeloRegua, StickerRafa } from "@/components/ui/IdvElementos";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 import { IconeServico, type NomeIconeServico } from "@/components/ui/IconeServico";
@@ -365,6 +365,10 @@ export default function ServicosPage() {
                             <span className="h-2.5 w-2.5 rounded-full bg-idv-laranja [animation:rec_1.2s_steps(1)_infinite]" />
                             rec
                           </span>
+                          {/* relógio animado em volta do ícone de vídeo */}
+                          <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                            <SeloRegua numero={false} tinta="var(--color-idv-off)" className="aspect-square h-full max-h-[34rem] w-auto" />
+                          </span>
                           <span aria-hidden="true" className="absolute inset-x-0 bottom-1 h-[3px] bg-current/15">
                             <span className="block h-full origin-left bg-idv-amarelo [animation:progresso_6s_linear_infinite]" />
                           </span>
@@ -372,7 +376,7 @@ export default function ServicosPage() {
                       )}
                       <IconeServico
                         nome={ICONE_DO_SERVICO[s.nome]}
-                        className={`h-full w-auto max-w-[90%] transition-transform duration-500 ${destaqueTile ? "max-h-[36rem] [animation:flutuar_5s_ease-in-out_infinite]" : "max-h-[19rem]"} group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
+                        className={`relative transition-transform duration-500 ${destaqueTile ? "h-[56%] w-auto max-w-[56%] [animation:flutuar_5s_ease-in-out_infinite]" : "h-full max-h-[19rem] w-auto max-w-[90%]"} group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
                       />
                     </span>
                     <span className="flex items-end justify-between gap-2">

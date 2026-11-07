@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { slugServico } from "@/lib/servicos";
-import { Cruz, StickerRafa } from "@/components/ui/IdvElementos";
+import { Cruz, Pavimento, StickerRafa } from "@/components/ui/IdvElementos";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 import { IconeServico, type NomeIconeServico } from "@/components/ui/IconeServico";
@@ -186,69 +186,6 @@ const SERVICOS = [
 ] as const;
 
 
-const TONS = {
-  off: {
-    card: "bg-idv-off text-idv-preto",
-    rotulo: "bg-idv-preto text-idv-off",
-    pill: "border-idv-preto/50 text-idv-preto hover:border-idv-preto hover:bg-idv-laranja hover:text-idv-preto",
-    num: "text-idv-preto/50",
-  },
-  pedra: {
-    card: "bg-idv-pedra text-idv-preto",
-    rotulo: "bg-idv-preto text-idv-off",
-    pill: "border-idv-preto/30 text-idv-preto hover:border-idv-preto hover:bg-idv-laranja hover:text-idv-preto",
-    num: "text-idv-preto/50",
-  },
-  contorno: {
-    card: "border-2 border-idv-preto text-idv-preto",
-    rotulo: "bg-idv-preto text-idv-amarelo",
-    pill: "border-idv-preto/60 text-idv-preto hover:border-idv-preto hover:bg-idv-laranja hover:text-idv-preto",
-    num: "text-idv-preto/50",
-  },
-  preto: {
-    card: "bg-idv-preto text-idv-off",
-    rotulo: "bg-idv-amarelo text-idv-preto",
-    pill: "border-idv-off/45 text-idv-off hover:border-idv-laranja hover:bg-idv-laranja hover:text-idv-preto",
-    num: "text-idv-cinza",
-  },
-} as const;
-
-function CartaoLista({
-  rotulo,
-  itens,
-  tom,
-  className = "",
-}: {
-  rotulo?: string;
-  itens: readonly string[];
-  tom: keyof typeof TONS;
-  className?: string;
-}) {
-  const c = TONS[tom];
-  return (
-    <div className={`p-6 md:p-8 ${c.card} ${className}`}>
-      <div className="flex items-center justify-between gap-4">
-        {rotulo ? (
-          <span className={`rounded-full px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] ${c.rotulo}`}>
-            {rotulo}
-          </span>
-        ) : (
-          <span />
-        )}
-      </div>
-      <ul className="mt-6 flex flex-wrap gap-2">
-        {itens.map((item) => (
-          <li key={item} className={`cursor-default rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-150 md:text-[0.95rem] ${c.pill}`}>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-
-// Composição de cores dos cartões de serviço (todas da IDV, com um tom de amarelo e um de cinza derivados).
 // Formas sobrepostas atrás do conteúdo de cada cartão (um círculo grande e um quadrado arredondado girado,
 // em cores da IDV com pouca opacidade), no estilo dos cartões de referência.
 const FORMAS = [
@@ -262,12 +199,12 @@ const FORMAS = [
 ] as const;
 
 const CARTOES = [
-  { bg: "bg-idv-preto", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[15.5rem] md:-rotate-[1.2deg]" },
-  { bg: "bg-idv-off", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-amarelo", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-amarelo"], forma: "md:min-h-[12rem] md:translate-y-8 md:rotate-[1deg]" },
-  { bg: "bg-idv-laranja", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", pontos: ["bg-idv-preto", "bg-idv-off", "bg-idv-amarelo"], forma: "md:min-h-[14rem] md:-translate-y-1 md:-rotate-[0.6deg]" },
-  { bg: "bg-idv-pedra", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-amarelo", "bg-idv-laranja"], forma: "md:min-h-[13rem] md:translate-y-5 md:rotate-[0.8deg]" },
-  { bg: "bg-idv-grafite", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-off", "bg-idv-laranja"], forma: "md:min-h-[16.5rem] md:-translate-y-2 md:-rotate-[0.9deg]" },
-  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[12rem] md:translate-y-7 md:rotate-[1.1deg]" },
+  { bg: "bg-idv-preto", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[15.5rem]" },
+  { bg: "bg-idv-off", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-amarelo", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-amarelo"], forma: "md:min-h-[12rem] md:translate-y-8" },
+  { bg: "bg-idv-laranja", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", pontos: ["bg-idv-preto", "bg-idv-off", "bg-idv-amarelo"], forma: "md:min-h-[14rem] md:-translate-y-1" },
+  { bg: "bg-idv-pedra", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-amarelo", "bg-idv-laranja"], forma: "md:min-h-[13rem] md:translate-y-5" },
+  { bg: "bg-idv-grafite", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-off", "bg-idv-laranja"], forma: "md:min-h-[16.5rem] md:-translate-y-2" },
+  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[12rem] md:translate-y-7" },
   { bg: "bg-idv-cinza", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", pontos: ["bg-idv-preto", "bg-idv-amarelo", "bg-idv-off"], forma: "md:min-h-[11rem]" },
 ] as const;
 
@@ -358,32 +295,53 @@ export default function ServicosPage() {
           const c = CARTOES[i % CARTOES.length];
           const f = FORMAS[i % FORMAS.length];
           const espelho = i % 2 === 1;
+          const escuro = c.fg === "text-idv-off";
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
           const largura = isOpen || i === SERVICOS.length - 1 ? "md:col-span-6" : "md:col-span-2";
-          const total = "grupos" in s ? s.grupos.reduce((n, g) => n + g.incluido.length, 0) : s.incluido.length;
+          const grupos = "grupos" in s ? s.grupos : [{ nome: rotulo || "Entregas", incluido: s.incluido }];
           return (
             <div
               key={s.nome}
               ref={(el) => {
                 linhasRef.current[i] = el;
               }}
-              className={`group/row flex flex-col ${largura}`}
+              className={`group/row relative isolate flex flex-col overflow-hidden rounded-[2.25rem] transition-all duration-500 ease-out ${largura} ${c.bg} ${c.fg} ${
+                isOpen ? "" : `hover:-translate-y-1 ${c.forma}`
+              }`}
             >
+              {/* Fechado: formas sobrepostas. Aberto: grade à vista, cruzes e pavimento do key visual, num fundo só. */}
+              {!isOpen && (
+                <>
+                  <span
+                    aria-hidden="true"
+                    className={`pointer-events-none absolute -top-14 h-44 w-44 rounded-full md:h-60 md:w-60 ${espelho ? "-left-14" : "-right-14"} ${f.a}`}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className={`pointer-events-none absolute top-16 h-28 w-28 rounded-[2rem] md:top-20 md:h-40 md:w-40 ${espelho ? "left-10 -rotate-12" : "right-10 rotate-12"} ${f.b}`}
+                  />
+                </>
+              )}
+              {isOpen && (
+                <>
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:linear-gradient(currentColor_1px,transparent_1px),linear-gradient(90deg,currentColor_1px,transparent_1px)] [background-size:56px_56px]"
+                  />
+                  <Cruz className="pointer-events-none absolute bottom-5 left-5 h-5 w-5 opacity-50" />
+                  <Pavimento className="pointer-events-none absolute bottom-5 right-5 hidden h-12 w-auto md:block" />
+                </>
+              )}
+
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className={`relative flex min-h-[8.5rem] w-full flex-col justify-between gap-6 rounded-[2.25rem] p-5 text-left shadow-[0_22px_40px_-22px_rgba(14,14,13,0.55)] transition-all duration-500 ease-out hover:-translate-y-1 md:p-7 overflow-hidden isolate ${c.bg} ${c.fg} ${isOpen ? "md:min-h-[9rem]" : c.forma}`}
+                className={`relative z-10 flex w-full flex-col justify-between gap-6 p-5 text-left md:p-7 ${
+                  isOpen ? "min-h-[7.5rem] md:min-h-[9rem]" : "min-h-[8.5rem] md:min-h-[13rem]"
+                }`}
               >
-                <span
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute -top-14 h-44 w-44 rounded-full md:h-60 md:w-60 ${espelho ? "-left-14" : "-right-14"} ${f.a}`}
-                />
-                <span
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute top-16 h-28 w-28 rounded-[2rem] md:top-20 md:h-40 md:w-40 ${espelho ? "left-10 -rotate-12" : "right-10 rotate-12"} ${f.b}`}
-                />
-                <span className="relative z-10 flex items-start justify-between gap-3">
+                <span className="flex items-start justify-between gap-3">
                   <span
                     className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover/row:-rotate-6 group-hover/row:scale-105 md:h-20 md:w-20 md:rounded-3xl ${c.selo}`}
                   >
@@ -405,16 +363,8 @@ export default function ServicosPage() {
                     +
                   </span>
                 </span>
-                <span className="relative z-10 flex flex-col gap-3">
-                  <span className="font-display text-[clamp(1rem,4.6vw,1.25rem)] uppercase leading-tight tracking-tight md:text-xl lg:text-2xl">
-                    {s.nome}
-                  </span>
-                  <span className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] opacity-75">
-                    {c.pontos.map((pt, k) => (
-                      <span key={k} className={`h-3.5 w-3.5 rounded-full ${pt}`} aria-hidden="true" />
-                    ))}
-                    <span className="ml-1">{total} entregas</span>
-                  </span>
+                <span className="font-display text-[clamp(1rem,4.6vw,1.25rem)] uppercase leading-tight tracking-tight md:text-xl lg:text-3xl">
+                  {s.nome}
                 </span>
               </button>
 
@@ -427,30 +377,27 @@ export default function ServicosPage() {
                 }}
               >
                 <div style={{ minHeight: 0, overflow: "hidden" }}>
-                  <div className="mb-8 mt-1 grid gap-3 md:grid-cols-12">
-                    <div className="flex flex-col gap-3 md:col-span-4">
-                      <div className="flex flex-1 flex-col justify-between gap-10 rounded-[2.75rem] rounded-tr-[0.75rem] bg-idv-pedra p-6 text-idv-preto md:p-8">
-                        <span className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
-                          Sobre o serviço
-                        </span>
-                        <p className="text-lg font-medium leading-snug md:text-xl">{s.descricao}</p>
+                  <div className="relative z-10 grid gap-10 px-5 pb-16 pt-2 md:grid-cols-12 md:gap-12 md:px-7 md:pb-20">
+                    <div className="flex flex-col gap-8 md:col-span-5">
+                      <div>
+                        <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] opacity-60">01 · Sobre o serviço</p>
+                        <p className="mt-3 text-xl font-medium leading-snug md:text-2xl">{s.descricao}</p>
                       </div>
-
-                      <div className="rounded-[0.75rem] rounded-br-[3rem] bg-idv-preto p-6 text-idv-off md:p-8">
-                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
-                          Investimento
-                        </p>
-                        <p className="mt-1 font-display text-2xl uppercase leading-none tracking-tight">
-                          Sob consulta
-                        </p>
+                      <div className="border-t border-current/20 pt-6">
+                        <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] opacity-60">03 · Investimento</p>
+                        <p className="mt-2 font-display text-2xl uppercase leading-none tracking-tight">Sob consulta</p>
                         <a
                           href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
-                          className="mt-6 inline-flex items-center gap-3 rounded-full bg-idv-amarelo py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
+                          className={`mt-5 inline-flex items-center gap-3 rounded-full py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] transition-transform hover:-translate-y-0.5 ${
+                            escuro ? "bg-idv-amarelo text-idv-preto" : "bg-idv-preto text-idv-off"
+                          }`}
                         >
                           Solicitar orçamento
                           <span
                             aria-hidden="true"
-                            className="flex h-8 w-8 items-center justify-center rounded-full bg-idv-preto text-base text-idv-amarelo"
+                            className={`flex h-8 w-8 items-center justify-center rounded-full text-base ${
+                              escuro ? "bg-idv-preto text-idv-amarelo" : "bg-idv-amarelo text-idv-preto"
+                            }`}
                           >
                             ↗
                           </span>
@@ -458,29 +405,24 @@ export default function ServicosPage() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-3 md:col-span-8">
-                      {"grupos" in s ? (
-                        s.grupos.map((grupo, gi) => (
-                          <CartaoLista
-                            key={grupo.nome}
-                            rotulo={grupo.nome}
-                            itens={grupo.incluido}
-                            tom={gi % 2 === 0 ? (i % 2 === 0 ? "off" : "contorno") : "preto"}
-                            className={`flex-1 ${
-                              gi % 2 === 0
-                                ? "rounded-[0.75rem] rounded-tl-[3rem]"
-                                : "rounded-[3rem] rounded-bl-[0.75rem]"
-                            }`}
-                          />
-                        ))
-                      ) : (
-                        <CartaoLista
-                          rotulo={rotulo || undefined}
-                          itens={s.incluido}
-                          tom="contorno"
-                          className="flex-1 rounded-[0.75rem] rounded-tl-[3rem]"
-                        />
-                      )}
+                    <div className="flex flex-col gap-8 md:col-span-7">
+                      {grupos.map((g, gi) => (
+                        <div key={g.nome} className={gi > 0 ? "border-t border-current/20 pt-6" : ""}>
+                          <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] opacity-60">
+                            02 · {g.nome} · {g.incluido.length}
+                          </p>
+                          <ul className="mt-4 flex flex-wrap gap-2">
+                            {g.incluido.map((item) => (
+                              <li
+                                key={item}
+                                className="cursor-default rounded-full border border-current/35 px-4 py-2 text-sm font-medium transition-colors duration-150 hover:border-transparent hover:bg-idv-laranja hover:text-idv-preto md:text-[0.95rem]"
+                              >
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

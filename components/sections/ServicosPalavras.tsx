@@ -119,7 +119,7 @@ export function ServicosPalavras() {
     <section
       ref={secaoRef}
       aria-label="Serviços"
-      className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[var(--sp-bg)] pb-36 pt-28 transition-colors duration-700 md:block md:min-h-0 md:pb-32 md:pt-40"
+      className="relative hidden overflow-hidden bg-[var(--sp-bg)] pb-36 pt-28 transition-colors duration-700 md:block md:pb-32 md:pt-40"
       style={{
         "--sp-bg": TEMAS[0].bg,
         "--sp-par": TEMAS[0].par,

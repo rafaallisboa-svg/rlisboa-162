@@ -111,12 +111,50 @@ export function ServicosPalavras() {
       aoRolar();
     };
 
+    // Ao entrar na Home (tela grande), as palavras rodam sozinhas: a página desce com aceleração no começo e
+    // desaceleração no fim, e para onde começam os projetos. Qualquer toque do visitante cancela.
+    let ativo = true;
+    let cancelar = () => {};
+    const rolarSozinho = () => {
+      if (!ativo || reduzido || window.scrollY > 10 || window.location.hash) return;
+      if (!window.matchMedia("(min-width: 768px)").matches) return;
+      let rafAuto = 0;
+      let esperar = 0;
+      const eventos = ["wheel", "touchstart", "keydown", "mousedown"] as const;
+      const parar = () => {
+        window.clearTimeout(esperar);
+        cancelAnimationFrame(rafAuto);
+        eventos.forEach((e) => window.removeEventListener(e, parar));
+      };
+      cancelar = parar;
+      eventos.forEach((e) => window.addEventListener(e, parar, { passive: true }));
+      esperar = window.setTimeout(() => {
+        const alvoEl = document.getElementById("projetos");
+        if (!alvoEl) return parar();
+        const origem = window.scrollY;
+        const destino = alvoEl.getBoundingClientRect().top + origem - window.innerHeight * 0.165;
+        const duracao = 4200;
+        const inicio = performance.now();
+        const suave = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+        const passo = (agora: number) => {
+          const x = Math.min(1, (agora - inicio) / duracao);
+          window.scrollTo(0, origem + (destino - origem) * suave(x));
+          if (x < 1) rafAuto = requestAnimationFrame(passo);
+          else parar();
+        };
+        rafAuto = requestAnimationFrame(passo);
+      }, 900);
+    };
+    document.fonts?.ready.then(rolarSozinho);
+
     ajustarFonte();
     aplicar();
     document.fonts?.ready.then(aoRedimensionar);
     window.addEventListener("scroll", aoRolar, { passive: true });
     window.addEventListener("resize", aoRedimensionar);
     return () => {
+      ativo = false;
+      cancelar();
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", aoRolar);
       window.removeEventListener("resize", aoRedimensionar);

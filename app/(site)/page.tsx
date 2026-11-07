@@ -5,6 +5,8 @@ import { Clientes } from "@/components/sections/Clientes";
 import { ServicosHomeCelular } from "@/components/servicos/ServicosHomeCelular";
 import { ServicosHomeGrande } from "@/components/servicos/ServicosHomeGrande";
 import { ServicosPalavras } from "@/components/sections/ServicosPalavras";
+import { DesafiosRelogio } from "@/components/sections/DesafiosRelogio";
+import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 import { ProjetosDestaque } from "@/components/sections/ProjetosDestaque";
 
 export const metadata: Metadata = {
@@ -25,6 +27,10 @@ export default function HomePage() {
       <ProjetosDestaque />
       <ServicosHomeGrande />
       <Clientes />
+      <section className="bg-concreto px-6 pb-28 pt-24">
+        <DesafiosRelogio />
+      </section>
+      <GrafismoParallax tipo="aneis" />
     </>
   );
 }

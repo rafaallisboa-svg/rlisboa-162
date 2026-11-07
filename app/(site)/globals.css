@@ -21,6 +21,7 @@
   --color-idv-off: #f1f0eb;
   --color-idv-amarelo: #ffc300;
   --color-idv-laranja: #ff5a1f;
+  --color-idv-amarelo-claro: #ffe27a;
 
   /* --font-jbmono vem do next/font (app/layout.tsx). Clash Display e Satoshi
      vêm via Fontshare (link no <head>, não estão no Google Fonts). */

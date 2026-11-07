@@ -174,7 +174,7 @@ export const TILES: readonly { bg: string; fg: string; icone: string; rotulo: st
   { bg: "bg-idv-laranja", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-amarelo", chip: "border border-idv-preto text-idv-preto" },
   { bg: "bg-idv-pedra", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
   { bg: "bg-idv-grafite", fg: "text-idv-off", icone: "text-idv-amarelo", rotulo: "text-idv-amarelo", chip: "border border-idv-amarelo text-idv-amarelo" },
-  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
+  { bg: "bg-idv-amarelo-claro", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
   { bg: "bg-idv-cinza", fg: "text-idv-preto", icone: "text-idv-off", rotulo: "text-idv-preto", chip: "border border-idv-preto text-idv-preto" },
 ];
 

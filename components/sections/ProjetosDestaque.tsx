@@ -43,7 +43,7 @@ export function ProjetosDestaque() {
               />
             </div>
             <div className="mt-4 flex items-start justify-between gap-4">
-              <p className="min-w-0 font-display text-xs uppercase leading-[2.4] tracking-[0.06em] text-idv-amarelo md:text-base md:leading-[2.3]">
+              <p className="min-w-0 font-display text-[0.65rem] uppercase leading-[2.6] tracking-[0.16em] text-idv-amarelo md:text-xs md:leading-[2.6]">
                 <span className="border border-idv-amarelo px-2 py-0.5 transition-colors duration-200 md:px-3 md:py-1 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] [@media(hover:hover)]:group-hover:border-idv-off [@media(hover:hover)]:group-hover:text-idv-off">
                   {p.titulo}
                 </span>

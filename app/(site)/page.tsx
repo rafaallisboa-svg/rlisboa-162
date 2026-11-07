@@ -3,6 +3,7 @@ import { site } from "@/site.config";
 import { SEO } from "@/lib/seo";
 import { Clientes } from "@/components/sections/Clientes";
 import { ServicosHomeCelular } from "@/components/servicos/ServicosHomeCelular";
+import { ServicosHomeGrande } from "@/components/servicos/ServicosHomeGrande";
 import { ServicosPalavras } from "@/components/sections/ServicosPalavras";
 import { ProjetosDestaque } from "@/components/sections/ProjetosDestaque";
 
@@ -22,6 +23,7 @@ export default function HomePage() {
       <ServicosHomeCelular />
       <ServicosPalavras />
       <ProjetosDestaque />
+      <ServicosHomeGrande />
       <Clientes />
     </>
   );

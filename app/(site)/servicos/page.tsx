@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { slugServico } from "@/lib/servicos";
-import { Cruz, Pavimento, StickerRafa } from "@/components/ui/IdvElementos";
+import { Cruz, StickerRafa } from "@/components/ui/IdvElementos";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 import { IconeServico, type NomeIconeServico } from "@/components/ui/IconeServico";
@@ -186,27 +186,18 @@ const SERVICOS = [
 ] as const;
 
 
-// Formas sobrepostas atrás do conteúdo de cada cartão (um círculo grande e um quadrado arredondado girado,
-// em cores da IDV com pouca opacidade), no estilo dos cartões de referência.
-const FORMAS = [
-  { a: "bg-idv-amarelo/25", b: "bg-idv-laranja/30" },
-  { a: "bg-idv-amarelo/55", b: "bg-idv-pedra/70" },
-  { a: "bg-idv-amarelo/60", b: "bg-idv-preto/10" },
-  { a: "bg-idv-off/80", b: "bg-idv-cinza/25" },
-  { a: "bg-idv-cinza/40", b: "bg-idv-amarelo/25" },
-  { a: "bg-idv-laranja/25", b: "bg-idv-amarelo/70" },
-  { a: "bg-idv-pedra/45", b: "bg-idv-grafite/20" },
-] as const;
+// Cada serviço é um pôster vertical do key visual: fundo chapado, grade à vista, cruz de mira, mono em caixa
+// alta e o ícone gigante, quase na largura toda do quadro.
+const TILES: readonly { bg: string; fg: string; icone: string }[] = [
+  { bg: "bg-idv-preto", fg: "text-idv-off", icone: "text-idv-amarelo" },
+  { bg: "bg-idv-off", fg: "text-idv-preto", icone: "text-idv-preto" },
+  { bg: "bg-idv-laranja", fg: "text-idv-preto", icone: "text-idv-preto" },
+  { bg: "bg-idv-pedra", fg: "text-idv-preto", icone: "text-idv-preto" },
+  { bg: "bg-idv-grafite", fg: "text-idv-off", icone: "text-idv-amarelo" },
+  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", icone: "text-idv-preto" },
+  { bg: "bg-idv-cinza", fg: "text-idv-preto", icone: "text-idv-off" },
+];
 
-const CARTOES = [
-  { bg: "bg-idv-preto", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[15.5rem]" },
-  { bg: "bg-idv-off", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-amarelo", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-amarelo"], forma: "md:min-h-[12rem] md:translate-y-8" },
-  { bg: "bg-idv-laranja", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", pontos: ["bg-idv-preto", "bg-idv-off", "bg-idv-amarelo"], forma: "md:min-h-[14rem] md:-translate-y-1" },
-  { bg: "bg-idv-pedra", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-amarelo", "bg-idv-laranja"], forma: "md:min-h-[13rem] md:translate-y-5" },
-  { bg: "bg-idv-grafite", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", pontos: ["bg-idv-amarelo", "bg-idv-off", "bg-idv-laranja"], forma: "md:min-h-[16.5rem] md:-translate-y-2" },
-  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", pontos: ["bg-idv-preto", "bg-idv-laranja", "bg-idv-off"], forma: "md:min-h-[12rem] md:translate-y-7" },
-  { bg: "bg-idv-cinza", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", pontos: ["bg-idv-preto", "bg-idv-amarelo", "bg-idv-off"], forma: "md:min-h-[11rem]" },
-] as const;
 
 export default function ServicosPage() {
   const [aberto, setAberto] = useState<number | null>(null);
@@ -289,83 +280,81 @@ export default function ServicosPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid items-start gap-x-4 gap-y-4 md:grid-cols-6 md:gap-x-5 md:gap-y-12">
+      <div className="mt-8 grid grid-cols-2 items-start gap-3 md:grid-cols-4">
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
-          const c = CARTOES[i % CARTOES.length];
-          const f = FORMAS[i % FORMAS.length];
-          const espelho = i % 2 === 1;
+          const c = TILES[i % TILES.length];
           const escuro = c.fg === "text-idv-off";
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
-          const largura = isOpen || i === SERVICOS.length - 1 ? "md:col-span-6" : "md:col-span-2";
+          const largura = isOpen ? "col-span-2 md:col-span-4" : i === SERVICOS.length - 1 ? "col-span-2" : "col-span-1";
           const grupos = "grupos" in s ? s.grupos : [{ nome: rotulo || "Entregas", incluido: s.incluido }];
+          const numero = String(i + 1).padStart(2, "0");
           return (
             <div
               key={s.nome}
               ref={(el) => {
                 linhasRef.current[i] = el;
               }}
-              className={`group/row relative isolate flex flex-col overflow-hidden rounded-[2.25rem] transition-all duration-500 ease-out ${largura} ${c.bg} ${c.fg} ${
-                isOpen ? "" : `hover:-translate-y-1 ${c.forma}`
-              }`}
+              className={`group/row relative isolate flex flex-col overflow-hidden rounded-[3px] transition-[background-color] duration-500 ${largura} ${c.bg} ${c.fg}`}
             >
-              {/* Fechado: formas sobrepostas. Aberto: grade à vista, cruzes e pavimento do key visual, num fundo só. */}
-              {!isOpen && (
-                <>
-                  <span
-                    aria-hidden="true"
-                    className={`pointer-events-none absolute -top-14 h-44 w-44 rounded-full md:h-60 md:w-60 ${espelho ? "-left-14" : "-right-14"} ${f.a}`}
-                  />
-                  <span
-                    aria-hidden="true"
-                    className={`pointer-events-none absolute top-16 h-28 w-28 rounded-[2rem] md:top-20 md:h-40 md:w-40 ${espelho ? "left-10 -rotate-12" : "right-10 rotate-12"} ${f.b}`}
-                  />
-                </>
-              )}
-              {isOpen && (
-                <>
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:linear-gradient(currentColor_1px,transparent_1px),linear-gradient(90deg,currentColor_1px,transparent_1px)] [background-size:56px_56px]"
-                  />
-                  <Cruz className="pointer-events-none absolute bottom-5 left-5 h-5 w-5 opacity-50" />
-                  <Pavimento className="pointer-events-none absolute bottom-5 right-5 hidden h-12 w-auto md:block" />
-                </>
-              )}
+              {/* cruz de mira do key visual, num canto livre (nada passa por trás do texto) */}
+              {isOpen && <Cruz className="pointer-events-none absolute bottom-5 left-5 h-4 w-4 opacity-50" />}
 
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className={`relative z-10 flex w-full flex-col justify-between gap-6 p-5 text-left md:p-7 ${
-                  isOpen ? "min-h-[7.5rem] md:min-h-[9rem]" : "min-h-[8.5rem] md:min-h-[13rem]"
+                className={`relative z-10 flex w-full text-left ${
+                  isOpen
+                    ? "min-h-[7.5rem] flex-row items-center justify-between gap-4 p-5 md:min-h-[9rem] md:p-7"
+                    : "min-h-[17rem] flex-col justify-between gap-3 p-4 md:min-h-[31rem] md:p-6"
                 }`}
               >
-                <span className="flex items-start justify-between gap-3">
-                  <span
-                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover/row:-rotate-6 group-hover/row:scale-105 md:h-20 md:w-20 md:rounded-3xl ${c.selo}`}
-                  >
-                    {ICONE_DO_SERVICO[s.nome] && (
-                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className="h-8 w-8 md:h-11 md:w-11" />
-                    )}
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    style={
-                      destaque === i && !isOpen
-                        ? { animation: "piscar 1.4s ease-in-out infinite" }
-                        : undefined
-                    }
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center font-mono text-4xl leading-none transition-transform duration-300 ${
-                      isOpen ? "rotate-45" : ""
-                    }`}
-                  >
-                    +
-                  </span>
-                </span>
-                <span className="font-display text-[clamp(1rem,4.6vw,1.25rem)] uppercase leading-tight tracking-tight md:text-xl lg:text-3xl">
-                  {s.nome}
-                </span>
+                {isOpen ? (
+                  <>
+                    <span className="flex min-w-0 items-center gap-4 md:gap-6">
+                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className={`h-12 w-12 shrink-0 md:h-20 md:w-20 ${c.icone}`} />
+                      <span className="font-display text-xl uppercase leading-tight tracking-tight md:text-3xl">
+                        {s.nome}
+                        <span className="text-idv-laranja">.</span>
+                      </span>
+                    </span>
+                    <span aria-hidden="true" className="rotate-45 font-mono text-4xl leading-none">
+                      +
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="flex items-center justify-between font-mono text-[0.65rem] uppercase tracking-[0.14em] opacity-70 md:text-[0.7rem]">
+                      <span>
+                        {numero} / 07
+                      </span>
+                    </span>
+                    <span className="flex flex-1 items-center justify-center py-1">
+                      <IconeServico
+                        nome={ICONE_DO_SERVICO[s.nome]}
+                        className={`h-full max-h-[19rem] w-auto max-w-[90%] transition-transform duration-500 group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
+                      />
+                    </span>
+                    <span className="flex items-end justify-between gap-2">
+                      <span className="block font-display text-[0.78rem] uppercase leading-tight tracking-tight md:text-xl lg:text-2xl">
+                        {s.nome}
+                        <span className="text-idv-laranja">.</span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        style={
+                          destaque === i
+                            ? { animation: "piscar 1.4s ease-in-out infinite" }
+                            : undefined
+                        }
+                        className="font-mono text-2xl leading-none md:text-3xl"
+                      >
+                        +
+                      </span>
+                    </span>
+                  </>
+                )}
               </button>
 
               <div
@@ -388,14 +377,14 @@ export default function ServicosPage() {
                         <p className="mt-2 font-display text-2xl uppercase leading-none tracking-tight">Sob consulta</p>
                         <a
                           href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
-                          className={`mt-5 inline-flex items-center gap-3 rounded-full py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] transition-transform hover:-translate-y-0.5 ${
+                          className={`mt-5 inline-flex items-center gap-3 py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] transition-transform hover:-translate-y-0.5 ${
                             escuro ? "bg-idv-amarelo text-idv-preto" : "bg-idv-preto text-idv-off"
                           }`}
                         >
                           Solicitar orçamento
                           <span
                             aria-hidden="true"
-                            className={`flex h-8 w-8 items-center justify-center rounded-full text-base ${
+                            className={`flex h-8 w-8 items-center justify-center text-base ${
                               escuro ? "bg-idv-preto text-idv-amarelo" : "bg-idv-amarelo text-idv-preto"
                             }`}
                           >
@@ -415,7 +404,7 @@ export default function ServicosPage() {
                             {g.incluido.map((item) => (
                               <li
                                 key={item}
-                                className="cursor-default rounded-full border border-current/35 px-4 py-2 text-sm font-medium transition-colors duration-150 hover:border-transparent hover:bg-idv-laranja hover:text-idv-preto md:text-[0.95rem]"
+                                className="cursor-default border border-current/35 px-3 py-1.5 text-sm font-medium transition-colors duration-150 hover:border-transparent hover:bg-idv-laranja hover:text-idv-preto md:text-[0.95rem]"
                               >
                                 {item}
                               </li>

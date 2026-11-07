@@ -348,3 +348,69 @@
     animation: none;
   }
 }
+
+/* Serviços: pequenos elementos animados e o ícone de vídeo em movimento. */
+@keyframes pulsar {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes quicar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes flutuar {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+
+@keyframes progresso {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes rec {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="animation:pulsar"],
+  [class*="animation:girar"],
+  [class*="animation:quicar"],
+  [class*="animation:flutuar"],
+  [class*="animation:progresso"],
+  [class*="animation:rec"] {
+    animation: none !important;
+  }
+}

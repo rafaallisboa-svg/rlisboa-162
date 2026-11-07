@@ -199,6 +199,17 @@ const TILES: readonly { bg: string; fg: string; icone: string }[] = [
 ];
 
 
+// Pequenos elementos animados que ultrapassam a margem de cada pôster. Só o de Vídeo e Motion é animado por dentro.
+const ADORNOS: readonly ({ pos: string; forma: string; anim: string } | null)[] = [
+  { pos: "-right-2 -top-2", forma: "h-5 w-5 rounded-full bg-idv-laranja", anim: "[animation:pulsar_2.2s_ease-in-out_infinite]" },
+  { pos: "-right-3 top-10", forma: "h-5 w-5 rotate-45 border-2 border-idv-preto", anim: "[animation:girar_9s_linear_infinite]" },
+  { pos: "-left-2 bottom-24", forma: "h-3.5 w-3.5 bg-idv-preto", anim: "[animation:quicar_2.4s_ease-in-out_infinite]" },
+  { pos: "-right-3 bottom-10", forma: "h-6 w-6 rounded-full border-2 border-idv-preto", anim: "[animation:girar_7s_linear_infinite]" },
+  null,
+  { pos: "-left-2 -top-2", forma: "h-4 w-4 rounded-full bg-idv-laranja", anim: "[animation:pulsar_2.6s_ease-in-out_infinite]" },
+  { pos: "-bottom-2 -right-2", forma: "h-4 w-4 bg-idv-laranja", anim: "[animation:girar_8s_linear_infinite]" },
+];
+
 export default function ServicosPage() {
   const [aberto, setAberto] = useState<number | null>(null);
   const [destaque, setDestaque] = useState(0);
@@ -280,20 +291,24 @@ export default function ServicosPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-2 items-start gap-3 md:grid-cols-4">
+      <div className="mt-8 grid grid-flow-dense grid-cols-2 gap-3 md:auto-rows-[minmax(22rem,auto)] md:grid-cols-4">
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
           const c = TILES[i % TILES.length];
           const escuro = c.fg === "text-idv-off";
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
-          const destaqueTile = i === 0; // Identidade Visual: o serviço principal, o maior
-          const largura = isOpen
-            ? "col-span-2 md:col-span-4"
-            : destaqueTile
-              ? "col-span-2 md:row-span-2 md:self-stretch"
-              : i === SERVICOS.length - 1
-                ? "col-span-2"
-                : "col-span-1";
+          const destaqueTile = i === 4; // Vídeo e Motion Graphics: o grande, o único animado por dentro
+          const adorno = ADORNOS[i % ADORNOS.length];
+          const ESPACOS = [
+            "col-span-2 md:col-span-2", // Identidade Visual: larga
+            "col-span-1", // Website
+            "col-span-1 md:row-span-2", // Apresentação: alta
+            "col-span-1", // Social Media Kit
+            "col-span-2 md:col-span-2 md:row-span-2", // Vídeo e Motion: o grande, único animado por dentro
+            "col-span-1", // Eventos
+            "col-span-2 md:col-span-1", // Materiais Gráficos
+          ];
+          const largura = isOpen ? "col-span-2 md:col-span-4" : ESPACOS[i % ESPACOS.length];
           const grupos = "grupos" in s ? s.grupos : [{ nome: rotulo || "Entregas", incluido: s.incluido }];
           const numero = String(i + 1).padStart(2, "0");
           return (
@@ -302,10 +317,16 @@ export default function ServicosPage() {
               ref={(el) => {
                 linhasRef.current[i] = el;
               }}
-              className={`group/row relative isolate flex flex-col overflow-hidden rounded-[3px] transition-[background-color] duration-500 ${largura} ${c.bg} ${c.fg}`}
+              className={`group/row relative isolate flex flex-col rounded-[3px] transition-[background-color] duration-500 ${largura} ${c.bg} ${c.fg}`}
             >
-              {/* cruz de mira do key visual, num canto livre (nada passa por trás do texto) */}
               {isOpen && <Cruz className="pointer-events-none absolute bottom-5 left-5 h-4 w-4 opacity-50" />}
+
+              {/* elementos pequenos e animados que passam da margem do pôster (só fechado) */}
+              {!isOpen && adorno && (
+                <span aria-hidden="true" className={`pointer-events-none absolute z-20 ${adorno.pos}`}>
+                  <span className={`block ${adorno.forma} ${adorno.anim}`} />
+                </span>
+              )}
 
               <button
                 type="button"
@@ -314,7 +335,7 @@ export default function ServicosPage() {
                 className={`relative z-10 flex w-full text-left ${
                   isOpen
                     ? "min-h-[7.5rem] flex-row items-center justify-between gap-4 p-5 md:min-h-[9rem] md:p-7"
-                    : `min-h-[17rem] flex-1 flex-col justify-between gap-3 p-4 md:min-h-[31rem] md:p-6 ${destaqueTile ? "min-h-[24rem] md:p-9" : ""}`
+                    : `min-h-[17rem] flex-1 flex-col justify-between gap-3 p-4 md:p-6 ${destaqueTile ? "min-h-[24rem] md:p-9" : ""}`
                 }`}
               >
                 {isOpen ? (
@@ -334,13 +355,24 @@ export default function ServicosPage() {
                   <>
                     <span className="flex items-center justify-between font-mono text-[0.65rem] uppercase tracking-[0.14em] opacity-70 md:text-[0.7rem]">
                       <span>
-                        {numero} / 07{destaqueTile ? " · serviço principal" : ""}
+                        {numero} / 07{destaqueTile ? " · em movimento" : ""}
                       </span>
                     </span>
-                    <span className="flex flex-1 items-center justify-center py-1">
+                    <span className="relative flex min-h-0 flex-1 items-center justify-center py-1">
+                      {destaqueTile && (
+                        <>
+                          <span aria-hidden="true" className="absolute right-0 top-1 flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.14em]">
+                            <span className="h-2.5 w-2.5 rounded-full bg-idv-laranja [animation:rec_1.2s_steps(1)_infinite]" />
+                            rec
+                          </span>
+                          <span aria-hidden="true" className="absolute inset-x-0 bottom-1 h-[3px] bg-current/15">
+                            <span className="block h-full origin-left bg-idv-amarelo [animation:progresso_6s_linear_infinite]" />
+                          </span>
+                        </>
+                      )}
                       <IconeServico
                         nome={ICONE_DO_SERVICO[s.nome]}
-                        className={`h-full w-auto max-w-[90%] transition-transform duration-500 ${destaqueTile ? "max-h-[36rem]" : "max-h-[19rem]"} group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
+                        className={`h-full w-auto max-w-[90%] transition-transform duration-500 ${destaqueTile ? "max-h-[36rem] [animation:flutuar_5s_ease-in-out_infinite]" : "max-h-[19rem]"} group-hover/row:-rotate-3 group-hover/row:scale-105 ${c.icone}`}
                       />
                     </span>
                     <span className="flex items-end justify-between gap-2">

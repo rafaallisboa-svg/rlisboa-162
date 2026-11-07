@@ -346,7 +346,7 @@ export default function ServicosPage() {
                 // degradê suave de cinza da IDV (pedra a grafite), um tom por item, com pouca opacidade
                 backgroundColor: isOpen
                   ? "transparent"
-                  : `color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 38%, transparent)`,
+                  : `color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 20%, transparent)`,
               }}
             >
               <button

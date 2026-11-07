@@ -3,7 +3,7 @@ import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
-import { Cruz, SeloAneis, SeloRegua, Sticker162 } from "@/components/ui/IdvElementos";
+import { Cruz, SeloAneis, SeloRegua, Sticker162, StickerRafa } from "@/components/ui/IdvElementos";
 import { AneisAnimados } from "@/components/motion/AneisAnimados";
 
 const PARAGRAFOS: Segmento[][] = [
@@ -85,6 +85,9 @@ export default function SobrePage() {
             Designer e diretor de criação
           </p>
         </div>
+
+        {/* Sticker Rafa, o mesmo do Contato (menor), ao lado do rosto. */}
+        <StickerRafa className="absolute left-[26%] top-[66%] z-10 h-20 w-auto lg:h-24" />
 
         {/* Relógio na extremidade direita, metade para fora da tela, girando devagar. */}
         <div className="pointer-events-none absolute right-0 top-[30%] h-40 w-40 translate-x-1/2 md:h-56 md:w-56 lg:h-72 lg:w-72">

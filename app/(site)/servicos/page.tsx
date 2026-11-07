@@ -344,16 +344,16 @@ export default function ServicosPage() {
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                className="flex w-full items-center justify-between gap-6 py-7 text-left md:py-9"
               >
                 <span
-                  className={`flex items-center gap-4 font-display text-xl uppercase tracking-tight transition-all duration-200 md:gap-4 md:text-2xl ${
+                  className={`flex items-center gap-3 font-display text-lg uppercase tracking-tight transition-all duration-200 md:gap-5 md:text-4xl ${
                     isOpen ? "text-idv-preto" : "text-idv-preto/80 group-hover/row:translate-x-2 group-hover/row:text-idv-preto"
                   }`}
                 >
                   {ICONE_DO_SERVICO[s.nome] && (
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-200 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja md:h-12 md:w-12">
-                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className="h-6 w-6 md:h-7 md:w-7" />
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors duration-200 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja md:h-16 md:w-16">
+                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className="h-7 w-7 md:h-9 md:w-9" />
                     </span>
                   )}
                   {s.nome}
@@ -369,7 +369,7 @@ export default function ServicosPage() {
                         }
                       : undefined
                   }
-                  className={`flex h-9 w-9 items-center justify-center rounded-full font-mono text-xl leading-none text-idv-preto transition-all duration-300 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja ${
+                  className={`flex h-11 w-11 items-center justify-center rounded-full font-mono text-3xl leading-none text-idv-preto transition-all duration-300 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja ${
                     isOpen ? "rotate-45" : ""
                   }`}
                 >

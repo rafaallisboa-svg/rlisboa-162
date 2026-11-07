@@ -188,14 +188,14 @@ const SERVICOS = [
 
 // Cada serviço é um pôster vertical do key visual: fundo chapado, grade à vista, cruz de mira, mono em caixa
 // alta e o ícone gigante, quase na largura toda do quadro.
-const TILES: readonly { bg: string; fg: string; icone: string }[] = [
-  { bg: "bg-idv-preto", fg: "text-idv-off", icone: "text-idv-amarelo" },
-  { bg: "bg-idv-off", fg: "text-idv-preto", icone: "text-idv-preto" },
-  { bg: "bg-idv-laranja", fg: "text-idv-preto", icone: "text-idv-preto" },
-  { bg: "bg-idv-pedra", fg: "text-idv-preto", icone: "text-idv-preto" },
-  { bg: "bg-idv-grafite", fg: "text-idv-off", icone: "text-idv-amarelo" },
-  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", icone: "text-idv-preto" },
-  { bg: "bg-idv-cinza", fg: "text-idv-preto", icone: "text-idv-off" },
+const TILES: readonly { bg: string; fg: string; icone: string; rotulo: string; chip: string }[] = [
+  { bg: "bg-idv-preto", fg: "text-idv-off", icone: "text-idv-amarelo", rotulo: "text-idv-amarelo", chip: "bg-idv-off text-idv-preto" },
+  { bg: "bg-idv-off", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
+  { bg: "bg-idv-laranja", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-amarelo", chip: "bg-idv-off text-idv-preto" },
+  { bg: "bg-idv-pedra", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
+  { bg: "bg-idv-grafite", fg: "text-idv-off", icone: "text-idv-amarelo", rotulo: "text-idv-amarelo", chip: "bg-idv-off text-idv-preto" },
+  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", icone: "text-idv-preto", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
+  { bg: "bg-idv-cinza", fg: "text-idv-preto", icone: "text-idv-off", rotulo: "text-idv-preto", chip: "bg-idv-preto text-idv-off" },
 ];
 
 
@@ -412,11 +412,11 @@ export default function ServicosPage() {
                   <div className="relative z-10 grid gap-10 px-5 pb-16 pt-2 md:grid-cols-12 md:gap-12 md:px-7 md:pb-20">
                     <div className="flex flex-col gap-8 md:col-span-5">
                       <div>
-                        <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] opacity-60">01 · Sobre o serviço</p>
+                        <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>01 · Sobre o serviço</p>
                         <p className="mt-3 text-xl font-medium leading-snug md:text-2xl">{s.descricao}</p>
                       </div>
                       <div className="border-t border-current/20 pt-6">
-                        <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] opacity-60">03 · Investimento</p>
+                        <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>03 · Investimento</p>
                         <p className="mt-2 font-display text-2xl uppercase leading-none tracking-tight">Sob consulta</p>
                         <a
                           href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
@@ -440,14 +440,14 @@ export default function ServicosPage() {
                     <div className="flex flex-col gap-8 md:col-span-7">
                       {grupos.map((g, gi) => (
                         <div key={g.nome} className={gi > 0 ? "border-t border-current/20 pt-6" : ""}>
-                          <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] opacity-60">
+                          <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>
                             02 · {g.nome} · {g.incluido.length}
                           </p>
                           <ul className="mt-4 flex flex-wrap gap-2">
                             {g.incluido.map((item) => (
                               <li
                                 key={item}
-                                className="cursor-default border border-current/35 px-3 py-1.5 text-sm font-medium transition-colors duration-150 hover:border-transparent hover:bg-idv-laranja hover:text-idv-preto md:text-[0.95rem]"
+                                className={`cursor-default px-3 py-1.5 text-sm font-medium transition-colors duration-150 hover:bg-idv-amarelo hover:text-idv-preto md:text-[0.95rem] ${c.chip}`}
                               >
                                 {item}
                               </li>

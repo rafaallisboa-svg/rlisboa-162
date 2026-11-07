@@ -339,14 +339,14 @@ export default function ServicosPage() {
               ref={(el) => {
                 linhasRef.current[i] = el;
               }}
-              className={`group/row mb-2 rounded-2xl px-4 transition-[background-color,color] duration-700 ease-out md:mb-3 md:rounded-3xl md:px-7 ${
+              className={`group/row mb-2 rounded-2xl px-4 transition-[background-color,color,opacity] duration-700 ease-out md:mb-3 md:rounded-3xl md:px-7 ${
                 "text-idv-preto"
               }`}
               style={{
-                // degradê suave de cinza da IDV (pedra a grafite), um tom por item, com pouca opacidade
-                backgroundColor: isOpen
-                  ? "transparent"
-                  : `color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 20%, transparent)`,
+                // gradiente suave de cinza da IDV (pedra a grafite, um tom por item), forte na esquerda e quase some na direita
+                backgroundImage: isOpen
+                  ? "none"
+                  : `linear-gradient(100deg, color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 16%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 3%, transparent) 100%)`,
               }}
             >
               <button

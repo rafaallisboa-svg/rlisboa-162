@@ -3,7 +3,7 @@ import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
 import { TextoRevelar, type Segmento } from "@/components/motion/TextoRevelar";
 import { RetratoFixo } from "@/components/motion/RetratoFixo";
-import { Cruz, SeloAneis, SeloRegua } from "@/components/ui/IdvElementos";
+import { Cruz, SeloAneis, SeloRegua, Sticker162 } from "@/components/ui/IdvElementos";
 import { AneisAnimados } from "@/components/motion/AneisAnimados";
 
 const PARAGRAFOS: Segmento[][] = [
@@ -46,20 +46,25 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <div className="relative text-idv-off">
-      {/* Celular: retrato em fluxo normal, com o mesmo ritmo da página de Contato (foto larga, some na base). */}
-      <section aria-label="Rafael Lisboa sorrindo, ao lado do sticker 162" className="relative pt-[65px] md:hidden">
+      {/* Celular: retrato em fluxo normal, com o mesmo ritmo da página de Contato (foto larga, some na base).
+          O bloco sticker + nome + cargo desce até o fim da primeira tela; "Design Gráfico" só aparece ao rolar. */}
+      <section
+        aria-label="Rafael Lisboa sorrindo"
+        className="relative min-h-[calc(100svh-4rem)] pt-[65px] md:hidden"
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/sobre/sobre-celular.webp"
-          alt="Rafael Lisboa sorrindo, ao lado do sticker 162"
+          alt="Rafael Lisboa sorrindo"
           className="relative block w-full"
           style={{
             WebkitMaskImage: "linear-gradient(to bottom, transparent 0, #000 5%, #000 72%, transparent 100%)",
             maskImage: "linear-gradient(to bottom, transparent 0, #000 5%, #000 72%, transparent 100%)",
           }}
         />
-        <div className="relative -mt-12 px-6">
-          <p className="font-display text-base uppercase tracking-tight text-idv-off">Rafael Lisboa</p>
+        <div className="absolute bottom-2 left-6">
+          <Sticker162 className="h-16 w-auto" />
+          <p className="mt-3 font-display text-base uppercase tracking-tight text-idv-off">Rafael Lisboa</p>
           <p className="mt-1 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">Designer e diretor de criação</p>
         </div>
         <div className="pointer-events-none absolute right-0 top-[34%] h-32 w-32 translate-x-1/2">
@@ -92,7 +97,7 @@ export default function SobrePage() {
           <Cruz className="absolute left-6 top-12 h-5 w-5 md:top-32 text-idv-grafite md:left-16" />
           <Cruz className="absolute right-6 top-32 hidden h-5 w-5 text-idv-grafite md:right-16 md:block" />
 
-          <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-16 md:px-16 md:pt-32 lg:px-0">
+          <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-8 md:px-16 md:pt-32 lg:px-0">
             <div id="sobre-intro" className="relative flex flex-col items-center border-b border-idv-grafite pb-24 text-center">
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
                 Estúdio 162 — desde <span className="text-idv-amarelo">{site.anoFundacao}</span>

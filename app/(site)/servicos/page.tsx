@@ -247,6 +247,18 @@ function CartaoLista({
   );
 }
 
+
+// Composição de cores dos cartões de serviço (todas da IDV, com um tom de amarelo e um de cinza derivados).
+const CARTOES = [
+  { bg: "bg-idv-preto", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", raio: "rounded-[2rem] rounded-tr-md" },
+  { bg: "bg-idv-off", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-amarelo", raio: "rounded-[2rem] rounded-bl-md" },
+  { bg: "bg-idv-laranja", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", raio: "rounded-[2rem] rounded-br-md" },
+  { bg: "bg-idv-pedra", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", raio: "rounded-[2rem] rounded-tl-md" },
+  { bg: "bg-idv-grafite", fg: "text-idv-off", selo: "bg-idv-amarelo text-idv-preto", raio: "rounded-[2rem] rounded-tr-md" },
+  { bg: "bg-[#FFE27A]", fg: "text-idv-preto", selo: "bg-idv-preto text-idv-off", raio: "rounded-[2rem] rounded-bl-md" },
+  { bg: "bg-idv-cinza", fg: "text-idv-preto", selo: "bg-idv-off text-idv-preto", raio: "rounded-[2rem] rounded-br-md" },
+] as const;
+
 export default function ServicosPage() {
   const [aberto, setAberto] = useState<number | null>(null);
   const [destaque, setDestaque] = useState(0);
@@ -296,7 +308,7 @@ export default function ServicosPage() {
       <div
         ref={cabecalhoRef}
         className={`sticky top-0 z-20 -mx-6 px-6 pb-5 transition-[padding,background-color] duration-300 md:-mx-[clamp(1.5rem,5vw,6rem)] md:px-[clamp(1.5rem,5vw,6rem)] ${
-          compacto ? "bg-idv-off pt-[76px] shadow-[0_1px_0_rgba(14,14,13,0.2)]" : "bg-idv-amarelo pt-32"
+          compacto ? "bg-idv-amarelo pt-[76px]" : "bg-idv-amarelo pt-32"
         }`}
       >
         <div className="relative flex items-start justify-between gap-6">
@@ -328,61 +340,50 @@ export default function ServicosPage() {
         </div>
       </div>
 
-      <div className="mt-6 border-t border-idv-preto/25">
+      <div className="mt-6 grid gap-3 md:grid-cols-6">
         {SERVICOS.map((s, i) => {
           const isOpen = aberto === i;
-          const p = Math.round((i / Math.max(1, SERVICOS.length - 1)) * 100);
+          const c = CARTOES[i % CARTOES.length];
           const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
+          const largura = isOpen || i === SERVICOS.length - 1 ? "md:col-span-6" : "md:col-span-2";
           return (
             <div
               key={s.nome}
               ref={(el) => {
                 linhasRef.current[i] = el;
               }}
-              className={`group/row mb-2 rounded-2xl px-4 transition-[background-color,color,opacity] duration-700 ease-out md:mb-3 md:rounded-3xl md:px-7 ${
-                "text-idv-preto"
-              }`}
-              style={{
-                // gradiente suave de cinza da IDV (pedra a grafite, um tom por item), forte na esquerda e quase some na direita
-                backgroundImage: isOpen
-                  ? "none"
-                  : `linear-gradient(100deg, color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 16%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--color-idv-pedra) ${100 - p}%, var(--color-idv-grafite) ${p}%) 3%, transparent) 100%)`,
-              }}
+              className={`group/row flex flex-col ${largura}`}
             >
               <button
                 type="button"
                 onClick={() => setAberto(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-3 py-6 text-left md:gap-6 md:py-9"
+                className={`relative flex min-h-[8.5rem] w-full flex-col justify-between gap-6 p-5 text-left transition-transform duration-300 hover:-translate-y-0.5 md:min-h-[13rem] md:p-6 ${c.bg} ${c.fg} ${c.raio}`}
               >
-                <span
-                  className={`flex min-w-0 items-center gap-2 whitespace-nowrap font-display text-[clamp(0.7rem,3.9vw,1.125rem)] uppercase tracking-tight transition-all duration-200 md:gap-5 md:text-4xl ${
-                    isOpen ? "" : "group-hover/row:translate-x-2"
-                  }`}
-                >
-                  {ICONE_DO_SERVICO[s.nome] && (
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors md:h-16 md:w-16 duration-200 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja md:h-16 md:w-16">
-                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className="h-5 w-5 md:h-9 md:w-9" />
-                    </span>
-                  )}
-                  {s.nome}
+                <span className="flex items-start justify-between gap-3">
+                  <span
+                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover/row:-rotate-6 group-hover/row:scale-105 md:h-20 md:w-20 md:rounded-3xl ${c.selo}`}
+                  >
+                    {ICONE_DO_SERVICO[s.nome] && (
+                      <IconeServico nome={ICONE_DO_SERVICO[s.nome]} className="h-8 w-8 md:h-11 md:w-11" />
+                    )}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    style={
+                      destaque === i && !isOpen
+                        ? { animation: "piscar 1.4s ease-in-out infinite" }
+                        : undefined
+                    }
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-current font-mono text-2xl leading-none transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                  >
+                    +
+                  </span>
                 </span>
-                <span
-                  aria-hidden="true"
-                  style={
-                    destaque === i && !isOpen
-                      ? {
-                          outline: "1px solid transparent",
-                          outlineOffset: "6px",
-                          animation: "piscar 1.4s ease-in-out infinite",
-                        }
-                      : undefined
-                  }
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-mono text-2xl leading-none md:h-11 md:w-11 md:text-3xl transition-all duration-300 group-hover/row:bg-idv-preto group-hover/row:text-idv-laranja ${
-                    isOpen ? "rotate-45" : ""
-                  }`}
-                >
-                  +
+                <span className="font-display text-[clamp(1rem,4.6vw,1.25rem)] uppercase leading-tight tracking-tight md:text-xl lg:text-2xl">
+                  {s.nome}
                 </span>
               </button>
 

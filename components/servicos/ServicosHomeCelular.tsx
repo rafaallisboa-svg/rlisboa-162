@@ -46,7 +46,7 @@ export function ServicosHomeCelular() {
         href="/servicos"
         className="mt-8 inline-flex items-center gap-3 bg-idv-preto py-2 pl-6 pr-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-off"
       >
-        Ver todos os serviços
+        Ver o que está incluído
         <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center bg-idv-amarelo text-base text-idv-preto">
           →
         </span>

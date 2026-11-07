@@ -51,7 +51,7 @@ export function ServicosPalavras() {
     const ajustarFonte = () => {
       const vw = window.innerWidth;
       // Percurso longo: a palavra entra de fora da tela e sai do outro lado.
-      amplitude = vw * 0.8;
+      amplitude = vw * 0.75;
       const largura = coluna.clientWidth * 0.92;
       const maxima = Math.min(vw * 0.17, 260);
       for (const link of links) {
@@ -74,15 +74,17 @@ export function ServicosPalavras() {
         temaAtual = idxTema;
         aplicarTema(secao, idxTema);
       }
-      // Cada palavra anda conforme a própria posição na tela: entra de fora da margem (a par pela esquerda, a
-      // ímpar pela direita), assenta no meio da tela e segue adiante, cruzando a vizinha, que vai ao contrário.
+      // Cada palavra anda conforme a própria posição na tela. Na primeira tela ficam assentadas, como antes;
+      // as de baixo entram de fora da margem (as pares pela esquerda, as ímpares pela direita) conforme sobem,
+      // e depois de passar pelo meio seguem adiante, quase cruzando a vizinha, que vai ao contrário.
       links.forEach((link, i) => {
         const dir = i % 2 === 0 ? 1 : -1;
         const b = link.getBoundingClientRect();
-        const pw = (vh - b.top) / (vh + b.height);
-        const x = Math.min(1, Math.max(-1, (pw - 0.5) * 2));
-        const passo = Math.sign(x) * Math.abs(x) ** 1.4;
-        link.style.transform = `translate3d(${dir * passo * amplitude}px, 0, 0)`;
+        const c = (b.top + b.height / 2) / vh;
+        const entra = clamp((c - 0.62) / 0.55);
+        const sai = clamp((0.5 - c) / 0.9);
+        const x = -dir * entra ** 1.6 * amplitude + dir * sai ** 1.3 * amplitude * 0.5;
+        link.style.transform = `translate3d(${x}px, 0, 0)`;
       });
 
       let melhor = -1;

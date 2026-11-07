@@ -50,7 +50,7 @@ export default function SobrePage() {
           O bloco sticker + nome + cargo desce até o fim da primeira tela; "Design Gráfico" só aparece ao rolar. */}
       <section
         aria-label="Rafael Lisboa sorrindo"
-        className="relative min-h-[calc(100svh-4rem)] pt-[65px] md:hidden"
+        className="relative min-h-[calc(100svh-4rem)] overflow-hidden pt-[65px] md:hidden"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

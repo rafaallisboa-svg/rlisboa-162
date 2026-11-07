@@ -58,6 +58,7 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
   }
 
   body {
@@ -67,6 +68,9 @@
     font-size: var(--text-body);
     line-height: 1.6;
     min-height: 100dvh;
+    /* Nada que passe da borda (relógios e selos cortados ao meio, por exemplo) pode alargar a página no
+       celular: isso empurrava o botão do menu para fora da tela. */
+    overflow-x: clip;
   }
 
   img,

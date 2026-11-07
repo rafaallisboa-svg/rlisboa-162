@@ -6,7 +6,30 @@ import { Cruz } from "@/components/ui/IdvElementos";
  * Pavimento 02 — projetos em destaque. Construído fora de ordem do
  * roadmap a pedido do Rafael, pra ele ver o conteúdo assim que entra.
  */
-export function ProjetosDestaque() {
+// Duas variações do mesmo bloco: sobre o fundo escuro (Home) e sobre o amarelo (página de Serviços).
+const TEMAS = {
+  escuro: {
+    secao: "bg-concreto",
+    cruz: "text-idv-grafite",
+    rotulo: "text-maresia",
+    titulo: "text-idv-amarelo",
+    caixa: "border-idv-amarelo [@media(hover:hover)]:group-hover:border-idv-off [@media(hover:hover)]:group-hover:text-idv-off",
+    ano: "text-idv-amarelo group-hover:text-idv-off",
+    sub: "text-idv-pedra group-hover:text-idv-off",
+  },
+  amarelo: {
+    secao: "bg-idv-amarelo text-idv-preto",
+    cruz: "text-idv-preto/40",
+    rotulo: "text-idv-preto/60",
+    titulo: "text-idv-preto",
+    caixa: "border-idv-preto [@media(hover:hover)]:group-hover:bg-idv-preto [@media(hover:hover)]:group-hover:text-idv-amarelo",
+    ano: "text-idv-preto",
+    sub: "text-idv-preto/75 group-hover:text-idv-preto",
+  },
+} as const;
+
+export function ProjetosDestaque({ fundo = "escuro" }: { fundo?: keyof typeof TEMAS }) {
+  const tema = TEMAS[fundo];
   const projetos = getProjetosDestaque();
   if (projetos.length === 0) return null;
 
@@ -14,10 +37,10 @@ export function ProjetosDestaque() {
     <section
       id="projetos"
       aria-label="Projetos em destaque"
-      className="relative bg-concreto px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]"
+      className={`relative ${tema.secao} px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]`}
     >
-      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
-      <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+      <Cruz className={`absolute right-6 top-8 h-5 w-5 ${tema.cruz} md:right-[clamp(1.5rem,5vw,6rem)]`} />
+      <p className={`font-mono text-xs uppercase tracking-[0.12em] ${tema.rotulo}`}>
         Projetos<span className="text-idv-laranja">.</span>
       </p>
 
@@ -43,14 +66,14 @@ export function ProjetosDestaque() {
               />
             </div>
             <div className="mt-4 flex items-start justify-between gap-4">
-              <p className="min-w-0 font-display text-[0.65rem] uppercase leading-[2.6] tracking-[0.16em] text-idv-amarelo md:text-xs md:leading-[2.6]">
-                <span className="border border-idv-amarelo px-2 py-0.5 transition-colors duration-200 md:px-3 md:py-1 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] [@media(hover:hover)]:group-hover:border-idv-off [@media(hover:hover)]:group-hover:text-idv-off">
+              <p className={`min-w-0 font-display text-[0.65rem] uppercase leading-[2.6] tracking-[0.16em] ${tema.titulo} md:text-xs md:leading-[2.6]`}>
+                <span className={`border px-2 py-0.5 transition-colors duration-200 md:px-3 md:py-1 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] ${tema.caixa}`}>
                   {p.titulo}
                 </span>
               </p>
-              <span className="shrink-0 pt-2 font-mono text-xs tabular-nums md:pt-3 text-idv-amarelo transition-colors group-hover:text-idv-off">{p.ano}</span>
+              <span className={`shrink-0 pt-2 font-mono text-xs tabular-nums md:pt-3 transition-colors ${tema.ano}`}>{p.ano}</span>
             </div>
-            <p className="mt-2 text-sm font-medium text-idv-pedra transition-colors group-hover:text-idv-off">
+            <p className={`mt-2 text-sm font-medium transition-colors ${tema.sub}`}>
               {p.subtitulo}
             </p>
           </Link>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SEO, urlAbsoluta, urlDoSite } from "@/lib/seo";
 import { slugServico } from "@/lib/servicos";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ProjetosDestaque } from "@/components/sections/ProjetosDestaque";
 
 export const metadata: Metadata = {
   title: "Serviços de design: identidade visual, sites, apresentações e motion",
@@ -33,6 +34,8 @@ export default function ServicosLayout({ children }: { children: React.ReactNode
     <>
       <JsonLd dados={lista} />
       {children}
+      {/* Os projetos entram depois da animação dos quadradinhos, no mesmo fundo amarelo. */}
+      <ProjetosDestaque fundo="amarelo" />
     </>
   );
 }

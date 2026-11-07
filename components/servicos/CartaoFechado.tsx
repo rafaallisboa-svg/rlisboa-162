@@ -17,14 +17,11 @@ export function CartaoFechadoConteudo({ i, piscando }: { i: number; piscando: bo
   const s = SERVICOS[i];
   const c = TILES[i % TILES.length];
   const destaqueTile = i === INDICE_DESTAQUE;
-  const numero = String(i + 1).padStart(2, "0");
   return (
     <>
-      <span className="flex items-center justify-between font-mono text-[0.65rem] uppercase tracking-[0.14em] opacity-70 md:text-[0.7rem]">
-        <span>
-          {numero} / 07{destaqueTile ? " · em movimento" : ""}
-        </span>
-      </span>
+      {destaqueTile && (
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] opacity-70 md:text-[0.7rem]">Em movimento</span>
+      )}
       <span className="relative flex min-h-0 flex-1 items-center justify-center py-1">
         {destaqueTile && (
           <>

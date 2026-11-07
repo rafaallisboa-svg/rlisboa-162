@@ -151,11 +151,11 @@ export function CartoesServicos({
                 <div className="relative z-10 grid gap-10 px-5 pb-16 pt-2 md:grid-cols-12 md:gap-12 md:px-7 md:pb-20">
                   <div className="flex flex-col gap-8 md:col-span-5">
                     <div>
-                      <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>01 · Sobre o serviço</p>
+                      <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>Sobre o serviço</p>
                       <p className="mt-3 text-xl font-medium leading-snug md:text-2xl">{s.descricao}</p>
                     </div>
                     <div className="border-t border-current/20 pt-6">
-                      <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>03 · Investimento</p>
+                      <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>Investimento</p>
                       <p className="mt-2 font-display text-2xl uppercase leading-none tracking-tight">Sob consulta</p>
                       <a
                         href={`/orcamento?servico=${encodeURIComponent(s.nome)}`}
@@ -180,7 +180,7 @@ export function CartoesServicos({
                     {tabela && (
                       <div>
                         <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>
-                          02 · O que está incluído · {tabela.linhas.length}
+                          O que está incluído
                         </p>
                         <div className="mt-4" role="table" aria-label={`O que cada plano de ${s.nome} inclui`}>
                           <div role="row" className="grid grid-cols-[minmax(0,1fr)_4.25rem_4.25rem] items-end gap-x-2 pb-2 md:grid-cols-[minmax(0,1fr)_5.5rem_5.5rem]">
@@ -225,7 +225,7 @@ export function CartoesServicos({
                     {grupos.map((g, gi) => (
                       <div key={g.nome} className={gi > 0 ? "border-t border-current/20 pt-6" : ""}>
                         <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>
-                          02 · {g.nome} · {g.incluido.length}
+                          {g.nome}
                         </p>
                         <ul className="mt-4 flex flex-wrap gap-2">
                           {g.incluido.map((item) => (

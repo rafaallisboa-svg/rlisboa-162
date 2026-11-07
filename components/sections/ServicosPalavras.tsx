@@ -50,7 +50,8 @@ export function ServicosPalavras() {
 
     const ajustarFonte = () => {
       const vw = window.innerWidth;
-      amplitude = Math.min(110, vw * 0.06);
+      // Percurso longo: a palavra entra de fora da tela e sai do outro lado.
+      amplitude = vw * 0.8;
       const largura = coluna.clientWidth * 0.92;
       const maxima = Math.min(vw * 0.17, 260);
       for (const link of links) {
@@ -65,7 +66,6 @@ export function ServicosPalavras() {
       if (reduzido) return;
       const r = secao.getBoundingClientRect();
       const vh = window.innerHeight;
-      const q = clamp((vh - r.top) / (vh + r.height));
       // O fundo segue o quanto da seção já passou pelo topo da tela (não a palavra do meio),
       // então no topo da página ele é sempre amarelo e termina escuro, em qualquer tamanho de tela.
       const progresso = clamp(-r.top / Math.max(r.height - vh * 0.6, 1));
@@ -74,9 +74,15 @@ export function ServicosPalavras() {
         temaAtual = idxTema;
         aplicarTema(secao, idxTema);
       }
+      // Cada palavra anda conforme a própria posição na tela: entra de fora da margem (a par pela esquerda, a
+      // ímpar pela direita), assenta no meio da tela e segue adiante, cruzando a vizinha, que vai ao contrário.
       links.forEach((link, i) => {
         const dir = i % 2 === 0 ? 1 : -1;
-        link.style.transform = `translate3d(${dir * (q - 0.5) * 2 * amplitude}px, 0, 0)`;
+        const b = link.getBoundingClientRect();
+        const pw = (vh - b.top) / (vh + b.height);
+        const x = Math.min(1, Math.max(-1, (pw - 0.5) * 2));
+        const passo = Math.sign(x) * Math.abs(x) ** 1.4;
+        link.style.transform = `translate3d(${dir * passo * amplitude}px, 0, 0)`;
       });
 
       let melhor = -1;

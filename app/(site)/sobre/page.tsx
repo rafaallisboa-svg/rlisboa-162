@@ -46,10 +46,30 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <div className="relative text-idv-off">
+      {/* Celular: retrato em fluxo normal, com o mesmo ritmo da página de Contato (foto larga, some na base). */}
+      <section aria-label="Rafael Lisboa sorrindo, ao lado do sticker 162" className="relative pt-[65px] md:hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/sobre/sobre-celular.webp"
+          alt="Rafael Lisboa sorrindo, ao lado do sticker 162"
+          className="relative block w-full"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0, #000 5%, #000 72%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, transparent 0, #000 5%, #000 72%, transparent 100%)",
+          }}
+        />
+        <div className="relative -mt-12 px-6">
+          <p className="font-display text-base uppercase tracking-tight text-idv-off">Rafael Lisboa</p>
+          <p className="mt-1 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">Designer e diretor de criação</p>
+        </div>
+        <div className="pointer-events-none absolute right-0 top-[34%] h-32 w-32 translate-x-1/2">
+          <SeloRegua tinta="var(--color-idv-off)" className="h-full w-full" />
+        </div>
+      </section>
+
       {/* Retrato fixo no topo: some aos poucos enquanto o texto sobe por cima, no mesmo fundo. */}
       <RetratoFixo
         src="/sobre/sobre-horizontal.webp"
-        srcMobile="/sobre/sobre-vertical.webp"
         alt="Rafael Lisboa sorrindo, ao lado do sticker 162"
       >
         <div className="absolute bottom-10 left-6 md:bottom-14 md:left-16">
@@ -67,12 +87,12 @@ export default function SobrePage() {
         </div>
       </RetratoFixo>
 
-      <div className="relative z-10 -mt-[18svh]">
+      <div className="relative z-10 md:-mt-[18svh]">
         <div className="relative overflow-hidden">
-          <Cruz className="absolute left-6 top-32 h-5 w-5 text-idv-grafite md:left-16" />
+          <Cruz className="absolute left-6 top-12 h-5 w-5 md:top-32 text-idv-grafite md:left-16" />
           <Cruz className="absolute right-6 top-32 hidden h-5 w-5 text-idv-grafite md:right-16 md:block" />
 
-          <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-32 md:px-16 lg:px-0">
+          <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-16 md:px-16 md:pt-32 lg:px-0">
             <div id="sobre-intro" className="relative flex flex-col items-center border-b border-idv-grafite pb-24 text-center">
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza">
                 Estúdio 162 — desde <span className="text-idv-amarelo">{site.anoFundacao}</span>

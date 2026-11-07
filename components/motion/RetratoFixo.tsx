@@ -8,12 +8,10 @@ import { useEffect, useRef } from "react";
  */
 export function RetratoFixo({
   src,
-  srcMobile,
   alt,
   children,
 }: {
   src: string;
-  srcMobile: string;
   alt: string;
   children?: React.ReactNode;
 }) {
@@ -46,11 +44,10 @@ export function RetratoFixo({
     <section
       ref={quadroRef}
       aria-label={alt}
-      className="sticky top-0 z-0 h-[100svh] w-full overflow-hidden bg-[#1a1c1b] pt-[65px]"
+      className="sticky top-0 z-0 hidden h-[100svh] w-full overflow-hidden bg-[#1a1c1b] pt-[65px] md:block"
       style={{ willChange: "opacity" }}
     >
       <picture className="block h-full w-full">
-        <source media="(max-width: 767px)" srcSet={srcMobile} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} className="h-full w-full object-cover object-top lg:object-contain" />
       </picture>

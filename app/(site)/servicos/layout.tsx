@@ -9,7 +9,11 @@ export const metadata: Metadata = {
   description:
     "Identidade visual, sites, apresentações, social media kit, vídeo e motion graphics, eventos e materiais gráficos. Estúdio de design em Itapema, SC, com atendimento em todo o Brasil.",
   alternates: { canonical: "/servicos" },
-  openGraph: { url: "/servicos" },
+  openGraph: {
+    url: "/servicos",
+    images: [{ url: "/og/og-servicos.png", width: 1200, height: 630, alt: "Serviços do estúdio R. Lisboa: identidade visual, sites, apresentações, redes, vídeo e motion, eventos e materiais gráficos" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og/og-servicos.png"] },
 };
 
 export default function ServicosLayout({ children }: { children: React.ReactNode }) {

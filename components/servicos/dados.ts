@@ -20,7 +20,7 @@ export const SERVICOS = [
     incluido: [
       "Pesquisa e briefing",
       "Conceito e símbolo",
-      "Logotipo e assinaturas (horizontal, vertical, com descritor)",
+      "Logotipo e assinaturas (horizontal e vertical)",
       "Versões: positiva, negativa, monocromática e tons de cinza",
       "Grade de construção, área de proteção e tamanhos mínimos",
       "Paleta de cores, gradientes e contraste",

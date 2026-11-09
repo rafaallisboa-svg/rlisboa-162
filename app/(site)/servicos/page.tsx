@@ -13,9 +13,17 @@ export default function ServicosPage() {
   const cabecalhoRef = useRef<HTMLDivElement>(null);
   const [compactoRolagem, setCompacto] = useState(false);
   const [servicoAberto, setServicoAberto] = useState<number | null>(null);
+  const [telaGrande, setTelaGrande] = useState(false);
+  useEffect(() => {
+    const m = window.matchMedia("(min-width: 768px)");
+    const f = () => setTelaGrande(m.matches);
+    f();
+    m.addEventListener("change", f);
+    return () => m.removeEventListener("change", f);
+  }, []);
   // Com um serviço aberto a barra fica sempre encolhida: assim o card pode ser alinhado logo abaixo dela,
   // mesmo quando está perto do topo da página (o primeiro).
-  const compacto = compactoRolagem || servicoAberto !== null;
+  const compacto = compactoRolagem || (telaGrande && servicoAberto !== null);
 
   // O título fica fixo no topo e encolhe quando a página rola.
   useEffect(() => {

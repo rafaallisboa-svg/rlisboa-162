@@ -16,7 +16,7 @@ export const SERVICOS = [
   {
     nome: "Identidade Visual",
     descricao:
-      "Sistema de marca — do zero ou redesign — pronto pra aplicar em qualquer ponto de contato. Do essencial ao sistema completo.",
+      "Sistema de marca — do zero ou redesign — pronto pra aplicar em qualquer ponto de contato. Cada projeto é montado sob medida.",
     incluido: [
       "Pesquisa e briefing",
       "Conceito e símbolo",
@@ -34,7 +34,6 @@ export const SERVICOS = [
       "Templates de posts para redes sociais",
       "Template de apresentação",
       "Favicon e ícone de app",
-      "Manual de marca online",
       "Arquivos finais (SVG, PNG) e fontes",
     ],
   },

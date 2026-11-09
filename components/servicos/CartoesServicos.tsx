@@ -179,12 +179,22 @@ export function CartoesServicos({
                   </div>
 
                   <div className="flex flex-col gap-8 md:col-span-7">
+                    <div>
+                      <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>
+                        O que o seu projeto pode ter
+                      </p>
+                      <p className="mt-2 max-w-md text-sm leading-snug opacity-75">
+                        Tudo é montado sob medida: o escopo sai de uma conversa e pode incluir até tudo isto.
+                      </p>
+                    </div>
                     {grupos.map((g, gi) => (
-                      <div key={g.nome} className={gi > 0 ? "border-t border-current/20 pt-6" : ""}>
-                        <p className={`font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>
-                          {g.nome}
-                        </p>
-                        <ul className="mt-4 flex flex-wrap gap-2">
+                      <div key={g.nome} className={gi > 0 ? "border-t border-current/20 pt-6" : "-mt-3"}>
+                        {"grupos" in s && (
+                          <p className={`mb-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] ${c.rotulo}`}>
+                            {g.nome}
+                          </p>
+                        )}
+                        <ul className="flex flex-wrap gap-2">
                           {g.incluido.map((item) => (
                             <li
                               key={item}

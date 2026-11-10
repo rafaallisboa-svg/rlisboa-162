@@ -158,6 +158,9 @@ export default async function ProjetoPage({
         <div>
           <p className="text-cal">Cliente</p>
           <p className="mt-1 tracking-normal normal-case">{frontmatter.cliente ?? frontmatter.titulo}</p>
+          {frontmatter.clienteDescricao && (
+            <p className="mt-0.5 text-[0.7rem] leading-snug tracking-normal normal-case opacity-70">{frontmatter.clienteDescricao}</p>
+          )}
         </div>
         <div>
           <p className="text-cal">Setor</p>
@@ -178,7 +181,7 @@ export default async function ProjetoPage({
       <div className="grid gap-x-16 gap-y-10 px-6 py-10 md:grid-cols-2 md:px-[clamp(1.5rem,5vw,6rem)]">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
-            Contexto
+            {direcao ? "Contexto" : "O projeto"}
           </p>
           <div className="prose-case">{contexto}</div>
         </div>

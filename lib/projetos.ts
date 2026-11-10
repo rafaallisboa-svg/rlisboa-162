@@ -13,6 +13,8 @@ export type ProjetoMeta = {
   slug: string;
   titulo: string;
   cliente?: string;
+  /** Quem é o cliente, em poucas palavras (aparece sob o nome). */
+  clienteDescricao?: string;
   subtitulo: string;
   disciplinas: string[];
   setor: string;

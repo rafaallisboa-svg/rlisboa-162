@@ -15,6 +15,9 @@ export type ProjetoMeta = {
   cliente?: string;
   /** Quem é o cliente, em poucas palavras (aparece sob o nome). */
   clienteDescricao?: string;
+  /** Títulos das duas colunas de texto (o padrão é Contexto e Direção). */
+  rotuloContexto?: string;
+  rotuloDirecao?: string;
   subtitulo: string;
   disciplinas: string[];
   setor: string;

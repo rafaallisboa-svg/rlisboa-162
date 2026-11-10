@@ -181,14 +181,14 @@ export default async function ProjetoPage({
       <div className="grid gap-x-16 gap-y-10 px-6 py-10 md:grid-cols-2 md:px-[clamp(1.5rem,5vw,6rem)]">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
-            {direcao ? "Contexto" : "O projeto"}
+            {frontmatter.rotuloContexto ?? (direcao ? "Contexto" : "O projeto")}
           </p>
           <div className="prose-case">{contexto}</div>
         </div>
         {direcao && (
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-sinal">
-              Direção
+              {frontmatter.rotuloDirecao ?? "Direção"}
             </p>
             <div className="prose-case">{direcao}</div>
           </div>

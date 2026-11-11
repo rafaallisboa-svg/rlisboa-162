@@ -61,8 +61,8 @@ export default function ContatoPage() {
           </h1>
           <span aria-hidden="true" className="mt-6 block h-[3px] w-24 bg-idv-amarelo" />
           <p className="mt-5 max-w-sm text-body text-maresia">
-            Conta a ideia e o prazo — respondo pelo canal que for melhor pra
-            você.
+            Conta a ideia e o prazo — respondo {site.contato.prazoResposta},
+            pelo canal que for melhor pra&nbsp;você.
           </p>
         </div>
       </div>

@@ -39,6 +39,8 @@ export const site = {
     whatsapp: "5511992225038",
     whatsappMensagem:
       "Olá Rafael, vim pelo site do Estúdio 162 e quero conversar sobre um projeto.",
+    /** Prazo prometido no site (formulário, contato e página de obrigado). */
+    prazoResposta: "em até 24 horas",
     agenda: "[[ TODO: link Cal.com ou Google Agenda ]]",
   },
 

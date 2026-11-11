@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { site } from "@/site.config";
 
@@ -26,6 +26,7 @@ const labelClasse = "font-mono text-xs uppercase tracking-[0.12em] text-maresia"
 
 export function OrcamentoForm() {
   const params = useSearchParams();
+  const router = useRouter();
   const servicoInicial = params.get("servico") ?? "";
 
   const [nome, setNome] = useState("");
@@ -67,7 +68,13 @@ export function OrcamentoForm() {
         }),
       });
       const dados = await resposta.json();
-      setStatus(dados.success ? "enviado" : "erro");
+      if (dados.success) {
+        setStatus("enviado");
+        // Página própria de agradecimento: dá pra medir os pedidos no Analytics.
+        router.push("/orcamento/obrigado");
+      } else {
+        setStatus("erro");
+      }
     } catch {
       setStatus("erro");
     }
@@ -80,7 +87,7 @@ export function OrcamentoForm() {
           Mensagem enviada
         </p>
         <p className="mt-4 max-w-md text-body text-maresia">
-          Recebi o seu pedido e respondo por e-mail em breve. Obrigado!
+          Recebi o seu pedido e respondo por e-mail {site.contato.prazoResposta}. Obrigado!
         </p>
       </div>
     );
@@ -166,6 +173,10 @@ export function OrcamentoForm() {
       >
         {status === "enviando" ? "Enviando…" : "Enviar"}
       </button>
+
+      <p className="-mt-2 font-mono text-xs text-maresia">
+        Respondo {site.contato.prazoResposta}.
+      </p>
 
       {status === "erro" && (
         <p role="alert" className="text-sm text-maresia">

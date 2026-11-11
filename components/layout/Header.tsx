@@ -91,7 +91,7 @@ export function Header() {
         <Link
           href="/orcamento"
           onClick={fechar}
-          className="ml-auto mr-4 inline-flex shrink-0 items-center whitespace-nowrap border border-[var(--h-fg)] bg-[var(--h-fg)] px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--h-bg)] transition-colors duration-200 hover:bg-transparent hover:text-[var(--h-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--h-fg)] md:ml-6 md:mr-0 lg:ml-8 lg:px-4 lg:text-xs"
+          className="ml-auto hidden shrink-0 items-center whitespace-nowrap border border-[var(--h-fg)] bg-[var(--h-fg)] px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--h-bg)] transition-colors duration-200 hover:bg-transparent hover:text-[var(--h-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--h-fg)] md:ml-6 md:inline-flex lg:ml-8 lg:px-4 lg:text-xs"
         >
           <span className="hidden lg:inline">Pedir&nbsp;</span>
           <span className="lg:hidden">Orçamento</span>

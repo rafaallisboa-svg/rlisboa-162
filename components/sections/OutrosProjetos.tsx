@@ -26,7 +26,13 @@ function embaralhar<T>(lista: T[]): T[] {
  * O servidor entrega os 3 primeiros (sem flash vazio); o sorteio roda no
  * navegador, então cresce sozinho conforme novos projetos entram no site.
  */
-export function OutrosProjetos({ projetos }: { projetos: ProjetoCard[] }) {
+export function OutrosProjetos({
+  projetos,
+  titulo = "Outros projetos",
+}: {
+  projetos: ProjetoCard[];
+  titulo?: string;
+}) {
   const [lista, setLista] = useState(() => projetos.slice(0, QUANTIDADE));
 
   useEffect(() => {
@@ -37,11 +43,11 @@ export function OutrosProjetos({ projetos }: { projetos: ProjetoCard[] }) {
 
   return (
     <section
-      aria-label="Outros projetos"
+      aria-label={titulo}
       className="border-t border-white/10 py-16 md:py-20"
     >
       <p className="px-6 font-mono text-xs uppercase tracking-[0.12em] text-maresia md:px-[clamp(1.5rem,5vw,6rem)]">
-        Outros projetos<span className="text-idv-laranja">.</span>
+        {titulo}<span className="text-idv-laranja">.</span>
       </p>
 
       <div className="mt-10 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-[clamp(1.5rem,5vw,6rem)] [&::-webkit-scrollbar]:hidden">

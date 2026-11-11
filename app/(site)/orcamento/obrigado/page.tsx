@@ -33,7 +33,7 @@ export default function ObrigadoPage() {
           Recebi o seu pedido e respondo por e-mail{" "}
           <strong className="font-bold text-cal">{site.contato.prazoResposta}</strong>.
         </p>
-        <p className="mt-3 max-w-md text-body text-maresia">
+        <p className="mt-3 max-w-md text-sm text-cal">
           Se for urgente, me chama no{" "}
           <a
             href={`https://wa.me/${site.contato.whatsapp}?text=${encodeURIComponent(
@@ -41,7 +41,7 @@ export default function ObrigadoPage() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-cal underline underline-offset-4 hover:text-idv-amarelo"
+            className="font-bold underline underline-offset-4 hover:text-idv-amarelo"
           >
             WhatsApp
           </a>
@@ -60,7 +60,7 @@ export default function ObrigadoPage() {
               href={instagram.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-maresia transition-colors hover:text-idv-amarelo"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-cal transition-colors hover:text-idv-amarelo"
             >
               <SocialIcon nome="Instagram" className="h-4 w-4" />
               Siga no Instagram

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { site } from "@/site.config";
 import { HeadlineRotator } from "@/components/ui/HeadlineRotator";
@@ -117,12 +118,12 @@ export default function SobrePage() {
             />
 
             <div className="mt-28 flex flex-col items-center border-t border-idv-grafite pt-14">
-              <a
+              <Link
                 href="/orcamento"
                 className="inline-flex items-center justify-center bg-idv-amarelo px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5"
               >
                 Solicitar orçamento
-              </a>
+              </Link>
             </div>
           </div>
 

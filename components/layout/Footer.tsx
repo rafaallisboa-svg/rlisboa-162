@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/site.config";
 import { isTodo, publicados, todoClass } from "@/lib/placeholder";
 import { SocialIcon } from "@/components/ui/SocialIcon";
@@ -66,12 +67,12 @@ export function Footer() {
 
         <div className="flex items-center gap-4 md:-mt-1">
           <RodapeRelogio />
-          <a
+          <Link
             href="/orcamento"
             className="inline-flex items-center justify-center bg-idv-preto px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo transition-transform hover:-translate-y-0.5"
           >
             Solicitar orçamento
-          </a>
+          </Link>
         </div>
       </div>
 

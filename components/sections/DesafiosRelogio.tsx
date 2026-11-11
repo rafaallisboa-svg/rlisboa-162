@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SeloRegua } from "@/components/ui/IdvElementos";
 
 /**
@@ -15,12 +16,12 @@ export function DesafiosRelogio({ className = "" }: { className?: string }) {
           <p className="-mb-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-maresia">
             Chama o Rafa<span className="text-idv-laranja">.</span>
           </p>
-          <a
+          <Link
             href="/orcamento"
             className="inline-flex items-center justify-center rounded-full bg-sinal px-8 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-concreto transition-transform hover:-translate-y-0.5"
           >
             Solicitar orçamento
-          </a>
+          </Link>
         </div>
       </div>
     </div>

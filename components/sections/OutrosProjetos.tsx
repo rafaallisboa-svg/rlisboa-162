@@ -57,7 +57,7 @@ export function OutrosProjetos({
             href={`/projetos/${p.slug}`}
             className="group block w-[78%] shrink-0 snap-start md:w-auto"
           >
-            <div className="aspect-square overflow-hidden bg-blueprint">
+            <div className="aspect-[3/2] overflow-hidden bg-blueprint">
               <img
                 src={p.imagem}
                 alt={p.titulo}

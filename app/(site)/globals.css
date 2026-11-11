@@ -302,6 +302,11 @@
 }
 
 @keyframes rafa-escala {
+  /* mantém vetor nítido: propriedade não composta força o navegador a redesenhar o SVG a cada quadro (sem serrilhado) */
+  0%,
+  100% {
+    fill-opacity: 1;
+  }
   0%,
   8% {
     transform: translate(18px, 150.75px) scale(0.29);
@@ -317,6 +322,11 @@
 }
 
 @keyframes rafa-afa {
+  /* mantém vetor nítido: propriedade não composta força o navegador a redesenhar o SVG a cada quadro (sem serrilhado) */
+  0%,
+  100% {
+    fill-opacity: 1;
+  }
   0%,
   8% {
     transform: translateX(0);
@@ -332,6 +342,11 @@
 }
 
 @keyframes rafa-ponto {
+  /* mantém vetor nítido: propriedade não composta força o navegador a redesenhar o SVG a cada quadro (sem serrilhado) */
+  0%,
+  100% {
+    fill-opacity: 1;
+  }
   0%,
   8% {
     transform: translateX(0);

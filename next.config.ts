@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // Permite rodar dois servidores de teste ao mesmo tempo sem um
   // corromper os arquivos temporários do outro. Na Vercel fica ".next".
   distDir: process.env.NEXT_DIST_DIR || ".next",
+  // Páginas geradas na hora (ex.: 404 dentro de /servicos) leem os cases de
+  // content/; sem isso a Vercel não leva a pasta e a página quebra (erro 500).
+  outputFileTracingIncludes: { "/**": ["./content/**/*"] },
   images: {
     formats: ["image/avif", "image/webp"],
   },

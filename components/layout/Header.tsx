@@ -72,19 +72,31 @@ export function Header() {
           </span>
         </Link>
 
-        <nav aria-label="Navegação principal" className="hidden gap-8 md:flex">
+        <nav aria-label="Navegação principal" className="hidden gap-5 md:flex lg:gap-8">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-[var(--h-fg)]"
             >
-              <IconeMenu nome={item.icone} className="h-3 w-3 text-[var(--h-fg)] transition-transform duration-200 group-hover:scale-125" />
+              <IconeMenu nome={item.icone} className="hidden h-3 w-3 text-[var(--h-fg)] lg:block transition-transform duration-200 group-hover:scale-125" />
               {item.label}
               <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[var(--h-fg)] transition-[width] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
             </Link>
           ))}
         </nav>
+
+        {/* Chamada principal: cores invertidas em relação ao menu, visível
+            em todas as páginas e tamanhos de tela. */}
+        <Link
+          href="/orcamento"
+          onClick={fechar}
+          className="ml-auto mr-4 inline-flex shrink-0 items-center whitespace-nowrap border border-[var(--h-fg)] bg-[var(--h-fg)] px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--h-bg)] transition-colors duration-200 hover:bg-transparent hover:text-[var(--h-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--h-fg)] md:ml-6 md:mr-0 lg:ml-8 lg:px-4 lg:text-xs"
+        >
+          <span className="hidden lg:inline">Pedir&nbsp;</span>
+          <span className="lg:hidden">Orçamento</span>
+          <span className="hidden lg:inline">orçamento</span>
+        </Link>
 
         <button
           type="button"

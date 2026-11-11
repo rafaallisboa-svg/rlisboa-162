@@ -74,7 +74,7 @@ export const site = {
     "Estúdio de design em Itapema, SC: identidade visual, sites, apresentações, redes sociais e motion graphics para marcas e eventos, com atendimento em todo o Brasil.",
   ogImagem: "/api/ph?w=1200&h=630&label=Open Graph",
   /** Google Analytics 4 (conta do Gmail do 162). ID público, pode ficar no código. */
-  analyticsId: "G-8N6CTHTTHK",
+  analyticsId: "G-QWK5MS88QV",
 
   // ── Mídia ───────────────────────────────────────────────────
   hero: {

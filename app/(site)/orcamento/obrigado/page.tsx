@@ -6,6 +6,7 @@ import { publicados } from "@/lib/placeholder";
 import { OutrosProjetos } from "@/components/sections/OutrosProjetos";
 import { StickerRafa } from "@/components/ui/IdvElementos";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { EventoPedidoOrcamento } from "@/components/seo/EventoPedidoOrcamento";
 
 // Só faz sentido para quem acabou de enviar o formulário: fora do Google.
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function ObrigadoPage() {
 
   return (
     <>
+      <EventoPedidoOrcamento />
       <div className="relative mx-auto max-w-2xl px-6 pb-20 pt-40 md:px-0">
         <div className="flex items-start justify-between gap-6">
           <div>

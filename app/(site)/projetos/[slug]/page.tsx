@@ -8,6 +8,7 @@ import { EmbedAutoAltura } from "@/components/ui/EmbedAutoAltura";
 import { real, isTodo, isPlaceholderImg } from "@/lib/placeholder";
 import { SEO, urlAbsoluta, urlDoSite } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { OutrosProjetos } from "@/components/sections/OutrosProjetos";
 
 function VisitarSite({ href }: { href: string }) {
   return (
@@ -247,6 +248,17 @@ export default async function ProjetoPage({
           </Link>
         </div>
       )}
+
+      <OutrosProjetos
+        projetos={getProjetos()
+          .filter((p) => !p.pendente && p.slug !== slug)
+          .map((p) => ({
+            slug: p.slug,
+            titulo: p.titulo,
+            subtitulo: p.subtitulo,
+            imagem: p.thumb ?? p.capa,
+          }))}
+      />
     </article>
   );
 }

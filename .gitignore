@@ -10,3 +10,4 @@ scratch-requal/
 /public/videos/*.mov
 /public/videos/*.mp4
 !/public/videos/.gitkeep
+/.next-*/

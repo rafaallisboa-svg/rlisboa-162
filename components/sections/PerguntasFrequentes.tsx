@@ -7,6 +7,9 @@ import { Cruz } from "@/components/ui/IdvElementos";
  * Perguntas frequentes no fim de Serviços. Abre e fecha com <details> (funciona
  * sem JavaScript) e leva a marcação FAQPage, que o Google e as IAs leem.
  */
+/** Liga as duas últimas palavras para nenhuma ficar sozinha na linha. */
+const semOrfa = (t: string) => t.replace(/ (\S+)$/, " $1");
+
 export function PerguntasFrequentes() {
   const dados = {
     "@context": "https://schema.org",
@@ -46,16 +49,24 @@ export function PerguntasFrequentes() {
         </div>
 
         <div className="border-t border-white/10">
-          {PERGUNTAS.map(({ p, r }) => (
-            <details key={p} className="faq group border-b border-white/10">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-xl leading-snug text-cal transition-colors hover:text-sinal md:text-2xl [&::-webkit-details-marker]:hidden">
-                <span>{p}</span>
+          {PERGUNTAS.map(({ p, r }, i) => (
+            <details
+              key={p}
+              className="faq group relative border-b border-white/10 transition-colors duration-300 before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:origin-top before:scale-y-0 before:bg-sinal before:transition-transform before:duration-500 open:bg-white/[0.035] open:before:scale-y-100"
+            >
+              <summary className="grid cursor-pointer list-none grid-cols-[2.25rem_1fr_auto] items-center gap-4 py-6 pl-4 pr-2 text-cal transition-colors hover:text-sinal md:gap-6 md:pl-6 [&::-webkit-details-marker]:hidden">
+                <span className="font-mono text-xs tabular-nums text-maresia transition-colors group-open:text-sinal">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-xl leading-snug transition-colors group-open:text-sinal md:text-2xl">{semOrfa(p)}</span>
                 <span
                   aria-hidden="true"
-                  className="relative h-4 w-4 shrink-0 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-4 before:-translate-y-1/2 before:bg-current after:absolute after:left-1/2 after:top-0 after:h-4 after:w-[2px] after:-translate-x-1/2 after:bg-current after:transition-transform after:duration-300 group-open:after:scale-y-0"
-                />
+                  className="relative flex h-9 w-9 shrink-0 items-center justify-center border border-white/15 transition-colors duration-300 group-hover:border-sinal group-open:border-sinal group-open:bg-sinal group-open:text-concreto"
+                >
+                  <span className="relative h-3.5 w-3.5 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-3.5 before:-translate-y-1/2 before:bg-current after:absolute after:left-1/2 after:top-0 after:h-3.5 after:w-[2px] after:-translate-x-1/2 after:bg-current after:transition-transform after:duration-300 group-open:after:scale-y-0" />
+                </span>
               </summary>
-              <p className="max-w-2xl pb-7 pr-10 text-body leading-relaxed text-cal/75">{r}</p>
+              <p className="faq-r max-w-2xl pb-8 pl-[calc(2.25rem+2rem)] pr-10 text-body leading-relaxed text-cal/75 md:pl-[calc(2.25rem+3rem)]">{r}</p>
             </details>
           ))}
         </div>

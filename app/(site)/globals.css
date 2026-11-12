@@ -449,3 +449,14 @@ html[data-cookies="pendente"] .whatsapp-flutuante {
 @media (prefers-reduced-motion: reduce) {
   .modal-privacidade, .painel-privacidade { animation: none; }
 }
+
+/* Perguntas frequentes: a resposta abre deslizando (navegadores que já suportam) e surge suave. */
+:root { interpolate-size: allow-keywords; }
+.faq::details-content { height: 0; overflow: clip; transition: height 0.45s cubic-bezier(0.19, 1, 0.22, 1), content-visibility 0.45s allow-discrete; }
+.faq[open]::details-content { height: auto; }
+.faq[open] .faq-r { animation: faq-entra 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+@keyframes faq-entra { from { opacity: 0; transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) {
+  .faq::details-content { transition: none; }
+  .faq[open] .faq-r { animation: none; }
+}

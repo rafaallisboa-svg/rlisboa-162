@@ -122,12 +122,15 @@ export default async function ProjetoPage({
       </Link>
 
       {frontmatter.heroEmbed && frontmatter.heroAuto ? (
-        <EmbedAutoAltura
-          src={frontmatter.heroEmbed}
-          title={`Hero — ${frontmatter.titulo}`}
-          alturaInicial={700}
-          className="block w-full border-0"
-        />
+        // No celular o topo é baixo: desce a altura do menu fixo para o vídeo aparecer inteiro.
+        <div className="pt-[65px] md:pt-0">
+          <EmbedAutoAltura
+            src={frontmatter.heroEmbed}
+            title={`Hero — ${frontmatter.titulo}`}
+            alturaInicial={700}
+            className="block w-full border-0"
+          />
+        </div>
       ) : frontmatter.heroEmbed ? (
         <div className="relative h-[640px] w-full overflow-hidden bg-blueprint md:h-[760px]">
           <iframe

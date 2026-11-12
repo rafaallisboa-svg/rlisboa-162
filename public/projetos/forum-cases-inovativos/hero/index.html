@@ -32,16 +32,14 @@ html,body{margin:0;padding:0;background:#103484;}
 .fh-data{background:#F5A200;font-weight:600;}
 .fh-local{background:#EEF2F6;font-weight:400;}
 
-/* celular: só o vídeo e o logo (a chamada e as frases ficam de fora), com data e local na faixa azul */
+/* celular: mesmo desenho do desktop (vídeo inteiro, logo por cima à esquerda), sem a chamada e as frases; data e local numa linha só */
 @container (max-width:700px){
-  .fh-stage{aspect-ratio:16/9;}
-  .fh-stage video{top:-18.53%;}
-  .fh-copy{position:static;transform:none;width:auto;padding:28px 20px 0;background:#103484;}
-  .fh-logo{width:min(70cqw,260px);}
   .fh-chamada,.fh-l1,.fh-l2{display:none;}
-  .fh-strip{height:auto;padding:22px 16px 28px;}
-  .fh-badges{position:static;transform:none;gap:6px;}
-  .fh-badges span{font-size:clamp(16px,5.2cqw,22px);padding:4px 12px;border-radius:6px;}
+  .fh-copy{left:25%;top:50%;transform:translate(-50%,-50%);width:38cqw;}
+  .fh-logo{width:38cqw;}
+  .fh-strip{height:auto;padding:10px 10px 12px;}
+  .fh-badges{position:static;transform:none;flex-direction:row;justify-content:center;gap:6px;}
+  .fh-badges span{font-size:clamp(10px,3.3cqw,15px);padding:3px 8px;border-radius:4px;}
 }
 </style>
   <div class="fh-main">

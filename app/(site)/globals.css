@@ -440,3 +440,12 @@ html[data-cookies="pendente"] .whatsapp-flutuante {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* Pop-up da política: o painel sobe de baixo (celular) ou aparece suave (computador). */
+@keyframes privacidade-fundo { from { opacity: 0; } }
+@keyframes privacidade-painel { from { opacity: 0; transform: translateY(40px); } }
+.modal-privacidade { animation: privacidade-fundo 0.25s ease-out; }
+.painel-privacidade { animation: privacidade-painel 0.45s cubic-bezier(0.19, 1, 0.22, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .modal-privacidade, .painel-privacidade { animation: none; }
+}

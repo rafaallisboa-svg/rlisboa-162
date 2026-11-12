@@ -26,21 +26,19 @@ html,body{margin:0;padding:0;background:#103484;}
 .fh-chamada{display:block;width:33.3cqw;height:auto;margin-top:1.56cqw;}
 .fh-l1{font-size:1.56cqw;line-height:1;font-weight:500;margin-top:1.5cqw;}
 .fh-l2{font-size:1.19cqw;line-height:1;font-weight:400;font-style:italic;margin-top:.67cqw;}
-.fh-strip{position:relative;height:4.83cqw;background:#103484;}
-.fh-badges{position:absolute;left:50%;top:-1.49cqw;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.22cqw;white-space:nowrap;}
-.fh-badges span{display:block;font-size:2.23cqw;line-height:1.2;padding:.22cqw 1.04cqw;border-radius:.45cqw;color:#0E3A8A;}
+.fh-strip{position:relative;height:3.6cqw;background:#103484;}
+.fh-badges{position:absolute;left:50%;top:-1.1cqw;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.18cqw;white-space:nowrap;}
+.fh-badges span{display:block;font-size:1.6cqw;line-height:1.2;padding:.18cqw .8cqw;border-radius:.35cqw;color:#0E3A8A;}
 .fh-data{background:#F5A200;font-weight:600;}
 .fh-local{background:#EEF2F6;font-weight:400;}
 
-/* celular: o vídeo fica limpo e a mensagem desce para a faixa azul, em tamanho legível */
+/* celular: só o vídeo e o logo (a chamada e as frases ficam de fora), com data e local na faixa azul */
 @container (max-width:700px){
   .fh-stage{aspect-ratio:16/9;}
   .fh-stage video{top:-18.53%;}
   .fh-copy{position:static;transform:none;width:auto;padding:28px 20px 0;background:#103484;}
   .fh-logo{width:min(70cqw,260px);}
-  .fh-chamada{width:min(92cqw,380px);margin-top:18px;}
-  .fh-l1{font-size:clamp(15px,4.6cqw,19px);margin-top:14px;}
-  .fh-l2{font-size:clamp(13px,3.8cqw,16px);margin-top:6px;}
+  .fh-chamada,.fh-l1,.fh-l2{display:none;}
   .fh-strip{height:auto;padding:22px 16px 28px;}
   .fh-badges{position:static;transform:none;gap:6px;}
   .fh-badges span{font-size:clamp(16px,5.2cqw,22px);padding:4px 12px;border-radius:6px;}

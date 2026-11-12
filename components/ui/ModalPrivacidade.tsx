@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { POLITICA_ATUALIZADA, PoliticaConteudo } from "@/components/ui/PoliticaConteudo";
+import { EVENTO_CONSENTIMENTO, gravarEscolha, lerEscolha, type Escolha } from "@/lib/consentimento";
 
 /**
  * Pop-up da política de privacidade. Qualquer link para /privacidade dentro do
@@ -12,6 +13,7 @@ import { POLITICA_ATUALIZADA, PoliticaConteudo } from "@/components/ui/PoliticaC
  */
 export function ModalPrivacidade() {
   const [aberto, setAberto] = useState(false);
+  const [escolha, setEscolha] = useState<Escolha>(null);
   const caminho = usePathname();
   const fechar = useRef<HTMLButtonElement>(null);
   const origem = useRef<Element | null>(null);
@@ -33,6 +35,19 @@ export function ModalPrivacidade() {
     window.addEventListener("click", aoClicar, true);
     return () => window.removeEventListener("click", aoClicar, true);
   }, []);
+
+  // Sabe se a pessoa já escolheu sobre os cookies (para mostrar ou não a barra de aceite).
+  useEffect(() => {
+    const ler = () => setEscolha(lerEscolha());
+    ler();
+    window.addEventListener(EVENTO_CONSENTIMENTO, ler);
+    return () => window.removeEventListener(EVENTO_CONSENTIMENTO, ler);
+  }, []);
+
+  const decidir = (v: "aceito" | "recusado") => {
+    gravarEscolha(v);
+    setAberto(false);
+  };
 
   // Trocou de página: fecha.
   useEffect(() => setAberto(false), [caminho]);
@@ -89,6 +104,27 @@ export function ModalPrivacidade() {
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-14 md:px-10" data-lenis-prevent>
           <PoliticaConteudo />
         </div>
+        {escolha === null && (
+          <div className="flex shrink-0 flex-col gap-4 border-t border-white/10 bg-idv-preto px-6 py-5 md:flex-row md:items-center md:justify-between md:px-10">
+            <p className="text-sm leading-relaxed text-cal/80">Aceita os cookies de medição do Google Analytics?</p>
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => decidir("aceito")}
+                className="bg-idv-amarelo px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-idv-amarelo"
+              >
+                Aceitar
+              </button>
+              <button
+                type="button"
+                onClick={() => decidir("recusado")}
+                className="border border-cal/30 px-5 py-3 font-mono text-xs uppercase tracking-[0.12em] text-cal transition-colors hover:border-cal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cal"
+              >
+                Recusar
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

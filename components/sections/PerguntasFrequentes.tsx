@@ -1,0 +1,65 @@
+import Link from "next/link";
+import { PERGUNTAS } from "@/content/perguntas-frequentes";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { Cruz } from "@/components/ui/IdvElementos";
+
+/**
+ * Perguntas frequentes no fim de Serviços. Abre e fecha com <details> (funciona
+ * sem JavaScript) e leva a marcação FAQPage, que o Google e as IAs leem.
+ */
+export function PerguntasFrequentes() {
+  const dados = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: PERGUNTAS.map(({ p, r }) => ({
+      "@type": "Question",
+      name: p,
+      acceptedAnswer: { "@type": "Answer", text: r },
+    })),
+  };
+
+  return (
+    <section
+      id="perguntas"
+      aria-labelledby="titulo-perguntas"
+      className="relative bg-concreto px-6 py-20 text-cal md:px-[clamp(1.5rem,5vw,6rem)] md:py-28"
+    >
+      <JsonLd dados={dados} />
+      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-grafite md:right-[clamp(1.5rem,5vw,6rem)]" />
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
+            Dúvidas<span className="text-idv-laranja">.</span>
+          </p>
+          <h2 id="titulo-perguntas" className="mt-2 font-display uppercase leading-none text-h2">
+            Perguntas frequentes
+          </h2>
+          <p className="mt-6 max-w-sm text-body leading-relaxed text-cal/70">
+            Não achou a sua? Me chama que eu respondo em até&nbsp;24&nbsp;horas.
+          </p>
+          <Link
+            href="/orcamento"
+            className="mt-8 inline-flex items-center bg-sinal px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-concreto transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sinal"
+          >
+            Pedir orçamento
+          </Link>
+        </div>
+
+        <div className="border-t border-white/10">
+          {PERGUNTAS.map(({ p, r }) => (
+            <details key={p} className="faq group border-b border-white/10">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-xl leading-snug text-cal transition-colors hover:text-sinal md:text-2xl [&::-webkit-details-marker]:hidden">
+                <span>{p}</span>
+                <span
+                  aria-hidden="true"
+                  className="relative h-4 w-4 shrink-0 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-4 before:-translate-y-1/2 before:bg-current after:absolute after:left-1/2 after:top-0 after:h-4 after:w-[2px] after:-translate-x-1/2 after:bg-current after:transition-transform after:duration-300 group-open:after:scale-y-0"
+                />
+              </summary>
+              <p className="max-w-2xl pb-7 pr-10 text-body leading-relaxed text-cal/75">{r}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

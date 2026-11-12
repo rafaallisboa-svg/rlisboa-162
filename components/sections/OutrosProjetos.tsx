@@ -6,9 +6,14 @@ import { useEffect, useState } from "react";
 export type ProjetoCard = {
   slug: string;
   titulo: string;
-  subtitulo: string;
+  /** Categoria curta do trabalho: "Website", "Identidade visual"… */
+  categoria: string;
   imagem: string;
 };
+
+// Mesmas cores dos cartões de serviço. A cor vai pela posição (1º, 2º, 3º),
+// não pelo projeto, então nunca repete na mesma fileira.
+const CORES = ["bg-idv-laranja", "bg-idv-amarelo-claro", "bg-idv-pedra"] as const;
 
 const QUANTIDADE = 3;
 
@@ -51,26 +56,28 @@ export function OutrosProjetos({
       </p>
 
       <div className="mt-10 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-[clamp(1.5rem,5vw,6rem)] [&::-webkit-scrollbar]:hidden">
-        {lista.map((p) => (
+        {lista.map((p, i) => (
           <Link
             key={p.slug}
             href={`/projetos/${p.slug}`}
-            className="group block w-[78%] shrink-0 snap-start md:w-auto"
+            className={`group flex w-[78%] shrink-0 snap-start flex-col rounded-[3px] p-2 text-idv-preto transition-transform duration-300 hover:-translate-y-1 md:w-auto md:p-2.5 ${CORES[i % CORES.length]}`}
           >
-            <div className="aspect-[3/2] overflow-hidden bg-blueprint">
+            <div className="aspect-[3/2] overflow-hidden rounded-[2px] bg-blueprint">
               <img
                 src={p.imagem}
-                alt={p.titulo}
+                alt=""
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
             </div>
-            <p className="mt-5 font-display text-sm uppercase tracking-[0.04em] text-cal transition-colors group-hover:text-idv-amarelo md:text-base">
-              {p.titulo}
-            </p>
-            <p className="mt-1.5 text-sm font-medium text-idv-pedra">
-              {p.subtitulo}
-            </p>
+            <div className="flex flex-1 flex-col items-center justify-center px-3 pb-4 pt-5 text-center md:pb-5 md:pt-6">
+              <p className="text-balance font-display text-sm uppercase leading-tight tracking-[0.04em] md:text-base">
+                {p.titulo}
+              </p>
+              <p className="mt-2 font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] opacity-70">
+                {p.categoria}
+              </p>
+            </div>
           </Link>
         ))}
       </div>

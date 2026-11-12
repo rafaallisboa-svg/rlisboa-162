@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/site.config";
-import { getProjetos } from "@/lib/projetos";
+import { categoriaCurta, getProjetos } from "@/lib/projetos";
 import { publicados } from "@/lib/placeholder";
 import { OutrosProjetos } from "@/components/sections/OutrosProjetos";
 import { StickerRafa } from "@/components/ui/IdvElementos";
@@ -78,7 +78,7 @@ export default function ObrigadoPage() {
           .map((p) => ({
             slug: p.slug,
             titulo: p.titulo,
-            subtitulo: p.subtitulo,
+            categoria: categoriaCurta(p),
             imagem: p.thumb ?? p.capa,
           }))}
       />

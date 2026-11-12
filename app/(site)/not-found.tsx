@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProjetos } from "@/lib/projetos";
+import { categoriaCurta, getProjetos } from "@/lib/projetos";
 import { OutrosProjetos } from "@/components/sections/OutrosProjetos";
 import { Cruz } from "@/components/ui/IdvElementos";
 import { Anel404 } from "@/components/motion/Anel404";
@@ -61,7 +61,7 @@ export default function NaoEncontrada() {
           .map((p) => ({
             slug: p.slug,
             titulo: p.titulo,
-            subtitulo: p.subtitulo,
+            categoria: categoriaCurta(p),
             imagem: p.thumb ?? p.capa,
           }))}
       />

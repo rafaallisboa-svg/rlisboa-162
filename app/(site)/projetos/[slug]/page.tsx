@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProjeto, getProjetos } from "@/lib/projetos";
+import { getProjeto, categoriaCurta, getProjetos } from "@/lib/projetos";
 import { Galeria } from "@/components/ui/Galeria";
 import { CoberturaCase } from "@/components/ui/CoberturaCase";
 import { EmbedAutoAltura } from "@/components/ui/EmbedAutoAltura";
@@ -255,7 +255,7 @@ export default async function ProjetoPage({
           .map((p) => ({
             slug: p.slug,
             titulo: p.titulo,
-            subtitulo: p.subtitulo,
+            categoria: categoriaCurta(p),
             imagem: p.thumb ?? p.capa,
           }))}
       />

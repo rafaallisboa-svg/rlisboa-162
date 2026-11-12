@@ -19,6 +19,8 @@ export type ProjetoMeta = {
   rotuloContexto?: string;
   rotuloDirecao?: string;
   subtitulo: string;
+  /** Categoria curta para os cards (opcional; sem ela, sai da primeira disciplina). */
+  categoria?: string;
   disciplinas: string[];
   setor: string;
   ano: number | string;
@@ -40,6 +42,17 @@ export type ProjetoMeta = {
   siteExterno?: string | null;
   pendente?: boolean;
 };
+
+const CATEGORIAS: Record<string, string> = {
+  website: "Website",
+  identidade: "Identidade visual",
+  ambientacao: "Ambientação virtual",
+};
+
+/** Rótulo curto do tipo de trabalho, para os cards de "Outros projetos". */
+export function categoriaCurta(p: ProjetoMeta): string {
+  return p.categoria ?? CATEGORIAS[p.disciplinas?.[0]] ?? p.escopo?.[0] ?? "";
+}
 
 export function getProjetos(): ProjetoMeta[] {
   const arquivos = fs

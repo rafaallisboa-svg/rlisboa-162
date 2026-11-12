@@ -12,8 +12,8 @@ export type ProjetoCard = {
 };
 
 // Mesmas cores dos cartões de serviço. A cor vai pela posição (1º, 2º, 3º),
-// não pelo projeto, então nunca repete na mesma fileira.
-const CORES = ["bg-idv-off", "bg-idv-pedra", "bg-idv-cinza"] as const;
+// não pelo projeto: off-white e pedra se alternam.
+const CORES = ["bg-idv-off", "bg-idv-pedra"] as const;
 
 const QUANTIDADE = 3;
 

@@ -434,3 +434,9 @@
     animation: none !important;
   }
 }
+
+/* Aviso de cookies aberto: o atalho de WhatsApp do celular sai da frente. */
+html[data-cookies="pendente"] .whatsapp-flutuante {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

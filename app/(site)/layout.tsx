@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFlutuante } from "@/components/ui/WhatsAppFlutuante";
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
+import { AvisoCookies } from "@/components/ui/AvisoCookies";
 import { site } from "@/site.config";
 import { SEO, grafoDoEstudio, robotsDoSite, urlDoSite } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <WhatsAppFlutuante />
         </SmoothScroll>
         <GoogleAnalytics />
+        <AvisoCookies />
       </body>
     </html>
   );

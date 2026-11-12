@@ -71,7 +71,7 @@ export function WhatsAppFlutuante() {
       rel="noopener noreferrer"
       aria-label="Conversar pelo WhatsApp"
       tabIndex={visivel ? 0 : -1}
-      className={`fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-30 flex h-11 w-11 items-center justify-center transition-[opacity,transform,color] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current motion-reduce:transition-none md:hidden ${
+      className={`whatsapp-flutuante fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-30 flex h-11 w-11 items-center justify-center transition-[opacity,transform,color] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current motion-reduce:transition-none md:hidden ${
         claro ? "text-idv-preto" : "text-idv-off"
       }`}
       style={{

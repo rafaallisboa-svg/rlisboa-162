@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { site } from "@/site.config";
@@ -175,7 +176,11 @@ export function OrcamentoForm() {
       </button>
 
       <p className="-mt-2 font-mono text-xs text-maresia">
-        Respondo {site.contato.prazoResposta}.
+        Respondo {site.contato.prazoResposta}. Ao enviar, você concorda com a{" "}
+        <Link href="/privacidade" className="underline underline-offset-4 hover:text-sinal">
+          política de privacidade
+        </Link>
+        .
       </p>
 
       {status === "erro" && (

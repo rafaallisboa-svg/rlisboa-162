@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: urlAbsoluta("/projetos"), lastModified: agora, changeFrequency: "monthly", priority: 0.8 },
     { url: urlAbsoluta("/sobre"), lastModified: agora, changeFrequency: "yearly", priority: 0.7 },
     { url: urlAbsoluta("/contato"), lastModified: agora, changeFrequency: "yearly", priority: 0.7 },
+    { url: urlAbsoluta("/privacidade"), lastModified: agora, changeFrequency: "yearly", priority: 0.3 },
   ];
   const projetos: MetadataRoute.Sitemap = getProjetos().map((p) => ({
     url: urlAbsoluta(`/projetos/${p.slug}`),

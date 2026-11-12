@@ -25,9 +25,6 @@ export function Footer() {
             alt={site.nomeCompleto}
             className="-ml-1.5 -mt-1 h-6 w-auto md:h-8"
           />
-          <address className="mt-3 font-mono text-xs not-italic leading-relaxed tracking-wide text-idv-preto/70">
-            CNPJ <span className="tabular-nums">{site.cadastro.cnpj}</span>
-          </address>
         </div>
 
         <div className="font-mono text-xs tracking-wide text-idv-preto/70">
@@ -76,9 +73,14 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="mt-10 font-mono text-[0.7rem] tabular-nums text-idv-preto/70">
-        © {site.anoFundacao}–{ano} {site.nomeCompleto}
-      </p>
+      <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.7rem] tabular-nums text-idv-preto/70">
+        <p>
+          © {site.anoFundacao}–{ano} {site.nomeCompleto}
+        </p>
+        <Link href="/privacidade" className="underline underline-offset-4 hover:text-idv-preto">
+          Política de privacidade
+        </Link>
+      </div>
     </footer>
   );
 }

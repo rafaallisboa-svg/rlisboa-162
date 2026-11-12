@@ -16,8 +16,12 @@ export const PERGUNTAS: { p: string; r: string }[] = [
     r: "Sim. O estúdio é online e atende clientes de todo o Brasil por videochamada, WhatsApp e e-mail.",
   },
   {
-    p: "O site fica no meu nome? Consigo editar depois?",
-    r: "Sim, o site é seu. O domínio é registrado no seu nome e a hospedagem fica numa conta sua. Em sites simples, a hospedagem pode ser gratuita; se o site precisar de banco de dados ou de mais recursos, o custo mensal já vem na proposta. Depois da entrega, ajustes pontuais estão incluídos por 30 dias. Passado esse período, as atualizações são feitas sob demanda, com orçamento rápido, ou num plano de manutenção, sob consulta. Se você quiser editar textos e imagens sozinho, o site pode ganhar um painel de edição, que é orçado à parte.",
+    p: "O site fica no meu nome?",
+    r: "Sim, o site é seu. O domínio é registrado no seu nome e a hospedagem fica numa conta sua. Em sites simples, a hospedagem pode ser gratuita; se o site precisar de banco de dados ou de mais recursos, o custo mensal já vem na proposta.",
+  },
+  {
+    p: "E se eu precisar mudar algo depois?",
+    r: "Depois da entrega, ajustes pontuais estão incluídos por 30 dias. Passado esse período, as atualizações são feitas sob demanda, com orçamento rápido, ou num plano de manutenção, sob consulta. Se você quiser editar textos e imagens sozinho, o site pode ganhar um painel de edição, que é orçado à parte.",
   },
   {
     p: "Quantas rodadas de ajuste estão incluídas?",

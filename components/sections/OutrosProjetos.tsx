@@ -10,7 +10,11 @@ export type ProjetoCard = {
   /** Categoria curta do trabalho: "Website", "Identidade visual"… */
   categoria: string;
   imagem: string;
+  /** Endereço do site do cliente: o card ganha a barra de navegador com o domínio. */
+  site?: string | null;
 };
+
+const dominio = (url: string) => url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
 
 // Mesmas cores dos cartões de serviço. A cor vai pela posição (1º, 2º, 3º),
 // não pelo projeto: off-white e pedra se alternam.
@@ -61,8 +65,21 @@ export function OutrosProjetos({
           <Link
             key={p.slug}
             href={`/projetos/${p.slug}`}
-            className={`group flex w-[78%] shrink-0 snap-start flex-col rounded-[3px] p-2 text-idv-preto transition-transform duration-300 hover:-translate-y-1 md:w-auto md:p-2.5 ${CORES[i % CORES.length]}`}
+            className={`group flex w-[78%] shrink-0 snap-start flex-col p-2 text-idv-preto transition-transform duration-300 hover:-translate-y-1 md:w-auto md:p-2.5 ${p.site ? "rounded-[8px] !pt-0" : "rounded-[3px]"} ${CORES[i % CORES.length]}`}
           >
+            {p.site && (
+              // Card de website: barra de navegador com o domínio real do cliente.
+              <div className="flex h-[34px] items-center gap-2.5 px-1" aria-hidden="true">
+                <span className="flex gap-[5px]">
+                  <i className="size-2 rounded-full bg-idv-preto/20 transition-colors duration-300 group-hover:bg-idv-laranja" />
+                  <i className="size-2 rounded-full bg-idv-preto/20 transition-colors duration-300 group-hover:bg-idv-amarelo" />
+                  <i className="size-2 rounded-full bg-idv-preto/20" />
+                </span>
+                <span className="mr-6 flex h-5 min-w-0 flex-1 items-center justify-center truncate rounded-full bg-idv-preto/[0.07] px-2.5 font-mono text-[10px] tracking-[0.02em] text-idv-preto/60">
+                  {dominio(p.site)}
+                </span>
+              </div>
+            )}
             <div className="aspect-[3/2] overflow-hidden rounded-[2px] bg-blueprint">
               <img
                 {...responsiva(p.imagem)}

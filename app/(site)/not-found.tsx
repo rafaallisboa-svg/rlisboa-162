@@ -63,6 +63,7 @@ export default function NaoEncontrada() {
             titulo: p.titulo,
             categoria: categoriaCurta(p),
             imagem: p.thumb ?? p.capa,
+            site: p.siteExterno ?? null,
           }))}
       />
     </>

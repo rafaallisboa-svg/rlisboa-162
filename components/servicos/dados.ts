@@ -51,6 +51,7 @@ export const SERVICOS = [
           "Estrutura de páginas",
           "Otimização de imagens",
           "Publicação e domínio",
+          "Perfil da Empresa no Google (Maps)",
         ],
       },
       {

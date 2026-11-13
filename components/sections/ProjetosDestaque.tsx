@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getProjetosDestaque } from "@/lib/projetos";
+import { responsiva } from "@/lib/imagens";
 import { Cruz } from "@/components/ui/IdvElementos";
 
 /**
@@ -60,7 +61,8 @@ export function ProjetosDestaque({ fundo = "escuro" }: { fundo?: keyof typeof TE
               }`}
             >
               <img
-                src={p.thumb ?? p.capa}
+                {...responsiva(p.thumb ?? p.capa)}
+                sizes={destaque ? "(min-width: 768px) 90vw, 100vw" : "(min-width: 768px) 45vw, 100vw"}
                 alt={p.titulo}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               />

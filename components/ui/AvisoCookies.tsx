@@ -10,7 +10,9 @@ import { EVENTO_CONSENTIMENTO, gravarEscolha, lerEscolha } from "@/lib/consentim
  * (html[data-cookies="pendente"]) para os dois não se sobreporem.
  */
 export function AvisoCookies() {
-  const [mostrar, setMostrar] = useState(false);
+  // Começa visível já no HTML do servidor (aparece junto com a página, sem atraso).
+  // Quem já escolheu não vê: um script no <head> marca html[data-cookie-ok] antes da pintura.
+  const [mostrar, setMostrar] = useState(true);
 
   useEffect(() => {
     const atualizar = () => setMostrar(lerEscolha() === null);
@@ -30,7 +32,7 @@ export function AvisoCookies() {
     <div
       role="dialog"
       aria-label="Aviso de cookies"
-      className="fixed bottom-4 left-4 right-4 z-[60] border border-idv-off/10 bg-idv-preto p-5 text-idv-off shadow-[0_20px_50px_rgba(0,0,0,0.35)] md:bottom-6 md:left-6 md:right-auto md:max-w-[400px]"
+      className="aviso-cookies fixed bottom-4 left-4 right-4 z-[60] border border-idv-off/10 bg-idv-preto p-5 text-idv-off shadow-[0_20px_50px_rgba(0,0,0,0.35)] md:bottom-6 md:left-6 md:right-auto md:max-w-[400px]"
     >
       <p className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-idv-off/50">Cookies</p>
       <p className="mt-2 text-sm leading-relaxed text-idv-off/85">

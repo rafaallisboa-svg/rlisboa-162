@@ -67,7 +67,8 @@ export const SERVICOS = [
           "Página de obrigado",
           "Botão de orçamento e WhatsApp",
           "Imagem de compartilhamento",
-          "Velocidade e HTTPS",
+          "Testes de velocidade e desempenho (Google PageSpeed)",
+          "Site seguro (HTTPS)",
         ],
       },
       {

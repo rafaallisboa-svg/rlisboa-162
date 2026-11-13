@@ -1,0 +1,542 @@
+{
+  "/projetos/forum-cases-inovativos/capa.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/forum-cases-inovativos/capa-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/forum-cases-inovativos/capa-1280.webp"
+    },
+    {
+      "w": 1300,
+      "src": "/projetos/forum-cases-inovativos/capa-1920.webp"
+    }
+  ],
+  "/projetos/forum-cases-inovativos/hero-chamada.png": [
+    {
+      "w": 640,
+      "src": "/projetos/forum-cases-inovativos/hero-chamada-640.webp"
+    },
+    {
+      "w": 1244,
+      "src": "/projetos/forum-cases-inovativos/hero-chamada-1280.webp"
+    }
+  ],
+  "/projetos/forum-cases-inovativos/hero-logo.png": [
+    {
+      "w": 514,
+      "src": "/projetos/forum-cases-inovativos/hero-logo-640.webp"
+    }
+  ],
+  "/projetos/forum-cases-inovativos/hero-poster.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/forum-cases-inovativos/hero-poster-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/forum-cases-inovativos/hero-poster-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/forum-cases-inovativos/hero-poster-1920.webp"
+    }
+  ],
+  "/projetos/forum-cases-inovativos/thumb.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/forum-cases-inovativos/thumb-640.webp"
+    },
+    {
+      "w": 1095,
+      "src": "/projetos/forum-cases-inovativos/thumb-1280.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/capa.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/capa-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/capa-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/capa-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/galeria-01.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/galeria-01-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/galeria-01-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/galeria-01-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/galeria-02.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/galeria-02-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/galeria-02-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/galeria-02-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/galeria-03.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/galeria-03-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/galeria-03-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/galeria-03-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/galeria-04.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/galeria-04-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/galeria-04-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/galeria-04-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/galeria-05.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/galeria-05-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/galeria-05-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/galeria-05-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/galeria-06.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/galeria-06-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/galeria-06-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/galeria-06-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/galeria-07.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/galeria-07-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/grupo-protevi/galeria-07-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/grupo-protevi/galeria-07-1920.webp"
+    }
+  ],
+  "/projetos/grupo-protevi/thumb.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/grupo-protevi/thumb-640.webp"
+    },
+    {
+      "w": 1104,
+      "src": "/projetos/grupo-protevi/thumb-1280.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/capa.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/capa-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/capa-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/capa-1920.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/galeria-01.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-01-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-01-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-01-1920.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/galeria-02.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-02-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-02-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-02-1920.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/galeria-03.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-03-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-03-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-03-1920.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/galeria-04.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-04-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-04-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-04-1920.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/galeria-05.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-05-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-05-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-05-1920.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/galeria-06.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-06-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-06-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-06-1920.webp"
+    }
+  ],
+  "/projetos/oh-que-delicia-de-cacau/galeria-07.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-07-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-07-1280.webp"
+    },
+    {
+      "w": 1920,
+      "src": "/projetos/oh-que-delicia-de-cacau/galeria-07-1920.webp"
+    }
+  ],
+  "/projetos/premio-inovativos/capa.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/premio-inovativos/capa-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/premio-inovativos/capa-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/premio-inovativos/capa-1920.webp"
+    }
+  ],
+  "/projetos/premio-inovativos/thumb.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/premio-inovativos/thumb-640.webp"
+    },
+    {
+      "w": 1200,
+      "src": "/projetos/premio-inovativos/thumb-1280.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/ambientacao/02-antes.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/02-antes-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/02-antes-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/02-antes-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/ambientacao/02-depois.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/02-depois-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/02-depois-1280.webp"
+    },
+    {
+      "w": 1536,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/02-depois-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/ambientacao/03-antes.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/03-antes-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/03-antes-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/03-antes-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/ambientacao/03-depois.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/03-depois-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/03-depois-1280.webp"
+    },
+    {
+      "w": 1536,
+      "src": "/projetos/priscila-andrade-fotografia/ambientacao/03-depois-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/capa.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/capa-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/capa-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/capa-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/kora/02.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/kora/02-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/kora/02-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/kora/02-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/kora/03.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/kora/03-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/kora/03-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/kora/03-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/kora/04.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/kora/04-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/kora/04-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/kora/04-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/kora/08.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/kora/08-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/kora/08-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/kora/08-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/kora/10.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/kora/10-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/kora/10-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/kora/10-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/kora/13.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/kora/13-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/kora/13-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/kora/13-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/site/d-clientes.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-clientes-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-clientes-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-clientes-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/site/d-home.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-home-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-home-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-home-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/site/d-portfolio.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-portfolio-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-portfolio-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/site/d-portfolio-1920.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/site/m-clientes.jpg": [
+    {
+      "w": 600,
+      "src": "/projetos/priscila-andrade-fotografia/site/m-clientes-640.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/site/m-home.jpg": [
+    {
+      "w": 600,
+      "src": "/projetos/priscila-andrade-fotografia/site/m-home-640.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/site/m-portfolio.jpg": [
+    {
+      "w": 600,
+      "src": "/projetos/priscila-andrade-fotografia/site/m-portfolio-640.webp"
+    }
+  ],
+  "/projetos/priscila-andrade-fotografia/thumb.jpg": [
+    {
+      "w": 640,
+      "src": "/projetos/priscila-andrade-fotografia/thumb-640.webp"
+    },
+    {
+      "w": 1280,
+      "src": "/projetos/priscila-andrade-fotografia/thumb-1280.webp"
+    },
+    {
+      "w": 1600,
+      "src": "/projetos/priscila-andrade-fotografia/thumb-1920.webp"
+    }
+  ]
+}

@@ -147,9 +147,27 @@ export function ServicosPalavras() {
     };
     document.fonts?.ready.then(rolarSozinho);
 
+    // As palavras nascem invisíveis e só aparecem depois que o tamanho final foi calculado
+    // (e as fontes carregaram). Assim não "pulam" na tela, o que derrubava a nota do Google.
+    const revelar = () => {
+      coluna.style.transition = "opacity 0.5s ease";
+      coluna.style.visibility = "visible";
+      coluna.style.opacity = "1";
+    };
+    const seguranca = window.setTimeout(revelar, 1500);
+
     ajustarFonte();
     aplicar();
-    document.fonts?.ready.then(aoRedimensionar);
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        aoRedimensionar();
+        window.clearTimeout(seguranca);
+        revelar();
+      });
+    } else {
+      window.clearTimeout(seguranca);
+      revelar();
+    }
     window.addEventListener("scroll", aoRolar, { passive: true });
     window.addEventListener("resize", aoRedimensionar);
     return () => {
@@ -179,6 +197,7 @@ export function ServicosPalavras() {
       <div
         ref={colunaRef}
         className="mx-auto flex w-full flex-1 flex-col justify-evenly gap-3 px-6 md:flex-none md:justify-start md:px-[clamp(1.5rem,5vw,6rem)]"
+        style={{ visibility: "hidden", opacity: 0 }}
       >
         {NOMES_SERVICOS.map((nome, i) => (
           <Link

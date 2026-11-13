@@ -58,8 +58,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${jetbrainsMono.variable} ${unbounded.variable}`}>
+    <html lang="pt-BR" className={`${jetbrainsMono.variable} ${unbounded.variable}`} suppressHydrationWarning>
       <head>
+        {/* Quem já escolheu sobre os cookies não vê o aviso nem por um instante. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "try{if(localStorage.getItem('rl-cookies'))document.documentElement.dataset.cookieOk='1'}catch(e){}",
+          }}
+        />
         {/* Satoshi e Clash Display não estão no Google Fonts — via Fontshare, com display=swap. */}
         <link
           rel="preconnect"

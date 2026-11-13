@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { responsiva } from "@/lib/imagens";
 import { useEffect, useState } from "react";
 
 export type ProjetoCard = {
@@ -64,7 +65,8 @@ export function OutrosProjetos({
           >
             <div className="aspect-[3/2] overflow-hidden rounded-[2px] bg-blueprint">
               <img
-                src={p.imagem}
+                {...responsiva(p.imagem)}
+                sizes="(min-width: 768px) 30vw, 78vw"
                 alt=""
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

@@ -1,3 +1,4 @@
+import { responsiva } from "@/lib/imagens";
 type Imagem = { src: string; alt: string };
 
 function Figura({
@@ -12,7 +13,8 @@ function Figura({
   return (
     <figure className={`reveal-scroll ${className}`}>
       <img
-        src={img.src}
+        {...responsiva(img.src)}
+        sizes="(min-width: 768px) 60vw, 100vw"
         alt={img.alt}
         loading="lazy"
         decoding="async"

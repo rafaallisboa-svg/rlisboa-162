@@ -460,3 +460,6 @@ html[data-cookies="pendente"] .whatsapp-flutuante {
   .faq::details-content { transition: none; }
   .faq[open] .faq-r { animation: none; }
 }
+
+/* Visitante que já escolheu: o aviso de cookies nem aparece. */
+html[data-cookie-ok] .aviso-cookies { display: none; }

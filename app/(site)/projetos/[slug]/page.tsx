@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { responsiva } from "@/lib/imagens";
 import Link from "next/link";
 import { getProjeto, categoriaCurta, getProjetos } from "@/lib/projetos";
 import { Galeria } from "@/components/ui/Galeria";
@@ -143,7 +144,8 @@ export default async function ProjetoPage({
       ) : frontmatter.capaCompleta ? (
         <div className="w-full overflow-hidden bg-blueprint">
           <img
-            src={frontmatter.capa}
+            {...responsiva(frontmatter.capa)}
+            sizes="100vw"
             alt={frontmatter.titulo}
             className="block h-auto w-full"
           />
@@ -151,7 +153,8 @@ export default async function ProjetoPage({
       ) : (
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-blueprint md:aspect-[21/9]">
           <img
-            src={frontmatter.capa}
+            {...responsiva(frontmatter.capa)}
+            sizes="100vw"
             alt={frontmatter.titulo}
             className="h-full w-full object-cover object-top"
           />

@@ -60,6 +60,17 @@ const ICONES = {
       "M17 4H22V17H17ZM42 4H47V17H42ZM17 47H22V60H17ZM42 47H47V60H42ZM4 17H17V22H4ZM47 17H60V22H47ZM4 42H17V47H4ZM47 42H60V47H47ZM22 22H42V42H22ZM28 28H36V36H28Z",
     ],
   },
+  // Sinais do FAQ e de qualquer item que abre/fecha: blocos soltos de 16 com vão de 4, como o ícone de design.
+  mais: {
+    k: 1,
+    rl: false,
+    d: ["M24 4H40V20H24Z M4 24H20V40H4Z M24 24H40V40H24Z M44 24H60V40H44Z M24 44H40V60H24Z"],
+  },
+  menos: {
+    k: 1,
+    rl: false,
+    d: ["M4 24H20V40H4Z M24 24H40V40H24Z M44 24H60V40H44Z"],
+  },
 } as const;
 
 export type NomeIconeServico = keyof typeof ICONES;

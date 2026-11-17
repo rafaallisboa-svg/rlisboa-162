@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PERGUNTAS } from "@/content/perguntas-frequentes";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Cruz } from "@/components/ui/IdvElementos";
+import { IconeServico } from "@/components/ui/IconeServico";
 
 /**
  * Perguntas frequentes no fim de Serviços. Abre e fecha com <details> (funciona
@@ -61,9 +62,10 @@ export function PerguntasFrequentes() {
                 <span className="font-display text-xl leading-snug transition-colors group-open:text-sinal md:text-2xl">{semOrfa(p)}</span>
                 <span
                   aria-hidden="true"
-                  className="relative flex h-9 w-9 shrink-0 items-center justify-center border border-white/15 transition-colors duration-300 group-hover:border-sinal group-open:border-sinal group-open:bg-sinal group-open:text-concreto"
+                  className="relative block h-5 w-5 shrink-0 text-cal/80 transition-colors duration-300 group-hover:text-sinal group-open:text-sinal"
                 >
-                  <span className="relative h-3.5 w-3.5 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-3.5 before:-translate-y-1/2 before:bg-current after:absolute after:left-1/2 after:top-0 after:h-3.5 after:w-[2px] after:-translate-x-1/2 after:bg-current after:transition-transform after:duration-300 group-open:after:scale-y-0" />
+                  <IconeServico nome="mais" className="absolute inset-0 h-full w-full group-open:hidden" />
+                  <IconeServico nome="menos" className="absolute inset-0 hidden h-full w-full group-open:block" />
                 </span>
               </summary>
               <p className="faq-r max-w-2xl pb-8 pl-[calc(2.25rem+2rem)] pr-10 text-body leading-relaxed text-cal/75 md:pl-[calc(2.25rem+3rem)]">{r}</p>

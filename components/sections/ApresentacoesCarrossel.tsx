@@ -53,6 +53,7 @@ export function ApresentacoesCarrossel() {
     const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let alvo = 0;
     let pos = 0;
+    let vel = 0;
     let ativoAtual = -1;
     let raf = 0;
     let ultimo = performance.now();
@@ -81,7 +82,7 @@ export function ApresentacoesCarrossel() {
         el.style.visibility = "visible";
         el.style.transform = `rotateY(${-d * PASSO}deg)`;
         // Zona morta perto do centro: foca rápido assim que o slide se aproxima.
-        const t = Math.min(1, Math.max(0, (ad - 0.12) / 0.5));
+        const t = Math.min(1, Math.max(0, (ad - 0.3) / 0.45));
         const desfoque = reduzido ? 0 : t * t * (3 - 2 * t);
         el.style.setProperty("--b", desfoque.toFixed(3));
         el.style.setProperty("--o", String(Math.max(0, 1 - Math.max(0, ad - 2.2) * 1.6)));
@@ -92,8 +93,10 @@ export function ApresentacoesCarrossel() {
       const dt = Math.min(0.05, (t - ultimo) / 1000);
       ultimo = t;
       // Parou de rolar: encaixa no slide mais próximo, que fica nítido.
-      const meta = t - ultimaRolagem > 140 ? Math.round(alvo) : alvo;
-      pos += (meta - pos) * (1 - Math.exp(-dt * 12));
+      const meta = t - ultimaRolagem > 250 ? Math.round(alvo) : alvo;
+      const antes = pos;
+      pos += (meta - pos) * (1 - Math.exp(-dt * 4.5));
+      vel = dt > 0 ? (pos - antes) / dt : 0;
       if (Math.abs(meta - pos) < 0.0005) pos = meta;
       desenhar();
       const a = Math.min(N - 1, Math.max(0, Math.round(pos)));
@@ -120,9 +123,20 @@ export function ApresentacoesCarrossel() {
   useEffect(() => {
     const el = palcoRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => setEscala(Math.min(1.3, el.clientWidth / (LARGURA * 1.6))));
+    // O tamanho segue a altura da tela (slide central com ~60% dela), limitado pela largura.
+    const calcular = () => {
+      const porAltura = (window.innerHeight * 0.6) / ALTURA;
+      const porLargura = (el.clientWidth * 0.62) / LARGURA;
+      setEscala(Math.max(0.5, Math.min(porAltura, porLargura)));
+    };
+    calcular();
+    const ro = new ResizeObserver(calcular);
     ro.observe(el);
-    return () => ro.disconnect();
+    window.addEventListener("resize", calcular);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", calcular);
+    };
   }, []);
 
   return (
@@ -131,7 +145,7 @@ export function ApresentacoesCarrossel() {
       id="apresentacoes"
       aria-label="Apresentações criadas pelo estúdio"
       className="relative bg-idv-amarelo text-idv-preto md:h-[var(--altura-secao)]"
-      style={{ ["--altura-secao" as string]: `${100 + (N - 1) * 40}vh` }}
+      style={{ ["--altura-secao" as string]: `${100 + (N - 1) * 47}vh` }}
     >
       <div className="relative overflow-x-clip px-6 py-20 md:sticky md:top-0 md:flex md:h-screen md:flex-col md:justify-center md:py-0 md:px-[clamp(1.5rem,5vw,6rem)]">
         <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-preto/40 md:right-[clamp(1.5rem,5vw,6rem)] md:top-24" />
@@ -156,7 +170,7 @@ export function ApresentacoesCarrossel() {
 
         {/* Tablet e desktop: carrossel curvo em 3D, girando com a rolagem. */}
         <div ref={palcoRef} className="relative hidden select-none md:block" style={{ height: ALTURA * escala + 40 }}>
-          <div className="absolute inset-0 flex items-center justify-center [perspective:1100px]">
+          <div className="absolute inset-0 flex items-center justify-center [perspective:1000px]">
             <div
               className="relative [transform-style:preserve-3d]"
               style={{ width: LARGURA, height: ALTURA, transform: `scale(${escala}) translateZ(${RAIO}px)` }}

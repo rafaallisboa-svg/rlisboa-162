@@ -238,6 +238,30 @@
   }
 }
 
+/* Manchas desfocadas que flutuam atrás do livro na seção Capas de livros. */
+@keyframes mancha-flutua {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(6%, -8%) scale(1.12);
+  }
+  66% {
+    transform: translate(-7%, 5%) scale(0.92);
+  }
+}
+
+.mancha-flutua {
+  animation: mancha-flutua 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mancha-flutua {
+    animation: none;
+  }
+}
+
 /* Entrada suave dos elementos do retrato da Sobre. */
 @keyframes entrar {
   from {

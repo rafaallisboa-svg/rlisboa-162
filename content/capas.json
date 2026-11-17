@@ -1,0 +1,20 @@
+{
+  "_nota": "Capas de livros da editora A7Z (Rede Líderes), seção em /servicos. Imagens geradas por _build/capas-livros.py em public/capas/. A ordem aqui é a ordem em que as capas se alternam no livro.",
+  "rotulo": "Capas de livros",
+  "fundo": "pedra",
+  "titulo": ["Capas de", "livros"],
+  "frase": "Capas para a A7Z, a editora da Rede Líderes: livros de executivos que viram posicionamento.",
+  "logos": [
+    { "nome": "A7Z", "arquivo": "/capas/a7z.svg", "altura": 44 },
+    { "nome": "Rede Líderes", "arquivo": "/clientes/rede-lideres.svg", "altura": 26 }
+  ],
+  "itens": [
+    { "arquivo": "thais-venerando", "titulo": "O algoritmo da eficiência", "autor": "Thaís Venerando" },
+    { "arquivo": "ronaldo-toshio", "titulo": "Orquestração do risco", "autor": "Ronaldo Toshio" },
+    { "arquivo": "barbara-andrade", "titulo": "A conta do crescimento", "autor": "Barbara Andrade" },
+    { "arquivo": "olsen-rodrigo", "titulo": "Adapte ou desapareça", "autor": "Olsen Rodrigo" },
+    { "arquivo": "rodolpho-freire", "titulo": "Tecnologia: do suporte ao centro da estratégia", "autor": "Rodolpho Freire" },
+    { "arquivo": "gustavo-mistrinelli", "titulo": "Traduzindo para receita", "autor": "Gustavo Mistrinelli" },
+    { "arquivo": "willian-takamura", "titulo": "De compliance a CEO", "autor": "Willian Takamura" }
+  ]
+}

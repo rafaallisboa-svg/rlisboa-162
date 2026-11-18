@@ -22,15 +22,15 @@ export default function HomePage() {
         visual, sites, apresentações, redes sociais e motion graphics.
       </h1>
       {/* Respiro entre o menu e os projetos: 300 px abaixo do menu no desktop (80 px de padding do bloco + este espaço). */}
-      <div aria-hidden="true" className="h-12 bg-idv-preto md:h-[285px]" />
+      <div aria-hidden="true" className="h-12 bg-concreto md:h-[285px]" />
       <ProjetosDestaque />
-      <section className="bg-idv-preto px-6 pb-24 pt-24">
+      <section className="bg-concreto px-6 pb-24 pt-24">
         <DesafiosRelogio />
       </section>
       <Clientes />
       <ServicosHomeCelular />
       <ServicosHomeGrande />
-      <GrafismoParallax tipo="aneis" className="bg-idv-preto" />
+      <GrafismoParallax tipo="aneis" className="bg-concreto" />
     </>
   );
 }

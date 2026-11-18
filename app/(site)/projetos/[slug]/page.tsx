@@ -110,7 +110,7 @@ export default async function ProjetoPage({
   };
 
   return (
-    <article className="bg-idv-preto">
+    <article className="bg-concreto">
       <JsonLd dados={dadosSeo} />
       <Link
         href="/#projetos"

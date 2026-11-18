@@ -56,8 +56,8 @@ export function ProjetosDestaque({ fundo = "escuro" }: { fundo?: keyof typeof TE
             className={`group block ${destaque ? "md:col-span-2" : ""}`}
           >
             <div
-              className={`-mx-6 overflow-hidden bg-blueprint md:mx-0 ${
-                destaque ? "aspect-[3/2] md:aspect-[3.1/1]" : "aspect-[3/2]"
+              className={`overflow-hidden rounded-md bg-blueprint ${
+                destaque ? "aspect-[4/3] md:aspect-[2.75/1]" : "aspect-[4/3]"
               }`}
             >
               <img

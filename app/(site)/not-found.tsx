@@ -61,9 +61,9 @@ export default function NaoEncontrada() {
           .map((p) => ({
             slug: p.slug,
             titulo: p.titulo,
-            categoria: categoriaCurta(p),
+            subtitulo: p.subtitulo,
+            ano: p.ano,
             imagem: p.thumb ?? p.capa,
-            site: p.siteExterno ?? null,
           }))}
       />
     </>

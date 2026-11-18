@@ -15,7 +15,7 @@ export default function ProjetosPage() {
   const projetos = getProjetos();
 
   return (
-    <div className="px-6 pb-20 pt-32 md:px-[clamp(1.5rem,5vw,6rem)]">
+    <div className="bg-idv-preto px-6 pb-20 pt-32 md:px-[clamp(1.5rem,5vw,6rem)]">
       <p className="font-mono text-xs uppercase tracking-[0.12em] text-maresia">
         Projetos
       </p>

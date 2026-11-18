@@ -7,18 +7,10 @@ import { useEffect, useState } from "react";
 export type ProjetoCard = {
   slug: string;
   titulo: string;
-  /** Categoria curta do trabalho: "Website", "Identidade visual"… */
-  categoria: string;
+  subtitulo: string;
+  ano: string | number;
   imagem: string;
-  /** Endereço do site do cliente: o card ganha a barra de navegador com o domínio. */
-  site?: string | null;
 };
-
-const dominio = (url: string) => url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
-
-// Mesmas cores dos cartões de serviço. A cor vai pela posição (1º, 2º, 3º),
-// não pelo projeto: off-white e pedra se alternam.
-const CORES = ["bg-idv-off", "bg-idv-pedra"] as const;
 
 const QUANTIDADE = 3;
 
@@ -60,43 +52,35 @@ export function OutrosProjetos({
         {titulo}<span className="text-idv-laranja">.</span>
       </p>
 
-      <div className="mt-10 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-[clamp(1.5rem,5vw,6rem)] [&::-webkit-scrollbar]:hidden">
-        {lista.map((p, i) => (
+      <div className="mt-10 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-[clamp(1.5rem,5vw,6rem)] [&::-webkit-scrollbar]:hidden">
+        {lista.map((p) => (
           <Link
             key={p.slug}
             href={`/projetos/${p.slug}`}
-            className={`group flex w-[78%] shrink-0 snap-start flex-col p-2 text-idv-preto transition-transform duration-300 hover:-translate-y-1 md:w-auto md:p-2.5 ${p.site ? "rounded-[8px] !pt-0" : "rounded-[3px]"} ${CORES[i % CORES.length]}`}
+            className="group block w-[78%] shrink-0 snap-start md:w-auto"
           >
-            {p.site && (
-              // Card de website: barra de navegador com o domínio real do cliente.
-              <div className="flex h-[34px] items-center gap-2.5 px-1" aria-hidden="true">
-                <span className="flex gap-[5px]">
-                  <i className="size-2 rounded-full bg-idv-preto/20 transition-colors duration-300 group-hover:bg-idv-laranja" />
-                  <i className="size-2 rounded-full bg-idv-preto/20 transition-colors duration-300 group-hover:bg-idv-amarelo" />
-                  <i className="size-2 rounded-full bg-idv-preto/20" />
-                </span>
-                <span className="mr-6 flex h-5 min-w-0 flex-1 items-center justify-center truncate rounded-full bg-idv-preto/[0.07] px-2.5 font-mono text-[10px] tracking-[0.02em] text-idv-preto/60">
-                  {dominio(p.site)}
-                </span>
-              </div>
-            )}
             <div className="aspect-[4/3] overflow-hidden rounded-md bg-blueprint">
               <img
                 {...responsiva(p.imagem)}
                 sizes="(min-width: 768px) 30vw, 78vw"
-                alt=""
+                alt={p.titulo}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               />
             </div>
-            <div className="flex flex-1 flex-col items-center justify-center px-3 pb-4 pt-5 text-center md:pb-5 md:pt-6">
-              <p className="text-balance font-display text-sm uppercase leading-tight tracking-[0.04em] md:text-base">
-                {p.titulo}
+            <div className="mt-4 flex items-start justify-between gap-4">
+              <p className="min-w-0 font-display text-[0.65rem] uppercase leading-[2.6] tracking-[0.16em] text-idv-amarelo md:text-xs md:leading-[2.6]">
+                <span className="border border-idv-amarelo px-2 py-0.5 transition-colors duration-200 md:px-3 md:py-1 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] [@media(hover:hover)]:group-hover:border-idv-off [@media(hover:hover)]:group-hover:text-idv-off">
+                  {p.titulo}
+                </span>
               </p>
-              <p className="mt-2 font-mono text-[0.7rem] font-bold uppercase tracking-[0.14em] opacity-70">
-                {p.categoria}
-              </p>
+              <span className="shrink-0 pt-2 font-mono text-xs tabular-nums text-idv-amarelo transition-colors group-hover:text-idv-off md:pt-3">
+                {p.ano}
+              </span>
             </div>
+            <p className="mt-2 text-sm font-medium text-idv-pedra transition-colors group-hover:text-idv-off">
+              {p.subtitulo}
+            </p>
           </Link>
         ))}
       </div>

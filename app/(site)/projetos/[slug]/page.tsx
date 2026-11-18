@@ -110,7 +110,7 @@ export default async function ProjetoPage({
   };
 
   return (
-    <article>
+    <article className="bg-idv-preto">
       <JsonLd dados={dadosSeo} />
       <Link
         href="/#projetos"
@@ -261,9 +261,9 @@ export default async function ProjetoPage({
           .map((p) => ({
             slug: p.slug,
             titulo: p.titulo,
-            categoria: categoriaCurta(p),
+            subtitulo: p.subtitulo,
+            ano: p.ano,
             imagem: p.thumb ?? p.capa,
-            site: p.siteExterno ?? null,
           }))}
       />
     </article>

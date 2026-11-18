@@ -45,10 +45,10 @@ export function ProjetosDestaque({ fundo = "escuro" }: { fundo?: keyof typeof TE
         Projetos<span className="text-idv-laranja">.</span>
       </p>
 
-      <div className="mt-10 grid gap-8 md:grid-cols-2">
+      <div className="mt-10 grid gap-8 md:grid-cols-3">
         {projetos.map((p, i) => {
-          const ultimo = projetos.length - 1;
-          const destaque = i === 0 || (i === ultimo && ultimo % 2 === 1);
+          // Desktop: 3 colunas. O destaque ocupa 2 e tem a mesma altura dos cards menores.
+          const destaque = i === 0;
           return (
           <Link
             key={p.slug}
@@ -57,12 +57,12 @@ export function ProjetosDestaque({ fundo = "escuro" }: { fundo?: keyof typeof TE
           >
             <div
               className={`-mx-6 overflow-hidden bg-blueprint md:mx-0 ${
-                destaque ? "aspect-[3/2] md:aspect-[21/9]" : "aspect-[3/2]"
+                destaque ? "aspect-[3/2] md:aspect-[3.1/1]" : "aspect-[3/2]"
               }`}
             >
               <img
                 {...responsiva(p.thumb ?? p.capa)}
-                sizes={destaque ? "(min-width: 768px) 90vw, 100vw" : "(min-width: 768px) 45vw, 100vw"}
+                sizes={destaque ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 768px) 30vw, 100vw"}
                 alt={p.titulo}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               />

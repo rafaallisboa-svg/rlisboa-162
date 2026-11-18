@@ -33,6 +33,7 @@ export default function ContatoPage() {
 
   return (
     <>
+    <div className="bg-idv-preto">
     <div className="mx-auto max-w-6xl px-6 pb-28 pt-40 md:px-16 lg:px-0">
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-16">
         {/* Retrato de perfil, à direita. Some na base, no mesmo fundo do site. */}
@@ -75,7 +76,8 @@ export default function ContatoPage() {
 
       <DesafiosRelogio className="mt-20" />
     </div>
-    <GrafismoParallax tipo="aneis" />
+    </div>
+    <GrafismoParallax tipo="aneis" className="bg-idv-preto" />
     </>
   );
 }

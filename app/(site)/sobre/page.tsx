@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function SobrePage() {
   return (
-    <div className="relative text-idv-off">
+    <div className="relative bg-idv-preto text-idv-off">
       {/* Celular: retrato em fluxo normal, com o mesmo ritmo da página de Contato (foto larga, some na base).
           O bloco sticker + nome + cargo desce até o fim da primeira tela; "Design Gráfico" só aparece ao rolar. */}
       <section

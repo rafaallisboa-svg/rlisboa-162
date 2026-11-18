@@ -28,7 +28,7 @@ export default function HomePage() {
       <Clientes />
       <ServicosHomeCelular />
       <ServicosHomeGrande />
-      <GrafismoParallax tipo="aneis" />
+      <GrafismoParallax tipo="aneis" className="bg-idv-preto" />
     </>
   );
 }

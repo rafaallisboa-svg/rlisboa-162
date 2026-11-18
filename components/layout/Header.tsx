@@ -7,14 +7,13 @@ import { site } from "@/site.config";
 import { publicados } from "@/lib/placeholder";
 import { SocialIcon, IconeEmail, IconeWhatsApp } from "@/components/ui/SocialIcon";
 import { Logo } from "@/components/ui/Logo";
-import { IconeMenu, type NomeIconeMenu } from "@/components/ui/IconeMenu";
 
-const NAV: readonly { label: string; href: string; icone: NomeIconeMenu }[] = [
-  { label: "Home", href: "/", icone: "home" },
-  { label: "Projetos", href: "/#projetos", icone: "projetos" },
-  { label: "Sobre", href: "/sobre", icone: "sobre" },
-  { label: "Serviços", href: "/servicos", icone: "servicos" },
-  { label: "Contato", href: "/contato", icone: "contato" },
+const NAV: readonly { label: string; href: string }[] = [
+  { label: "Home", href: "/" },
+  { label: "Projetos", href: "/#projetos" },
+  { label: "Sobre", href: "/sobre" },
+  { label: "Serviços", href: "/servicos" },
+  { label: "Contato", href: "/contato" },
 ];
 
 export function Header() {
@@ -79,7 +78,6 @@ export function Header() {
               href={item.href}
               className="group relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-[var(--h-fg)]"
             >
-              <IconeMenu nome={item.icone} className="hidden h-3 w-3 text-[var(--h-fg)] lg:block transition-transform duration-200 group-hover:scale-125" />
               {item.label}
               <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[var(--h-fg)] transition-[width] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full" />
             </Link>
@@ -158,7 +156,6 @@ export function Header() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="flex items-center gap-3 font-display text-4xl uppercase tracking-tight text-idv-preto transition-transform group-hover:translate-x-2">
-                <IconeMenu nome={item.icone} className="h-6 w-6 text-idv-preto" />
                 {item.label}
               </span>
             </Link>

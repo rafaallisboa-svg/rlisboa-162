@@ -23,7 +23,7 @@ const TEMAS = {
     cruz: "text-idv-preto/40",
     rotulo: "text-idv-preto/60",
     titulo: "text-idv-preto",
-    caixa: "border-idv-preto [@media(hover:hover)]:group-hover:bg-concreto [@media(hover:hover)]:group-hover:text-idv-amarelo",
+    caixa: "border-idv-preto [@media(hover:hover)]:group-hover:bg-idv-preto [@media(hover:hover)]:group-hover:text-idv-amarelo",
     ano: "text-idv-preto",
     sub: "text-idv-preto/75 group-hover:text-idv-preto",
   },

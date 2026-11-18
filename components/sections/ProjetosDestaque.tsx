@@ -10,7 +10,7 @@ import { Cruz } from "@/components/ui/IdvElementos";
 // Duas variações do mesmo bloco: sobre o fundo escuro (Home) e sobre o amarelo (página de Serviços).
 const TEMAS = {
   escuro: {
-    secao: "bg-concreto",
+    secao: "bg-idv-preto",
     cruz: "text-idv-grafite",
     rotulo: "text-maresia",
     titulo: "text-idv-amarelo",

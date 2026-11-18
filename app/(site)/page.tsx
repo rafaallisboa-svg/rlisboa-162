@@ -22,7 +22,7 @@ export default function HomePage() {
         visual, sites, apresentações, redes sociais e motion graphics.
       </h1>
       <ProjetosDestaque />
-      <section className="bg-concreto px-6 pb-24 pt-24">
+      <section className="bg-idv-preto px-6 pb-24 pt-24">
         <DesafiosRelogio />
       </section>
       <Clientes />

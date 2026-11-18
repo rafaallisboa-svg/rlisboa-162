@@ -80,7 +80,7 @@ export function OutrosProjetos({
                 </span>
               </div>
             )}
-            <div className="aspect-[3/2] overflow-hidden rounded-[2px] bg-blueprint">
+            <div className="aspect-[4/3] overflow-hidden rounded-md bg-blueprint">
               <img
                 {...responsiva(p.imagem)}
                 sizes="(min-width: 768px) 30vw, 78vw"

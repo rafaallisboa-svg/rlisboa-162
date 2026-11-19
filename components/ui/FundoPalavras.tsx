@@ -32,8 +32,8 @@ const FUNDO = [
 const SLOT_W = 200;
 const ROW_H = 40;
 const FPS = 20;
-const LUZ_DURACAO = 2600; // ms que a palavra amarela fica visível
-const LUZ_INTERVALO = 3000; // ms entre uma palavra amarela e a próxima
+const LUZ_DURACAO = 1900; // ms que a palavra amarela fica visível
+const LUZ_INTERVALO = 2200; // ms entre uma palavra amarela e a próxima
 
 type Zona = { x0: number; y0: number; x1: number; y1: number };
 
@@ -89,7 +89,7 @@ export function FundoPalavras({
       proibido = new Uint8Array(n);
       for (let i = 0; i < n; i++) {
         palavra[i] = Math.floor(Math.random() * FUNDO.length);
-        proximaTroca[i] = 1500 + Math.random() * 9000;
+        proximaTroca[i] = 1200 + Math.random() * 6000;
       }
       const zonas: Zona[] = [];
       for (const ref of evitarRef.current) {
@@ -131,6 +131,8 @@ export function FundoPalavras({
     const desenhar = (t: number) => {
       ctx.clearRect(0, 0, largura, altura);
       ctx.font = `400 ${fonte}px ${familia}`;
+      // Caixa alta, com um respiro entre as letras (o canto de uma palavra de 18 letras ainda cabe no espaço).
+      if ("letterSpacing" in ctx) (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = "0.06em";
       ctx.textAlign = "left";
       ctx.textBaseline = "middle";
 
@@ -148,7 +150,7 @@ export function FundoPalavras({
           if (!reduz && t > proximaTroca[i]) {
             palavra[i] = Math.floor(Math.random() * FUNDO.length);
             ultimaTroca[i] = t;
-            proximaTroca[i] = t + 4000 + Math.random() * 9000;
+            proximaTroca[i] = t + 2500 + Math.random() * 6000;
           }
           const x = slotX(c, r);
           const y = slotY(r);
@@ -158,7 +160,7 @@ export function FundoPalavras({
             const idade = t - luz.inicio;
             const a = Math.min(1, idade / 450, (LUZ_DURACAO - idade) / 700);
             ctx.fillStyle = `rgba(255,195,0,${Math.max(0, a) * 0.9})`;
-            ctx.fillText(luz.texto, x, y);
+            ctx.fillText(luz.texto.toUpperCase(), x, y);
             continue;
           }
 
@@ -166,7 +168,7 @@ export function FundoPalavras({
           const fade = reduz ? 1 : Math.min(1, (t - ultimaTroca[i]) / 500, (proximaTroca[i] - t) / 500);
           const base = proibido[i] ? 0.05 : 0.17;
           ctx.fillStyle = `rgba(133,133,127,${base * Math.max(0, fade)})`;
-          ctx.fillText(FUNDO[palavra[i]], x, y);
+          ctx.fillText(FUNDO[palavra[i]].toUpperCase(), x, y);
         }
       }
     };

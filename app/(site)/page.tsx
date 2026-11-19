@@ -24,13 +24,16 @@ export default function HomePage() {
       {/* Respiro entre o menu e os projetos: 300 px abaixo do menu no desktop (80 px de padding do bloco + este espaço). */}
       <div aria-hidden="true" className="h-12 bg-concreto md:h-[285px]" />
       <ProjetosDestaque />
-      <section className="bg-concreto px-6 pb-24 pt-24">
+      {/* O relógio para na tela (sticky) e o bloco amarelo seguinte sobe por cima dele, como uma cortina. */}
+      <section className="sticky top-0 z-0 flex h-[100svh] items-center justify-center bg-concreto px-6">
         <DesafiosRelogio />
       </section>
-      <Clientes />
-      <ServicosHomeCelular />
-      <ServicosHomeGrande />
-      <GrafismoParallax tipo="aneis" className="bg-concreto" />
+      <div className="relative z-10">
+        <Clientes />
+        <ServicosHomeCelular />
+        <ServicosHomeGrande />
+        <GrafismoParallax tipo="aneis" className="bg-concreto" />
+      </div>
     </>
   );
 }

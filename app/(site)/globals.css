@@ -487,3 +487,26 @@ html[data-cookies="pendente"] .whatsapp-flutuante {
 
 /* Visitante que já escolheu: o aviso de cookies nem aparece. */
 html[data-cookie-ok] .aviso-cookies { display: none; }
+
+/* Rastro do mouse no hero (components/ui/RastroIcones.tsx): o ícone entra com um pulinho, fica e some. */
+@keyframes rastro-ico {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(var(--giro, 0deg));
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.18) rotate(0deg);
+  }
+  18% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(calc(var(--giro, 0deg) * -1));
+  }
+}

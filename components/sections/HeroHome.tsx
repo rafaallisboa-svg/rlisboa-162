@@ -3,11 +3,10 @@
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 import hero from "@/content/hero.json";
-import { FundoLiquido } from "@/components/ui/FundoLiquido";
-import { SeloRegua } from "@/components/ui/IdvElementos";
+import { FundoLetras } from "@/components/ui/FundoLetras";import { SeloRegua } from "@/components/ui/IdvElementos";
 
 /**
- * Hero da Home. Fundo vivo que segue o mouse, régua fina, 162 gigante (Unbounded Bold, a fonte do logotipo)
+ * Hero da Home. Fundo de letras que acendem perto do mouse, régua fina, 162 gigante (Unbounded Bold, a fonte do logotipo)
  * cortado pela borda e título que entra letra por letra depois de um loading curto com o relógio da marca.
  * O loading roda uma vez por visita (sessionStorage) e não roda com "reduzir movimento".
  * Amarelo só em três pontos: o 162, a frase em destaque e o botão. Textos em content/hero.json.
@@ -47,6 +46,8 @@ export function HeroHome() {
   const raiz = useRef<HTMLElement>(null);
   const cortina = useRef<HTMLDivElement>(null);
   const numero = useRef<HTMLSpanElement>(null);
+  const anel = useRef<SVGCircleElement>(null);
+  const texto = useRef<HTMLDivElement>(null);
   const [mostrarCortina, setMostrarCortina] = useState(true);
 
   useEffect(() => {
@@ -93,12 +94,18 @@ export function HeroHome() {
       run(numeral, [{ opacity: 0, translate: "0 -60px", scale: "1.1" }, { opacity: 1, translate: "0 0", scale: "1" }], { duration: 1100, delay: 200 });
     };
 
+    const C = 2 * Math.PI * 46;
+    if (anel.current) {
+      anel.current.style.strokeDasharray = String(C);
+      anel.current.style.strokeDashoffset = String(C);
+    }
     const inicio = performance.now();
-    const DUR = 1700;
+    const DUR = 1500;
     const passo = (agora: number) => {
       const p = Math.min(Math.max((agora - inicio) / DUR, 0), 1);
       const e = 1 - Math.pow(1 - p, 3);
       if (numero.current) numero.current.textContent = String(Math.round(e * 100)).padStart(2, "0");
+      if (anel.current) anel.current.style.strokeDashoffset = String(C * (1 - e));
       if (p < 1) {
         raf = requestAnimationFrame(passo);
         return;
@@ -140,8 +147,8 @@ export function HeroHome() {
       aria-label="Apresentação"
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-idv-preto"
     >
-      {/* Fundo vivo, segue o mouse */}
-      <FundoLiquido className="absolute inset-0 -z-20" />
+      {/* Fundo: campo de letras que acendem perto do mouse */}
+      <FundoLetras className="absolute inset-0 -z-20" evitar={texto} />
 
       {/* Régua: linhas finas nas margens e na base */}
       <div data-regua aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
@@ -154,12 +161,13 @@ export function HeroHome() {
       <span
         data-numeral
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[24%] top-[6rem] -z-10 block -rotate-6 font-marca text-[50vw] font-bold leading-none tracking-[-0.03em] text-idv-amarelo md:-right-[9%] md:top-[8%] md:text-[min(23.8vw,23.8rem)]"
+        className="pointer-events-none absolute -right-[22%] top-[5.25rem] -z-10 block -rotate-6 font-marca text-[42vw] font-bold leading-none tracking-[-0.03em] text-idv-amarelo md:-right-[9%] md:top-[8%] md:text-[min(23.8vw,23.8rem)]"
       >
         162
       </span>
 
       <div className="relative w-full px-6 pb-24 pt-28 md:px-[clamp(1.5rem,5vw,6rem)]">
+        <div ref={texto} className="w-fit max-w-full">
         <p data-bloco className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-idv-cinza">
           <span aria-hidden="true" className="h-px w-3 bg-idv-pedra" />
           <span>
@@ -167,7 +175,7 @@ export function HeroHome() {
           </span>
         </p>
 
-        <h2 className="mt-6 max-w-[20ch] font-display text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[1.02] tracking-tight text-idv-off">
+        <h2 className="mt-6 max-w-[20ch] font-display text-[clamp(2.25rem,5.2vw,4.75rem)] font-semibold uppercase leading-[1.04] tracking-tight text-idv-off">
           {hero.linhas.map((l, i) => (
             <Linha key={i} texto={l.texto} destaque={l.destaque} />
           ))}
@@ -187,6 +195,7 @@ export function HeroHome() {
             {semOrfa(hero.subtitulo)}
           </p>
         </div>
+        </div>
       </div>
 
       {/* Loading: o relógio da marca (com o 162 no centro), girando, e a contagem. Só na primeira vez da visita. */}
@@ -194,16 +203,30 @@ export function HeroHome() {
         <div
           ref={cortina}
           aria-hidden="true"
-          className="fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 bg-idv-preto"
+          className="fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 bg-idv-preto md:flex-row md:gap-7"
         >
-          <SeloRegua tinta="var(--color-idv-off)" className="h-36 w-36 md:h-44 md:w-44" />
-          <p className="flex items-baseline gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-idv-cinza">
-            <span ref={numero} className="text-3xl tabular-nums tracking-normal text-idv-off">
-              00
+          {/* O anel amarelo enchendo de 00 a 100 (como antes), agora dentro do relógio da marca */}
+          <div className="relative flex h-[168px] w-[168px] items-center justify-center md:h-[196px] md:w-[196px]">
+            <SeloRegua tinta="var(--color-idv-off)" numero={false} className="absolute inset-0 h-full w-full" />
+            <div className="relative h-[104px] w-[104px] md:h-[120px] md:w-[120px]">
+              <svg viewBox="0 0 100 100" className="absolute inset-0 -rotate-90">
+                <circle cx="50" cy="50" r="46" fill="none" stroke="var(--color-idv-grafite)" strokeWidth="1" />
+                <circle ref={anel} cx="50" cy="50" r="46" fill="none" stroke="var(--color-idv-amarelo)" strokeWidth="1.5" />
+              </svg>
+              <span
+                ref={numero}
+                className="absolute inset-0 flex items-center justify-center font-mono text-3xl tabular-nums text-idv-off"
+              >
+                00
+              </span>
+            </div>
+          </div>
+          <p className="text-center font-mono text-[10px] uppercase leading-[1.7] tracking-[0.2em] text-idv-cinza md:text-left">
+            <span className="text-idv-off">
+              R<span className="text-idv-laranja">.</span> Lisboa
             </span>
-            <span>
-              R<span className="text-idv-laranja">.</span> Lisboa / Estúdio 162
-            </span>
+            <br />
+            Estúdio 162
           </p>
         </div>
       )}

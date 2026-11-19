@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getProjetosDestaque } from "@/lib/projetos";
 import { responsiva } from "@/lib/imagens";
 import { Cruz } from "@/components/ui/IdvElementos";
+import { RastroIcones } from "@/components/ui/RastroIcones";
 
 /**
  * Pavimento 02 — projetos em destaque. Construído fora de ordem do
@@ -39,6 +40,8 @@ export function ProjetosDestaque({ fundo = "escuro" }: { fundo?: keyof typeof TE
       className={`relative ${tema.secao} px-6 py-20 md:px-[clamp(1.5rem,5vw,6rem)]`}
     >
       <Cruz className={`absolute right-6 top-8 h-5 w-5 ${tema.cruz} md:right-[clamp(1.5rem,5vw,6rem)]`} />
+      {/* Rastro do mouse: ícones dos serviços dentro de círculos coloridos, só nesta seção (logo depois do hero). */}
+      <RastroIcones />
       <p className={`font-mono text-xs uppercase tracking-[0.12em] ${tema.rotulo}`}>
         Projetos<span className="text-idv-laranja">.</span>
       </p>

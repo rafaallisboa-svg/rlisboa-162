@@ -3,46 +3,52 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Fundo do hero: um monte de palavras do universo do design, em mono e cinza bem apagado, que vão trocando
- * devagar. De tempos em tempos UMA palavra acende em amarelo com um serviço do estúdio (identidade visual,
- * design system, website…), sempre numa posição diferente, e some. Sem mouse. Atrás do bloco de texto e do
- * 162 (`evitar`) as palavras ficam ainda mais apagadas e nunca acendem, para não atrapalhar a leitura.
- * Canvas 2D, ~20 quadros por segundo, pausa fora da tela. Com "reduzir movimento" desenha um quadro parado.
+ * Fundo do hero: linhas de palavras do universo do design, TODAS COLADAS, sem espaço, em caixa alta e cinza
+ * apagado, correndo de lado como um carrossel (cada linha numa direção e velocidade). Ninguém lê nada ali:
+ * a leitura só acontece quando uma palavra de serviço (identidade visual, design system, website…) fica
+ * amarela (o amarelo discreto aprovado) e acompanha a linha enquanto ela corre. Nunca fica amarela atrás do texto do hero
+ * nem do 162 (`evitar`); atrás deles as linhas ficam quase apagadas.
+ * Canvas 2D, ~30 quadros por segundo, pausa fora da tela. Com "reduzir movimento": quadro parado, sem destaque.
  */
 
 const SERVICOS = [
-  "identidade visual",
-  "design system",
-  "website",
-  "apresentação",
-  "social media kit",
-  "vídeo & motion",
-  "eventos",
-  "materiais gráficos",
+  "IDENTIDADE VISUAL",
+  "DESIGN SYSTEM",
+  "WEBSITE",
+  "APRESENTAÇÃO",
+  "SOCIAL MEDIA KIT",
+  "VÍDEO & MOTION",
+  "EVENTOS",
+  "MATERIAIS GRÁFICOS",
 ];
 
 const FUNDO = [
-  "marca", "logotipo", "tipografia", "paleta", "grid", "layout", "branding", "editorial", "landing page",
-  "naming", "guia de marca", "iconografia", "key visual", "mockup", "wireframe", "motion", "tom de voz",
-  "papelaria", "estratégia", "criação", "pesquisa", "conceito", "símbolo", "assinatura", "ícones", "sistema",
-  "componentes", "diretrizes", "fotografia", "social", "evento", "cores", "versões", "aplicações", "briefing",
-  "proporção", "contraste", "kit", "template", "campanha",
+  "MARCA", "LOGOTIPO", "TIPOGRAFIA", "PALETA", "GRID", "LAYOUT", "BRANDING", "EDITORIAL", "LANDING PAGE",
+  "NAMING", "GUIA DE MARCA", "ICONOGRAFIA", "KEY VISUAL", "MOCKUP", "WIREFRAME", "MOTION", "TOM DE VOZ",
+  "PAPELARIA", "ESTRATÉGIA", "CRIAÇÃO", "PESQUISA", "CONCEITO", "SÍMBOLO", "ASSINATURA", "ÍCONES", "SISTEMA",
+  "COMPONENTES", "DIRETRIZES", "FOTOGRAFIA", "SOCIAL", "EVENTO", "CORES", "VERSÕES", "APLICAÇÕES", "BRIEFING",
+  "PROPORÇÃO", "CONTRASTE", "KIT", "TEMPLATE", "CAMPANHA",
 ];
 
-const SLOT_W = 200;
-const ROW_H = 40;
-const FPS = 20;
-const LUZ_DURACAO = 1900; // ms que a palavra amarela fica visível
-const LUZ_INTERVALO = 2200; // ms entre uma palavra amarela e a próxima
+const ROW_H = 30;
+const FPS = 30;
+const LUZ_DURACAO = 3200; // ms que a palavra fica amarela
+const LUZ_INTERVALO = 1500; // ms entre o começo de uma e de outra
+const LUZ_MAXIMO = 2; // palavras amarelas ao mesmo tempo
 
+type Palavra = { texto: string; x: number; w: number; servico: boolean };
+type Linha = { palavras: Palavra[]; total: number; vel: number };
 type Zona = { x0: number; y0: number; x1: number; y1: number };
+type Luz = { linha: number; palavra: number; inicio: number };
+
+const aleatorio = <T,>(lista: T[]) => lista[Math.floor(Math.random() * lista.length)];
 
 export function FundoPalavras({
   className = "",
   evitar = [],
 }: {
   className?: string;
-  /** Elementos do hero (texto, 162) atrás dos quais o fundo fica mais apagado e nada acende. */
+  /** Elementos do hero (texto, 162) atrás dos quais o fundo fica apagado e nada acende. */
   evitar?: React.RefObject<HTMLElement | null>[];
 }) {
   const caixa = useRef<HTMLDivElement>(null);
@@ -58,124 +64,141 @@ export function FundoPalavras({
 
     const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const fonte = Math.max(11, Math.min(13, window.innerWidth / 110));
+    const tamanho = Math.max(12, Math.min(15, window.innerWidth / 100));
 
     let largura = 0;
     let altura = 0;
-    let colunas = 0;
-    let linhas = 0;
-    let palavra = new Int16Array(0);
-    let ultimaTroca = new Float32Array(0);
-    let proximaTroca = new Float32Array(0);
-    let proibido = new Uint8Array(0); // 1 = está atrás de texto/162
+    let linhas: Linha[] = [];
+    let zonas: Zona[] = [];
     let familia = "monospace";
+    let charW = 8;
 
-    const slotX = (c: number, r: number) => c * SLOT_W - (r % 2 === 0 ? 0 : SLOT_W / 2) + 8;
-    const slotY = (r: number) => r * ROW_H + ROW_H / 2;
-
-    const medir = () => {
+    const montar = () => {
       const r = wrap.getBoundingClientRect();
       largura = r.width;
       altura = r.height;
       canvas.width = Math.round(largura * dpr);
       canvas.height = Math.round(altura * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      colunas = Math.ceil(largura / SLOT_W) + 1;
-      linhas = Math.ceil(altura / ROW_H);
-      const n = colunas * linhas;
-      palavra = new Int16Array(n);
-      ultimaTroca = new Float32Array(n);
-      proximaTroca = new Float32Array(n);
-      proibido = new Uint8Array(n);
-      for (let i = 0; i < n; i++) {
-        palavra[i] = Math.floor(Math.random() * FUNDO.length);
-        proximaTroca[i] = 1200 + Math.random() * 6000;
-      }
-      const zonas: Zona[] = [];
+      familia = getComputedStyle(wrap).fontFamily || "monospace";
+      ctx.font = `500 ${tamanho}px ${familia}`;
+      charW = ctx.measureText("M").width;
+
+      zonas = [];
       for (const ref of evitarRef.current) {
         const b = ref.current?.getBoundingClientRect();
-        if (b) zonas.push({ x0: b.left - r.left - 20, y0: b.top - r.top - 14, x1: b.right - r.left + 20, y1: b.bottom - r.top + 14 });
+        if (b) zonas.push({ x0: b.left - r.left - 16, y0: b.top - r.top - 10, x1: b.right - r.left + 16, y1: b.bottom - r.top + 10 });
       }
-      for (let rr = 0; rr < linhas; rr++) {
-        for (let c = 0; c < colunas; c++) {
-          const x = slotX(c, rr);
-          const y = slotY(rr);
-          const dentro = zonas.some((z) => x + SLOT_W - 24 > z.x0 && x < z.x1 && y + ROW_H / 2 > z.y0 && y - ROW_H / 2 < z.y1);
-          proibido[rr * colunas + c] = dentro ? 1 : 0;
+
+      const n = Math.ceil(altura / ROW_H);
+      linhas = [];
+      for (let i = 0; i < n; i++) {
+        const palavras: Palavra[] = [];
+        let x = 0;
+        let contador = 0;
+        // as palavras ficam coladas: cada uma começa onde a anterior termina
+        while (x < largura * 1.15 + 260) {
+          contador++;
+          const servico = contador % 5 === 0;
+          const texto = servico ? aleatorio(SERVICOS) : aleatorio(FUNDO);
+          const w = texto.length * charW;
+          palavras.push({ texto, x, w, servico });
+          x += w;
         }
+        const sentido = i % 2 === 0 ? 1 : -1;
+        linhas.push({ palavras, total: x, vel: sentido * (18 + ((i * 7) % 5) * 7) });
       }
-      familia = getComputedStyle(wrap).fontFamily || "monospace";
     };
 
-    // Palavra amarela: um slot por vez, posição sempre diferente das últimas.
-    let luz: { slot: number; texto: string; inicio: number } | null = null;
-    const recentes: number[] = [];
-    let proximoServico = 0;
-    let proximaLuz = 1200;
+    // distância de uma caixa até as zonas de texto (0 = dentro)
+    const distanciaZona = (x0: number, x1: number, y: number) => {
+      let menor = Infinity;
+      for (const z of zonas) {
+        const dx = Math.max(z.x0 - x1, 0, x0 - z.x1);
+        const dy = Math.max(z.y0 - (y + ROW_H / 2), 0, y - ROW_H / 2 - z.y1);
+        menor = Math.min(menor, Math.hypot(dx, dy));
+      }
+      return menor;
+    };
+
+    const deslocamento = (l: Linha, t: number) => {
+      const o = ((t / 1000) * l.vel) % l.total;
+      return (o + l.total) % l.total;
+    };
+
+    // Palavras amarelas
+    let luzes: Luz[] = [];
+    let proximaLuz = 600;
+    const recentes: string[] = [];
 
     const acender = (t: number) => {
-      for (let tentativa = 0; tentativa < 60; tentativa++) {
-        const c = Math.floor(Math.random() * colunas);
-        const r = Math.floor(Math.random() * linhas);
-        const i = r * colunas + c;
-        const x = slotX(c, r);
-        if (proibido[i] || recentes.includes(i) || x < 0 || x + SLOT_W - 24 > largura) continue;
-        luz = { slot: i, texto: SERVICOS[proximoServico % SERVICOS.length], inicio: t };
-        proximoServico++;
-        recentes.push(i);
-        if (recentes.length > 8) recentes.shift();
-        return;
+      for (let tentativa = 0; tentativa < 80; tentativa++) {
+        const li = Math.floor(Math.random() * linhas.length);
+        if (luzes.some((l) => l.linha === li)) continue;
+        const linha = linhas[li];
+        const off = deslocamento(linha, t);
+        const y = li * ROW_H + ROW_H / 2;
+        const candidatas = linha.palavras
+          .map((p, pi) => ({ p, pi }))
+          .filter(({ p }) => p.servico && !recentes.includes(p.texto));
+        if (candidatas.length === 0) continue;
+        const { p, pi } = aleatorio(candidatas);
+        // posição visível agora: a cópia 0 ou a cópia 1 da linha
+        for (const k of [0, 1]) {
+          const x = p.x - off + k * linha.total;
+          if (x > 24 && x + p.w < largura - 24 && distanciaZona(x, x + p.w, y) > 50) {
+            luzes.push({ linha: li, palavra: pi, inicio: t });
+            recentes.push(p.texto);
+            if (recentes.length > 5) recentes.shift();
+            return;
+          }
+        }
       }
     };
 
     const desenhar = (t: number) => {
       ctx.clearRect(0, 0, largura, altura);
-      ctx.font = `400 ${fonte}px ${familia}`;
-      // Caixa alta, com um respiro entre as letras (o canto de uma palavra de 18 letras ainda cabe no espaço).
-      if ("letterSpacing" in ctx) (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = "0.06em";
+      ctx.font = `500 ${tamanho}px ${familia}`;
       ctx.textAlign = "left";
       ctx.textBaseline = "middle";
 
       if (!reduz) {
-        if (!luz && t > proximaLuz) acender(t);
-        if (luz && t - luz.inicio > LUZ_DURACAO) {
-          luz = null;
-          proximaLuz = t + (LUZ_INTERVALO - LUZ_DURACAO);
+        luzes = luzes.filter((l) => t - l.inicio < LUZ_DURACAO);
+        if (luzes.length < LUZ_MAXIMO && t > proximaLuz) {
+          acender(t);
+          proximaLuz = t + LUZ_INTERVALO;
         }
       }
 
-      for (let r = 0; r < linhas; r++) {
-        for (let c = 0; c < colunas; c++) {
-          const i = r * colunas + c;
-          if (!reduz && t > proximaTroca[i]) {
-            palavra[i] = Math.floor(Math.random() * FUNDO.length);
-            ultimaTroca[i] = t;
-            proximaTroca[i] = t + 2500 + Math.random() * 6000;
+      for (let li = 0; li < linhas.length; li++) {
+        const linha = linhas[li];
+        const off = reduz ? 0 : deslocamento(linha, t);
+        const y = li * ROW_H + ROW_H / 2;
+        for (let pi = 0; pi < linha.palavras.length; pi++) {
+          const p = linha.palavras[pi];
+          for (const k of [0, 1]) {
+            const x = p.x - off + k * linha.total;
+            if (x + p.w < 0 || x > largura) continue;
+            const perto = zonas.length ? Math.min(1, distanciaZona(x, x + p.w, y) / 70) : 1;
+            const luz = luzes.find((l) => l.linha === li && l.palavra === pi);
+            if (luz) {
+              const idade = t - luz.inicio;
+              const a = Math.max(0, Math.min(1, idade / 350, (LUZ_DURACAO - idade) / 600));
+              // a palavra amarela: o mesmo amarelo discreto de antes, sem negrito nem sublinhado
+              ctx.fillStyle = `rgba(255,195,0,${a * 0.9 * (0.35 + 0.65 * perto)})`;
+              ctx.fillText(p.texto, x, y);
+              continue;
+            }
+            ctx.fillStyle = `rgba(133,133,127,${0.2 * (0.18 + 0.82 * perto)})`;
+            ctx.fillText(p.texto, x, y);
           }
-          const x = slotX(c, r);
-          const y = slotY(r);
-          const eLuz = luz !== null && luz.slot === i;
-
-          if (eLuz && luz) {
-            const idade = t - luz.inicio;
-            const a = Math.min(1, idade / 450, (LUZ_DURACAO - idade) / 700);
-            ctx.fillStyle = `rgba(255,195,0,${Math.max(0, a) * 0.9})`;
-            ctx.fillText(luz.texto.toUpperCase(), x, y);
-            continue;
-          }
-
-          // some um pouco antes e volta um pouco depois de trocar de palavra
-          const fade = reduz ? 1 : Math.min(1, (t - ultimaTroca[i]) / 500, (proximaTroca[i] - t) / 500);
-          const base = proibido[i] ? 0.05 : 0.17;
-          ctx.fillStyle = `rgba(133,133,127,${base * Math.max(0, fade)})`;
-          ctx.fillText(FUNDO[palavra[i]].toUpperCase(), x, y);
         }
       }
     };
 
-    medir();
+    montar();
     const ro = new ResizeObserver(() => {
-      medir();
+      montar();
       if (reduz) desenhar(0);
     });
     ro.observe(wrap);
@@ -195,7 +218,7 @@ export function FundoPalavras({
     };
 
     document.fonts.ready.then(() => {
-      medir();
+      montar();
       if (reduz) desenhar(0);
       else raf = requestAnimationFrame(quadro);
     });

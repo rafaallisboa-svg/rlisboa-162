@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 import hero from "@/content/hero.json";
-import { FundoLetras } from "@/components/ui/FundoLetras";import { SeloRegua } from "@/components/ui/IdvElementos";
+import { FundoPalavras } from "@/components/ui/FundoPalavras";
+import { SeloRegua } from "@/components/ui/IdvElementos";
 
 /**
  * Hero da Home. Fundo de letras que acendem perto do mouse, régua fina, 162 gigante (Unbounded Bold, a fonte do logotipo)
@@ -48,6 +49,7 @@ export function HeroHome() {
   const numero = useRef<HTMLSpanElement>(null);
   const anel = useRef<SVGCircleElement>(null);
   const texto = useRef<HTMLDivElement>(null);
+  const numeral = useRef<HTMLSpanElement>(null);
   const [mostrarCortina, setMostrarCortina] = useState(true);
 
   useEffect(() => {
@@ -147,8 +149,8 @@ export function HeroHome() {
       aria-label="Apresentação"
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-idv-preto"
     >
-      {/* Fundo: campo de letras que acendem perto do mouse */}
-      <FundoLetras className="absolute inset-0 -z-20" evitar={texto} />
+      {/* Fundo: palavras em cinza bem discreto; de tempos em tempos uma acende em amarelo. Fica apagado atrás do texto e do 162. */}
+      <FundoPalavras className="absolute inset-0 -z-20" evitar={[texto, numeral]} />
 
       {/* Régua: linhas finas nas margens e na base */}
       <div data-regua aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
@@ -159,6 +161,7 @@ export function HeroHome() {
 
       {/* 162 gigante em Unbounded Bold (a fonte do logotipo), cortado pela borda, inclinado como um adesivo */}
       <span
+        ref={numeral}
         data-numeral
         aria-hidden="true"
         className="pointer-events-none absolute -right-[22%] top-[5.25rem] -z-10 block -rotate-6 font-marca text-[42vw] font-bold leading-none tracking-[-0.03em] text-idv-amarelo md:-right-[9%] md:top-[8%] md:text-[min(23.8vw,23.8rem)]"

@@ -155,6 +155,12 @@ export function HeroHome() {
         evitar={[texto, numeral]}
       />
 
+      {/* Base do hero: desce do preto até o cinza-carvão da seção seguinte, para a emenda não aparecer. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-b from-transparent to-concreto"
+      />
+
       {/* Régua: linhas finas nas margens e na base */}
       <div data-regua aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-y-0 left-6 w-px bg-idv-grafite/50 md:left-[clamp(1.5rem,5vw,6rem)]" />

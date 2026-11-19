@@ -189,7 +189,7 @@ export function FundoPalavras({
               ctx.fillText(p.texto, x, y);
               continue;
             }
-            ctx.fillStyle = `rgba(133,133,127,${0.2 * (0.18 + 0.82 * perto)})`;
+            ctx.fillStyle = `rgba(133,133,127,${0.125 * (0.18 + 0.82 * perto)})`;
             ctx.fillText(p.texto, x, y);
           }
         }

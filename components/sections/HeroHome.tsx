@@ -150,7 +150,10 @@ export function HeroHome() {
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-idv-preto"
     >
       {/* Fundo: palavras em cinza bem discreto; de tempos em tempos uma acende em amarelo. Fica apagado atrás do texto e do 162. */}
-      <FundoPalavras className="absolute inset-0 -z-20" evitar={[texto, numeral]} />
+      <FundoPalavras
+        className="absolute inset-0 -z-20 [mask-image:linear-gradient(to_bottom,transparent,black_16%,black_84%,transparent)]"
+        evitar={[texto, numeral]}
+      />
 
       {/* Régua: linhas finas nas margens e na base */}
       <div data-regua aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
@@ -169,7 +172,8 @@ export function HeroHome() {
         162
       </span>
 
-      <div className="relative w-full px-6 pb-24 pt-28 md:px-[clamp(1.5rem,5vw,6rem)]">
+      {/* No celular o texto começa abaixo do 162 (altura dele + folga), então nunca fica por cima do número. */}
+      <div className="relative w-full px-6 pb-40 pt-[calc(5.25rem+42vw+1.75rem)] md:px-[clamp(1.5rem,5vw,6rem)] md:pb-24 md:pt-28">
         <div ref={texto} className="w-fit max-w-full">
         <p data-bloco className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-idv-cinza">
           <span aria-hidden="true" className="h-px w-3 bg-idv-pedra" />

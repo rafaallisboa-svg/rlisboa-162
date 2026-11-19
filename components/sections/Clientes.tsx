@@ -3,7 +3,7 @@ import clientesData from "@/content/clientes.json";
 import { Cruz } from "@/components/ui/IdvElementos";
 
 /**
- * Pavimento 04 — marquee infinito. Cartões brancos com contorno preto e os
+ * Pavimento 04 — marquee infinito, em fundo amarelo. Cartões brancos sem contorno e os
  * logos nas cores originais, sem mudança no hover (a pedido do Rafael).
  */
 export function Clientes() {
@@ -15,10 +15,10 @@ export function Clientes() {
   return (
     <section
       aria-label="Clientes"
-      className="relative bg-white py-20"
+      className="relative bg-idv-amarelo py-20 text-idv-preto"
     >
-      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-pedra md:right-[clamp(1.5rem,5vw,6rem)]" />
-      <p className="px-6 font-mono text-xs uppercase tracking-[0.12em] text-idv-cinza md:px-[clamp(1.5rem,5vw,6rem)]">
+      <Cruz className="absolute right-6 top-8 h-5 w-5 text-idv-preto md:right-[clamp(1.5rem,5vw,6rem)]" />
+      <p className="px-6 font-mono text-xs uppercase tracking-[0.12em] text-idv-preto md:px-[clamp(1.5rem,5vw,6rem)]">
         Clientes<span className="text-idv-laranja">.</span>
       </p>
 
@@ -31,7 +31,7 @@ export function Clientes() {
             // "escala" ajusta o tamanho do logo dentro da caixa (não a caixa).
             <div
               key={`${c.nome}-${i}`}
-              className="flex h-24 w-36 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-idv-pedra bg-white p-6 md:h-28 md:w-44"
+              className="flex h-24 w-36 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white p-6 md:h-28 md:w-44"
             >
               <img
                 src={c.logo}

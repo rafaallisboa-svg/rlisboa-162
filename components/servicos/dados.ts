@@ -226,5 +226,15 @@ export const PORTE: readonly { espaco: string; altura: string; titulo: string; i
   { espaco: "col-span-2 md:col-span-2 md:row-span-2 md:order-4", altura: "min-h-[22rem]", titulo: "text-lg md:text-3xl lg:text-4xl", icone: "max-h-[32rem]", pad: "md:p-8" },
 ];
 
+// Variação "uniforme" (Home no desktop): os sete cards do mesmo tamanho, menores. Os quatro primeiros ocupam 3 colunas
+// (de 12) e os três últimos ocupam 4, formando 4 em cima e 3 embaixo.
+export const PORTE_UNIFORME: (typeof PORTE)[number] = {
+  espaco: "col-span-1 md:col-span-3",
+  altura: "min-h-[15rem]",
+  titulo: "text-[0.78rem] md:text-lg lg:text-xl",
+  icone: "max-h-[9rem]",
+  pad: "md:p-5",
+};
+
 // Vídeo e Motion Graphics: o grande, o único animado por dentro.
 export const INDICE_DESTAQUE = 4;

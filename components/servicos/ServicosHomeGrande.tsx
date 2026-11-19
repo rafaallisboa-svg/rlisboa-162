@@ -14,7 +14,7 @@ export function ServicosHomeGrande() {
       <p className="font-mono text-xs uppercase tracking-[0.12em] text-idv-preto/60">
         Serviços<span className="text-idv-laranja">.</span>
       </p>
-      <CartoesServicos modo="interativo" offsetTopo={84} className="mt-10" />
+      <CartoesServicos modo="interativo" grade="uniforme" offsetTopo={84} className="mt-10" />
     </section>
   );
 }

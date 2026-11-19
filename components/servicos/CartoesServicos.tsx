@@ -5,7 +5,7 @@ import Link from "next/link";
 import { slugServico } from "@/lib/servicos";
 import { Cruz } from "@/components/ui/IdvElementos";
 import { IconeServico } from "@/components/ui/IconeServico";
-import { ICONE_DO_SERVICO, SERVICOS, TILES, PORTE } from "./dados";
+import { ICONE_DO_SERVICO, SERVICOS, TILES, PORTE, PORTE_UNIFORME } from "./dados";
 import { Adorno, CartaoFechadoConteudo } from "./CartaoFechado";
 
 /**
@@ -19,9 +19,12 @@ export function CartoesServicos({
   lerHash = false,
   offsetTopo = 84,
   onAbrir,
+  grade = "mosaico",
   className = "",
 }: {
   modo?: "interativo" | "estatico";
+  /** "mosaico": cards de tamanhos diferentes (página de Serviços). "uniforme": todos iguais e menores, 4 em cima e 3 embaixo (Home no desktop). */
+  grade?: "mosaico" | "uniforme";
   /** Abre o serviço indicado no #endereço da página (só na página de Serviços). */
   lerHash?: boolean;
   /** Altura da barra fixa por cima do card aberto, para alinhar a rolagem. */
@@ -33,6 +36,7 @@ export function CartoesServicos({
   const [aberto, setAberto] = useState<number | null>(null);
   const [destaque, setDestaque] = useState(0);
   const linhasRef = useRef<(HTMLDivElement | null)[]>([]);
+  const uniforme = grade === "uniforme";
 
   // Ao abrir um serviço, leva a tela até ele (logo abaixo do menu), para não precisar rolar.
   // Espera a animação de abrir/fechar terminar para medir a posição final.
@@ -74,16 +78,20 @@ export function CartoesServicos({
   return (
     <div
       role="list"
-      className={`grid grid-flow-dense grid-cols-2 gap-3 md:auto-rows-[minmax(22rem,auto)] md:grid-cols-4 ${className}`}
+      className={`grid grid-flow-dense grid-cols-2 gap-3 ${
+        uniforme ? "md:auto-rows-[minmax(15rem,auto)] md:grid-cols-12" : "md:auto-rows-[minmax(22rem,auto)] md:grid-cols-4"
+      } ${className}`}
     >
       {SERVICOS.map((s, i) => {
         const isOpen = aberto === i;
         const c = TILES[i % TILES.length];
         const escuro = c.fg === "text-idv-off";
         const rotulo = "rotuloIncluido" in s ? s.rotuloIncluido : "O que está incluído";
-        const porte = PORTE[i % PORTE.length];
-        const ordem = porte.espaco.split(" ").find((k) => k.startsWith("md:order-")) ?? "";
-        const largura = isOpen ? `col-span-2 md:col-span-4 ${ordem}` : porte.espaco;
+        const porte = uniforme ? PORTE_UNIFORME : PORTE[i % PORTE.length];
+        // Uniforme: 4 cards de 3 colunas em cima e 3 de 4 colunas embaixo (grade de 12).
+        const espaco = uniforme ? (i < 4 ? "col-span-1 md:col-span-3" : "col-span-1 md:col-span-4") : porte.espaco;
+        const ordem = uniforme ? "" : (porte.espaco.split(" ").find((k) => k.startsWith("md:order-")) ?? "");
+        const largura = isOpen ? `col-span-2 ${uniforme ? "md:col-span-12" : "md:col-span-4"} ${ordem}` : espaco;
         const grupos = "grupos" in s ? s.grupos : "incluido" in s ? [{ nome: rotulo || "Entregas", incluido: s.incluido }] : [];
 
           if (modo === "estatico") {
@@ -137,7 +145,7 @@ export function CartoesServicos({
                   </span>
                 </>
               ) : (
-                <CartaoFechadoConteudo i={i} piscando={destaque === i} />
+                <CartaoFechadoConteudo i={i} piscando={destaque === i} porteUsado={uniforme ? PORTE_UNIFORME : undefined} />
               )}
             </button>
 

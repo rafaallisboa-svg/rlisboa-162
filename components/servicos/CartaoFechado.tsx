@@ -13,11 +13,20 @@ export function Adorno({ i }: { i: number }) {
 }
 
 // Miolo do cartão fechado. É o mesmo na página de Serviços (dentro de um botão) e na Home do celular (sem clique).
-export function CartaoFechadoConteudo({ i, piscando }: { i: number; piscando: boolean }) {
+export function CartaoFechadoConteudo({
+  i,
+  piscando,
+  porteUsado,
+}: {
+  i: number;
+  piscando: boolean;
+  /** Troca o porte padrão (a Home do desktop usa o uniforme). */
+  porteUsado?: (typeof PORTE)[number];
+}) {
   const s = SERVICOS[i];
   const c = TILES[i % TILES.length];
   const destaqueTile = i === INDICE_DESTAQUE;
-  const porte = PORTE[i % PORTE.length];
+  const porte = porteUsado ?? PORTE[i % PORTE.length];
   return (
     <>
       {destaqueTile && (

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { SEO, urlAbsoluta, urlDoSite } from "@/lib/seo";
 import { slugServico } from "@/lib/servicos";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ProjetosDestaque } from "@/components/sections/ProjetosDestaque";
 import { ApresentacoesCarrossel } from "@/components/sections/ApresentacoesCarrossel";
 import { CapasLivros } from "@/components/sections/CapasLivros";
 import { PerguntasFrequentes } from "@/components/sections/PerguntasFrequentes";
@@ -43,8 +42,6 @@ export default function ServicosLayout({ children }: { children: React.ReactNode
       {children}
       <ApresentacoesCarrossel />
       <CapasLivros />
-      {/* Os projetos entram depois da animação dos quadradinhos, no mesmo fundo amarelo. */}
-      <ProjetosDestaque fundo="amarelo" />
       <PerguntasFrequentes />
     </>
   );

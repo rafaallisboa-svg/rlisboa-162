@@ -7,6 +7,7 @@ import { ServicosHomeGrande } from "@/components/servicos/ServicosHomeGrande";
 import { DesafiosRelogio } from "@/components/sections/DesafiosRelogio";
 import { GrafismoParallax } from "@/components/motion/GrafismoParallax";
 import { ProjetosDestaque } from "@/components/sections/ProjetosDestaque";
+import { HeroHome } from "@/components/sections/HeroHome";
 
 export const metadata: Metadata = {
   title: { absolute: SEO.tituloPadrao },
@@ -21,8 +22,7 @@ export default function HomePage() {
         {site.nomeCompleto}: estúdio de design em {site.local.cidade}, {site.local.estado}. Identidade
         visual, sites, apresentações, redes sociais e motion graphics.
       </h1>
-      {/* Respiro entre o menu e os projetos: 300 px abaixo do menu no desktop (80 px de padding do bloco + este espaço). */}
-      <div aria-hidden="true" className="h-12 bg-concreto md:h-[285px]" />
+      <HeroHome />
       <ProjetosDestaque />
       {/* O relógio para na tela (sticky) e o bloco amarelo seguinte sobe por cima dele, como uma cortina. */}
       <section className="sticky top-0 z-0 flex h-[100svh] items-center justify-center bg-concreto px-6">

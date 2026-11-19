@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 import hero from "@/content/hero.json";
-import { D162 } from "@/components/ui/IdvElementos";
+import { FundoLiquido } from "@/components/ui/FundoLiquido";
+import { SeloRegua } from "@/components/ui/IdvElementos";
 
 /**
- * Hero da Home. Fundo em vídeo (loop de 8 s, sem som), régua fina, 162 gigante
- * cortado pela borda e título que entra letra por letra depois de um loading
- * curto. O loading roda uma vez por visita (sessionStorage) e não roda com
- * "reduzir movimento". Amarelo só em três pontos: o 162, a frase em destaque e
- * o botão. Textos em content/hero.json.
+ * Hero da Home. Fundo vivo que segue o mouse, régua fina, 162 gigante (Unbounded Bold, a fonte do logotipo)
+ * cortado pela borda e título que entra letra por letra depois de um loading curto com o relógio da marca.
+ * O loading roda uma vez por visita (sessionStorage) e não roda com "reduzir movimento".
+ * Amarelo só em três pontos: o 162, a frase em destaque e o botão. Textos em content/hero.json.
  */
 
 const CHAVE = "rl-hero-intro";
@@ -47,7 +47,6 @@ export function HeroHome() {
   const raiz = useRef<HTMLElement>(null);
   const cortina = useRef<HTMLDivElement>(null);
   const numero = useRef<HTMLSpanElement>(null);
-  const anel = useRef<SVGCircleElement>(null);
   const [mostrarCortina, setMostrarCortina] = useState(true);
 
   useEffect(() => {
@@ -60,10 +59,8 @@ export function HeroHome() {
     } catch {
       /* sem storage: roda a animação */
     }
-    const video = el.querySelector("video");
 
     if (reduz || visto) {
-      if (reduz) video?.pause();
       setMostrarCortina(false);
       return;
     }
@@ -96,18 +93,12 @@ export function HeroHome() {
       run(numeral, [{ opacity: 0, translate: "0 -60px", scale: "1.1" }, { opacity: 1, translate: "0 0", scale: "1" }], { duration: 1100, delay: 200 });
     };
 
-    const C = 2 * Math.PI * 46;
-    if (anel.current) {
-      anel.current.style.strokeDasharray = String(C);
-      anel.current.style.strokeDashoffset = String(C);
-    }
     const inicio = performance.now();
-    const DUR = 1500;
+    const DUR = 1700;
     const passo = (agora: number) => {
-      const p = Math.min((agora - inicio) / DUR, 1);
+      const p = Math.min(Math.max((agora - inicio) / DUR, 0), 1);
       const e = 1 - Math.pow(1 - p, 3);
       if (numero.current) numero.current.textContent = String(Math.round(e * 100)).padStart(2, "0");
-      if (anel.current) anel.current.style.strokeDashoffset = String(C * (1 - e));
       if (p < 1) {
         raf = requestAnimationFrame(passo);
         return;
@@ -149,19 +140,8 @@ export function HeroHome() {
       aria-label="Apresentação"
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-idv-preto"
     >
-      {/* Fundo em movimento */}
-      <video
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src="/hero/hero-fundo.webm" type="video/webm" />
-        <source src="/hero/hero-fundo.mp4" type="video/mp4" />
-      </video>
+      {/* Fundo vivo, segue o mouse */}
+      <FundoLiquido className="absolute inset-0 -z-20" />
 
       {/* Régua: linhas finas nas margens e na base */}
       <div data-regua aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
@@ -170,15 +150,13 @@ export function HeroHome() {
         <div className="absolute inset-x-0 bottom-16 h-px bg-idv-grafite/70" />
       </div>
 
-      {/* 162 gigante, cortado pela borda, inclinado como um adesivo */}
+      {/* 162 gigante em Unbounded Bold (a fonte do logotipo), cortado pela borda, inclinado como um adesivo */}
       <span
         data-numeral
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[22%] top-24 -z-10 block w-[110vw] -rotate-6 md:-right-[10%] md:top-[14%] md:w-[min(52vw,52rem)]"
+        className="pointer-events-none absolute -right-[24%] top-[6rem] -z-10 block -rotate-6 font-marca text-[50vw] font-bold leading-none tracking-[-0.03em] text-idv-amarelo md:-right-[9%] md:top-[8%] md:text-[min(23.8vw,23.8rem)]"
       >
-        <svg viewBox="0 -155 430 162" className="block w-full">
-          <path d={D162} fill="var(--color-idv-amarelo)" />
-        </svg>
+        162
       </span>
 
       <div className="relative w-full px-6 pb-24 pt-28 md:px-[clamp(1.5rem,5vw,6rem)]">
@@ -211,31 +189,21 @@ export function HeroHome() {
         </div>
       </div>
 
-      {/* Loading: porcentagem num círculo fino, só na primeira vez da visita */}
+      {/* Loading: o relógio da marca (com o 162 no centro), girando, e a contagem. Só na primeira vez da visita. */}
       {mostrarCortina && (
         <div
           ref={cortina}
           aria-hidden="true"
-          className="fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 bg-idv-preto md:flex-row md:gap-7"
+          className="fixed inset-0 z-[70] flex flex-col items-center justify-center gap-6 bg-idv-preto"
         >
-          <div className="relative h-[104px] w-[104px] md:h-[120px] md:w-[120px]">
-            <svg viewBox="0 0 100 100" className="absolute inset-0 -rotate-90">
-              <circle cx="50" cy="50" r="46" fill="none" stroke="var(--color-idv-grafite)" strokeWidth="1" />
-              <circle ref={anel} cx="50" cy="50" r="46" fill="none" stroke="var(--color-idv-amarelo)" strokeWidth="1.5" />
-            </svg>
-            <span
-              ref={numero}
-              className="absolute inset-0 flex items-center justify-center font-mono text-3xl tabular-nums text-idv-off"
-            >
+          <SeloRegua tinta="var(--color-idv-off)" className="h-36 w-36 md:h-44 md:w-44" />
+          <p className="flex items-baseline gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-idv-cinza">
+            <span ref={numero} className="text-3xl tabular-nums tracking-normal text-idv-off">
               00
             </span>
-          </div>
-          <p className="text-center font-mono text-[10px] uppercase leading-[1.7] tracking-[0.2em] text-idv-cinza md:text-left">
-            <span className="text-idv-off">
-              R<span className="text-idv-laranja">.</span> Lisboa
+            <span>
+              R<span className="text-idv-laranja">.</span> Lisboa / Estúdio 162
             </span>
-            <br />
-            Estúdio 162
           </p>
         </div>
       )}

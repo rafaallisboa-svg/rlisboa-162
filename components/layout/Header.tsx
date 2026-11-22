@@ -7,6 +7,7 @@ import { site } from "@/site.config";
 import { publicados } from "@/lib/placeholder";
 import { SocialIcon, IconeEmail, IconeWhatsApp } from "@/components/ui/SocialIcon";
 import { Logo } from "@/components/ui/Logo";
+import { SeloRegua } from "@/components/ui/IdvElementos";
 
 const NAV: readonly { label: string; href: string }[] = [
   { label: "Home", href: "/" },
@@ -169,8 +170,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex flex-col gap-4 px-6 pb-8 pt-6 text-idv-preto">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.12em]">Contato</p>
+        <div className="flex flex-col gap-6 px-6 pb-8 pt-4 text-idv-preto">
           <div className="flex flex-col gap-3">
             <a
               href={`mailto:${site.contato.email}`}
@@ -193,7 +193,7 @@ export function Header() {
           </div>
 
           {redes.length > 0 && (
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {redes.map((r) => (
                 <a
                   key={r.label}
@@ -202,7 +202,7 @@ export function Header() {
                   rel="noopener noreferrer"
                   aria-label={r.label}
                   onClick={fechar}
-                  className="flex h-10 w-10 items-center justify-center transition-transform duration-200 hover:scale-110"
+                  className="flex h-8 w-8 items-center justify-center transition-transform duration-200 hover:scale-110"
                 >
                   <SocialIcon nome={r.label} className="h-8 w-8" />
                 </a>
@@ -210,13 +210,16 @@ export function Header() {
             </div>
           )}
 
-          <Link
-            href="/orcamento"
-            onClick={fechar}
-            className="mt-2 self-start border border-idv-preto px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em]"
-          >
-            Pedir orçamento
-          </Link>
+          <div className="flex items-center gap-4">
+            <SeloRegua className="h-14 w-14 shrink-0" />
+            <Link
+              href="/orcamento"
+              onClick={fechar}
+              className="inline-flex items-center justify-center bg-idv-preto px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-amarelo"
+            >
+              Pedir orçamento
+            </Link>
+          </div>
         </div>
       </div>
     </>

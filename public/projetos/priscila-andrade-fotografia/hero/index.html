@@ -82,10 +82,10 @@ a{ color:inherit; text-decoration:none; }
   padding:0 clamp(1.25rem,4vw,3rem) clamp(3.5rem,9vw,6.5rem);
   color:#fff;
 }
-.hero-eyebrow{ font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:#e6c99a; margin-bottom:1.1rem; }
+.hero-eyebrow{ display:none; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:#e6c99a; margin-bottom:1.1rem; }
 .hero-headline{
-  font-family:var(--serif); font-weight:500; font-size:clamp(2.1rem,6.4vw,4.6rem);
-  line-height:1.08; letter-spacing:-.01em; max-width:16ch;
+  font-family:var(--serif); font-weight:600; font-size:clamp(2rem,5.2vw,3.4rem);
+  line-height:1.08; letter-spacing:-.015em; max-width:16ch;
 }
 .hero-scroll{
   display:inline-flex; align-items:center; gap:.6rem; margin-top:2.5rem;
@@ -98,6 +98,28 @@ a{ color:inherit; text-decoration:none; }
   .reveal{ transition:none; opacity:1; transform:none; }
   .hero-scroll svg{ animation:none; }
 }
+
+/* ===== SOBRE (alterna sozinho com o hero, como a rolagem do site) ===== */
+.hero-content{ transition:opacity .45s var(--ease); }
+.sobre-band{
+  position:absolute; inset:0; z-index:2; color:#fff;
+  background:#14120f url('uploads/kora-04.jpg') center 60%/cover no-repeat;
+  display:flex; align-items:flex-end; padding:calc(var(--header-h) + 2rem) 0 max(6rem,9vh);
+  opacity:0; visibility:hidden; transition:opacity .9s var(--ease), visibility 0s linear .9s;
+}
+.sobre-band::before{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(0deg,rgba(15,13,10,.82) 0%,rgba(15,13,10,.3) 45%,rgba(15,13,10,.12) 100%),
+             linear-gradient(90deg,rgba(15,13,10,.55) 0%,rgba(15,13,10,0) 60%);
+}
+.sobre-band-inner{ position:relative; width:100%; max-width:1280px; margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
+.section-tag{ display:flex; align-items:center; gap:.9rem; margin-bottom:.6rem; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:#e6c99a; font-weight:600; }
+.section-tag::after{ content:''; width:48px; height:1px; background:currentColor; }
+.sobre-title{ font-family:var(--serif); font-weight:600; font-size:clamp(2rem,5.2vw,3.4rem); line-height:1; letter-spacing:-.015em; margin:0 0 1rem; white-space:nowrap; }
+.sobre-lead{ font-family:var(--serif); font-weight:500; font-size:clamp(1rem,1.5vw,1.2rem); line-height:1.4; max-width:44ch; }
+@media (min-width:1100px){ .sobre-lead{ white-space:nowrap; } }
+body.sobre-shown .sobre-band{ opacity:1; visibility:visible; transition:opacity .9s var(--ease); }
+body.sobre-shown .hero-content{ opacity:0; }
 </style>
 </head>
 <body>
@@ -119,7 +141,14 @@ a{ color:inherit; text-decoration:none; }
     <img src="uploads/kora-01.jpg" alt="" class="hero-img" fetchpriority="high">
     <div class="hero-scrim"></div>
   </div>
-  <div class="hero-content">
+  <div class="sobre-band" aria-hidden="true">
+  <div class="sobre-band-inner">
+    <span class="section-tag">Sobre</span>
+    <h2 class="sobre-title">Priscila Andrade</h2>
+    <p class="sobre-lead">Fotógrafa e videomaker de imóveis e arquitetura. Paulistana, hoje em Itapema,&nbsp;SC.</p>
+  </div>
+</div>
+<div class="hero-content">
     <p class="hero-eyebrow reveal">Fotografia &amp; Vídeo · Imóveis e Arquitetura</p>
     <h1 class="hero-headline reveal">Contando a história dos espaços através da fotografia e do vídeo.</h1>
     <a href="https://priscilaandradefoto.com.br/#portfolio" class="hero-scroll reveal" target="_blank" rel="noopener">
@@ -131,6 +160,9 @@ a{ color:inherit; text-decoration:none; }
 
 <script>
 (() => {
+  // alterna entre a imagem inicial e a do "Sobre", como a rolagem do site
+  let on=false; setInterval(()=>{ on=!on; document.body.classList.toggle("sobre-shown",on); }, on?4000:4500);
+
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
   }, { threshold:.12 });

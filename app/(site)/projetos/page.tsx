@@ -24,15 +24,12 @@ export default function ProjetosPage() {
       </h1>
 
       <div className="mt-12 border-t border-white/10">
-        {projetos.map((p, i) => (
+        {projetos.map((p) => (
           <Link
             key={p.slug}
             href={`/projetos/${p.slug}`}
             className="group flex items-center justify-between gap-6 border-b border-white/10 py-6"
           >
-            <span className="font-mono text-xs tabular-nums text-maresia">
-              {String(i + 1).padStart(2, "0")}
-            </span>
             <span className="flex-1 font-display text-xl uppercase tracking-tight transition-colors group-hover:text-sinal md:text-2xl">
               {isTodo(p.titulo) ? (
                 <span className={todoClass}>{p.titulo}</span>

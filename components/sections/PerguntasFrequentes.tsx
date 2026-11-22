@@ -50,15 +50,12 @@ export function PerguntasFrequentes() {
         </div>
 
         <div className="border-t border-white/10">
-          {PERGUNTAS.map(({ p, r }, i) => (
+          {PERGUNTAS.map(({ p, r }) => (
             <details
               key={p}
               className="faq group relative border-b border-white/10 transition-colors duration-300 before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:origin-top before:scale-y-0 before:bg-sinal before:transition-transform before:duration-500 open:bg-white/[0.035] open:before:scale-y-100"
             >
-              <summary className="grid cursor-pointer list-none grid-cols-[2.25rem_1fr_auto] items-center gap-4 py-6 pl-4 pr-2 text-cal transition-colors hover:text-sinal md:gap-6 md:pl-6 [&::-webkit-details-marker]:hidden">
-                <span className="font-mono text-xs tabular-nums text-maresia transition-colors group-open:text-sinal">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+              <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-center gap-4 py-6 pl-4 pr-2 text-cal transition-colors hover:text-sinal md:gap-6 md:pl-6 [&::-webkit-details-marker]:hidden">
                 <span className="font-display text-xl leading-snug transition-colors group-open:text-sinal md:text-2xl">{semOrfa(p)}</span>
                 <span
                   aria-hidden="true"
@@ -68,7 +65,7 @@ export function PerguntasFrequentes() {
                   <IconeServico nome="menos" className="absolute inset-0 hidden h-full w-full group-open:block" />
                 </span>
               </summary>
-              <p className="faq-r max-w-2xl pb-8 pl-[calc(2.25rem+2rem)] pr-10 text-body leading-relaxed text-cal/75 md:pl-[calc(2.25rem+3rem)]">{r}</p>
+              <p className="faq-r max-w-2xl pb-8 pl-4 pr-10 text-body leading-relaxed text-cal/75 md:pl-6">{r}</p>
             </details>
           ))}
         </div>

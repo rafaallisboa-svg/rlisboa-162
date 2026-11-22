@@ -139,11 +139,11 @@ export function Header() {
           transition: "opacity 280ms ease, visibility 0s linear " + (aberto ? "0s" : "280ms"),
         }}
       >
-        <div className="h-[65px] shrink-0 border-b border-idv-preto/15" />
+        <div className="h-[65px] shrink-0" />
 
         <nav
           aria-label="Navegação principal (mobile)"
-          className="flex flex-1 flex-col justify-center px-6"
+          className="flex flex-1 flex-col items-start justify-center gap-2 px-6"
         >
           {NAV.map((item, i) => {
             const ativo = item.href === caminho;
@@ -153,86 +153,70 @@ export function Header() {
                 href={item.href}
                 onClick={fechar}
                 aria-current={ativo ? "page" : undefined}
-                className="group flex items-center justify-between border-b border-idv-preto/20 py-[clamp(0.75rem,2.6vh,1.5rem)] first:border-t"
+                className={
+                  "inline-block px-3 py-2 font-display text-[clamp(1.75rem,8.6vw,2.6rem)] uppercase leading-none tracking-tight transition-transform duration-300 active:translate-x-1 " +
+                  (ativo ? "bg-idv-off text-idv-preto" : "bg-idv-preto text-idv-off")
+                }
                 style={{
                   opacity: aberto ? 1 : 0,
-                  transform: aberto ? "none" : "translateY(28px)",
+                  transform: aberto ? "none" : "translateY(24px)",
                   transition: `opacity 420ms ease ${aberto ? 120 + i * 60 : 0}ms, transform 520ms cubic-bezier(0.22,1,0.36,1) ${aberto ? 120 + i * 60 : 0}ms`,
                 }}
               >
-                <span className="flex items-center gap-3 font-display text-[clamp(2.25rem,11.5vw,3.75rem)] uppercase leading-none tracking-tight text-idv-preto transition-transform duration-300 group-active:translate-x-2">
-                  {ativo && (
-                    <span aria-hidden="true" className="h-3 w-3 shrink-0 rounded-full bg-idv-preto" />
-                  )}
-                  {item.label}
-                </span>
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="h-7 w-7 shrink-0 text-idv-preto transition-transform duration-300 group-active:translate-x-1 group-active:-translate-y-1"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <path d="M6 18 18 6M8 6h10v10" />
-                </svg>
+                {item.label}
               </Link>
             );
           })}
         </nav>
 
-        <div className="flex flex-col gap-5 bg-idv-preto px-6 pb-8 pt-6 text-idv-off">
+        <div className="flex flex-col gap-4 px-6 pb-8 pt-6 text-idv-preto">
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.12em]">Contato</p>
+          <div className="flex flex-col gap-3">
+            <a
+              href={`mailto:${site.contato.email}`}
+              onClick={fechar}
+              className="flex items-center gap-3 font-mono text-sm"
+            >
+              <IconeEmail />
+              {site.contato.email}
+            </a>
+            <a
+              href={`https://wa.me/${site.contato.whatsapp}`}
+              onClick={fechar}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 font-mono text-sm"
+            >
+              <IconeWhatsApp />
+              {site.contato.telefone}
+            </a>
+          </div>
+
+          {redes.length > 0 && (
+            <div className="flex gap-3">
+              {redes.map((r) => (
+                <a
+                  key={r.label}
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={r.label}
+                  onClick={fechar}
+                  className="flex h-10 w-10 items-center justify-center transition-transform duration-200 hover:scale-110"
+                >
+                  <SocialIcon nome={r.label} className="h-8 w-8" />
+                </a>
+              ))}
+            </div>
+          )}
+
           <Link
             href="/orcamento"
             onClick={fechar}
-            className="flex items-center justify-between bg-idv-amarelo px-5 py-4 font-mono text-xs font-bold uppercase tracking-[0.12em] text-idv-preto"
+            className="mt-2 self-start border border-idv-preto px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em]"
           >
             Pedir orçamento
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75">
-              <path d="M4 12h16M14 6l6 6-6 6" />
-            </svg>
           </Link>
-
-          <div className="flex flex-col gap-5">
-            <div className="flex flex-col gap-3">
-              <a
-                href={`mailto:${site.contato.email}`}
-                onClick={fechar}
-                className="flex items-center gap-3 font-mono text-sm"
-              >
-                <IconeEmail />
-                {site.contato.email}
-              </a>
-              <a
-                href={`https://wa.me/${site.contato.whatsapp}`}
-                onClick={fechar}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 font-mono text-sm"
-              >
-                <IconeWhatsApp />
-                {site.contato.telefone}
-              </a>
-            </div>
-
-            {redes.length > 0 && (
-              <div className="flex gap-3">
-                {redes.map((r) => (
-                  <a
-                    key={r.label}
-                    href={r.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={r.label}
-                    onClick={fechar}
-                    className="flex h-10 w-10 items-center justify-center transition-transform duration-200 hover:scale-110"
-                  >
-                    <SocialIcon nome={r.label} className="h-8 w-8" />
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </>

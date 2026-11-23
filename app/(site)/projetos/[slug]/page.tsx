@@ -142,7 +142,8 @@ export default async function ProjetoPage({
           />
         </div>
       ) : frontmatter.capaCompleta ? (
-        <div className="w-full overflow-hidden bg-blueprint">
+        // No celular desce a altura do menu fixo, para a capa não ficar escondida atrás dele.
+        <div className="w-full overflow-hidden bg-blueprint pt-[65px] md:pt-0">
           <img
             {...responsiva(frontmatter.capa)}
             sizes="100vw"

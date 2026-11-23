@@ -183,9 +183,7 @@ export function HeroHome() {
         <div ref={texto} className="w-fit max-w-full">
         <p data-bloco className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-idv-cinza">
           <span aria-hidden="true" className="h-px w-3 bg-idv-pedra" />
-          <span>
-            {hero.rotulo[0]} <span className="mx-1">/</span> {hero.rotulo[1]}
-          </span>
+          <span>{hero.rotulo}</span>
         </p>
 
         <h2 className="mt-6 max-w-[20ch] font-display text-[clamp(2.25rem,5.2vw,4.75rem)] font-semibold uppercase leading-[1.04] tracking-tight text-idv-off">

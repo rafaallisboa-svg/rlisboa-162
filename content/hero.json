@@ -1,5 +1,5 @@
 {
-  "rotulo": ["Estúdio de design", "Estratégia + criação"],
+  "rotulo": "Estúdio de design e criação",
   "linhas": [
     { "texto": "Sua marca ao" },
     { "texto": "público certo.", "destaque": true }

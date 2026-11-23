@@ -25,7 +25,7 @@ export default function HomePage() {
       <HeroHome />
       <ProjetosDestaque />
       {/* O relógio para na tela (sticky) e o bloco amarelo seguinte sobe por cima dele, como uma cortina. */}
-      <section className="sticky top-0 z-0 flex h-[100svh] items-center justify-center bg-concreto px-6">
+      <section className="sticky top-0 z-0 flex items-center justify-center bg-concreto px-6 pb-20 md:h-[100svh] md:pb-0">
         <DesafiosRelogio />
       </section>
       <div className="relative z-10">

@@ -35,8 +35,9 @@ export type ProjetoMeta = {
   capaCompleta?: boolean;
   capaVideo: string | null;
   cores: string[];
-  galeria?: { src: string; alt: string }[];
+  galeria?: { src: string; alt: string; linha?: boolean }[];
   galeriaFundo?: "branco";
+  galeriaSemPares?: boolean;
   cobertura?: Cobertura;
   resultado: string;
   siteExterno?: string | null;

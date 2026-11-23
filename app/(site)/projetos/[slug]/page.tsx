@@ -221,7 +221,11 @@ export default async function ProjetoPage({
           >
             Aplicações
           </p>
-          <Galeria imagens={frontmatter.galeria} claro={frontmatter.galeriaFundo === "branco"} />
+          <Galeria
+            imagens={frontmatter.galeria}
+            claro={frontmatter.galeriaFundo === "branco"}
+            semPares={frontmatter.galeriaSemPares}
+          />
         </div>
       )}
 

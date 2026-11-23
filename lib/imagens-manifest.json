@@ -315,24 +315,18 @@
       "src": "/projetos/menu-criativo/galeria-09-1920.webp"
     }
   ],
-  "/projetos/menu-criativo/galeria-10.jpg": [
+  "/projetos/menu-criativo/thumb.jpg": [
     {
       "w": 640,
-      "src": "/projetos/menu-criativo/galeria-10-640.webp"
+      "src": "/projetos/menu-criativo/thumb-640.webp"
     },
     {
       "w": 1280,
-      "src": "/projetos/menu-criativo/galeria-10-1280.webp"
+      "src": "/projetos/menu-criativo/thumb-1280.webp"
     },
     {
       "w": 1500,
-      "src": "/projetos/menu-criativo/galeria-10-1920.webp"
-    }
-  ],
-  "/projetos/menu-criativo/thumb.jpg": [
-    {
-      "w": 512,
-      "src": "/projetos/menu-criativo/thumb-640.webp"
+      "src": "/projetos/menu-criativo/thumb-1920.webp"
     }
   ],
   "/projetos/oh-que-delicia-de-cacau/capa.jpg": [

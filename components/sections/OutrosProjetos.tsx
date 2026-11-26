@@ -68,19 +68,16 @@ export function OutrosProjetos({
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               />
             </div>
-            <div className="mt-4 flex items-start justify-between gap-4">
-              <p className="min-w-0 font-display text-[0.65rem] uppercase leading-[2.6] tracking-[0.16em] text-idv-amarelo md:text-xs md:leading-[2.6]">
-                <span className="border border-idv-amarelo px-2 py-0.5 transition-colors duration-200 md:px-3 md:py-1 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] [@media(hover:hover)]:group-hover:border-idv-off [@media(hover:hover)]:group-hover:text-idv-off">
-                  {p.titulo}
-                </span>
-              </p>
-              <span className="shrink-0 pt-2 font-mono text-xs tabular-nums text-idv-amarelo transition-colors group-hover:text-idv-off md:pt-3">
+            {/* Mesma legenda dos cards da home: nome, descrição e ano numa linha só (no celular a descrição desce). */}
+            <div className="mt-3 grid grid-cols-[1fr_auto] gap-x-4 gap-y-0.5 text-[0.8rem] leading-snug md:grid-cols-[1fr_1fr_auto]">
+              <span className="min-w-0 font-medium text-idv-off">{p.titulo}</span>
+              <span className="col-span-2 row-start-2 text-maresia transition-colors group-hover:text-idv-off md:col-span-1 md:row-start-auto">
+                {p.subtitulo}
+              </span>
+              <span className="col-start-2 row-start-1 font-mono tabular-nums text-maresia transition-colors group-hover:text-idv-off md:col-start-3">
                 {p.ano}
               </span>
             </div>
-            <p className="mt-2 text-sm font-medium text-idv-pedra transition-colors group-hover:text-idv-off">
-              {p.subtitulo}
-            </p>
           </Link>
         ))}
       </div>
